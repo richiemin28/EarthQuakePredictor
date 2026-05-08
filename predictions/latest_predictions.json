@@ -1,0 +1,230 @@
+[
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 4.5,
+    "magnitude_label": "MODERATE (M4.5+)",
+    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
+    "magnitude_action": "Awareness level - monitor situation",
+    "prediction_window_days": 30,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-06-07",
+    "probability": 0.9978,
+    "confidence": "HIGH",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 4.5,
+    "magnitude_label": "MODERATE (M4.5+)",
+    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
+    "magnitude_action": "Awareness level - monitor situation",
+    "prediction_window_days": 15,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-23",
+    "probability": 0.9864,
+    "confidence": "HIGH",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 4.5,
+    "magnitude_label": "MODERATE (M4.5+)",
+    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
+    "magnitude_action": "Awareness level - monitor situation",
+    "prediction_window_days": 10,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-18",
+    "probability": 0.911,
+    "confidence": "HIGH",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.0,
+    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_effect": "Significant shaking, damage likely to weak structures",
+    "magnitude_action": "Preparedness level - check emergency readiness",
+    "prediction_window_days": 30,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-06-07",
+    "probability": 0.8956,
+    "confidence": "HIGH",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 4.5,
+    "magnitude_label": "MODERATE (M4.5+)",
+    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
+    "magnitude_action": "Awareness level - monitor situation",
+    "prediction_window_days": 7,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-15",
+    "probability": 0.6866,
+    "confidence": "MODERATE",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.0,
+    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_effect": "Significant shaking, damage likely to weak structures",
+    "magnitude_action": "Preparedness level - check emergency readiness",
+    "prediction_window_days": 15,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-23",
+    "probability": 0.6111,
+    "confidence": "LOW-MODERATE",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.0,
+    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_effect": "Significant shaking, damage likely to weak structures",
+    "magnitude_action": "Preparedness level - check emergency readiness",
+    "prediction_window_days": 10,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-18",
+    "probability": 0.4148,
+    "confidence": "LOW",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.0,
+    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_effect": "Significant shaking, damage likely to weak structures",
+    "magnitude_action": "Preparedness level - check emergency readiness",
+    "prediction_window_days": 7,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-15",
+    "probability": 0.3095,
+    "confidence": "LOW",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.5,
+    "magnitude_label": "STRONG+ (M5.5+)",
+    "magnitude_effect": "Destructive shaking, serious infrastructure risk",
+    "magnitude_action": "HIGH ALERT - significant damage potential",
+    "prediction_window_days": 30,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-06-07",
+    "probability": 0.1488,
+    "confidence": "LOW",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.5,
+    "magnitude_label": "STRONG+ (M5.5+)",
+    "magnitude_effect": "Destructive shaking, serious infrastructure risk",
+    "magnitude_action": "HIGH ALERT - significant damage potential",
+    "prediction_window_days": 10,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-18",
+    "probability": 0.1376,
+    "confidence": "LOW",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.5,
+    "magnitude_label": "STRONG+ (M5.5+)",
+    "magnitude_effect": "Destructive shaking, serious infrastructure risk",
+    "magnitude_action": "HIGH ALERT - significant damage potential",
+    "prediction_window_days": 15,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-23",
+    "probability": 0.0986,
+    "confidence": "LOW",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  },
+  {
+    "generated_at": "2026-05-08 03:20 UTC",
+    "magnitude_threshold": 5.5,
+    "magnitude_label": "STRONG+ (M5.5+)",
+    "magnitude_effect": "Destructive shaking, serious infrastructure risk",
+    "magnitude_action": "HIGH ALERT - significant damage potential",
+    "prediction_window_days": 7,
+    "date_range_start": "2026-05-08",
+    "date_range_end": "2026-05-15",
+    "probability": 0.0879,
+    "confidence": "LOW",
+    "primary_zone": "Northern Myanmar",
+    "likely_zones": [
+      "Northern Myanmar",
+      "Central Myanmar",
+      "Southern Myanmar"
+    ],
+    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+  }
+]
