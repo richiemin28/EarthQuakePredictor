@@ -79,7 +79,13 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
 
     df = recent_events.copy()
     df["time"] = pd.to_datetime(df["time"])
-    cutoff = datetime.utcnow() - timedelta(days=lookback_days)
+
+    # Use the most recent event date in the supplied data as the reference
+    # point rather than datetime.utcnow(). This is critical when the catalog
+    # ends before the current date (e.g. historical data ending Dec 2025
+    # being queried in May 2026) - using utcnow() would return zero events.
+    reference_date = df["time"].max()
+    cutoff = reference_date - timedelta(days=lookback_days)
 
     # Filter by time and magnitude
     df = df[
@@ -87,14 +93,22 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
         (df["magnitude"] >= min_magnitude)
     ].copy()
 
+    # If still too few events after time filter, use last 200 by count
+    if len(df) < 30:
+        df = recent_events.copy()
+        df["time"] = pd.to_datetime(df["time"])
+        df = df[df["magnitude"] >= min_magnitude].sort_values(
+            "time"
+        ).tail(200).copy()
+
     if len(df) == 0:
         return {}
 
-    # Assign recency weight: events in the last 7 days get 3x weight,
-    # last 30 days get 2x, older get 1x
-    now = datetime.utcnow()
+    # Assign recency weight relative to the most recent event in data
+    # Events in last 7 days (relative) get 3x, last 30 days get 2x, else 1x
+    now = reference_date
     def recency_weight(t):
-        days_ago = (now - t.to_pydatetime()).total_seconds() / 86400
+        days_ago = (now - t).total_seconds() / 86400
         if days_ago <= 7:
             return 3.0
         elif days_ago <= 30:
@@ -205,21 +219,31 @@ def build_location_prediction(zone_name: str,
     stats = zone_stats.get(zone_name, {})
 
     if not stats:
-        # Fallback: use zone centroid from config
+        # Fallback: use the pre-defined centre coordinates from config
+        # which are set to known fault-zone centroids, not just bounding
+        # box midpoints.
         bounds = LOCATION_ZONES.get(zone_name, {})
         if bounds:
-            centroid_lat = (bounds["lat"][0] + bounds["lat"][1]) / 2
-            centroid_lon = (bounds["lon"][0] + bounds["lon"][1]) / 2
+            centroid_lat = bounds.get(
+                "centre_lat",
+                (bounds["lat"][0] + bounds["lat"][1]) / 2
+            )
+            centroid_lon = bounds.get(
+                "centre_lon",
+                (bounds["lon"][0] + bounds["lon"][1]) / 2
+            )
+            radius_km = bounds.get("radius_km", 300.0)
         else:
             centroid_lat, centroid_lon = 20.0, 96.0
+            radius_km = 300.0
         return {
-            "zone":           zone_name,
-            "centroid_lat":   round(centroid_lat, 3),
-            "centroid_lon":   round(centroid_lon, 3),
-            "radius_km":      300.0,
-            "event_count":    0,
-            "max_magnitude":  None,
-            "confidence_note": "No recent events in zone - using zone centroid",
+            "zone":            zone_name,
+            "centroid_lat":    round(centroid_lat, 3),
+            "centroid_lon":    round(centroid_lon, 3),
+            "radius_km":       radius_km,
+            "event_count":     0,
+            "max_magnitude":   None,
+            "confidence_note": "Using zone centroid - no events in computed window",
         }
 
     return {

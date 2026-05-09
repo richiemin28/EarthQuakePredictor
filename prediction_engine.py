@@ -137,18 +137,25 @@ def generate_predictions(model,
             date_end = reference_date + timedelta(days=window)
             mag_info = MAGNITUDE_INFO.get(threshold, {})
 
-            # Build location predictions for top 3 zones
+            # Build location predictions for top 3 zones.
+            # If ranked_zones has results (computed from real events),
+            # use those. Otherwise fall back to the top 3 config zones
+            # ordered by known seismic importance (Sagaing Fault first).
             location_predictions = []
-            for zone_name, stats in ranked_zones:
-                loc = build_location_prediction(zone_name, zone_stats)
-                location_predictions.append(loc)
-
-            # If no ranked zones, fall back to first zone in config
-            if not location_predictions:
-                fallback_zone = list(LOCATION_ZONES.keys())[0]
-                location_predictions.append(
-                    build_location_prediction(fallback_zone, zone_stats)
-                )
+            if ranked_zones:
+                for zone_name, stats in ranked_zones:
+                    loc = build_location_prediction(zone_name, zone_stats)
+                    location_predictions.append(loc)
+            else:
+                # No ranked zones - use top 3 zones from config as fallbacks
+                priority_zones = [
+                    "Sagaing Fault Zone",
+                    "Central Myanmar",
+                    "Northern Myanmar",
+                ]
+                for zone_name in priority_zones:
+                    loc = build_location_prediction(zone_name, zone_stats)
+                    location_predictions.append(loc)
 
             primary_loc = location_predictions[0]
 
