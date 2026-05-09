@@ -214,11 +214,25 @@ def generate_current_predictions(adaptive_model, features_df: pd.DataFrame):
     features_df = features_df.copy()
     features_df["time"] = pd.to_datetime(features_df["time"])
     recent_features = features_df.tail(50)
+
+    # Use last 500 catalog events for spatial clustering context.
+    # This ensures location estimates are based on rich seismic history
+    # rather than only the most recent ATOM feed events.
+    catalog_path = FULL_CATALOG_PATH if os.path.exists(
+        FULL_CATALOG_PATH
+    ) else RAW_DATA_PATH
+    if os.path.exists(catalog_path):
+        catalog_df = pd.read_csv(catalog_path, parse_dates=["time"])
+        catalog_df["time"] = pd.to_datetime(catalog_df["time"])
+        recent_events = catalog_df.sort_values("time").tail(500)
+    else:
+        recent_events = None
+
     print("\n[MAIN] Generating current earthquake predictions...")
     predictions = generate_predictions(
         model=adaptive_model,
         current_features=recent_features,
-        recent_events=None,
+        recent_events=recent_events,
         min_threshold=4.5,
         verbose=True,
     )

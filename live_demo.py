@@ -1,24 +1,27 @@
 # =============================================================================
 # live_demo.py
-# Real-time live updating earthquake prediction dashboard.
+# Real-time live prediction dashboard with continuous adaptive learning.
 #
-# This script runs independently of main.py. It:
-#   1. Loads the trained adaptive model from disk
-#   2. Displays the current predictions based on the latest catalog data
-#   3. Polls the USGS ATOM feed every POLL_INTERVAL seconds
-#   4. When new events are detected in the Myanmar region:
-#      a. Displays the new events clearly
-#      b. Computes new features for the updated catalog
-#      c. Triggers an adaptive model update (continual learning step)
-#      d. Regenerates and displays updated predictions
-#   5. Logs all events and updates to a timestamped log file
+# Each cycle:
+#   1. Polls USGS ATOM feed for new Myanmar-region events
+#   2. Displays any new events with magnitude, coordinates, zone
+#   3. Recomputes seismic features for the updated catalog
+#   4. Triggers adaptive model update (replay-based continual learning)
+#   5. Recomputes spatial clustering stats for location estimation
+#   6. Displays refreshed predictions with:
+#        - Probability score per threshold and window
+#        - Estimated epicenter coordinates
+#        - Uncertainty radius in km
+#        - Zone name
+#        - Ranked secondary locations
+#   7. Saves predictions to JSON and logs all events to JSONL
 #
 # Usage:
-#   python live_demo.py                    # Poll every 5 minutes (default)
-#   python live_demo.py --interval 60      # Poll every 60 seconds (fast demo)
-#   python live_demo.py --interval 300     # Poll every 5 minutes
+#   python live_demo.py                  Default: poll every 5 minutes
+#   python live_demo.py --interval 60   Fast mode: poll every 60 seconds
+#   python live_demo.py --interval 30   Demo mode: poll every 30 seconds
 #
-# Press Ctrl+C to stop cleanly. The updated model is saved on exit.
+# Press Ctrl+C to stop. Model is saved automatically on exit.
 # =============================================================================
 
 import argparse
@@ -26,6 +29,7 @@ import os
 import sys
 import time
 import json
+import traceback
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
@@ -37,135 +41,133 @@ from config import (
     PREDICTIONS_PATH,
     LIVE_LOG_PATH,
     GEO_BOUNDS,
-    MIN_MAGNITUDE,
 )
 from data_acquisition    import fetch_live_events
-from feature_engineering import compute_features, build_labeled_dataset, FEATURE_COLUMNS
+from feature_engineering import (
+    compute_features,
+    build_labeled_dataset,
+    FEATURE_COLUMNS,
+)
 from models              import AdaptiveModel
+from spatial_predictor   import (
+    compute_zone_spatial_stats,
+    rank_zones,
+    identify_zone,
+    format_coords,
+    format_radius,
+)
 from prediction_engine   import (
     generate_predictions,
     save_predictions,
     print_predictions,
-    identify_zone,
-    get_zone_activity,
 )
 
+# Number of recent feature rows used for prediction context
+CONTEXT_ROWS = 50
 
-
-# How many recent feature rows to use for prediction generation
-PREDICTION_CONTEXT_ROWS = 50
+# Number of days of recent events used for spatial clustering
+SPATIAL_LOOKBACK_DAYS = 90
 
 
 # ---------------------------------------------------------------------------
-# Helper: clear the terminal screen
+# Terminal helpers
 # ---------------------------------------------------------------------------
-def clear_screen():
+def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 
-# ---------------------------------------------------------------------------
-# Helper: print a separator line
-# ---------------------------------------------------------------------------
-def sep(char="-", width=70):
-    print("  " + char * width)
+def hr(char="=", w=72):
+    print(char * w)
+
+
+def section(title: str, w: int = 72):
+    print(f"\n  {title}")
+    print("  " + "-" * (w - 2))
 
 
 # ---------------------------------------------------------------------------
-# Helper: print the live dashboard header
+# Display new events as they are detected
 # ---------------------------------------------------------------------------
-def print_header(cycle: int, last_update: str, next_check_in: int,
-                 total_events: int, new_events_this_cycle: int):
-    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    print("\n" + "=" * 72)
-    print("  MYANMAR EARTHQUAKE PREDICTION SYSTEM  |  LIVE MODE")
-    print(f"  Current Time : {now}")
-    print(f"  Last Update  : {last_update}")
-    print(f"  Cycle        : #{cycle}")
-    print(f"  Catalog Size : {total_events} events")
-    if new_events_this_cycle > 0:
-        print(f"  NEW EVENTS   : {new_events_this_cycle} detected this cycle")
-    print(f"  Next Check   : in {next_check_in}s")
-    print("=" * 72)
-
-
-# ---------------------------------------------------------------------------
-# Helper: display newly detected events
-# ---------------------------------------------------------------------------
-def print_new_events(new_events_df: pd.DataFrame):
-    if new_events_df is None or len(new_events_df) == 0:
+def display_new_events(new_events: pd.DataFrame):
+    if new_events is None or len(new_events) == 0:
         return
 
-    print("\n  *** NEW EARTHQUAKE EVENTS DETECTED ***")
-    sep("*")
+    print("\n")
+    hr("*")
+    print(f"  *** {len(new_events)} NEW EVENT(S) DETECTED IN MYANMAR REGION ***")
+    hr("*")
 
-    for _, row in new_events_df.sort_values(
+    for _, row in new_events.sort_values(
         "magnitude", ascending=False
     ).iterrows():
-        t    = pd.to_datetime(row["time"])
-        mag  = row["magnitude"]
-        lat  = row["latitude"]
-        lon  = row["longitude"]
-        zone = identify_zone(lat, lon)
-        loc  = row.get("place", f"Lat {lat:.2f}, Lon {lon:.2f}")
+        t      = pd.to_datetime(row["time"])
+        mag    = row["magnitude"]
+        lat    = row["latitude"]
+        lon    = row["longitude"]
+        zone   = identify_zone(lat, lon)
+        coords = format_coords(lat, lon)
+        place  = row.get("place", "Unknown location")
 
         if mag >= 5.5:
-            prefix = "  [!!!] "
+            flag = "  [!!!] MAJOR"
         elif mag >= 5.0:
-            prefix = "  [>> ] "
+            flag = "  [>> ] STRONG"
         elif mag >= 4.5:
-            prefix = "  [>  ] "
+            flag = "  [>  ] MODERATE"
         else:
-            prefix = "  [   ] "
+            flag = "  [   ] MINOR"
 
-        print(f"{prefix}M{mag:.1f}  |  {t.strftime('%Y-%m-%d %H:%M UTC')}")
-        print(f"         Zone: {zone}")
-        print(f"         Location: {loc}")
-        print(f"         Coordinates: {lat:.3f}N, {lon:.3f}E")
         print()
+        print(f"{flag}  M{mag:.1f}")
+        print(f"         Time        : {t.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+        print(f"         Coordinates : {coords}")
+        print(f"         Latitude    : {lat:.4f} N")
+        print(f"         Longitude   : {lon:.4f} E")
+        print(f"         Zone        : {zone}")
+        print(f"         Location    : {place}")
 
-    sep("*")
-
-
-# ---------------------------------------------------------------------------
-# Helper: display model update status
-# ---------------------------------------------------------------------------
-def print_update_status(n_new: int, update_number: int):
-    print(f"\n  [MODEL UPDATE #{update_number}]")
-    print(f"  Incorporating {n_new} new event(s) into adaptive model...")
-    print(f"  Replay buffer: retaining historical patterns (Van de Ven et al., 2024)")
-    print(f"  Retraining classifiers on combined new + replay data...")
+    hr("*")
+    print()
 
 
 # ---------------------------------------------------------------------------
-# Helper: append to log file
+# Display model update status
 # ---------------------------------------------------------------------------
-def log_event(entry: dict):
+def display_update_status(update_num: int, n_events: int, n_features: int):
+    print(f"\n  [ADAPTIVE MODEL UPDATE #{update_num}]")
+    print(f"  New events ingested  : {n_events}")
+    print(f"  New feature rows     : {n_features}")
+    print(f"  Strategy             : Replay-based continual learning")
+    print(f"  Catastrophic forgetting mitigated via replay buffer")
+    print(f"  Retraining classifiers... ", end="", flush=True)
+
+
+# ---------------------------------------------------------------------------
+# Append a record to the JSONL log
+# ---------------------------------------------------------------------------
+def log(entry: dict):
     os.makedirs(os.path.dirname(LIVE_LOG_PATH), exist_ok=True)
     with open(LIVE_LOG_PATH, "a") as f:
         f.write(json.dumps(entry, default=str) + "\n")
 
 
 # ---------------------------------------------------------------------------
-# Helper: compute features for a catalog and return labeled df
-# Does not recompute from scratch - only adds rows for new events
+# Feature update - recompute only new rows
 # ---------------------------------------------------------------------------
-def update_features(catalog_df: pd.DataFrame,
-                    existing_features_df: pd.DataFrame) -> pd.DataFrame:
+def update_feature_df(catalog_df:          pd.DataFrame,
+                      existing_features_df: pd.DataFrame) -> tuple:
     """
-    Recompute features on the full updated catalog and return
-    only the rows that are new (not already in existing_features_df).
+    Recompute features on the full updated catalog.
+    Returns (full_updated_features_df, new_rows_only_df)
     """
-
-    # Recompute on full catalog to get correct rolling window for new rows
     updated = compute_features(catalog_df)
     updated = build_labeled_dataset(updated)
 
-    # Find genuinely new rows by time
     if existing_features_df is not None and len(existing_features_df) > 0:
         existing_times = set(
-            pd.to_datetime(existing_features_df["time"]).dt.strftime(
-                "%Y-%m-%dT%H:%M:%S"
-            )
+            pd.to_datetime(
+                existing_features_df["time"]
+            ).dt.strftime("%Y-%m-%dT%H:%M:%S")
         )
         new_mask = ~pd.to_datetime(updated["time"]).dt.strftime(
             "%Y-%m-%dT%H:%M:%S"
@@ -178,167 +180,168 @@ def update_features(catalog_df: pd.DataFrame,
 
 
 # ---------------------------------------------------------------------------
-# Main live demo loop
+# Main dashboard class
 # ---------------------------------------------------------------------------
 class LiveDashboard:
 
     def __init__(self, poll_interval: int = 300):
-        self.poll_interval    = poll_interval
-        self.cycle_count      = 0
-        self.update_count     = 0
-        self.last_event_time  = None
-        self.last_update_str  = "Never"
-        self.new_events_count = 0
+        self.interval      = poll_interval
+        self.cycle         = 0
+        self.update_count  = 0
+        self.last_update   = "Not yet"
+        self.total_new     = 0
 
-        print("\n[LIVE] Loading components...")
+        print("\n" + "=" * 72)
+        print("  MYANMAR EARTHQUAKE PREDICTION SYSTEM")
+        print("  Starting live mode...")
+        print("=" * 72)
 
-        # Load processed features
+        # Load features
         if not os.path.exists(PROCESSED_DATA_PATH):
-            print("[LIVE] ERROR: No processed features found.")
-            print("[LIVE] Run: python main.py --mode train --refresh")
+            print("\n[ERROR] No processed features found.")
+            print("Run: python main.py --mode train --refresh")
             sys.exit(1)
-
         self.features_df = pd.read_csv(
             PROCESSED_DATA_PATH, parse_dates=["time"]
         )
         self.features_df["time"] = pd.to_datetime(self.features_df["time"])
-        print(f"[LIVE] Features loaded: {len(self.features_df)} rows")
+        print(f"  Features  : {len(self.features_df)} rows loaded")
 
-        # Load raw catalog
-        catalog_path = FULL_CATALOG_PATH if os.path.exists(
+        # Load catalog
+        cat_path = FULL_CATALOG_PATH if os.path.exists(
             FULL_CATALOG_PATH
         ) else "data/raw_catalog.csv"
-
-        if not os.path.exists(catalog_path):
-            print("[LIVE] ERROR: No catalog file found.")
-            print("[LIVE] Run: python main.py --mode train --refresh")
+        if not os.path.exists(cat_path):
+            print("\n[ERROR] No catalog file found.")
+            print("Run: python main.py --mode train --refresh")
             sys.exit(1)
-
-        self.catalog_df = pd.read_csv(catalog_path, parse_dates=["time"])
+        self.catalog_df = pd.read_csv(cat_path, parse_dates=["time"])
         self.catalog_df["time"] = pd.to_datetime(self.catalog_df["time"])
-        print(f"[LIVE] Catalog loaded: {len(self.catalog_df)} events")
+        print(f"  Catalog   : {len(self.catalog_df)} events loaded")
 
         # Set last known event time
-        self.last_event_time = self.catalog_df["time"].max().to_pydatetime()
-        print(f"[LIVE] Catalog runs to: "
-              f"{self.last_event_time.strftime('%Y-%m-%d %H:%M UTC')}")
+        self.last_event_time = (
+            self.catalog_df["time"].max().to_pydatetime()
+        )
+        print(f"  Latest    : {self.last_event_time.strftime('%Y-%m-%d %H:%M UTC')}")
 
         # Load adaptive model
         if not os.path.exists(MODEL_ADAPTIVE_PATH):
-            print("[LIVE] ERROR: No adaptive model found.")
-            print("[LIVE] Run: python main.py --mode train")
+            print("\n[ERROR] No adaptive model found.")
+            print("Run: python main.py --mode train")
             sys.exit(1)
-
         self.model = AdaptiveModel.load()
-        print("[LIVE] Adaptive model loaded.")
-        print(f"[LIVE] Poll interval: every {poll_interval}s")
-        print("[LIVE] Starting in 3 seconds... (Press Ctrl+C to stop)\n")
+        print(f"  Model     : Adaptive model loaded")
+        print(f"  Interval  : Every {poll_interval}s")
+        print("\n  Starting in 3 seconds... (Ctrl+C to stop)")
         time.sleep(3)
 
     def run(self):
-        """Main loop - runs until Ctrl+C."""
         try:
-            # Generate and show initial predictions on startup
-            self._show_current_state(new_events=None)
+            # Initial display on startup
+            self._refresh_display(new_events=None)
 
             while True:
-                # Wait for next poll
-                self._countdown(self.poll_interval)
-
-                # Poll for new events
-                self.cycle_count += 1
-                print(f"\n[LIVE] Cycle #{self.cycle_count}: "
-                      f"Polling USGS feed...", flush=True)
-
-                new_events = fetch_live_events(
-                    last_seen_time=self.last_event_time
-                )
-
-                if new_events.empty:
-                    # No new events - just refresh the display
-                    self._show_current_state(new_events=None)
-                else:
-                    # New events detected
-                    self.new_events_count = len(new_events)
-                    self._process_new_events(new_events)
+                self._countdown()
+                self.cycle += 1
+                self._poll_and_process()
 
         except KeyboardInterrupt:
-            print("\n\n[LIVE] Stopping... saving updated model.")
+            print("\n\n  Saving model and shutting down...")
             self.model.save()
-            print(f"[LIVE] Model saved. Total updates: {self.update_count}")
-            print(f"[LIVE] Log saved to: {LIVE_LOG_PATH}")
-            print("[LIVE] Goodbye.\n")
+            print(f"  Model saved to {MODEL_ADAPTIVE_PATH}")
+            print(f"  Total updates : {self.update_count}")
+            print(f"  Total new events detected: {self.total_new}")
+            print(f"  Log saved to  : {LIVE_LOG_PATH}")
+            print("  Goodbye.\n")
 
-    def _countdown(self, seconds: int):
-        """Show a countdown timer while waiting for next poll."""
-        for remaining in range(seconds, 0, -1):
+    def _countdown(self):
+        for s in range(self.interval, 0, -1):
             print(
-                f"\r  [LIVE] Next USGS poll in {remaining:>4}s  "
-                f"(Ctrl+C to stop)",
+                f"\r  [LIVE] Next USGS poll in {s:>4}s  "
+                f"| Cycle #{self.cycle}  "
+                f"| Updates: {self.update_count}  "
+                f"| Ctrl+C to stop",
                 end="",
                 flush=True,
             )
             time.sleep(1)
         print()
 
-    def _process_new_events(self, new_events: pd.DataFrame):
-        """
-        Handle new events: append to catalog, recompute features,
-        update model, regenerate predictions.
-        """
+    def _poll_and_process(self):
+        print(f"\n[LIVE] Cycle #{self.cycle}: Polling USGS ATOM feed...",
+              flush=True)
 
-        # Update last event time
+        try:
+            new_events = fetch_live_events(
+                last_seen_time=self.last_event_time
+            )
+        except Exception as e:
+            print(f"[LIVE] Feed error: {e}. Will retry next cycle.")
+            self._refresh_display(new_events=None)
+            return
+
+        if new_events.empty:
+            print("[LIVE] No new events in Myanmar region.")
+            self._refresh_display(new_events=None)
+            return
+
+        # New events found
+        self.total_new += len(new_events)
         self.last_event_time = pd.to_datetime(
             new_events["time"]
         ).max().to_pydatetime()
-        self.last_update_str = datetime.utcnow().strftime(
-            "%Y-%m-%d %H:%M UTC"
-        )
+        self.last_update = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 
         # Append to catalog
         self.catalog_df = pd.concat(
             [self.catalog_df, new_events], ignore_index=True
         ).drop_duplicates(subset=["id"]).sort_values("time").reset_index(drop=True)
-
-        # Save updated catalog
         self.catalog_df.to_csv("data/live_catalog.csv", index=False)
 
         # Recompute features
-        print("[LIVE] Computing features for updated catalog...", flush=True)
+        print("[LIVE] Recomputing features...", flush=True)
         try:
-            updated_features, new_feature_rows = update_features(
+            updated_features, new_rows = update_feature_df(
                 self.catalog_df, self.features_df
             )
             self.features_df = updated_features
         except Exception as e:
-            print(f"[LIVE] Feature computation error: {e}")
-            self._show_current_state(new_events=new_events)
+            print(f"[LIVE] Feature error: {e}")
+            self._refresh_display(new_events=new_events)
             return
 
-        # Update model if new feature rows exist
-        if len(new_feature_rows) > 0:
+        # Update adaptive model if new feature rows exist
+        if len(new_rows) > 0:
             self.update_count += 1
-            print_update_status(len(new_feature_rows), self.update_count)
+            display_update_status(
+                self.update_count, len(new_events), len(new_rows)
+            )
             try:
-                self.model.update(new_feature_rows, verbose=False)
-                print(f"  Model update #{self.update_count} complete.")
-
-                # Log the update
-                log_event({
-                    "type":         "model_update",
-                    "timestamp":    datetime.utcnow().isoformat(),
+                self.model.update(new_rows, verbose=False)
+                print("Done.")
+                log({
+                    "type":          "model_update",
+                    "timestamp":     datetime.utcnow().isoformat(),
                     "update_number": self.update_count,
-                    "new_events":   len(new_events),
-                    "new_features": len(new_feature_rows),
+                    "new_events":    len(new_events),
+                    "new_features":  len(new_rows),
                 })
             except Exception as e:
-                print(f"[LIVE] Model update error: {e}")
+                print(f"Error: {e}")
 
-        # Log new events
+            # Save checkpoint every 5 updates
+            if self.update_count % 5 == 0:
+                self.model.save()
+                print(f"[LIVE] Checkpoint saved (update #{self.update_count})")
+        else:
+            print("[LIVE] No new feature rows generated from new events.")
+
+        # Log each new event
         for _, row in new_events.iterrows():
-            log_event({
-                "type":      "new_event",
-                "timestamp": datetime.utcnow().isoformat(),
+            log({
+                "type":       "new_event",
+                "timestamp":  datetime.utcnow().isoformat(),
                 "event_time": str(row["time"]),
                 "magnitude":  row["magnitude"],
                 "latitude":   row["latitude"],
@@ -347,55 +350,70 @@ class LiveDashboard:
                 "place":      row.get("place", ""),
             })
 
-        # Show full updated dashboard
-        self._show_current_state(new_events=new_events)
+        self._refresh_display(new_events=new_events)
 
-        # Save updated model periodically (every 5 updates)
-        if self.update_count > 0 and self.update_count % 5 == 0:
-            self.model.save()
-            print("[LIVE] Model checkpoint saved.")
-
-    def _show_current_state(self, new_events: pd.DataFrame = None):
-        """Clear screen and redraw the full dashboard."""
-        clear_screen()
+    def _refresh_display(self, new_events: pd.DataFrame = None):
+        """Clear and redraw the full dashboard."""
+        clear()
 
         # Header
-        print_header(
-            cycle=self.cycle_count,
-            last_update=self.last_update_str,
-            next_check_in=self.poll_interval,
-            total_events=len(self.catalog_df),
-            new_events_this_cycle=len(new_events) if new_events is not None
-            and len(new_events) > 0 else 0,
-        )
+        now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+        print("=" * 72)
+        print("  MYANMAR EARTHQUAKE PREDICTION SYSTEM  |  LIVE MODE")
+        print(f"  Current Time   : {now}")
+        print(f"  Last Update    : {self.last_update}")
+        print(f"  Poll Interval  : Every {self.interval}s")
+        print(f"  Catalog Size   : {len(self.catalog_df)} events")
+        print(f"  Model Updates  : {self.update_count}")
+        print(f"  New Events     : {self.total_new} total detected this session")
+        print("=" * 72)
 
         # Show new events if any
         if new_events is not None and len(new_events) > 0:
-            print_new_events(new_events)
+            display_new_events(new_events)
 
-        # Get recent catalog events for context
-        cutoff = datetime.utcnow() - timedelta(days=90)
-        recent_catalog = self.catalog_df[
+        # Spatial context: use the most recent 500 events from the
+        # full historical + live catalog to ensure enough events for
+        # meaningful spatial clustering regardless of ATOM feed recency.
+        # This means the location estimates always draw on a rich
+        # earthquake history rather than only today's events.
+        recent = self.catalog_df.sort_values("time").tail(500)
+
+        # Also try to get events from the last 90 days if there are enough
+        cutoff = pd.Timestamp(datetime.utcnow() - timedelta(
+            days=SPATIAL_LOOKBACK_DAYS
+        ))
+        recent_90d = self.catalog_df[
             pd.to_datetime(self.catalog_df["time"]) >= cutoff
         ]
+        # Use whichever gives more events (at least 50 for good clustering)
+        if len(recent_90d) >= 50:
+            recent = recent_90d
+        elif len(recent_90d) > 0:
+            # Blend: last 90 days + fill up to 500 from historical
+            historical_fill = self.catalog_df.sort_values(
+                "time"
+            ).tail(500 - len(recent_90d))
+            recent = pd.concat(
+                [historical_fill, recent_90d]
+            ).drop_duplicates().sort_values("time")
 
-        # Generate and display predictions
-        recent_features = self.features_df.tail(PREDICTION_CONTEXT_ROWS)
+        # Generate predictions
+        context = self.features_df.tail(CONTEXT_ROWS)
 
         try:
-            predictions = generate_predictions(
+            preds = generate_predictions(
                 model=self.model,
-                current_features=recent_features,
-                recent_events=recent_catalog if len(recent_catalog) > 0
-                else None,
+                current_features=context,
+                recent_events=recent if len(recent) > 0 else None,
                 reference_date=datetime.utcnow(),
                 min_threshold=4.5,
                 verbose=True,
             )
-            save_predictions(predictions)
+            save_predictions(preds)
+
         except Exception as e:
             print(f"\n[LIVE] Prediction error: {e}")
-            import traceback
             traceback.print_exc()
 
 
@@ -403,30 +421,20 @@ class LiveDashboard:
 # Entry point
 # ---------------------------------------------------------------------------
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Myanmar Earthquake Prediction System - Live Dashboard"
+    p = argparse.ArgumentParser(
+        description="Myanmar Earthquake Prediction - Live Dashboard"
     )
-    parser.add_argument(
-        "--interval",
-        type=int,
-        default=300,
-        help="Poll interval in seconds (default: 300 = 5 minutes)"
+    p.add_argument(
+        "--interval", type=int, default=300,
+        help="Poll interval in seconds (default 300 = 5 min)"
     )
-    return parser.parse_args()
+    return p.parse_args()
 
 
 def main():
     args = parse_args()
-
-    print("\n" + "=" * 72)
-    print("  MYANMAR EARTHQUAKE PREDICTION SYSTEM")
-    print("  LIVE CONTINUOUS LEARNING MODE")
-    print(f"  Poll Interval: {args.interval}s "
-          f"({'%.1f' % (args.interval/60)} minutes)")
-    print("=" * 72)
-
-    dashboard = LiveDashboard(poll_interval=args.interval)
-    dashboard.run()
+    dash = LiveDashboard(poll_interval=args.interval)
+    dash.run()
 
 
 if __name__ == "__main__":

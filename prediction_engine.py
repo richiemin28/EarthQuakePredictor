@@ -1,17 +1,18 @@
 # =============================================================================
 # prediction_engine.py
 # Generates structured earthquake predictions with:
-#   - Approximate zone name and description
-#   - Estimated centre coordinates (lat, lon)
-#   - Estimated search radius in km
-#   - Primary fault structure
-#   - Probability and confidence level
-#   - Date range window
+#   - Probability score per magnitude threshold and time window
+#   - Estimated epicenter coordinates (latitude, longitude)
+#   - Estimated uncertainty radius in kilometres
+#   - Geographic zone name
 #   - Recent seismic activity context
+#
+# Location estimation uses magnitude-weighted spatial clustering of
+# recent seismicity to identify the most active fault-zone areas.
+# Smaller radius = tighter clustering = higher location confidence.
 # =============================================================================
 
 import json
-import math
 import os
 import numpy as np
 import pandas as pd
@@ -24,6 +25,14 @@ from config import (
     PREDICTIONS_PATH,
 )
 from feature_engineering import FEATURE_COLUMNS
+from spatial_predictor import (
+    compute_zone_spatial_stats,
+    rank_zones,
+    build_location_prediction,
+    identify_zone,
+    format_coords,
+    format_radius,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -40,11 +49,10 @@ def _confidence_label(prob: float) -> str:
         return "LOW"
 
 
-def _confidence_bar(prob: float, width: int = 20) -> str:
+def _prob_bar(prob: float, width: int = 20) -> str:
     filled = int(prob * width)
-    filled = min(filled, width)
-    bar = "[" + "=" * filled + ">" + " " * max(0, width - filled) + "]"
-    return f"{bar} {prob:.0%}"
+    bar = "=" * filled + ">" + " " * (width - filled)
+    return f"[{bar}] {prob:.0%}"
 
 
 # ---------------------------------------------------------------------------
@@ -52,17 +60,17 @@ def _confidence_bar(prob: float, width: int = 20) -> str:
 # ---------------------------------------------------------------------------
 MAGNITUDE_INFO = {
     4.5: {
-        "label":  "MODERATE (M4.5+)",
-        "effect": "Felt strongly, minor damage to weak structures possible",
-        "action": "Awareness level",
+        "label":  "MODERATE (M >= 4.5)",
+        "effect": "Felt strongly nearby, possible minor structural damage",
+        "action": "AWARENESS - monitor updates",
     },
     5.0: {
-        "label":  "STRONG (M5.0+)",
+        "label":  "STRONG (M >= 5.0)",
         "effect": "Significant shaking, damage likely to weak structures",
-        "action": "Preparedness level - check emergency readiness",
+        "action": "PREPAREDNESS - check emergency readiness",
     },
     5.5: {
-        "label":  "STRONG+ (M5.5+)",
+        "label":  "STRONG+ (M >= 5.5)",
         "effect": "Destructive shaking, serious infrastructure risk",
         "action": "HIGH ALERT - significant damage potential",
     },
@@ -70,145 +78,45 @@ MAGNITUDE_INFO = {
 
 
 # ---------------------------------------------------------------------------
-# Haversine distance between two lat/lon points in km
-# ---------------------------------------------------------------------------
-def _haversine_km(lat1: float, lon1: float,
-                  lat2: float, lon2: float) -> float:
-    R = 6371.0
-    dlat = math.radians(lat2 - lat1)
-    dlon = math.radians(lon2 - lon1)
-    a = (math.sin(dlat / 2) ** 2 +
-         math.cos(math.radians(lat1)) *
-         math.cos(math.radians(lat2)) *
-         math.sin(dlon / 2) ** 2)
-    return R * 2 * math.asin(math.sqrt(a))
-
-
-# ---------------------------------------------------------------------------
-# Zone identification
-# ---------------------------------------------------------------------------
-def identify_zone(latitude: float, longitude: float) -> str:
-    """Return the zone name for a given coordinate."""
-    for zone_name, z in LOCATION_ZONES.items():
-        if (z["lat"][0] <= latitude <= z["lat"][1] and
-                z["lon"][0] <= longitude <= z["lon"][1]):
-            return zone_name
-    return "Myanmar Region (General)"
-
-
-def get_zone_info(zone_name: str) -> dict:
-    """Return the full zone metadata dict."""
-    return LOCATION_ZONES.get(zone_name, {
-        "centre_lat": 21.0,
-        "centre_lon": 96.0,
-        "radius_km":  500,
-        "fault":      "Unknown",
-        "description": "Myanmar and surrounding tectonic region",
-    })
-
-
-# ---------------------------------------------------------------------------
-# Zone activity from recent catalog
-# ---------------------------------------------------------------------------
-def get_zone_activity(recent_events: pd.DataFrame) -> dict:
-    """Count recent events per zone, sorted by activity descending."""
-    zone_counts = {z: 0 for z in LOCATION_ZONES}
-    if recent_events is None or len(recent_events) == 0:
-        return zone_counts
-    for _, row in recent_events.iterrows():
-        zone = identify_zone(row["latitude"], row["longitude"])
-        if zone in zone_counts:
-            zone_counts[zone] += 1
-    return dict(sorted(zone_counts.items(), key=lambda x: x[1], reverse=True))
-
-
-def get_active_zones(recent_events: pd.DataFrame, top_n: int = 3) -> list:
-    activity = get_zone_activity(recent_events)
-    active = [z for z, c in activity.items() if c > 0]
-    if not active:
-        active = list(LOCATION_ZONES.keys())
-    return active[:top_n]
-
-
-# ---------------------------------------------------------------------------
-# Compute weighted centre coordinates from recent events in a zone
-# More precise than just using the zone centre when events cluster tightly
-# ---------------------------------------------------------------------------
-def _weighted_centre(recent_events: pd.DataFrame,
-                     zone_name: str) -> tuple:
-    """
-    Compute a weighted average lat/lon for recent events in a zone,
-    weighted by magnitude. Falls back to zone centre if no events.
-    Returns (lat, lon, radius_km, n_events_used).
-    """
-    zone_info = get_zone_info(zone_name)
-    default = (
-        zone_info["centre_lat"],
-        zone_info["centre_lon"],
-        zone_info["radius_km"],
-        0,
-    )
-
-    if recent_events is None or len(recent_events) == 0:
-        return default
-
-    # Filter to events in this zone
-    zone_events = recent_events[
-        recent_events.apply(
-            lambda r: identify_zone(r["latitude"], r["longitude"]) == zone_name,
-            axis=1,
-        )
-    ]
-
-    if len(zone_events) == 0:
-        return default
-
-    # Weight by magnitude (larger events anchor the centre more)
-    weights = zone_events["magnitude"].values
-    weights = weights / weights.sum()
-
-    w_lat = float(np.average(zone_events["latitude"].values,  weights=weights))
-    w_lon = float(np.average(zone_events["longitude"].values, weights=weights))
-
-    # Radius = max distance from weighted centre to any event in zone
-    # plus a minimum of 100 km to reflect prediction uncertainty
-    distances = [
-        _haversine_km(w_lat, w_lon, r["latitude"], r["longitude"])
-        for _, r in zone_events.iterrows()
-    ]
-    radius = max(max(distances) * 1.5, 150.0)
-    # Cap at the zone's default radius
-    radius = min(radius, zone_info["radius_km"])
-
-    return (round(w_lat, 3), round(w_lon, 3), round(radius, 1), len(zone_events))
-
-
-# ---------------------------------------------------------------------------
 # Core prediction generation
 # ---------------------------------------------------------------------------
 def generate_predictions(model,
                          current_features: pd.DataFrame,
-                         recent_events: pd.DataFrame = None,
-                         reference_date: datetime = None,
-                         min_threshold: float = 4.5,
-                         verbose: bool = True) -> list:
+                         recent_events:    pd.DataFrame = None,
+                         reference_date:   datetime = None,
+                         min_threshold:    float = 4.5,
+                         verbose:          bool = True) -> list:
     """
-    Generate structured earthquake predictions from the adaptive model.
+    Generate full structured predictions including location estimates.
 
-    Each prediction includes:
-      - Zone name and description
-      - Estimated centre coordinates (weighted from recent activity)
-      - Estimated search radius in km
-      - Primary fault structure
-      - Probability score and confidence label
-      - Date range window
+    For each (magnitude_threshold, prediction_window) combination:
+      1. Get probability from the adaptive model
+      2. Compute spatial stats from recent catalog
+      3. Identify top 3 most active zones as likely locations
+      4. Attach coordinates + radius to each zone
+
+    Parameters
+    ----------
+    model            : Fitted AdaptiveModel
+    current_features : Recent feature rows (last N rows of features_df)
+    recent_events    : Raw catalog events for spatial context
+    reference_date   : Prediction start date (default: now UTC)
+    min_threshold    : Minimum magnitude threshold to report
+    verbose          : Print to console
+
+    Returns
+    -------
+    List of prediction dicts sorted by probability descending
     """
 
     if reference_date is None:
         reference_date = datetime.utcnow()
 
-    zone_activity = get_zone_activity(recent_events)
-    active_zones  = get_active_zones(recent_events, top_n=4)
+    # Compute spatial statistics from recent events
+    zone_stats  = compute_zone_spatial_stats(
+        recent_events, lookback_days=90, min_magnitude=3.0
+    )
+    ranked_zones = rank_zones(zone_stats, top_n=3)
 
     predictions = []
     report_thresholds = [t for t in MAGNITUDE_THRESHOLDS if t >= min_threshold]
@@ -216,45 +124,42 @@ def generate_predictions(model,
     for threshold in report_thresholds:
         for window in PREDICTION_WINDOWS:
 
+            # Get probability from model
             try:
-                probs = model.predict_proba(current_features, threshold, window)
-                prob  = float(np.mean(probs))
-                prob  = max(0.0, min(1.0, prob))
+                probs = model.predict_proba(
+                    current_features, threshold, window
+                )
+                prob = float(np.mean(probs))
+                prob = max(0.0, min(1.0, prob))
             except Exception:
                 continue
 
             date_end = reference_date + timedelta(days=window)
             mag_info = MAGNITUDE_INFO.get(threshold, {})
 
-            # Build per-zone location details for this prediction
-            zone_details = []
-            report_zones = active_zones if active_zones else list(LOCATION_ZONES.keys())[:3]
+            # Build location predictions for top 3 zones
+            location_predictions = []
+            for zone_name, stats in ranked_zones:
+                loc = build_location_prediction(zone_name, zone_stats)
+                location_predictions.append(loc)
 
-            for zone_name in report_zones:
-                w_lat, w_lon, radius, n_ev = _weighted_centre(
-                    recent_events, zone_name
+            # If no ranked zones, fall back to first zone in config
+            if not location_predictions:
+                fallback_zone = list(LOCATION_ZONES.keys())[0]
+                location_predictions.append(
+                    build_location_prediction(fallback_zone, zone_stats)
                 )
-                zone_info = get_zone_info(zone_name)
 
-                zone_details.append({
-                    "zone":          zone_name,
-                    "description":   zone_info.get("description", ""),
-                    "fault":         zone_info.get("fault", "Unknown"),
-                    "centre_lat":    w_lat,
-                    "centre_lon":    w_lon,
-                    "radius_km":     radius,
-                    "recent_events": n_ev,
-                    "coords_str":    f"{abs(w_lat):.3f}{'N' if w_lat>=0 else 'S'}, "
-                                     f"{abs(w_lon):.3f}{'E' if w_lon>=0 else 'W'}",
-                })
-
-            primary_zone = zone_details[0] if zone_details else {}
+            primary_loc = location_predictions[0]
 
             predictions.append({
                 "generated_at":           reference_date.strftime(
-                    "%Y-%m-%d %H:%M UTC"),
+                                              "%Y-%m-%d %H:%M UTC"
+                                          ),
                 "magnitude_threshold":    threshold,
-                "magnitude_label":        mag_info.get("label", f"M{threshold}+"),
+                "magnitude_label":        mag_info.get(
+                                              "label", f"M{threshold}+"
+                                          ),
                 "magnitude_effect":       mag_info.get("effect", ""),
                 "magnitude_action":       mag_info.get("action", ""),
                 "prediction_window_days": window,
@@ -262,15 +167,18 @@ def generate_predictions(model,
                 "date_range_end":         date_end.strftime("%Y-%m-%d"),
                 "probability":            round(prob, 4),
                 "confidence":             _confidence_label(prob),
-                "primary_zone":           primary_zone,
-                "all_zones":              zone_details,
+                # Primary (most likely) location
+                "primary_zone":           primary_loc["zone"],
+                "primary_lat":            primary_loc["centroid_lat"],
+                "primary_lon":            primary_loc["centroid_lon"],
+                "primary_radius_km":      primary_loc["radius_km"],
+                # All top locations
+                "location_predictions":   location_predictions,
                 "disclaimer": (
-                    "Probabilistic approximation only. Coordinates indicate "
-                    "the weighted centre of recent seismic activity in the "
-                    "most active zone. Exact time, location and magnitude "
-                    "cannot be predicted deterministically. Not for "
-                    "operational early-warning use without independent "
-                    "seismological validation."
+                    "Probabilistic estimate only. Coordinates indicate the "
+                    "centroid of recent seismic clustering, not a precise "
+                    "epicenter. Radius reflects spatial uncertainty. "
+                    "Not for operational early-warning use."
                 ),
             })
 
@@ -287,166 +195,163 @@ def generate_predictions(model,
 # ---------------------------------------------------------------------------
 def print_predictions(predictions: list,
                       recent_events: pd.DataFrame = None):
-    """Full dashboard-style prediction output with coordinates."""
+    """
+    Print the full prediction dashboard to the terminal.
+    Shows recent activity, zone stats, and forward predictions
+    with coordinates and radius for each location.
+    """
 
-    now_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    now_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    W = 72
 
-    print("\n" + "=" * 72)
+    print("\n" + "=" * W)
     print("  MYANMAR EARTHQUAKE PREDICTION SYSTEM")
-    print(f"  Generated : {now_str}")
-    print("  Coverage  : Myanmar + Surrounding Tectonic Region")
-    print("=" * 72)
+    print(f"  Generated  : {now_str}")
+    print(f"  Region     : Myanmar + Surrounding Tectonic Region")
+    print(f"  Bounds     : 10-30N, 90-105E")
+    print("=" * W)
 
     # -----------------------------------------------------------------------
-    # Section 1: Recent seismic activity
+    # Recent seismic activity
     # -----------------------------------------------------------------------
     if recent_events is not None and len(recent_events) > 0:
-        recent_sig = recent_events[
+
+        sig = recent_events[
             recent_events["magnitude"] >= 4.0
-        ].sort_values("time", ascending=False).head(8)
+        ].sort_values("time", ascending=False).head(10)
 
-        print("\n  RECENT SEISMIC ACTIVITY (M4.0+, most recent first)")
-        print("  " + "-" * 68)
+        print(f"\n  RECENT SEISMIC ACTIVITY  (M4.0+ events, last 90 days)")
+        print("  " + "-" * (W - 2))
 
-        if len(recent_sig) == 0:
-            print("  No M4.0+ events in recent catalog window.")
+        if len(sig) == 0:
+            print("  No M4.0+ events in recent window.")
         else:
-            for _, row in recent_sig.iterrows():
+            for _, row in sig.iterrows():
                 t    = pd.to_datetime(row["time"])
                 mag  = row["magnitude"]
                 lat  = row["latitude"]
                 lon  = row["longitude"]
                 zone = identify_zone(lat, lon)
+                coords = format_coords(lat, lon)
 
                 if mag >= 5.5:
-                    marker = "  [!!!]"
+                    tag = "[!!!]"
                 elif mag >= 5.0:
-                    marker = "  [>> ]"
+                    tag = "[>> ]"
                 elif mag >= 4.5:
-                    marker = "  [>  ]"
+                    tag = "[>  ]"
                 else:
-                    marker = "  [   ]"
+                    tag = "[   ]"
 
-                lat_str = f"{abs(lat):.3f}{'N' if lat >= 0 else 'S'}"
-                lon_str = f"{abs(lon):.3f}{'E' if lon >= 0 else 'W'}"
-
-                print(f"{marker} M{mag:.1f}  "
-                      f"{t.strftime('%Y-%m-%d %H:%M')} UTC  "
-                      f"{zone}")
-                print(f"         Coords: {lat_str}, {lon_str}")
+                print(f"  {tag} M{mag:.1f}  "
+                      f"{t.strftime('%Y-%m-%d %H:%M')}  "
+                      f"{coords}")
+                print(f"          Zone: {zone}")
 
         print()
 
-    # -----------------------------------------------------------------------
-    # Section 2: Zone activity summary
-    # -----------------------------------------------------------------------
-    if recent_events is not None and len(recent_events) > 0:
-        activity = get_zone_activity(recent_events)
-        active = [(z, c) for z, c in activity.items() if c > 0]
+        # Zone activity summary
+        zone_stats = compute_zone_spatial_stats(
+            recent_events, lookback_days=90, min_magnitude=3.0
+        )
+        active_zones = rank_zones(zone_stats, top_n=5)
 
-        if active:
-            print("  ZONE ACTIVITY SUMMARY (recent catalog window)")
-            print("  " + "-" * 68)
-            for zone, count in active[:5]:
-                bar = "#" * min(count, 28)
-                z_info = get_zone_info(zone)
-                clat = z_info.get("centre_lat", 0)
-                clon = z_info.get("centre_lon", 0)
-                print(f"  {zone:<28}  {bar:<30} ({count} events)")
-                print(f"  {'':28}  Centre: "
-                      f"{abs(clat):.1f}{'N' if clat>=0 else 'S'}, "
-                      f"{abs(clon):.1f}{'E' if clon>=0 else 'W'}")
+        if active_zones:
+            print(f"  ZONE ACTIVITY SUMMARY  (weighted by recency + magnitude)")
+            print("  " + "-" * (W - 2))
+            for zone_name, stats in active_zones:
+                count   = stats["event_count"]
+                max_mag = stats["max_magnitude"]
+                lat     = stats["centroid_lat"]
+                lon     = stats["centroid_lon"]
+                radius  = stats["radius_km"]
+                coords  = format_coords(lat, lon)
+                bar     = "#" * min(count, 25)
+                print(f"  {zone_name:<36} {bar} ({count} events)")
+                print(f"    Centroid: {coords}  |  "
+                      f"Radius: {radius:.0f} km  |  "
+                      f"Max: M{max_mag}")
             print()
 
     # -----------------------------------------------------------------------
-    # Section 3: Forward predictions
+    # Forward predictions grouped by magnitude threshold
     # -----------------------------------------------------------------------
     if not predictions:
-        print("  No predictions available.")
-        print("=" * 72)
+        print("  No predictions generated.")
+        print("=" * W + "\n")
         return
 
-    print("  FORWARD PREDICTIONS")
-    print("  " + "-" * 68)
+    print(f"  FORWARD EARTHQUAKE PREDICTIONS")
+    print("=" * W)
 
-    thresholds_shown = sorted(
+    thresholds = sorted(
         set(p["magnitude_threshold"] for p in predictions), reverse=True
     )
 
-    for threshold in thresholds_shown:
-        thresh_preds = sorted(
+    for threshold in thresholds:
+        t_preds = sorted(
             [p for p in predictions if p["magnitude_threshold"] == threshold],
-            key=lambda x: x["prediction_window_days"],
+            key=lambda x: x["prediction_window_days"]
         )
-        if not thresh_preds:
+        if not t_preds:
             continue
 
         mag_info = MAGNITUDE_INFO.get(threshold, {})
-        print(f"\n  {mag_info.get('label', f'M{threshold}+')}")
+        print(f"\n  {'='*66}")
+        print(f"  {mag_info.get('label', f'M{threshold}+')}")
         print(f"  {mag_info.get('effect', '')}")
         print(f"  Action: {mag_info.get('action', '')}")
-        print()
+        print(f"  {'='*66}")
 
-        for pred in thresh_preds:
-            window   = pred["prediction_window_days"]
-            prob     = pred["probability"]
-            conf     = pred["confidence"]
-            d_end    = pred["date_range_end"]
-            primary  = pred.get("primary_zone", {})
-            all_zones = pred.get("all_zones", [])
+        for pred in t_preds:
+            window  = pred["prediction_window_days"]
+            prob    = pred["probability"]
+            conf    = pred["confidence"]
+            d_start = pred["date_range_start"]
+            d_end   = pred["date_range_end"]
+            p_zone  = pred["primary_zone"]
+            p_lat   = pred["primary_lat"]
+            p_lon   = pred["primary_lon"]
+            p_rad   = pred["primary_radius_km"]
 
-            print(f"    {'='*62}")
-            print(f"    Prediction Window : {window} days  "
-                  f"(now through {d_end})")
-            print(f"    Probability       : {_confidence_bar(prob, 18)}  "
-                  f"[{conf}]")
+            print(f"\n  {window}-DAY WINDOW  ({d_start} to {d_end})")
+            print(f"  Probability : {_prob_bar(prob)}  [{conf}]")
             print()
 
-            # Primary zone with full location detail
-            if primary:
-                print(f"    PRIMARY ZONE : {primary.get('zone','Unknown')}")
-                print(f"    Description  : {primary.get('description','')}")
-                print(f"    Fault        : {primary.get('fault','Unknown')}")
-                print(f"    Est. Centre  : {primary.get('coords_str','N/A')}")
-                lat = primary.get('centre_lat', 0)
-                lon = primary.get('centre_lon', 0)
-                print(f"    Coordinates  : {lat:.3f}N, {lon:.3f}E")
-                print(f"    Search Radius: ~{primary.get('radius_km', 0):.0f} km "
-                      f"from centre")
-                if primary.get("recent_events", 0) > 0:
-                    print(f"    Based on     : {primary['recent_events']} "
-                          f"recent events in this zone")
+            # Primary location
+            print(f"  PRIMARY LOCATION")
+            print(f"    Zone        : {p_zone}")
+            print(f"    Coordinates : {format_coords(p_lat, p_lon)}")
+            print(f"    Est. Lat    : {p_lat:.3f} N")
+            print(f"    Est. Lon    : {p_lon:.3f} E")
+            print(f"    Radius      : {format_radius(p_rad)}")
 
-            # Additional zones being watched
-            others = [z for z in all_zones if z != primary]
-            if others:
-                print()
-                print(f"    ALSO MONITORING:")
-                for z in others[:2]:
-                    zlat = z.get('centre_lat', 0)
-                    zlon = z.get('centre_lon', 0)
-                    print(f"      {z.get('zone',''):<28} "
-                          f"{abs(zlat):.2f}{'N' if zlat>=0 else 'S'}, "
-                          f"{abs(zlon):.2f}{'E' if zlon>=0 else 'W'}  "
-                          f"(~{z.get('radius_km',0):.0f} km radius)  "
-                          f"Fault: {z.get('fault','')}")
+            # Secondary locations
+            other_locs = pred.get("location_predictions", [])[1:]
+            if other_locs:
+                print(f"\n  ALSO WATCH")
+                for i, loc in enumerate(other_locs[:2], 2):
+                    print(f"    #{i} {loc['zone']}")
+                    print(f"       {format_coords(loc['centroid_lat'], loc['centroid_lon'])}  "
+                          f"Radius: {loc['radius_km']:.0f} km")
 
-            print()
+            print("  " + "-" * 66)
 
     # -----------------------------------------------------------------------
     # Disclaimer
     # -----------------------------------------------------------------------
-    print("  " + "-" * 68)
-    print("  IMPORTANT: Coordinates show the weighted centre of recent")
-    print("  seismic activity in each zone. The search radius reflects")
-    print("  the spatial spread of that activity plus prediction uncertainty.")
-    print("  These are probabilistic estimates, not deterministic predictions.")
-    print("  Not for operational use without seismological validation.")
-    print("=" * 72 + "\n")
+    print()
+    print("  IMPORTANT NOTICE")
+    print("  " + "-" * (W - 2))
+    print("  Coordinates show the centroid of recent seismic clustering,")
+    print("  not a precise predicted epicenter. Radius reflects spatial")
+    print("  uncertainty derived from event dispersion. These are")
+    print("  probabilistic research outputs, not official warnings.")
+    print("=" * W + "\n")
 
 
 # ---------------------------------------------------------------------------
-# Save / load / summarise
+# Save / load
 # ---------------------------------------------------------------------------
 def save_predictions(predictions: list, path: str = PREDICTIONS_PATH):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -462,6 +367,9 @@ def load_predictions(path: str = PREDICTIONS_PATH) -> list:
         return json.load(f)
 
 
+# ---------------------------------------------------------------------------
+# Results comparison table
+# ---------------------------------------------------------------------------
 def summarise_results(static_results: dict, adaptive_results: dict):
     print("\n" + "=" * 92)
     print(f"  {'Label':<22} {'Model':<12} {'Acc':<8} {'Prec':<8} "

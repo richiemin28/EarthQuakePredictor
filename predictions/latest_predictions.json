@@ -1,230 +1,362 @@
 [
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 4.5,
-    "magnitude_label": "MODERATE (M4.5+)",
-    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
-    "magnitude_action": "Awareness level - monitor situation",
+    "magnitude_label": "MODERATE (M >= 4.5)",
+    "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
+    "magnitude_action": "AWARENESS - monitor updates",
     "prediction_window_days": 30,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-06-07",
-    "probability": 0.9978,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-06-08",
+    "probability": 0.9874,
     "confidence": "HIGH",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 4.5,
-    "magnitude_label": "MODERATE (M4.5+)",
-    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
-    "magnitude_action": "Awareness level - monitor situation",
+    "magnitude_label": "MODERATE (M >= 4.5)",
+    "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
+    "magnitude_action": "AWARENESS - monitor updates",
     "prediction_window_days": 15,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-23",
-    "probability": 0.9864,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-24",
+    "probability": 0.9401,
     "confidence": "HIGH",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 4.5,
-    "magnitude_label": "MODERATE (M4.5+)",
-    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
-    "magnitude_action": "Awareness level - monitor situation",
+    "magnitude_label": "MODERATE (M >= 4.5)",
+    "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
+    "magnitude_action": "AWARENESS - monitor updates",
     "prediction_window_days": 10,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-18",
-    "probability": 0.911,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-19",
+    "probability": 0.8666,
     "confidence": "HIGH",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 5.0,
-    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
-    "magnitude_action": "Preparedness level - check emergency readiness",
+    "magnitude_action": "PREPAREDNESS - check emergency readiness",
     "prediction_window_days": 30,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-06-07",
-    "probability": 0.8956,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-06-08",
+    "probability": 0.8556,
     "confidence": "HIGH",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 4.5,
-    "magnitude_label": "MODERATE (M4.5+)",
-    "magnitude_effect": "Felt strongly, possible minor damage to weak structures",
-    "magnitude_action": "Awareness level - monitor situation",
+    "magnitude_label": "MODERATE (M >= 4.5)",
+    "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
+    "magnitude_action": "AWARENESS - monitor updates",
     "prediction_window_days": 7,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-15",
-    "probability": 0.6866,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-16",
+    "probability": 0.836,
     "confidence": "MODERATE",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 5.0,
-    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
-    "magnitude_action": "Preparedness level - check emergency readiness",
+    "magnitude_action": "PREPAREDNESS - check emergency readiness",
     "prediction_window_days": 15,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-23",
-    "probability": 0.6111,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-24",
+    "probability": 0.5601,
     "confidence": "LOW-MODERATE",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 5.0,
-    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
-    "magnitude_action": "Preparedness level - check emergency readiness",
+    "magnitude_action": "PREPAREDNESS - check emergency readiness",
     "prediction_window_days": 10,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-18",
-    "probability": 0.4148,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-19",
+    "probability": 0.4082,
     "confidence": "LOW",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 5.0,
-    "magnitude_label": "STRONG (M5.0+)",
+    "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
-    "magnitude_action": "Preparedness level - check emergency readiness",
+    "magnitude_action": "PREPAREDNESS - check emergency readiness",
     "prediction_window_days": 7,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-15",
-    "probability": 0.3095,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-16",
+    "probability": 0.2131,
     "confidence": "LOW",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 5.5,
-    "magnitude_label": "STRONG+ (M5.5+)",
+    "magnitude_label": "STRONG+ (M >= 5.5)",
+    "magnitude_effect": "Destructive shaking, serious infrastructure risk",
+    "magnitude_action": "HIGH ALERT - significant damage potential",
+    "prediction_window_days": 15,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-24",
+    "probability": 0.1334,
+    "confidence": "LOW",
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
+    ],
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
+  },
+  {
+    "generated_at": "2026-05-09 21:54 UTC",
+    "magnitude_threshold": 5.5,
+    "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
     "magnitude_action": "HIGH ALERT - significant damage potential",
     "prediction_window_days": 30,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-06-07",
-    "probability": 0.1488,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-06-08",
+    "probability": 0.095,
     "confidence": "LOW",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 5.5,
-    "magnitude_label": "STRONG+ (M5.5+)",
+    "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
     "magnitude_action": "HIGH ALERT - significant damage potential",
     "prediction_window_days": 10,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-18",
-    "probability": 0.1376,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-19",
+    "probability": 0.0414,
     "confidence": "LOW",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-05-08 03:20 UTC",
+    "generated_at": "2026-05-09 21:54 UTC",
     "magnitude_threshold": 5.5,
-    "magnitude_label": "STRONG+ (M5.5+)",
-    "magnitude_effect": "Destructive shaking, serious infrastructure risk",
-    "magnitude_action": "HIGH ALERT - significant damage potential",
-    "prediction_window_days": 15,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-23",
-    "probability": 0.0986,
-    "confidence": "LOW",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
-    ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
-  },
-  {
-    "generated_at": "2026-05-08 03:20 UTC",
-    "magnitude_threshold": 5.5,
-    "magnitude_label": "STRONG+ (M5.5+)",
+    "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
     "magnitude_action": "HIGH ALERT - significant damage potential",
     "prediction_window_days": 7,
-    "date_range_start": "2026-05-08",
-    "date_range_end": "2026-05-15",
-    "probability": 0.0879,
+    "date_range_start": "2026-05-09",
+    "date_range_end": "2026-05-16",
+    "probability": 0.0376,
     "confidence": "LOW",
-    "primary_zone": "Northern Myanmar",
-    "likely_zones": [
-      "Northern Myanmar",
-      "Central Myanmar",
-      "Southern Myanmar"
+    "primary_zone": "Myanmar Region (General)",
+    "primary_lat": 26.248,
+    "primary_lon": 90.219,
+    "primary_radius_km": 150.0,
+    "location_predictions": [
+      {
+        "zone": "Myanmar Region (General)",
+        "centroid_lat": 26.248,
+        "centroid_lon": 90.219,
+        "radius_km": 150.0,
+        "event_count": 1,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.4,
+        "last_event_time": "2026-05-09 09:34:27.255000",
+        "confidence_note": ""
+      }
     ],
-    "disclaimer": "Probabilistic approximation only. Exact time, location and magnitude cannot be predicted deterministically. Not for operational early-warning use without independent seismological validation."
+    "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   }
 ]

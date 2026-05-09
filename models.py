@@ -14,7 +14,7 @@
 #
 # Both classes use Random Forest and XGBoost as base classifiers,
 # matching the top-performing architectures identified by
-# Mukherjee et al. (2025).
+# Mukherjee et al. (2025)
 # =============================================================================
 
 import os

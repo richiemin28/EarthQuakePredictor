@@ -129,4 +129,18 @@ LOCATION_ZONES = {
         "fault": "Mae Chan / Phrae Fault Zone",
         "description": "Northern Thailand including Chiang Rai, Chiang Mai and Mae Chan fault",
     },
+    "Chin Hills / Assam Region": {
+        "lat": (22.0, 28.5), "lon": (90.0, 93.5),
+        "centre_lat": 25.0,  "centre_lon": 91.75,
+        "radius_km": 450,
+        "fault": "Dauki Fault / Shillong Plateau / Chin Hills Thrust",
+        "description": "Western edge including Chin Hills, Assam, Meghalaya and Bangladesh border",
+    },
+    "Bay of Bengal North": {
+        "lat": (18.0, 23.0), "lon": (90.0, 92.5),
+        "centre_lat": 20.5,  "centre_lon": 91.25,
+        "radius_km": 360,
+        "fault": "Indo-Burman Subduction / Bengal Basin",
+        "description": "Northern Bay of Bengal and Bangladesh coastal region",
+    },
 }
