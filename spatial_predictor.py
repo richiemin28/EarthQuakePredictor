@@ -195,13 +195,46 @@ def rank_zones(zone_stats: dict,
     if not zone_stats:
         return []
 
+    # Known high-priority seismic zones get a bonus multiplier.
+    # This ensures well-defined fault zones rank above the catch-all
+    # "General" zone even when the general zone has more raw events.
+    PRIORITY_ZONES = {
+        "Sagaing Fault Zone":   2.5,
+        "Central Myanmar":      2.0,
+        "Northern Myanmar":     1.8,
+        "Indo-Burman Range":    1.8,
+        "Southern Myanmar":     1.6,
+        "Andaman Sea Region":   1.5,
+        "Yunnan Border Region": 1.4,
+        "Northern Thailand":    1.3,
+        "Chin Hills / Assam Region": 1.2,
+        "Bay of Bengal North":  1.1,
+    }
+    # The catch-all zone is penalised heavily because its large radius
+    # and diffuse events make it a poor location prediction target.
+    GENERAL_PENALTY = 0.3
+
     scored = []
     for zone_name, stats in zone_stats.items():
-        # Composite score:
-        # - Count contributes linearly
-        # - Total weight (recency + magnitude) is the main driver
-        score = stats["total_weight"] * np.log1p(stats["event_count"])
-        scored.append((score, zone_name, stats))
+
+        # Base score: total seismic weight times log of event count
+        base = stats["total_weight"] * np.log1p(stats["event_count"])
+
+        # Precision bonus: tighter clusters get higher scores.
+        # Radius of 50km = bonus 1.0, 400km = bonus 0.0
+        max_radius = 400.0
+        precision_bonus = max(
+            0.0, 1.0 - (stats["radius_km"] / max_radius)
+        )
+        base *= (1.0 + precision_bonus)
+
+        # Apply zone priority multiplier or general penalty
+        if "General" in zone_name:
+            base *= GENERAL_PENALTY
+        else:
+            base *= PRIORITY_ZONES.get(zone_name, 1.0)
+
+        scored.append((base, zone_name, stats))
 
     scored.sort(reverse=True)
     return [(name, stats) for _, name, stats in scored[:top_n]]

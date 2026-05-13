@@ -16,7 +16,7 @@ import json
 import os
 import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from config import (
     LOCATION_ZONES,
@@ -110,7 +110,7 @@ def generate_predictions(model,
     """
 
     if reference_date is None:
-        reference_date = datetime.utcnow()
+        reference_date = datetime.now(timezone.utc).replace(tzinfo=None)
 
     # Compute spatial statistics from recent events
     zone_stats  = compute_zone_spatial_stats(
@@ -208,7 +208,7 @@ def print_predictions(predictions: list,
     with coordinates and radius for each location.
     """
 
-    now_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    now_str = datetime.now(timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%d %H:%M:%S UTC")
     W = 72
 
     print("\n" + "=" * W)

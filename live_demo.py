@@ -32,7 +32,7 @@ import json
 import traceback
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from config import (
     PROCESSED_DATA_PATH,
@@ -291,7 +291,7 @@ class LiveDashboard:
         self.last_event_time = pd.to_datetime(
             new_events["time"]
         ).max().to_pydatetime()
-        self.last_update = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+        self.last_update = datetime.now(timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%d %H:%M UTC")
 
         # Append to catalog
         self.catalog_df = pd.concat(
@@ -322,7 +322,7 @@ class LiveDashboard:
                 print("Done.")
                 log({
                     "type":          "model_update",
-                    "timestamp":     datetime.utcnow().isoformat(),
+                    "timestamp":     datetime.now(timezone.utc).replace(tzinfo=None).isoformat(),
                     "update_number": self.update_count,
                     "new_events":    len(new_events),
                     "new_features":  len(new_rows),
@@ -341,7 +341,7 @@ class LiveDashboard:
         for _, row in new_events.iterrows():
             log({
                 "type":       "new_event",
-                "timestamp":  datetime.utcnow().isoformat(),
+                "timestamp":  datetime.now(timezone.utc).replace(tzinfo=None).isoformat(),
                 "event_time": str(row["time"]),
                 "magnitude":  row["magnitude"],
                 "latitude":   row["latitude"],
@@ -357,7 +357,7 @@ class LiveDashboard:
         clear()
 
         # Header
-        now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+        now = datetime.now(timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%d %H:%M:%S UTC")
         print("=" * 72)
         print("  MYANMAR EARTHQUAKE PREDICTION SYSTEM  |  LIVE MODE")
         print(f"  Current Time   : {now}")
@@ -380,7 +380,7 @@ class LiveDashboard:
         recent = self.catalog_df.sort_values("time").tail(500)
 
         # Also try to get events from the last 90 days if there are enough
-        cutoff = pd.Timestamp(datetime.utcnow() - timedelta(
+        cutoff = pd.Timestamp(datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(
             days=SPATIAL_LOOKBACK_DAYS
         ))
         recent_90d = self.catalog_df[
@@ -406,7 +406,7 @@ class LiveDashboard:
                 model=self.model,
                 current_features=context,
                 recent_events=recent if len(recent) > 0 else None,
-                reference_date=datetime.utcnow(),
+                reference_date=datetime.now(timezone.utc).replace(tzinfo=None),
                 min_threshold=4.5,
                 verbose=True,
             )
