@@ -2,10 +2,10 @@ name: Update Earthquake Predictions
 
 on:
   schedule:
-    - cron: '0 */6 * * *'   # Runs every 6 hours automatically
+    - cron: '0 */6 * * *'   # Every 6 hours automatically
   push:
-    branches: [main]         # Also runs when you push changes
-  workflow_dispatch:          # Lets you trigger it manually from GitHub
+    branches: [main]
+  workflow_dispatch:          # Manual trigger from GitHub
 
 jobs:
   predict:
@@ -27,7 +27,19 @@ jobs:
       - name: Generate predictions
         run: python generate.py
 
-      - name: Commit updated predictions
+      - name: Upload predictions JSON to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:     ${{ secrets.FTP_SERVER }}
+          username:   ${{ secrets.FTP_USERNAME }}
+          password:   ${{ secrets.FTP_PASSWORD }}
+          local-dir:  ./predictions/
+          server-dir: /public_html/predictions/
+          exclude: |
+            **/.git*
+            live_log.jsonl
+
+      - name: Commit updated predictions back to repo
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
