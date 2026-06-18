@@ -15,6 +15,10 @@ sdv>=1.9.0
 # HTTP requests for USGS API
 requests>=2.31.0
 
+# Web dashboard
+flask>=2.3.0
+gunicorn>=21.0.0
+
 # Visualisation (for results figures in dissertation)
 matplotlib>=3.7.0
 seaborn>=0.12.0

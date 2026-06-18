@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myanmar Earthquake Prediction System</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --bg:      #0a0f1e;
+      --surface: #111827;
+      --card:    #1a2235;
+      --border:  #1f2e45;
+      --text:    #e2e8f0;
+      --muted:   #64748b;
+      --dim:     #334155;
+      --low:     #22c55e;
+      --modlow:  #eab308;
+      --mod:     #f97316;
+      --high:    #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    #header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    #header h1 {
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    #header h1 small {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      font-weight: normal;
+      margin-top: 2px;
+    }
+    #header-right {
+      text-align: right;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    #header-right b { color: var(--text); }
+    .dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--low);
+      animation: blink 1.6s ease-in-out infinite;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    /* ── Main layout ─────────────────────────────────── */
+    #main {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      min-height: calc(100vh - 72px - 110px);
+    }
+
+    /* ── Left panel ──────────────────────────────────── */
+    #panel {
+      border-right: 1px solid var(--border);
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .section-title {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    /* Probability matrix */
+    .matrix { width: 100%; border-collapse: collapse; }
+    .matrix th {
+      font-size: 10px;
+      color: var(--muted);
+      padding: 4px 6px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .matrix .rl {
+      font-size: 10px;
+      color: var(--muted);
+      padding: 5px 8px 5px 0;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .matrix .pc {
+      text-align: center;
+      padding: 6px 4px;
+      font-size: 11px;
+      font-weight: bold;
+      border: 1px solid var(--border);
+      cursor: default;
+    }
+
+    /* Confidence bars */
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+    }
+    .bar-lbl { font-size: 10px; width: 54px; flex-shrink: 0; }
+    .bar-wrap {
+      flex: 1;
+      height: 7px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-fill { height: 100%; border-radius: 4px; }
+    .bar-pct { font-size: 11px; font-weight: bold; width: 40px; text-align: right; flex-shrink: 0; }
+
+    /* Zone list */
+    .zone-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .zone-rank { color: var(--muted); font-size: 10px; width: 16px; flex-shrink: 0; }
+    .zone-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .zone-name { flex: 1; font-size: 11px; }
+    .zone-meta { font-size: 10px; color: var(--muted); text-align: right; }
+
+    /* ── Map ──────────────────────────────────────────── */
+    #map { min-height: 500px; height: 100%; }
+
+    /* Leaflet dark popup */
+    .leaflet-popup-content-wrapper {
+      background: #1a2235;
+      border: 1px solid #1f2e45;
+      color: #e2e8f0;
+      box-shadow: 0 6px 24px rgba(0,0,0,.5);
+      border-radius: 5px;
+    }
+    .leaflet-popup-tip { background: #1a2235; }
+    .leaflet-popup-content {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      margin: 10px 14px;
+    }
+    .leaflet-popup-close-button { color: #64748b !important; }
+    .leaflet-control-zoom a {
+      background: #1a2235 !important;
+      color: #e2e8f0 !important;
+      border-color: #1f2e45 !important;
+    }
+    .leaflet-control-attribution {
+      background: rgba(10,15,30,.7) !important;
+      color: #334155 !important;
+      font-size: 10px !important;
+    }
+    .leaflet-control-attribution a { color: #475569 !important; }
+
+    /* ── Footer disclaimer ───────────────────────────── */
+    #footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    #footer .disc {
+      flex: 1;
+      min-width: 280px;
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    #footer .disc b { color: var(--mod); }
+    #footer .meta {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* Loading / error states */
+    .info { color: var(--muted); font-size: 11px; padding: 8px 0; }
+    .err  { color: var(--high);  font-size: 11px; padding: 8px 0; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #main { grid-template-columns: 1fr; }
+      #map  { min-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────── -->
+<div id="header">
+  <h1>
+    MYANMAR EARTHQUAKE PREDICTION SYSTEM
+    <small>Adaptive ML model · USGS data · MSc Data Science · University of Chester</small>
+  </h1>
+  <div id="header-right">
+    <span class="dot"></span>Predictions generated: <b id="gen-at">—</b><br>
+    Page checked: <b id="checked-at">—</b>
+  </div>
+</div>
+
+<!-- ── Main ────────────────────────────────────────────── -->
+<div id="main">
+
+  <div id="panel">
+
+    <!-- Probability matrix -->
+    <div>
+      <div class="section-title">Probability of Exceedance</div>
+      <div id="matrix-wrap"><div class="info">Loading...</div></div>
+    </div>
+
+    <!-- Best-window bars -->
+    <div>
+      <div class="section-title">30-Day Outlook by Threshold</div>
+      <div id="bars-wrap"><div class="info">—</div></div>
+    </div>
+
+    <!-- Zone list -->
+    <div>
+      <div class="section-title">Most Active Seismic Zones</div>
+      <div id="zones-wrap"><div class="info">—</div></div>
+    </div>
+
+  </div>
+
+  <!-- Map -->
+  <div id="map"></div>
+
+</div>
+
+<!-- ── Footer ──────────────────────────────────────────── -->
+<div id="footer">
+  <div class="disc">
+    <b>⚠ RESEARCH OUTPUT ONLY</b> — These are probabilistic estimates produced
+    by an experimental machine-learning model trained on historical USGS earthquake
+    catalogs. Coordinates indicate the centroid of recent seismic clustering,
+    <em>not</em> a predicted epicenter. Uncertainty radius reflects spatial
+    dispersion of recent activity. This system is <b>not</b> an official
+    early-warning service and must not be used for safety decisions.
+  </div>
+  <div class="meta" id="footer-meta">—</div>
+</div>
+
+
+<script>
+// ──────────────────────────────────────────────────────────────
+// Config
+// ──────────────────────────────────────────────────────────────
+const DATA_URL      = 'predictions/latest_predictions.json';
+const AUTO_REFRESH  = 5 * 60 * 1000;   // re-fetch every 5 minutes
+
+const THRESHOLDS = [4.5, 5.0, 5.5];
+const WINDOWS    = [7, 10, 15, 30];
+const TH_LABELS  = { 4.5:'M ≥ 4.5', 5.0:'M ≥ 5.0', 5.5:'M ≥ 5.5' };
+
+// ──────────────────────────────────────────────────────────────
+// Colour helpers
+// ──────────────────────────────────────────────────────────────
+function pColor(p) {
+  if (p >= .85) return '#ef4444';
+  if (p >= .65) return '#f97316';
+  if (p >= .45) return '#eab308';
+  return '#22c55e';
+}
+function pLabel(p) {
+  if (p >= .85) return 'HIGH';
+  if (p >= .65) return 'MODERATE';
+  if (p >= .45) return 'LOW-MOD';
+  return 'LOW';
+}
+
+// ──────────────────────────────────────────────────────────────
+// Map
+// ──────────────────────────────────────────────────────────────
+const map = L.map('map', { center: [20.5, 96.5], zoom: 5 });
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  maxZoom: 14,
+}).addTo(map);
+
+// Legend
+const legend = L.control({ position: 'bottomright' });
+legend.onAdd = () => {
+  const d = L.DomUtil.create('div');
+  d.style.cssText = `background:#111827;border:1px solid #1f2e45;border-radius:5px;
+    padding:10px 12px;font-family:'Courier New',monospace;font-size:11px;
+    color:#e2e8f0;line-height:1.9;`;
+  d.innerHTML =
+    `<div style="font-size:9px;letter-spacing:1.5px;color:#64748b;margin-bottom:3px">PROBABILITY</div>` +
+    [['≥ 85%','#ef4444','HIGH'],['≥ 65%','#f97316','MODERATE'],
+     ['≥ 45%','#eab308','LOW-MOD'],['< 45%','#22c55e','LOW']]
+    .map(([p,c,l]) =>
+      `<div style="display:flex;align-items:center;gap:7px">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c}"></span>
+        <span style="color:${c};width:66px">${l}</span>
+        <span style="color:#475569">${p}</span>
+      </div>`).join('');
+  return d;
+};
+legend.addTo(map);
+
+let mapLayers = [];
+function clearMap() { mapLayers.forEach(l => map.removeLayer(l)); mapLayers = []; }
+function addToMap(l) { l.addTo(map); mapLayers.push(l); }
+
+// ──────────────────────────────────────────────────────────────
+// Build zone scores from all predictions
+// ──────────────────────────────────────────────────────────────
+function zoneScores(predictions) {
+  const z = {};
+  predictions.forEach(pred => {
+    pred.location_predictions.forEach((loc, rank) => {
+      const name = loc.zone;
+      if (!z[name] || pred.probability > z[name].maxProb) {
+        z[name] = {
+          name,
+          lat:       loc.centroid_lat,
+          lon:       loc.centroid_lon,
+          radius_km: loc.radius_km,
+          maxProb:   pred.probability,
+          count:     loc.event_count   || 0,
+          maxMag:    loc.max_magnitude,
+          lastSeen:  loc.last_event_time,
+          rank,
+        };
+      }
+    });
+  });
+  return Object.values(z).sort((a, b) => b.maxProb - a.maxProb);
+}
+
+// ──────────────────────────────────────────────────────────────
+// Render: probability matrix
+// ──────────────────────────────────────────────────────────────
+function renderMatrix(predictions) {
+  const idx = {};
+  predictions.forEach(p => { idx[`${p.magnitude_threshold}_${p.prediction_window_days}`] = p; });
+
+  let h = `<table class="matrix"><thead><tr><th style="border:none"></th>`;
+  WINDOWS.forEach(w => { h += `<th>${w}d</th>`; });
+  h += `</tr></thead><tbody>`;
+
+  THRESHOLDS.forEach(t => {
+    h += `<tr><td class="rl">${TH_LABELS[t]}</td>`;
+    WINDOWS.forEach(w => {
+      const p = idx[`${t}_${w}`];
+      if (p) {
+        const pct = (p.probability * 100).toFixed(1);
+        const c   = pColor(p.probability);
+        const tip = `${pLabel(p.probability)} · ${p.date_range_start} → ${p.date_range_end}`;
+        h += `<td class="pc" style="background:${c}18;color:${c};border-color:${c}28" title="${tip}">${pct}%</td>`;
+      } else {
+        h += `<td class="pc" style="color:#334155">—</td>`;
+      }
+    });
+    h += `</tr>`;
+  });
+  return h + `</tbody></table>`;
+}
+
+// ──────────────────────────────────────────────────────────────
+// Render: 30-day confidence bars
+// ──────────────────────────────────────────────────────────────
+function renderBars(predictions) {
+  const bars = predictions
+    .filter(p => p.prediction_window_days === 30)
+    .sort((a, b) => b.probability - a.probability);
+  if (!bars.length) return '<div class="info">—</div>';
+  return bars.map(p => {
+    const c   = pColor(p.probability);
+    const pct = (p.probability * 100).toFixed(1);
+    const lbl = p.magnitude_label.replace(/ \(.+\)$/, '');
+    return `<div class="bar-row">
+      <span class="bar-lbl" style="color:${c}">${lbl}</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${c}"></div></div>
+      <span class="bar-pct" style="color:${c}">${pct}%</span>
+    </div>`;
+  }).join('');
+}
+
+// ──────────────────────────────────────────────────────────────
+// Render: zone list
+// ──────────────────────────────────────────────────────────────
+function renderZones(predictions) {
+  const zones = zoneScores(predictions).slice(0, 6);
+  if (!zones.length) return '<div class="info">—</div>';
+  return zones.map((z, i) => {
+    const c = pColor(z.maxProb);
+    return `<div class="zone-row">
+      <span class="zone-rank">#${i+1}</span>
+      <span class="zone-dot" style="background:${c}"></span>
+      <span class="zone-name">${z.name}</span>
+      <span class="zone-meta">${(z.maxProb*100).toFixed(0)}%<br>
+        ${z.lat.toFixed(1)}°N ${z.lon.toFixed(1)}°E</span>
+    </div>`;
+  }).join('');
+}
+
+// ──────────────────────────────────────────────────────────────
+// Render: map circles
+// ──────────────────────────────────────────────────────────────
+function renderMap(predictions) {
+  clearMap();
+  zoneScores(predictions).forEach((z, i) => {
+    const c      = pColor(z.maxProb);
+    const isPri  = i === 0;
+    const last   = z.lastSeen ? z.lastSeen.slice(0,16).replace('T',' ') : 'N/A';
+    const popup  = `
+      <b style="color:${c}">${z.name}</b><br>
+      <hr style="border:none;border-top:1px solid #1f2e45;margin:5px 0">
+      Probability: <b style="color:${c}">${(z.maxProb*100).toFixed(1)}%</b>
+        &nbsp;<span style="background:${c}22;color:${c};padding:1px 5px;border-radius:3px;font-size:10px">${pLabel(z.maxProb)}</span><br>
+      Centre: ${z.lat}°N, ${z.lon}°E<br>
+      Radius: ~${z.radius_km} km<br>
+      Recent events: ${z.count}<br>
+      Max M: ${z.maxMag != null ? 'M'+z.maxMag : 'N/A'}<br>
+      Last event: ${last}
+    `;
+
+    addToMap(L.circle([z.lat, z.lon], {
+      radius:      z.radius_km * 1000,
+      color:       c,
+      fillColor:   c,
+      fillOpacity: isPri ? 0.13 : 0.05,
+      weight:      isPri ? 2    : 1,
+      dashArray:   isPri ? null : '5 5',
+    }).bindPopup(popup));
+
+    addToMap(L.circleMarker([z.lat, z.lon], {
+      radius:      isPri ? 7 : 4,
+      color:       c,
+      fillColor:   c,
+      fillOpacity: 0.9,
+      weight:      1,
+    }).bindTooltip(z.name, { direction:'top', opacity:.9 }).bindPopup(popup));
+  });
+}
+
+// ──────────────────────────────────────────────────────────────
+// Fetch and render
+// ──────────────────────────────────────────────────────────────
+async function load() {
+  const now = new Date().toUTCString().replace(' GMT','  UTC');
+  document.getElementById('checked-at').textContent = now;
+
+  try {
+    // Cache-bust so the browser always fetches the latest file
+    const res = await fetch(DATA_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const predictions = await res.json();
+
+    if (!predictions.length) {
+      document.getElementById('matrix-wrap').innerHTML =
+        `<div class="err">predictions/latest_predictions.json is empty.</div>`;
+      return;
+    }
+
+    document.getElementById('gen-at').textContent = predictions[0].generated_at;
+
+    document.getElementById('matrix-wrap').innerHTML = renderMatrix(predictions);
+    document.getElementById('bars-wrap').innerHTML   = renderBars(predictions);
+    document.getElementById('zones-wrap').innerHTML  = renderZones(predictions);
+    renderMap(predictions);
+
+    // Footer meta
+    const primary = predictions[0];
+    document.getElementById('footer-meta').innerHTML =
+      `Primary zone: ${primary.primary_zone}<br>` +
+      `Lat ${primary.primary_lat}°N  Lon ${primary.primary_lon}°E<br>` +
+      `Uncertainty radius: ~${primary.primary_radius_km} km<br>` +
+      `Model: Adaptive XGBoost (continual learning)`;
+
+  } catch (err) {
+    document.getElementById('matrix-wrap').innerHTML =
+      `<div class="err">Could not load predictions.<br>
+      Make sure <code>predictions/latest_predictions.json</code> exists.<br>
+      Error: ${err.message}</div>`;
+  }
+}
+
+// ──────────────────────────────────────────────────────────────
+// Initial load + periodic auto-refresh
+// ──────────────────────────────────────────────────────────────
+load();
+setInterval(load, AUTO_REFRESH);
+</script>
+</body>
+</html>
