@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
     "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
@@ -52,7 +52,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
     "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
@@ -104,7 +104,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
     "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
@@ -156,7 +156,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
     "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
@@ -208,7 +208,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
@@ -260,7 +260,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
@@ -312,7 +312,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
@@ -364,7 +364,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
@@ -416,7 +416,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
@@ -468,7 +468,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
@@ -520,7 +520,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
@@ -572,7 +572,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-06-18 01:44 UTC",
+    "generated_at": "2026-06-18 10:14 UTC",
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
