@@ -13,7 +13,7 @@ import time
 import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from config import (
     GEO_BOUNDS, MIN_MAGNITUDE,
     HISTORICAL_START, HISTORICAL_END,
@@ -86,7 +86,7 @@ def fetch_historical_data(start: str = HISTORICAL_START,
                 props = feat["properties"]
                 coords = feat["geometry"]["coordinates"]
                 all_events.append({
-                    "time":      datetime.utcfromtimestamp(props["time"] / 1000),
+                    "time":      datetime.fromtimestamp(props["time"] / 1000, timezone.utc).replace(tzinfo=None),
                     "latitude":  coords[1],
                     "longitude": coords[0],
                     "depth":     coords[2],

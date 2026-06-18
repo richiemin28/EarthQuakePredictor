@@ -21,6 +21,7 @@ import pandas as pd
 
 from config import (
     RAW_DATA_PATH,
+    FULL_CATALOG_PATH,
     PROCESSED_DATA_PATH,
     MODEL_STATIC_PATH,
     MODEL_ADAPTIVE_PATH,
@@ -41,7 +42,6 @@ from live_updater import (
     print_longitudinal_summary,
 )
 
-FULL_CATALOG_PATH = "data/full_catalog_1990_2025.csv"
 TEST_YEARS = [2020, 2021, 2022, 2023, 2024, 2025]
 
 

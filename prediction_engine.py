@@ -192,7 +192,7 @@ def generate_predictions(model,
     predictions.sort(key=lambda x: x["probability"], reverse=True)
 
     if verbose:
-        print_predictions(predictions, recent_events)
+        print_predictions(predictions, recent_events, zone_stats=zone_stats)
 
     return predictions
 
@@ -201,7 +201,8 @@ def generate_predictions(model,
 # Console display
 # ---------------------------------------------------------------------------
 def print_predictions(predictions: list,
-                      recent_events: pd.DataFrame = None):
+                      recent_events: pd.DataFrame = None,
+                      zone_stats: dict = None):
     """
     Print the full prediction dashboard to the terminal.
     Shows recent activity, zone stats, and forward predictions
@@ -258,9 +259,10 @@ def print_predictions(predictions: list,
         print()
 
         # Zone activity summary
-        zone_stats = compute_zone_spatial_stats(
-            recent_events, lookback_days=90, min_magnitude=3.0
-        )
+        if zone_stats is None:
+            zone_stats = compute_zone_spatial_stats(
+                recent_events, lookback_days=90, min_magnitude=3.0
+            )
         active_zones = rank_zones(zone_stats, top_n=5)
 
         if active_zones:

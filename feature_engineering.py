@@ -114,21 +114,25 @@ def compute_features(df: pd.DataFrame,
     df = df.sort_values("time").reset_index(drop=True)
     df["time"] = pd.to_datetime(df["time"])
 
+    # Pre-compute numpy arrays for O(log n) time-window lookups
+    times_np = df["time"].values
+    mags_np  = df["magnitude"].values
+
     records = []
     total   = len(df)
 
     print(f"[FEATURES] Computing features for {total} events (window={n})...")
 
     for i in range(n, total):
-        window = df.iloc[i - n: i]
-        current = df.iloc[i]
+        if i % 2000 == 0 and i > n:
+            print(f"[FEATURES]   {i}/{total} ({i * 100 // total}%)")
 
-        mags = window["magnitude"].values
-        times = window["time"].values.astype("datetime64[s]").astype(float)
+        current = df.iloc[i]
+        mags    = mags_np[i - n: i]
 
         # --- Time interval (days between first and last event in window) ---
-        t_first = window["time"].iloc[0]
-        t_last  = window["time"].iloc[-1]
+        t_first = df["time"].iloc[i - n]
+        t_last  = df["time"].iloc[i - 1]
         t_days  = max((t_last - t_first).total_seconds() / 86400.0, 1e-6)
 
         # --- Mean magnitude ---
@@ -142,22 +146,16 @@ def compute_features(df: pd.DataFrame,
         energy_rate = _energy_release_rate(mags, t_days)
 
         # --- Seismic rate change (z-value) ---
-        now = current["time"]
-        mags_15d = df[
-            (df["time"] >= now - pd.Timedelta(days=15)) &
-            (df["time"] < now)
-        ]["magnitude"].values
-        mags_30d = df[
-            (df["time"] >= now - pd.Timedelta(days=30)) &
-            (df["time"] < now)
-        ]["magnitude"].values
-        z_val = _z_value(mags_15d, mags_30d)
+        now_np   = times_np[i]
+        lo_15    = np.searchsorted(times_np[:i], now_np - np.timedelta64(15, 'D'))
+        lo_30    = np.searchsorted(times_np[:i], now_np - np.timedelta64(30, 'D'))
+        mags_15d = mags_np[lo_15:i]
+        mags_30d = mags_np[lo_30:i]
+        z_val    = _z_value(mags_15d, mags_30d)
 
         # --- Maximum magnitude in last 7 days ---
-        mags_7d = df[
-            (df["time"] >= now - pd.Timedelta(days=7)) &
-            (df["time"] < now)
-        ]["magnitude"].values
+        lo_7    = np.searchsorted(times_np[:i], now_np - np.timedelta64(7, 'D'))
+        mags_7d = mags_np[lo_7:i]
         max_mag_7d = round(float(np.max(mags_7d)), 4) if len(mags_7d) > 0 else 0.0
 
         # --- Probability of M>=6.0 (using b-value ML) ---
@@ -244,24 +242,29 @@ def build_labeled_dataset(features_df: pd.DataFrame) -> pd.DataFrame:
 
     print("[LABELS] Building classification labels...")
 
+    times_ns = df["time"].values.astype("datetime64[ns]")
+    mags_arr = df["magnitude"].values
+    nrows    = len(df)
+
     for threshold in MAGNITUDE_THRESHOLDS:
         for window in PREDICTION_WINDOWS:
-            col_name = f"label_M{int(threshold*10)}_{window}d"
-            labels = []
+            col_name     = f"label_M{int(threshold*10)}_{window}d"
+            window_delta = np.timedelta64(window, 'D')
+            pos_indices  = np.where(mags_arr >= threshold)[0]
+            labels       = np.zeros(nrows, dtype=np.int8)
 
-            for idx, row in df.iterrows():
-                t_now   = row["time"]
-                t_end   = t_now + pd.Timedelta(days=window)
-                future  = df[
-                    (df["time"] > t_now) &
-                    (df["time"] <= t_end) &
-                    (df["magnitude"] >= threshold)
-                ]
-                labels.append(1 if len(future) > 0 else 0)
+            for i in range(nrows):
+                t_now = times_ns[i]
+                lo    = np.searchsorted(times_ns, t_now,                side='right')
+                hi    = np.searchsorted(times_ns, t_now + window_delta, side='right')
+                if lo < hi and len(pos_indices) > 0:
+                    j = np.searchsorted(pos_indices, lo)
+                    if j < len(pos_indices) and pos_indices[j] < hi:
+                        labels[i] = 1
 
             df[col_name] = labels
-            pos = sum(labels)
-            print(f"  {col_name}: {pos} positive / {len(labels) - pos} negative")
+            pos = int(labels.sum())
+            print(f"  {col_name}: {pos} positive / {nrows - pos} negative")
 
     return df
 

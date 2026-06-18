@@ -18,7 +18,7 @@
 import time
 import os
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 
 from config import RETRAIN_INTERVAL, PROCESSED_DATA_PATH
 from feature_engineering import FEATURE_COLUMNS
@@ -86,7 +86,7 @@ class LiveUpdater:
     def _run_cycle(self):
         """Execute one update cycle."""
         self.cycle_count += 1
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc).replace(tzinfo=None)
 
         print(f"\n[LIVE] --- Cycle #{self.cycle_count} "
               f"({now.strftime('%Y-%m-%d %H:%M UTC')}) ---")
@@ -162,7 +162,7 @@ class LiveUpdater:
                 model=self.model,
                 current_features=recent_features,
                 recent_events=recent_events,
-                reference_date=datetime.utcnow(),
+                reference_date=datetime.now(timezone.utc).replace(tzinfo=None),
                 min_threshold=4.5,
                 verbose=True,
             )
