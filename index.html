@@ -7,224 +7,456 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
+    /* ── Design tokens ───────────────────────────────────── */
     :root {
-      --bg:      #0a0f1e;
-      --surface: #111827;
-      --card:    #1a2235;
-      --border:  #1f2e45;
-      --text:    #e2e8f0;
-      --muted:   #64748b;
-      --dim:     #334155;
-      --low:     #22c55e;
-      --modlow:  #eab308;
-      --mod:     #f97316;
-      --high:    #ef4444;
+      /* Backgrounds */
+      --bg:        #070d1a;
+      --surface:   #0c1524;
+      --card:      #111f33;
+      --card-hover:#16273f;
+      --raised:    #1a2f47;
+
+      /* Borders */
+      --border:    rgba(56, 100, 160, 0.18);
+      --border-md: rgba(56, 100, 160, 0.32);
+
+      /* Text */
+      --txt:       #dde8f5;
+      --txt-2:     #7a9ab8;
+      --txt-3:     #3d5872;
+
+      /* Accent */
+      --accent:    #4a90d9;
+      --accent-bg: rgba(74, 144, 217, 0.08);
+
+      /* Risk scale */
+      --low:       #0ecb8a;
+      --low-bg:    rgba(14, 203, 138, 0.08);
+      --lowmod:    #f5a623;
+      --lowmod-bg: rgba(245, 166, 35, 0.08);
+      --mod:       #f97316;
+      --mod-bg:    rgba(249, 115, 22, 0.08);
+      --high:      #f04040;
+      --high-bg:   rgba(240, 64, 64, 0.08);
+
+      /* Live colours */
+      --live:      #00dfb2;
+      --live-bg:   rgba(0, 223, 178, 0.08);
+
+      /* Spacing */
+      --r:         6px;
+      --r-lg:      10px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Reset ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 12px;
+      color: var(--txt);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
       display: flex;
       flex-direction: column;
       height: 100vh;
       overflow: hidden;
     }
 
+    /* monospace only for data values */
+    .mono { font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace; }
+
+    /* ── Risk utility classes ────────────────────────────── */
+    .r-low    { color: var(--low);    }
+    .r-lowmod { color: var(--lowmod); }
+    .r-mod    { color: var(--mod);    }
+    .r-high   { color: var(--high);   }
+
+    .bg-low    { background: var(--low-bg);    border-color: rgba(14,203,138,.25);  }
+    .bg-lowmod { background: var(--lowmod-bg); border-color: rgba(245,166,35,.25);  }
+    .bg-mod    { background: var(--mod-bg);    border-color: rgba(249,115,22,.25);  }
+    .bg-high   { background: var(--high-bg);   border-color: rgba(240,64,64,.25);   }
+
     /* ── Header ──────────────────────────────────────────── */
     #header {
       flex-shrink: 0;
       background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-md);
       padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
     }
-    #header h1 { font-size: 13px; letter-spacing: 1.5px; }
-    #header h1 small {
-      display: block;
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      font-weight: normal;
+
+    #header-title { flex: 1; min-width: 200px; }
+    #header-title h1 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--txt);
+    }
+    #header-title h1 span { color: var(--accent); }
+    #header-title p {
+      font-size: 10px;
+      color: var(--txt-2);
       margin-top: 2px;
+      letter-spacing: 0.04em;
     }
-    .header-badges { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
     .badge {
-      display: flex; align-items: center; gap: 5px;
-      padding: 2px 8px; border-radius: 3px;
-      font-size: 10px; letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       border: 1px solid;
+      transition: opacity 0.2s;
     }
-    .badge-live   { background: #052e16; border-color: #15803d; color: var(--low); }
-    .badge-ml     { background: #1c1917; border-color: #44403c; color: #a8a29e; }
-    .badge-usgs   { background: #1e1b4b; border-color: #3730a3; color: #818cf8; }
-    .dot { width: 7px; height: 7px; border-radius: 50%; animation: blink 1.4s infinite; }
-    .dot-green  { background: var(--low);   }
-    .dot-blue   { background: #818cf8; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .badge-live   { color: var(--live);   background: var(--live-bg);   border-color: rgba(0,223,178,.25); }
+    .badge-ml     { color: var(--accent); background: var(--accent-bg); border-color: rgba(74,144,217,.25); }
+    .badge-usgs   { color: var(--lowmod); background: var(--lowmod-bg); border-color: rgba(245,166,35,.2); }
 
-    .header-times { font-size: 10px; color: var(--muted); text-align: right; line-height: 1.9; }
-    .header-times b { color: var(--text); }
+    .pulse-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      animation: pulse-dot 1.6s ease-in-out infinite;
+    }
+    .pulse-dot.green  { background: var(--live); box-shadow: 0 0 0 0 rgba(0,223,178,.5); }
+    .pulse-dot.amber  { background: var(--lowmod); box-shadow: 0 0 0 0 rgba(245,166,35,.5); }
+    @keyframes pulse-dot {
+      0%   { box-shadow: 0 0 0 0   currentColor; opacity: 1; }
+      60%  { box-shadow: 0 0 0 5px transparent; opacity: .6; }
+      100% { box-shadow: 0 0 0 0   transparent; opacity: 1; }
+    }
 
-    /* ── Main layout ─────────────────────────────────────── */
+    #header-meta {
+      font-size: 10px;
+      color: var(--txt-3);
+      text-align: right;
+      line-height: 1.9;
+      white-space: nowrap;
+    }
+    #header-meta b { color: var(--txt-2); font-weight: 500; }
+
+    /* ── Layout ──────────────────────────────────────────── */
     #main {
       flex: 1;
       min-height: 0;
       display: grid;
-      grid-template-columns: 340px 1fr;
+      grid-template-columns: 360px 1fr;
     }
 
     /* ── Left panel ──────────────────────────────────────── */
     #panel {
       overflow-y: auto;
-      border-right: 1px solid var(--border);
-      padding: 14px 14px;
+      border-right: 1px solid var(--border-md);
+      padding: 12px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--raised) transparent;
     }
-    .section-title {
-      font-size: 9px; letter-spacing: 2px; color: var(--muted);
-      text-transform: uppercase; padding-bottom: 5px;
-      border-bottom: 1px solid var(--border); margin-bottom: 6px;
+    #panel::-webkit-scrollbar { width: 4px; }
+    #panel::-webkit-scrollbar-thumb { background: var(--raised); border-radius: 4px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 12px 14px;
     }
 
-    /* Alert banner for significant live events */
+    .card-title {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--txt-3);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Alert */
     #alert-banner {
       display: none;
-      padding: 8px 10px;
-      border-radius: 4px;
-      border: 1px solid var(--high);
-      background: #2d0a0a;
-      font-size: 11px;
+      padding: 10px 14px;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(240,64,64,.4);
+      background: rgba(240,64,64,.07);
+      font-size: 12px;
       line-height: 1.6;
-      animation: alertpulse 2s ease-in-out infinite;
+      animation: alert-glow 2.5s ease-in-out infinite;
     }
-    @keyframes alertpulse { 0%,100%{border-color:#ef4444} 50%{border-color:#7f1d1d} }
+    #alert-banner .alert-title {
+      font-weight: 700;
+      color: var(--high);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+    #alert-banner .alert-sub {
+      font-size: 11px;
+      color: var(--txt-2);
+    }
+    @keyframes alert-glow {
+      0%,100% { box-shadow: 0 0 0   0 rgba(240,64,64,0);   }
+      50%      { box-shadow: 0 0 14px 0 rgba(240,64,64,.18); }
+    }
 
-    /* Probability matrix */
-    .matrix { width: 100%; border-collapse: collapse; }
+    /* Matrix */
+    .matrix { width: 100%; border-collapse: separate; border-spacing: 3px; }
     .matrix th {
-      font-size: 10px; color: var(--muted);
-      padding: 3px 5px; text-align: center;
-      border: 1px solid var(--border);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--txt-3);
+      padding: 3px 4px;
+      text-align: center;
+      letter-spacing: 0.04em;
     }
-    .matrix .rl {
-      font-size: 10px; color: var(--muted);
-      padding: 4px 6px 4px 0;
-      border: 1px solid var(--border); white-space: nowrap;
+    .matrix .row-lbl {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--txt-2);
+      padding: 4px 8px 4px 0;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
     }
-    .matrix .pc {
-      text-align: center; padding: 5px 3px;
-      font-size: 11px; font-weight: bold;
-      border: 1px solid var(--border);
+    .matrix .cell {
+      text-align: center;
+      padding: 6px 2px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      cursor: default;
+      transition: filter 0.15s;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
     }
+    .matrix .cell:hover { filter: brightness(1.25); }
 
     /* Bars */
-    .bar-row { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
-    .bar-lbl { font-size: 10px; width: 50px; flex-shrink: 0; }
-    .bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 3px; }
-    .bar-pct { font-size: 11px; font-weight: bold; width: 38px; text-align: right; flex-shrink: 0; }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+    }
+    .bar-row + .bar-row { border-top: 1px solid var(--border); }
+    .bar-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      width: 54px;
+      flex-shrink: 0;
+    }
+    .bar-track {
+      flex: 1;
+      height: 8px;
+      background: var(--raised);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    .bar-fill.r-low    { background: linear-gradient(90deg, #0a9e6c, var(--low)); }
+    .bar-fill.r-lowmod { background: linear-gradient(90deg, #c47d05, var(--lowmod)); }
+    .bar-fill.r-mod    { background: linear-gradient(90deg, #c45510, var(--mod)); }
+    .bar-fill.r-high   { background: linear-gradient(90deg, #b02020, var(--high)); }
+    .bar-pct {
+      font-size: 12px;
+      font-weight: 700;
+      width: 40px;
+      text-align: right;
+      flex-shrink: 0;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+    }
 
     /* Zones */
     .zone-row {
-      display: flex; align-items: center; gap: 7px;
-      padding: 4px 0; border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: var(--r);
+      cursor: default;
+      transition: background 0.15s;
     }
-    .zone-rank { color: var(--muted); font-size: 10px; width: 16px; flex-shrink: 0; }
-    .zone-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .zone-name { flex: 1; font-size: 11px; }
-    .zone-meta { font-size: 10px; color: var(--muted); text-align: right; }
+    .zone-row:hover { background: var(--card-hover); }
+    .zone-num {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--txt-3);
+      width: 18px;
+      flex-shrink: 0;
+    }
+    .zone-pip {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px transparent;
+      transition: box-shadow 0.2s;
+    }
+    .zone-row:hover .zone-pip { box-shadow: 0 0 0 3px rgba(255,255,255,.1); }
+    .zone-name { flex: 1; font-size: 12px; font-weight: 500; }
+    .zone-right { text-align: right; font-size: 10px; color: var(--txt-2); line-height: 1.6; }
+    .zone-pct { font-weight: 700; font-size: 12px; font-family: 'Cascadia Code', monospace; }
 
     /* Disclaimer */
-    .disc {
-      font-size: 9px; color: var(--muted); line-height: 1.5;
-      padding: 7px 9px; border: 1px solid var(--border);
-      border-radius: 3px; background: var(--card);
+    .disclaimer {
+      font-size: 10px;
+      color: var(--txt-3);
+      line-height: 1.65;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,.02);
     }
-    .disc b { color: var(--mod); }
+    .disclaimer strong { color: var(--mod); }
+
+    .info { color: var(--txt-3); font-size: 12px; padding: 6px 0; }
+    .err  { color: var(--high);  font-size: 12px; padding: 6px 0; }
 
     /* ── Map ─────────────────────────────────────────────── */
     #map { width: 100%; height: 100%; }
 
-    /* Pulsing marker for very recent quakes (< 15 min) */
-    .pulse-marker {
-      width: 14px; height: 14px; border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(239,68,68,.7);
-      animation: pulse-ring 1.8s ease-out infinite;
+    /* Pulse markers */
+    .pulse-marker-css {
+      border-radius: 50%;
+      animation: map-pulse 2s ease-out infinite;
     }
-    @keyframes pulse-ring {
-      0%   { box-shadow: 0 0 0 0   rgba(239,68,68,.7); }
-      70%  { box-shadow: 0 0 0 12px rgba(239,68,68,0); }
-      100% { box-shadow: 0 0 0 0   rgba(239,68,68,0); }
-    }
-    .pulse-marker-orange {
-      box-shadow: 0 0 0 0 rgba(249,115,22,.7);
-      animation: pulse-ring-orange 1.8s ease-out infinite;
-    }
-    @keyframes pulse-ring-orange {
-      0%   { box-shadow: 0 0 0 0   rgba(249,115,22,.7); }
-      70%  { box-shadow: 0 0 0 10px rgba(249,115,22,0); }
-      100% { box-shadow: 0 0 0 0   rgba(249,115,22,0); }
+    @keyframes map-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(240,64,64,.7); }
+      70%  { box-shadow: 0 0 0 12px rgba(240,64,64,0); }
+      100% { box-shadow: 0 0 0 0 rgba(240,64,64,0); }
     }
 
-    /* Leaflet dark theme */
+    /* Leaflet overrides */
     .leaflet-popup-content-wrapper {
-      background: #1a2235; border: 1px solid #1f2e45;
-      color: #e2e8f0; box-shadow: 0 6px 24px rgba(0,0,0,.5); border-radius: 5px;
+      background: #0f1e32 !important;
+      border: 1px solid rgba(56,100,160,.4) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,.6) !important;
+      color: var(--txt) !important;
     }
-    .leaflet-popup-tip { background: #1a2235; }
+    .leaflet-popup-tip-container { display: none; }
     .leaflet-popup-content {
-      font-family: 'Courier New', monospace; font-size: 12px;
-      line-height: 1.7; margin: 10px 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      font-size: 12px !important;
+      line-height: 1.7 !important;
+      margin: 12px 16px !important;
     }
-    .leaflet-popup-close-button { color: #64748b !important; }
-    .leaflet-control-zoom a { background: #1a2235 !important; color: #e2e8f0 !important; border-color: #1f2e45 !important; }
-    .leaflet-control-attribution { background: rgba(10,15,30,.75) !important; color: #334155 !important; font-size: 10px !important; }
-    .leaflet-control-attribution a { color: #475569 !important; }
+    .leaflet-popup-close-button { color: var(--txt-3) !important; font-size: 16px !important; top: 6px !important; right: 8px !important; }
+    .leaflet-control-zoom a {
+      background: #0f1e32 !important;
+      color: var(--txt) !important;
+      border-color: rgba(56,100,160,.4) !important;
+    }
+    .leaflet-control-zoom a:hover { background: var(--raised) !important; }
+    .leaflet-control-attribution {
+      background: rgba(7,13,26,.8) !important;
+      color: var(--txt-3) !important;
+      font-size: 9px !important;
+    }
+    .leaflet-control-attribution a { color: var(--txt-3) !important; }
+    .popup-divider {
+      border: none;
+      border-top: 1px solid rgba(56,100,160,.25);
+      margin: 6px 0;
+    }
+    .popup-label { color: var(--txt-2); font-size: 10px; }
 
-    /* ── Live events footer ──────────────────────────────── */
+    /* ── Events footer ───────────────────────────────────── */
     #events-panel {
       flex-shrink: 0;
-      height: 152px;
-      border-top: 1px solid var(--border);
+      height: 150px;
+      border-top: 1px solid var(--border-md);
       background: var(--surface);
       display: flex;
       flex-direction: column;
     }
     #events-header {
-      padding: 6px 18px 4px;
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid var(--border); flex-shrink: 0;
+      flex-shrink: 0;
+      padding: 5px 18px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
     }
-    .ev-title { font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
-    .ev-status { font-size: 10px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-    .ev-count { color: var(--low); font-weight: bold; }
-    #events-list { overflow-y: auto; flex: 1; padding: 3px 18px; }
+    .ev-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--txt-3);
+    }
+    .ev-count-chip {
+      background: var(--live-bg);
+      color: var(--live);
+      border: 1px solid rgba(0,223,178,.2);
+      border-radius: 99px;
+      padding: 1px 7px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .ev-header-right { font-size: 10px; color: var(--txt-3); }
+
+    #events-list {
+      flex: 1;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--raised) transparent;
+    }
+    #events-list::-webkit-scrollbar { width: 3px; }
+    #events-list::-webkit-scrollbar-thumb { background: var(--raised); }
+
     .event-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 3px 0; border-bottom: 1px solid #0d1526;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 18px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+      cursor: default;
     }
-    .ev-mag   { font-weight: bold; width: 38px; flex-shrink: 0; font-size: 12px; }
-    .ev-ago   { color: var(--muted); font-size: 10px; width: 70px; flex-shrink: 0; }
-    .ev-time  { color: var(--muted); font-size: 10px; width: 120px; flex-shrink: 0; }
-    .ev-zone  { flex: 1; font-size: 11px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .ev-place { color: var(--muted); font-size: 10px; width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .ev-coords{ color: var(--dim); font-size: 10px; width: 100px; text-align: right; flex-shrink: 0; }
+    .event-row:hover { background: var(--card); }
+    .event-row:last-child { border-bottom: none; }
 
-    .info { color: var(--muted); font-size: 11px; padding: 8px 0; }
-    .err  { color: var(--high);  font-size: 11px; padding: 8px 0; }
+    .ev-mag {
+      font-weight: 800;
+      font-size: 12px;
+      width: 42px;
+      flex-shrink: 0;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+    }
+    .ev-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      width: 50px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .ev-ago   { font-size: 10px; color: var(--txt-2); width: 64px; flex-shrink: 0; font-family: 'Cascadia Code', monospace; }
+    .ev-zone  { flex: 1; font-size: 11px; font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ev-place { font-size: 10px; color: var(--txt-2); width: 200px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ev-coords { font-size: 10px; color: var(--txt-3); width: 110px; text-align: right; flex-shrink: 0; font-family: 'Cascadia Code', monospace; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
       #main { grid-template-columns: 1fr; }
-      #map  { min-height: 350px; }
+      #map { min-height: 300px; }
+      .ev-place, .ev-coords { display: none; }
     }
   </style>
 </head>
@@ -232,114 +464,132 @@
 
 <!-- ── Header ─────────────────────────────────────────── -->
 <div id="header">
-  <div>
-    <h1>MYANMAR EARTHQUAKE PREDICTION SYSTEM
-      <small>Adaptive ML · USGS Live Feed · MSc Data Science · University of Chester</small>
-    </h1>
+  <div id="header-title">
+    <h1><span>Myanmar</span> Earthquake Prediction System</h1>
+    <p>Adaptive ML &nbsp;·&nbsp; USGS Real-Time Feed &nbsp;·&nbsp; MSc Data Science &nbsp;·&nbsp; University of Chester</p>
   </div>
-  <div class="header-badges">
-    <div class="badge badge-live">
-      <span class="dot dot-green"></span>USGS LIVE
-    </div>
-    <div class="badge badge-ml">
-      <span>ML PREDICTIONS</span>
-    </div>
-    <div class="badge badge-usgs">
-      <span class="dot dot-blue"></span>FEED IN <span id="usgs-countdown">60</span>s
-    </div>
+
+  <div class="badges">
+    <span class="badge badge-live">
+      <span class="pulse-dot green"></span>USGS LIVE
+    </span>
+    <span class="badge badge-ml">ML PREDICTIONS</span>
+    <span class="badge badge-usgs">
+      <span class="pulse-dot amber"></span>REFRESH <span id="usgs-countdown" style="margin-left:2px">60</span>s
+    </span>
   </div>
-  <div class="header-times">
-    Live events checked: <b id="live-checked">—</b><br>
-    ML predictions: <b id="ml-gen-at">—</b>
+
+  <div id="header-meta">
+    Live checked: <b id="live-checked">—</b><br>
+    ML generated: <b id="ml-gen-at">—</b>
   </div>
 </div>
 
 <!-- ── Main ───────────────────────────────────────────── -->
 <div id="main">
+
+  <!-- Left panel -->
   <div id="panel">
 
-    <!-- Alert for significant events -->
     <div id="alert-banner"></div>
 
-    <div>
-      <div class="section-title">Probability of Exceedance</div>
-      <div id="matrix-wrap"><div class="info">Loading ML predictions...</div></div>
+    <!-- Probability matrix -->
+    <div class="card">
+      <div class="card-title">Probability of Exceedance</div>
+      <div id="matrix-wrap"><div class="info">Loading predictions…</div></div>
     </div>
 
-    <div>
-      <div class="section-title">30-Day Outlook by Threshold</div>
+    <!-- 30-day bars -->
+    <div class="card">
+      <div class="card-title">30-Day Outlook</div>
       <div id="bars-wrap"><div class="info">—</div></div>
     </div>
 
-    <div>
-      <div class="section-title">Active Seismic Zones</div>
+    <!-- Active zones -->
+    <div class="card">
+      <div class="card-title">Active Seismic Zones</div>
       <div id="zones-wrap"><div class="info">—</div></div>
     </div>
 
-    <div class="disc">
-      <b>⚠ RESEARCH OUTPUT ONLY</b> — ML probabilities are experimental.
-      Live events are sourced directly from USGS. Zone circles show spatial
-      uncertainty, not precise epicenters. Not for safety decisions.
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <strong>⚠ Research output only.</strong> ML probabilities are experimental outputs
+      from an MSc dissertation model. Live events are sourced from USGS.
+      Zone circles indicate spatial uncertainty — not precise epicentres.
+      Do not use for safety decisions.
     </div>
 
   </div>
 
+  <!-- Map -->
   <div id="map"></div>
+
 </div>
 
-<!-- ── Live events footer ─────────────────────────────── -->
+<!-- ── Events footer ──────────────────────────────────── -->
 <div id="events-panel">
   <div id="events-header">
-    <span class="ev-title">Live USGS Events — Myanmar Region (M2.5+, Last 24h)</span>
-    <span class="ev-status">
-      <span id="ev-count" class="ev-count">—</span> events detected
-    </span>
+    <div class="ev-header-left">
+      Live USGS Events — Myanmar Region (M 2.5+, Last 24 h)
+      <span class="ev-count-chip" id="ev-count">—</span>
+    </div>
+    <div class="ev-header-right" id="ev-status">Fetching…</div>
   </div>
-  <div id="events-list"><div class="info">Fetching USGS live feed...</div></div>
+  <div id="events-list"><div class="info" style="padding:8px 18px">Fetching USGS feed…</div></div>
 </div>
 
 
 <script>
-// ──────────────────────────────────────────────────────────────────
-// Config
-// ──────────────────────────────────────────────────────────────────
-
-// Myanmar + surrounding region bounding box
-const BOUNDS = { minLat: 10, maxLat: 30, minLon: 90, maxLon: 105 };
-
-// USGS real-time GeoJSON feed (public, CORS-enabled, updates every 60s)
-const USGS_FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson';
-
-// Your ML predictions JSON (uploaded to Hostinger or GitHub Pages)
-const ML_DATA_URL = 'predictions/latest_predictions.json';
-
-const USGS_INTERVAL = 60 * 1000;       // fetch USGS every 60 seconds
-const ML_INTERVAL   = 30 * 60 * 1000;  // fetch ML predictions every 30 minutes
+/* ── Config ────────────────────────────────────────────── */
+const BOUNDS     = { minLat:10, maxLat:30, minLon:90, maxLon:105 };
+const USGS_FEED  = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson';
+const ML_URL     = 'predictions/latest_predictions.json';
+const USGS_EVERY = 60 * 1000;
+const ML_EVERY   = 30 * 60 * 1000;
 
 const THRESHOLDS = [4.5, 5.0, 5.5];
 const WINDOWS    = [7, 10, 15, 30];
-const TH_LABELS  = { 4.5: 'M ≥ 4.5', 5.0: 'M ≥ 5.0', 5.5: 'M ≥ 5.5' };
+const TH_LBL     = { 4.5:'M ≥ 4.5', 5.0:'M ≥ 5.0', 5.5:'M ≥ 5.5' };
 
-// ──────────────────────────────────────────────────────────────────
-// Utilities
-// ──────────────────────────────────────────────────────────────────
-function pColor(p) {
-  if (p >= .85) return '#ef4444';
-  if (p >= .65) return '#f97316';
-  if (p >= .45) return '#eab308';
-  return '#22c55e';
+/* ── Risk helpers ──────────────────────────────────────── */
+function riskClass(p) {
+  if (p >= .85) return 'r-high';
+  if (p >= .65) return 'r-mod';
+  if (p >= .45) return 'r-lowmod';
+  return 'r-low';
 }
-function pLabel(p) {
+function riskBg(p) {
+  if (p >= .85) return 'bg-high';
+  if (p >= .65) return 'bg-mod';
+  if (p >= .45) return 'bg-lowmod';
+  return 'bg-low';
+}
+function riskLabel(p) {
   if (p >= .85) return 'HIGH';
-  if (p >= .65) return 'MODERATE';
-  if (p >= .45) return 'LOW-MOD';
+  if (p >= .65) return 'MOD';
+  if (p >= .45) return 'LOW-M';
   return 'LOW';
 }
+// CSS variable value for JS-only uses (map markers, Leaflet popups)
+function riskColor(p) {
+  if (p >= .85) return '#f04040';
+  if (p >= .65) return '#f97316';
+  if (p >= .45) return '#f5a623';
+  return '#0ecb8a';
+}
+function magColor(m) {
+  if (m >= 5.5) return '#f04040';
+  if (m >= 5.0) return '#f97316';
+  if (m >= 4.5) return '#f5a623';
+  return '#0ecb8a';
+}
+
+/* ── Time helpers ──────────────────────────────────────── */
 function timeAgo(ms) {
   const s = Math.floor((Date.now() - ms) / 1000);
-  if (s < 60)        return `${s}s ago`;
-  if (s < 3600)      return `${Math.floor(s/60)}m ago`;
-  if (s < 86400)     return `${Math.floor(s/3600)}h ago`;
+  if (s <    60) return `${s}s ago`;
+  if (s <  3600) return `${Math.floor(s/60)}m ago`;
+  if (s < 86400) return `${Math.floor(s/3600)}h ago`;
   return `${Math.floor(s/86400)}d ago`;
 }
 function utcStr(ms) {
@@ -349,222 +599,210 @@ function inBounds(lat, lon) {
   return lat >= BOUNDS.minLat && lat <= BOUNDS.maxLat
       && lon >= BOUNDS.minLon && lon <= BOUNDS.maxLon;
 }
-function magColor(m) {
-  if (m >= 5.5) return '#ef4444';
-  if (m >= 5.0) return '#f97316';
-  if (m >= 4.5) return '#eab308';
-  return '#22c55e';
-}
 
-// Identify seismic zone from coordinates
-const ZONES_CFG = {
-  'Sagaing Fault Zone':       { lat:[18,25],   lon:[94.5,96.5] },
-  'Central Myanmar':          { lat:[18.5,23],  lon:[94,100]   },
-  'Northern Myanmar':         { lat:[23,28.5],  lon:[95,101]   },
-  'Indo-Burman Range':        { lat:[20,27],    lon:[92,95]    },
-  'Southern Myanmar':         { lat:[14,18.5],  lon:[97,102]   },
-  'Andaman Sea Region':       { lat:[10,16],    lon:[92,99]    },
-  'Yunnan Border Region':     { lat:[23,27],    lon:[99,105]   },
-  'Northern Thailand':        { lat:[15,20],    lon:[98,105]   },
-  'Chin Hills / Assam':       { lat:[22,28.5],  lon:[90,93.5]  },
-  'Bay of Bengal North':      { lat:[18,23],    lon:[90,92.5]  },
+/* ── Zone lookup ───────────────────────────────────────── */
+const ZONE_MAP = {
+  'Sagaing Fault Zone':    { lat:[18,25],   lon:[94.5,96.5] },
+  'Central Myanmar':       { lat:[18.5,23], lon:[94,100]    },
+  'Northern Myanmar':      { lat:[23,28.5], lon:[95,101]    },
+  'Indo-Burman Range':     { lat:[20,27],   lon:[92,95]     },
+  'Southern Myanmar':      { lat:[14,18.5], lon:[97,102]    },
+  'Andaman Sea Region':    { lat:[10,16],   lon:[92,99]     },
+  'Yunnan Border Region':  { lat:[23,27],   lon:[99,105]    },
+  'Northern Thailand':     { lat:[15,20],   lon:[98,105]    },
+  'Chin Hills / Assam':    { lat:[22,28.5], lon:[90,93.5]   },
+  'Bay of Bengal North':   { lat:[18,23],   lon:[90,92.5]   },
 };
 function identifyZone(lat, lon) {
-  for (const [name, b] of Object.entries(ZONES_CFG)) {
+  for (const [name, b] of Object.entries(ZONE_MAP))
     if (lat >= b.lat[0] && lat <= b.lat[1] && lon >= b.lon[0] && lon <= b.lon[1])
       return name;
-  }
   return 'Myanmar Region';
 }
 
-// ──────────────────────────────────────────────────────────────────
-// Map setup
-// ──────────────────────────────────────────────────────────────────
-const map = L.map('map', { center: [20.5, 96.5], zoom: 5 });
+/* ── Map ───────────────────────────────────────────────── */
+const map = L.map('map', { center:[20.5,96.5], zoom:5 });
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://openstreetmap.org">OSM</a> &copy; <a href="https://carto.com">CARTO</a>',
-  maxZoom: 14,
+  attribution:'&copy; OSM &copy; CARTO', maxZoom:14,
 }).addTo(map);
 
 // Legend
-const legend = L.control({ position: 'bottomright' });
+const legend = L.control({ position:'bottomright' });
 legend.onAdd = () => {
   const d = L.DomUtil.create('div');
-  d.style.cssText = `background:#111827;border:1px solid #1f2e45;border-radius:5px;
-    padding:10px 12px;font-family:'Courier New',monospace;font-size:11px;color:#e2e8f0;line-height:1.9`;
-  d.innerHTML =
-    `<div style="font-size:9px;letter-spacing:1.5px;color:#64748b;margin-bottom:3px">ML PROBABILITY</div>` +
-    [['≥85%','#ef4444','HIGH'],['≥65%','#f97316','MODERATE'],['≥45%','#eab308','LOW-MOD'],['<45%','#22c55e','LOW']]
-      .map(([p,c,l]) => `<div style="display:flex;align-items:center;gap:7px">
-        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c}"></span>
-        <span style="color:${c};width:66px">${l}</span><span style="color:#475569">${p}</span>
-      </div>`).join('') +
-    `<div style="font-size:9px;letter-spacing:1.5px;color:#64748b;margin:6px 0 3px">LIVE EVENTS</div>` +
+  d.style.cssText = `background:#0c1524;border:1px solid rgba(56,100,160,.32);border-radius:8px;
+    padding:10px 13px;font-family:-apple-system,sans-serif;font-size:11px;color:#dde8f5;line-height:1.9;
+    box-shadow:0 4px 20px rgba(0,0,0,.5)`;
+  const row = (c, lbl, note) =>
     `<div style="display:flex;align-items:center;gap:7px">
-      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;box-shadow:0 0 6px #ef4444"></span>
-      <span style="color:#94a3b8">&lt; 1 hour ago</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:7px">
-      <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f97316"></span>
-      <span style="color:#94a3b8">1–6 hours ago</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:7px">
-      <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#64748b"></span>
-      <span style="color:#94a3b8">Older</span>
+      <span style="width:9px;height:9px;border-radius:50%;background:${c};display:inline-block;flex-shrink:0"></span>
+      <span style="color:${c};min-width:48px;font-weight:600;font-size:10px">${lbl}</span>
+      <span style="color:#3d5872;font-size:10px">${note}</span>
     </div>`;
+  d.innerHTML =
+    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#3d5872;margin-bottom:4px">ML PROBABILITY</div>` +
+    row('#f04040','HIGH','≥ 85%') + row('#f97316','MODERATE','≥ 65%') +
+    row('#f5a623','LOW-MOD','≥ 45%') + row('#0ecb8a','LOW','< 45%') +
+    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#3d5872;margin:7px 0 4px">LIVE EVENTS</div>` +
+    row('#f04040','< 1h','recent') + row('#f97316','1–6h','') + row('#4a6480','older','');
   return d;
 };
 legend.addTo(map);
 
-let mlLayers   = [];   // prediction zone circles
-let liveLayers = [];   // real-time USGS event markers
+let mlLayers = [], liveLayers = [];
+const addML   = l => { l.addTo(map); mlLayers.push(l); };
+const addLive = l => { l.addTo(map); liveLayers.push(l); };
+const clearML   = () => { mlLayers.forEach(l => map.removeLayer(l));   mlLayers   = []; };
+const clearLive = () => { liveLayers.forEach(l => map.removeLayer(l)); liveLayers = []; };
 
-function clearML()   { mlLayers.forEach(l   => map.removeLayer(l)); mlLayers   = []; }
-function clearLive() { liveLayers.forEach(l => map.removeLayer(l)); liveLayers = []; }
-function addML(l)    { l.addTo(map); mlLayers.push(l);   }
-function addLive(l)  { l.addTo(map); liveLayers.push(l); }
-
-// ──────────────────────────────────────────────────────────────────
-// ML Predictions rendering
-// ──────────────────────────────────────────────────────────────────
-function zoneScores(predictions) {
+/* ── ML Predictions ────────────────────────────────────── */
+function zoneScores(preds) {
   const z = {};
-  predictions.forEach(pred => {
-    pred.location_predictions.forEach((loc, rank) => {
-      const name = loc.zone;
-      if (!z[name] || pred.probability > z[name].maxProb) {
-        z[name] = { name, lat: loc.centroid_lat, lon: loc.centroid_lon,
-          radius_km: loc.radius_km, maxProb: pred.probability,
-          count: loc.event_count || 0, maxMag: loc.max_magnitude,
-          lastSeen: loc.last_event_time, rank };
-      }
-    });
-  });
-  return Object.values(z).sort((a, b) => b.maxProb - a.maxProb);
+  preds.forEach(p =>
+    p.location_predictions.forEach(loc => {
+      if (!z[loc.zone] || p.probability > z[loc.zone].maxProb)
+        z[loc.zone] = { name:loc.zone, lat:loc.centroid_lat, lon:loc.centroid_lon,
+          radius_km:loc.radius_km, maxProb:p.probability, count:loc.event_count||0,
+          maxMag:loc.max_magnitude, lastSeen:loc.last_event_time };
+    })
+  );
+  return Object.values(z).sort((a,b) => b.maxProb - a.maxProb);
 }
 
-function renderMatrix(predictions) {
+function renderMatrix(preds) {
   const idx = {};
-  predictions.forEach(p => { idx[`${p.magnitude_threshold}_${p.prediction_window_days}`] = p; });
-  let h = `<table class="matrix"><thead><tr><th style="border:none"></th>`;
-  WINDOWS.forEach(w => { h += `<th>${w}d</th>`; });
+  preds.forEach(p => idx[`${p.magnitude_threshold}_${p.prediction_window_days}`] = p);
+
+  let h = `<table class="matrix"><thead><tr><th></th>`;
+  WINDOWS.forEach(w => h += `<th>${w}d</th>`);
   h += `</tr></thead><tbody>`;
+
   THRESHOLDS.forEach(t => {
-    h += `<tr><td class="rl">${TH_LABELS[t]}</td>`;
+    h += `<tr><td class="row-lbl">${TH_LBL[t]}</td>`;
     WINDOWS.forEach(w => {
       const p = idx[`${t}_${w}`];
-      if (p) {
-        const pct = (p.probability * 100).toFixed(1);
-        const c   = pColor(p.probability);
-        h += `<td class="pc" style="background:${c}18;color:${c};border-color:${c}28"
-              title="${pLabel(p.probability)} · ${p.date_range_start} → ${p.date_range_end}">${pct}%</td>`;
-      } else {
-        h += `<td class="pc" style="color:#334155">—</td>`;
-      }
+      if (!p) { h += `<td class="cell" style="color:var(--txt-3)">—</td>`; return; }
+      const pct = (p.probability * 100).toFixed(1);
+      const rc = riskClass(p.probability), bg = riskBg(p.probability), rl = riskLabel(p.probability);
+      h += `<td class="cell ${rc} ${bg}" title="${rl} · ${p.date_range_start} → ${p.date_range_end}">${pct}%</td>`;
     });
     h += `</tr>`;
   });
   return h + `</tbody></table>`;
 }
 
-function renderBars(predictions) {
-  const bars = predictions.filter(p => p.prediction_window_days === 30)
-    .sort((a, b) => b.probability - a.probability);
+function renderBars(preds) {
+  const bars = preds.filter(p => p.prediction_window_days === 30)
+    .sort((a,b) => b.probability - a.probability);
   if (!bars.length) return '<div class="info">—</div>';
   return bars.map(p => {
-    const c = pColor(p.probability); const pct = (p.probability * 100).toFixed(1);
+    const pct = (p.probability * 100).toFixed(1);
+    const rc = riskClass(p.probability);
     const lbl = p.magnitude_label.replace(/ \(.+\)$/, '');
     return `<div class="bar-row">
-      <span class="bar-lbl" style="color:${c}">${lbl}</span>
-      <div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${c}"></div></div>
-      <span class="bar-pct" style="color:${c}">${pct}%</span>
+      <span class="bar-lbl ${rc}">${lbl}</span>
+      <div class="bar-track"><div class="bar-fill ${rc}" style="width:${pct}%"></div></div>
+      <span class="bar-pct ${rc}">${pct}%</span>
     </div>`;
   }).join('');
 }
 
-function renderZones(predictions) {
-  return zoneScores(predictions).slice(0, 6).map((z, i) => {
-    const c = pColor(z.maxProb);
+function renderZones(preds) {
+  const zones = zoneScores(preds).slice(0, 6);
+  if (!zones.length) return '<div class="info">—</div>';
+  return zones.map((z, i) => {
+    const rc = riskClass(z.maxProb), c = riskColor(z.maxProb);
     return `<div class="zone-row">
-      <span class="zone-rank">#${i+1}</span>
-      <span class="zone-dot" style="background:${c}"></span>
+      <span class="zone-num">#${i+1}</span>
+      <span class="zone-pip" style="background:${c}"></span>
       <span class="zone-name">${z.name}</span>
-      <span class="zone-meta">${(z.maxProb*100).toFixed(0)}%<br>${z.lat.toFixed(1)}°N ${z.lon.toFixed(1)}°E</span>
+      <div class="zone-right">
+        <span class="zone-pct ${rc}">${(z.maxProb*100).toFixed(0)}%</span><br>
+        <span class="mono" style="font-size:9px">${z.lat.toFixed(1)}°N ${z.lon.toFixed(1)}°E</span>
+      </div>
     </div>`;
-  }).join('') || '<div class="info">—</div>';
+  }).join('');
 }
 
-function renderMLMap(predictions) {
+function renderMLMap(preds) {
   clearML();
-  zoneScores(predictions).forEach((z, i) => {
-    const c = pColor(z.maxProb); const isPri = i === 0;
+  zoneScores(preds).forEach((z, i) => {
+    const c = riskColor(z.maxProb), isPri = i === 0;
     const last = z.lastSeen ? z.lastSeen.slice(0,16).replace('T',' ') : 'N/A';
-    const popup = `<b style="color:${c}">${z.name}</b><br>
-      <hr style="border:none;border-top:1px solid #1f2e45;margin:5px 0">
-      ML Probability: <b style="color:${c}">${(z.maxProb*100).toFixed(1)}%</b>
-        &nbsp;<span style="background:${c}22;color:${c};padding:1px 5px;border-radius:3px;font-size:10px">${pLabel(z.maxProb)}</span><br>
-      Centre: ${z.lat}°N, ${z.lon}°E<br>Radius: ~${z.radius_km} km<br>
-      Recent events: ${z.count}<br>Max M: ${z.maxMag!=null?'M'+z.maxMag:'N/A'}<br>
-      Last event: ${last}`;
+    const popup = `
+      <b style="color:${c};font-size:13px">${z.name}</b>
+      <hr class="popup-divider">
+      <span class="popup-label">ML Probability</span><br>
+      <b style="color:${c};font-size:14px">${(z.maxProb*100).toFixed(1)}%</b>
+      <span style="background:${c}22;color:${c};padding:1px 6px;border-radius:4px;font-size:10px;margin-left:6px;font-weight:700">${riskLabel(z.maxProb)}</span>
+      <hr class="popup-divider">
+      <span class="popup-label">Centre</span> ${z.lat.toFixed(3)}°N, ${z.lon.toFixed(3)}°E<br>
+      <span class="popup-label">Radius</span> ~${z.radius_km} km<br>
+      <span class="popup-label">Events</span> ${z.count} &nbsp;
+      <span class="popup-label">Max</span> M${z.maxMag ?? 'N/A'}<br>
+      <span class="popup-label">Last event</span> ${last}`;
+
     addML(L.circle([z.lat, z.lon], {
       radius: z.radius_km * 1000, color: c, fillColor: c,
-      fillOpacity: isPri ? 0.1 : 0.04, weight: isPri ? 2 : 1,
-      dashArray: isPri ? null : '5 5',
+      fillOpacity: isPri ? 0.09 : 0.03,
+      weight: isPri ? 2 : 1,
+      dashArray: isPri ? null : '6 4',
     }).bindPopup(popup));
     addML(L.circleMarker([z.lat, z.lon], {
-      radius: isPri ? 6 : 3, color: c, fillColor: c, fillOpacity: 0.7, weight: 1,
-    }).bindTooltip(z.name, {direction:'top', opacity:.9}).bindPopup(popup));
+      radius: isPri ? 7 : 4, color: c, fillColor: c,
+      fillOpacity: 0.85, weight: 1.5,
+    }).bindTooltip(z.name, { direction:'top', opacity:.95 }).bindPopup(popup));
   });
 }
 
-// ──────────────────────────────────────────────────────────────────
-// Live USGS events rendering
-// ──────────────────────────────────────────────────────────────────
+/* ── Live events ───────────────────────────────────────── */
 function renderLiveMap(events) {
   clearLive();
   const now = Date.now();
   events.forEach(ev => {
-    const age   = now - ev.time;
-    const lat   = ev.lat, lon = ev.lon, mag = ev.mag;
-    const isNew = age < 60 * 60 * 1000;         // < 1 hour
-    const isMed = age < 6  * 60 * 60 * 1000;    // < 6 hours
-    const c     = isNew ? '#ef4444' : isMed ? '#f97316' : '#64748b';
-    const r     = Math.max(4, Math.min(12, mag * 2));
-
-    const popup = `<b style="color:${c}">M${mag.toFixed(1)} — ${ev.zone}</b><br>
-      <hr style="border:none;border-top:1px solid #1f2e45;margin:5px 0">
-      Time: ${utcStr(ev.time)}<br>
-      (${timeAgo(ev.time)})<br>
-      Lat: ${lat.toFixed(3)}°N  Lon: ${lon.toFixed(3)}°E<br>
-      Depth: ${ev.depth.toFixed(1)} km<br>
-      <span style="color:#94a3b8;font-size:10px">${ev.place}</span>`;
+    const age = now - ev.time;
+    const isNew = age < 3600000, isMed = age < 21600000;
+    const c = isNew ? '#f04040' : isMed ? '#f97316' : '#4a6480';
+    const r = Math.max(4, Math.min(13, ev.mag * 2.2));
+    const popup = `
+      <b style="color:${c};font-size:13px">M${ev.mag.toFixed(1)} — ${ev.zone}</b>
+      <hr class="popup-divider">
+      <span class="popup-label">Time</span> ${utcStr(ev.time)} (${timeAgo(ev.time)})<br>
+      <span class="popup-label">Location</span> ${ev.lat.toFixed(3)}°N, ${ev.lon.toFixed(3)}°E<br>
+      <span class="popup-label">Depth</span> ${ev.depth.toFixed(1)} km<br>
+      <span style="color:#7a9ab8;font-size:10px">${ev.place}</span>`;
 
     if (isNew) {
-      const icon = L.divIcon({
-        className: '',
-        html: `<div class="pulse-marker" style="background:${c};width:${r+4}px;height:${r+4}px"></div>`,
-        iconSize: [r+4, r+4], iconAnchor: [(r+4)/2, (r+4)/2],
-      });
-      addLive(L.marker([lat, lon], { icon }).bindPopup(popup));
+      addLive(L.marker([ev.lat, ev.lon], {
+        icon: L.divIcon({
+          className: '',
+          html: `<div class="pulse-marker-css" style="width:${r+4}px;height:${r+4}px;background:${c}"></div>`,
+          iconSize: [r+4, r+4], iconAnchor: [(r+4)/2, (r+4)/2],
+        }),
+      }).bindPopup(popup));
     } else {
-      addLive(L.circleMarker([lat, lon], {
+      addLive(L.circleMarker([ev.lat, ev.lon], {
         radius: r, color: c, fillColor: c,
-        fillOpacity: isMed ? 0.8 : 0.4, weight: 1,
+        fillOpacity: isMed ? 0.8 : 0.4, weight: 1.2,
       }).bindPopup(popup));
     }
   });
 }
 
 function renderLiveList(events) {
-  if (!events.length) {
-    return `<div class="info">No M2.5+ events detected in Myanmar region in the last 24 hours.</div>`;
-  }
-  return events.slice(0, 40).map(ev => {
-    const c = magColor(ev.mag);
+  if (!events.length)
+    return `<div class="info" style="padding:6px 18px">No M 2.5+ events in Myanmar region in the last 24 hours.</div>`;
+
+  return events.slice(0, 50).map(ev => {
+    const c  = magColor(ev.mag);
+    const rc = riskClass(ev.mag >= 5.5 ? .9 : ev.mag >= 5.0 ? .7 : ev.mag >= 4.5 ? .5 : .3);
+    const age = Date.now() - ev.time;
+    const fresh = age < 3600000;
     return `<div class="event-row">
       <span class="ev-mag" style="color:${c}">M${ev.mag.toFixed(1)}</span>
-      <span class="ev-ago">${timeAgo(ev.time)}</span>
-      <span class="ev-time">${utcStr(ev.time)}</span>
+      <span class="ev-badge ${rc} ${riskBg(ev.mag >= 5.5?.9:ev.mag >= 5.0?.7:ev.mag >= 4.5?.5:.3)}"
+            style="font-size:9px">${riskLabel(ev.mag >= 5.5?.9:ev.mag >= 5.0?.7:ev.mag >= 4.5?.5:.3)}</span>
+      <span class="ev-ago" style="${fresh?'color:'+c:''}">${timeAgo(ev.time)}</span>
       <span class="ev-zone">${ev.zone}</span>
       <span class="ev-place" title="${ev.place}">${ev.place}</span>
       <span class="ev-coords">${ev.lat.toFixed(2)}°N ${ev.lon.toFixed(2)}°E</span>
@@ -574,27 +812,26 @@ function renderLiveList(events) {
 
 function showAlert(events) {
   const banner = document.getElementById('alert-banner');
-  const recent = events.filter(e => Date.now() - e.time < 3600000 && e.mag >= 5.0);
-  if (recent.length > 0) {
-    const top = recent[0];
+  const sig = events.filter(e => Date.now() - e.time < 3600000 && e.mag >= 5.0);
+  if (sig.length) {
+    const top = sig[0];
+    const c = riskColor(top.mag >= 5.5 ? .9 : .7);
     banner.style.display = 'block';
-    banner.innerHTML = `⚠ M${top.mag.toFixed(1)} detected ${timeAgo(top.time)} — ${top.zone}<br>
-      <span style="color:#94a3b8;font-size:10px">${top.place}</span>`;
+    banner.innerHTML = `
+      <div class="alert-title" style="color:${c}">⚠ M${top.mag.toFixed(1)} detected ${timeAgo(top.time)}</div>
+      <div class="alert-sub">${top.zone} — ${top.place}</div>`;
   } else {
     banner.style.display = 'none';
   }
 }
 
-// ──────────────────────────────────────────────────────────────────
-// Fetch USGS live feed (every 60 seconds)
-// ──────────────────────────────────────────────────────────────────
+/* ── Fetch USGS ────────────────────────────────────────── */
 async function fetchUSGS() {
   try {
-    const res = await fetch(USGS_FEED + '?t=' + Date.now());
+    const res  = await fetch(USGS_FEED + '?t=' + Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    // Filter for Myanmar bounding box
     const events = data.features
       .map(f => ({
         mag:   f.properties.mag,
@@ -603,66 +840,57 @@ async function fetchUSGS() {
         lat:   f.geometry.coordinates[1],
         lon:   f.geometry.coordinates[0],
         depth: f.geometry.coordinates[2],
-        id:    f.id,
       }))
       .filter(e => e.mag >= 2.5 && inBounds(e.lat, e.lon))
       .map(e => ({ ...e, zone: identifyZone(e.lat, e.lon) }))
-      .sort((a, b) => b.time - a.time);
+      .sort((a,b) => b.time - a.time);
 
-    const now = new Date().toUTCString().replace(' GMT', ' UTC');
-    document.getElementById('live-checked').textContent = now;
+    document.getElementById('live-checked').textContent =
+      new Date().toISOString().replace('T',' ').slice(0,16) + ' UTC';
     document.getElementById('ev-count').textContent = events.length;
+    document.getElementById('ev-status').textContent =
+      `Updated ${new Date().toISOString().slice(11,16)} UTC`;
 
     renderLiveMap(events);
     document.getElementById('events-list').innerHTML = renderLiveList(events);
     showAlert(events);
-
   } catch (err) {
     document.getElementById('events-list').innerHTML =
-      `<div class="err">USGS feed error: ${err.message}</div>`;
+      `<div class="err" style="padding:8px 18px">USGS error: ${err.message}</div>`;
   }
 }
 
-// ──────────────────────────────────────────────────────────────────
-// Fetch ML predictions (every 30 minutes)
-// ──────────────────────────────────────────────────────────────────
+/* ── Fetch ML ──────────────────────────────────────────── */
 async function fetchML() {
   try {
-    const res = await fetch(ML_DATA_URL + '?t=' + Date.now());
+    const res   = await fetch(ML_URL + '?t=' + Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const predictions = await res.json();
-    if (!predictions.length) return;
+    const preds = await res.json();
+    if (!preds.length) return;
 
-    document.getElementById('ml-gen-at').textContent = predictions[0].generated_at;
-    document.getElementById('matrix-wrap').innerHTML = renderMatrix(predictions);
-    document.getElementById('bars-wrap').innerHTML   = renderBars(predictions);
-    document.getElementById('zones-wrap').innerHTML  = renderZones(predictions);
-    renderMLMap(predictions);
+    document.getElementById('ml-gen-at').textContent =
+      (preds[0].generated_at || '').slice(0,16);
+    document.getElementById('matrix-wrap').innerHTML = renderMatrix(preds);
+    document.getElementById('bars-wrap').innerHTML   = renderBars(preds);
+    document.getElementById('zones-wrap').innerHTML  = renderZones(preds);
+    renderMLMap(preds);
   } catch (err) {
     document.getElementById('matrix-wrap').innerHTML =
-      `<div class="err">ML predictions unavailable: ${err.message}</div>`;
+      `<div class="err">Predictions unavailable: ${err.message}</div>`;
   }
 }
 
-// ──────────────────────────────────────────────────────────────────
-// Countdown for USGS feed
-// ──────────────────────────────────────────────────────────────────
-let usgsSeconds = 60;
+/* ── Countdown & start ─────────────────────────────────── */
+let countdown = 60;
 setInterval(() => {
-  usgsSeconds--;
-  document.getElementById('usgs-countdown').textContent = Math.max(0, usgsSeconds);
-  if (usgsSeconds <= 0) {
-    fetchUSGS();
-    usgsSeconds = 60;
-  }
+  countdown--;
+  document.getElementById('usgs-countdown').textContent = Math.max(0, countdown);
+  if (countdown <= 0) { fetchUSGS(); countdown = 60; }
 }, 1000);
 
-// ──────────────────────────────────────────────────────────────────
-// Start
-// ──────────────────────────────────────────────────────────────────
-fetchUSGS();                          // immediately
-fetchML();                            // immediately
-setInterval(fetchML, ML_INTERVAL);    // then every 30 min
+fetchUSGS();
+fetchML();
+setInterval(fetchML, ML_EVERY);
 </script>
 </body>
 </html>
