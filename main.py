@@ -4,6 +4,7 @@
 #
 # Usage modes:
 #   python main.py --mode train       Fetch data and train both models
+#   python main.py --mode update      Fetch new data since cutoff, adapt model
 #   python main.py --mode evaluate    Run pseudo-prospective evaluation
 #   python main.py --mode live        Start real-time live updating loop
 #   python main.py --mode predict     Generate predictions from saved model
@@ -17,6 +18,7 @@
 
 import argparse
 import os
+from datetime import datetime, timedelta
 import pandas as pd
 
 from config import (
@@ -29,7 +31,6 @@ from config import (
 
 from data_acquisition    import fetch_historical_data
 from feature_engineering import compute_features, build_labeled_dataset
-from data_augmentation   import augment_all_labels
 from models              import StaticModel, AdaptiveModel
 from prediction_engine   import (
     generate_predictions,
@@ -127,6 +128,7 @@ def prepare_data(force_refresh: bool = False) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 def train_models(features_df: pd.DataFrame,
                  use_augmentation: bool = True) -> tuple:
+    from data_augmentation import augment_all_labels  # lazy: needs sdv/torch
 
     features_df = features_df.copy()
     features_df["time"] = pd.to_datetime(features_df["time"])
@@ -240,6 +242,77 @@ def generate_current_predictions(adaptive_model, features_df: pd.DataFrame):
 
 
 # ---------------------------------------------------------------------------
+# Step 6b: Incremental update — fetch delta, adapt model
+# ---------------------------------------------------------------------------
+def update_with_new_data():
+    """
+    Fetch all events since the last catalog entry, recompute features on the
+    full dataset, then do one adaptive-learning update on the new rows only.
+    Faster than a full retrain: skips CTGAN and hyperparameter search.
+    """
+    if not os.path.exists(FULL_CATALOG_PATH):
+        print("[UPDATE] No catalog found. Run --mode train first.")
+        return
+
+    print("[UPDATE] Loading existing catalog...")
+    existing = pd.read_csv(FULL_CATALOG_PATH, parse_dates=["time"])
+    existing["time"] = pd.to_datetime(existing["time"])
+
+    cutoff = existing["time"].max()
+    today  = datetime.now().strftime("%Y-%m-%d")
+    fetch_start = (cutoff - timedelta(days=2)).strftime("%Y-%m-%d")
+
+    print(f"[UPDATE] Catalog covers up to {cutoff.strftime('%Y-%m-%d')}")
+    print(f"[UPDATE] Fetching new USGS data from {fetch_start} to {today}...")
+
+    new_events = fetch_historical_data(start=fetch_start, end=today,
+                                       force_refresh=True)
+
+    if new_events.empty:
+        print("[UPDATE] No new events returned from USGS.")
+        combined = existing
+    else:
+        combined = pd.concat([existing, new_events], ignore_index=True)
+        if "id" in combined.columns:
+            combined = combined.drop_duplicates(subset=["id"])
+        combined = combined.sort_values("time").reset_index(drop=True)
+        n_new = len(combined) - len(existing)
+        print(f"[UPDATE] {n_new} genuinely new events added. "
+              f"Total catalog: {len(combined)} events.")
+        combined.to_csv(FULL_CATALOG_PATH, index=False)
+        print(f"[UPDATE] Catalog saved to {FULL_CATALOG_PATH}")
+
+    # Recompute features on the full dataset for rolling-window correctness
+    print("\n[UPDATE] Recomputing seismic features on full dataset "
+          "(takes 15-20 min)...")
+    features_df = compute_features(combined)
+
+    print("\n[UPDATE] Rebuilding classification labels...")
+    features_df = build_labeled_dataset(features_df)
+    features_df.to_csv(PROCESSED_DATA_PATH, index=False)
+    features_df["time"] = pd.to_datetime(features_df["time"])
+
+    new_mask    = features_df["time"] > cutoff
+    new_feats   = features_df[new_mask]
+    print(f"[UPDATE] {new_mask.sum()} new feature rows for adaptive update.")
+
+    if not os.path.exists(MODEL_ADAPTIVE_PATH):
+        print("[UPDATE] No saved adaptive model. Run --mode train first.")
+        return
+
+    adaptive_model = AdaptiveModel.load()
+    if not new_feats.empty:
+        adaptive_model.update(new_feats, verbose=True)
+        adaptive_model.save()
+        print(f"[UPDATE] Adaptive model updated (update #{adaptive_model.update_count}).")
+    else:
+        print("[UPDATE] No new feature rows — model unchanged.")
+
+    generate_current_predictions(adaptive_model, features_df)
+    print("\n[UPDATE] Done. Run `python generate.py` or push to trigger the site update.")
+
+
+# ---------------------------------------------------------------------------
 # Step 7: Live USGS feed loop
 # ---------------------------------------------------------------------------
 def start_live_loop(adaptive_model, features_df, catalog_df):
@@ -261,7 +334,7 @@ def parse_args():
     )
     parser.add_argument(
         "--mode",
-        choices=["train", "evaluate", "live", "predict", "full"],
+        choices=["train", "update", "evaluate", "live", "predict", "full"],
         default="full",
     )
     parser.add_argument("--no-augment", action="store_true",
@@ -280,6 +353,10 @@ def main():
     print("  MSc Data Science Dissertation - University of Chester")
     print(f"  Mode: {args.mode.upper()}")
     print("=" * 65 + "\n")
+
+    if args.mode == "update":
+        update_with_new_data()
+        return
 
     if args.mode in ("train", "full"):
         features_df = prepare_data(force_refresh=args.refresh)

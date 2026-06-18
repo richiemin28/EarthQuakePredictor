@@ -6792,3 +6792,97 @@ time,latitude,longitude,depth,magnitude,place,id
 2025-12-25 15:19:41.275,24.828,97.8254,10.0,4.4,"17 km NW of Yingjiang, China",us7000rkqh
 2025-12-27 12:42:49.553,26.7466,92.3604,41.698,4.5,"12 km WNW of Dhekiajuli, India",us7000rl21
 2025-12-29 15:30:29.804,26.0392,97.0716,10.0,4.2,"32 km SE of Sarupathar, India",us7000rqw2
+2026-01-01 13:18:59.369,22.8108,95.9011,10.0,5.0,"33 km NE of Shwebo, Burma (Myanmar)",us7000rlx8
+2026-01-04 22:47:39.427,26.3621,92.3991,41.098,5.2,"13 km NNE of Morigaon, India",us7000rmhd
+2026-01-04 22:47:52.226,26.326,92.3084,35.0,4.9,"9 km NNW of Morigaon, India",us7000rmhe
+2026-01-04 23:33:04.664,29.5094,103.7775,10.0,4.5,"6 km SSE of Leshan, China",us7000rrmn
+2026-01-06 13:30:04.484,10.4383,92.1484,10.0,4.3,"150 km SSW of Port Blair, India",us6000s4jg
+2026-01-06 21:47:11.846,26.9641,91.6187,10.0,4.0,"21 km NNE of Samdrup Jongkhar, Bhutan",us6000s4jq
+2026-01-09 20:01:08.816,27.2167,104.3226,10.0,4.7,"41 km NNE of Weining, China",us7000rnrh
+2026-01-11 20:15:40.359,24.8059,95.2947,128.873,4.4,"124 km SE of Phek, India",us7000rp2s
+2026-01-15 12:12:17.496,21.0522,96.0397,10.0,4.9,"26 km NE of Meiktila, Burma (Myanmar)",us7000rpuq
+2026-01-19 11:32:06.410,27.1457,103.42,10.0,5.2,"34 km WSW of Zhaotong, China",us7000rqjl
+2026-01-19 15:43:57.332,17.3629,95.7995,10.0,4.4,"32 km S of Tharyarwady, Burma (Myanmar)",us7000rql1
+2026-01-21 21:43:05.761,27.3134,96.9254,29.916,5.2,"92 km SSE of Hayuliang, India",us7000rr7m
+2026-01-24 16:38:52.515,25.964,90.6263,10.0,4.2,"23 km S of Goālpāra, India",us7000rrtz
+2026-01-25 10:43:34.240,22.7344,93.9441,10.0,4.5,"33 km SE of Falam, Burma (Myanmar)",us6000s7vw
+2026-02-02 00:04:04.726,22.7525,94.6661,99.044,4.4,"86 km NW of Monywa, Burma (Myanmar)",us6000s9z9
+2026-02-03 15:34:01.535,20.4368,93.9466,58.953,5.8,"96 km W of Yenangyaung, Burma (Myanmar)",us6000s65b
+2026-02-03 15:51:31.064,20.5355,94.0461,71.545,5.1,"86 km W of Yenangyaung, Burma (Myanmar)",us6000s65j
+2026-02-04 03:27:33.826,26.6797,92.1913,41.32,4.2,"12 km SE of Udalguri, India",us6000sa88
+2026-02-04 18:39:44.492,24.7625,95.2248,132.44,4.5,"119 km E of Wāngjing, India",us6000s6h9
+2026-02-06 00:33:06.470,23.4869,94.9447,10.0,5.2,"57 km ESE of Mawlaik, Burma (Myanmar)",us6000s6ug
+2026-02-06 21:31:47.076,24.6303,94.8153,108.952,4.1,"76 km E of Wāngjing, India",us6000sagi
+2026-02-08 06:06:47.251,29.5039,102.0487,10.0,4.7,"55 km S of Kangding, China",us6000s78a
+2026-02-15 02:47:20.959,22.1059,94.5751,114.974,4.2,"57 km W of Monywa, Burma (Myanmar)",us7000s0tm
+2026-02-16 22:50:47.825,20.4657,93.9341,43.231,4.4,"97 km W of Yenangyaung, Burma (Myanmar)",us6000s9r0
+2026-02-17 15:05:15.477,22.1555,100.824,10.0,4.6,"20 km NNE of Jinghong, China",us6000s9s9
+2026-02-22 11:50:45.484,27.0875,103.5616,10.0,4.5,"29 km SSW of Zhaotong, China",us6000sas9
+2026-02-23 05:02:10.879,11.642,91.7328,10.0,4.8,"107 km W of Bamboo Flat, India",us6000sayu
+2026-02-23 10:11:51.805,10.6835,93.9644,128.06,4.3,"171 km SE of Port Blair, India",us7000s2lm
+2026-02-24 16:32:25.268,29.7442,102.2793,10.0,4.2,"42 km SE of Kangding, China",us7000s3eq
+2026-02-25 03:15:54.257,24.6435,97.4409,10.0,4.8,"41 km W of Taiping, China",us7000s053
+2026-02-25 06:00:15.179,24.912,97.9069,10.0,4.3,"22 km N of Yingjiang, China",us7000s05i
+2026-02-25 16:51:48.981,22.9893,94.7613,125.346,4.9,"81 km SSE of Mawlaik, Burma (Myanmar)",us7000s096
+2026-03-05 13:48:46.548,21.879,93.9051,66.901,4.6,"90 km SSE of Hakha, Burma (Myanmar)",us7000s27v
+2026-03-15 11:03:04.783,24.4297,95.169,124.231,4.4,"113 km E of Wāngjing, India",us7000s7s2
+2026-03-17 06:38:51.141,24.7196,94.344,84.57,4.4,"30 km E of Yairipok, India",us6000sgsp
+2026-03-18 04:22:59.987,24.8382,94.6026,74.267,4.2,"58 km ENE of Yairipok, India",us7000s83u
+2026-03-23 11:44:11.132,19.768,96.2314,10.0,4.2,"4 km NE of Pyinmana, Burma (Myanmar)",us7000s9fq
+2026-03-23 17:27:41.787,25.1048,95.0874,118.403,4.2,"85 km SE of Phek, India",us7000s73v
+2026-03-25 16:01:24.855,23.1718,94.3994,88.688,4.2,"52 km S of Mawlaik, Burma (Myanmar)",us7000s7jm
+2026-03-26 18:42:28.206,28.3073,104.9069,10.0,4.5,"14 km W of Bowangshan, China",us7000s7wv
+2026-03-28 11:25:26.231,24.8868,95.2287,125.752,4.3,"113 km SE of Phek, India",us7000s8cy
+2026-03-28 11:52:23.542,10.2798,93.7211,10.0,4.6,"186 km SE of Port Blair, India",us7000s8fi
+2026-03-31 15:45:35.861,24.5853,97.5809,10.0,4.4,"28 km WSW of Taiping, China",us7000s95e
+2026-04-06 19:23:40.151,24.2348,93.9187,77.353,4.4,"27 km ESE of Churāchāndpur, India",us6000sn31
+2026-04-07 08:48:27.692,24.768,92.8187,10.0,4.9,"6 km SSE of Silchar, India",us6000sn6y
+2026-04-08 22:13:51.268,10.4649,93.722,10.0,4.6,"170 km SE of Port Blair, India",us6000snkz
+2026-04-09 20:02:23.844,25.1876,95.136,113.502,4.2,"83 km SE of Phek, India",us6000snr8
+2026-04-11 04:38:04.505,29.7172,104.9465,10.0,4.5,"11 km SE of Chonglong, China",us6000sp9d
+2026-04-11 06:13:41.200,29.6428,104.9384,10.0,4.5,"13 km WNW of Neijiang, China",us6000spl7
+2026-04-11 12:31:50.465,29.5926,104.9243,10.0,4.3,"13 km W of Neijiang, China",us6000srun
+2026-04-11 13:37:19.490,29.5511,104.9215,10.0,4.4,"14 km WSW of Neijiang, China",us6000srup
+2026-04-11 21:21:50.506,26.1409,99.7901,10.0,4.5,"16 km W of Zibihu, China",us6000spdd
+2026-04-11 22:59:24.828,23.0237,95.9623,10.0,4.2,"57 km NNE of Shwebo, Burma (Myanmar)",us6000srux
+2026-04-12 03:51:59.593,24.9223,92.5761,10.0,4.3,"6 km NNW of Badarpur, India",us6000ss01
+2026-04-13 08:39:50.933,29.6567,104.9833,10.0,4.5,"11 km NW of Neijiang, China",us6000splu
+2026-04-14 21:04:50.603,27.3137,92.0096,10.0,4.0,"30 km SSE of Tawang, India",us6000sq30
+2026-04-15 01:43:52.317,29.609,104.9234,10.0,4.4,"13 km WNW of Neijiang, China",us6000sq4j
+2026-04-15 16:12:54.428,29.6297,104.9157,10.0,4.3,"15 km WNW of Neijiang, China",us6000sqbn
+2026-04-15 16:57:43.882,29.6391,104.8903,10.0,4.3,"16 km SSE of Chonglong, China",us6000ssdh
+2026-04-16 22:22:35.486,29.5977,104.8501,10.0,4.3,"20 km S of Chonglong, China",us6000sqnd
+2026-04-17 08:53:37.462,26.4175,96.0185,112.016,4.3,"80 km SE of Khonsa, India",us6000sqr4
+2026-04-18 14:26:11.219,28.2182,103.5182,10.0,4.5,"85 km WSW of Shuanglong, China",us6000sr4f
+2026-04-21 00:08:27.448,23.241,94.7793,104.22,4.7,"58 km SE of Mawlaik, Burma (Myanmar)",us6000srqg
+2026-04-21 00:29:35.307,24.6319,94.6985,95.116,5.0,"64 km E of Wāngjing, India",us6000srqj
+2026-04-21 14:24:37.187,23.8301,94.2031,72.711,4.5,"29 km NW of Mawlaik, Burma (Myanmar)",us6000sru6
+2026-04-22 07:15:20.680,29.747,104.3123,10.0,4.5,"48 km NE of Luocheng, China",us7000sh1u
+2026-04-23 14:59:46.686,27.1014,102.8792,10.0,4.5,"86 km WSW of Zhaotong, China",us7000sha8
+2026-04-24 07:03:03.696,15.519,96.3368,10.0,4.4,"110 km SE of Pyapon, Burma (Myanmar)",us6000ssid
+2026-04-25 15:15:12.091,21.3618,94.8014,109.0,4.3,"29 km W of Pakokku, Burma (Myanmar)",us6000ssum
+2026-04-29 19:11:11.726,28.4911,100.8041,10.0,4.7,"74 km N of Yongning, China",us7000sh46
+2026-04-29 19:19:40.405,28.8073,100.4178,10.0,4.1,"28 km SSE of Daocheng, China",us6000svyp
+2026-04-29 19:20:57.224,28.3397,100.6875,10.0,4.4,"56 km N of Yongning, China",us6000svyr
+2026-05-02 05:33:28.274,16.6987,95.4164,10.0,4.5,"25 km W of Maubin, Burma (Myanmar)",us6000swxf
+2026-05-04 15:03:00.555,29.5089,102.1086,10.0,4.8,"56 km SSE of Kangding, China",us7000si54
+2026-05-04 16:03:03.665,29.5951,102.0832,10.0,4.6,"46 km SSE of Kangding, China",us7000si5h
+2026-05-05 04:10:49.225,25.3328,96.5593,10.0,4.5,"84 km W of Myitkyina, Burma (Myanmar)",us7000sibr
+2026-05-06 15:17:33.655,28.8263,95.9696,10.0,4.6,"100 km NW of Hayuliang, India",us6000svp7
+2026-05-08 03:53:33.205,10.1728,91.4911,10.0,4.6,"214 km SW of Port Blair, India",us6000sw5i
+2026-05-08 06:42:14.300,26.2919,103.12,10.0,4.2,"111 km NW of Qujing, China",us6000sxze
+2026-05-10 19:36:36.401,20.5004,94.0661,54.234,5.0,"84 km W of Yenangyaung, Burma (Myanmar)",us6000sws5
+2026-05-12 14:55:15.655,28.46,104.8375,10.0,4.8,"12 km E of Xunchang, China",us6000sx5d
+2026-05-16 21:16:16.654,13.0167,93.7021,96.882,4.7,"180 km NE of Bamboo Flat, India",us6000sy9z
+2026-05-17 09:38:20.742,11.0619,95.1269,10.0,4.6,"268 km ESE of Port Blair, India",us6000syd2
+2026-05-18 02:05:24.601,16.4177,96.3726,10.0,5.2,"41 km SSE of Syriam, Burma (Myanmar)",us6000syg0
+2026-05-24 21:37:50.231,24.2191,94.7633,116.129,4.4,"73 km NNE of Mawlaik, Burma (Myanmar)",us7000spcx
+2026-05-26 14:07:51.354,23.7982,94.8304,112.776,4.5,"46 km ENE of Mawlaik, Burma (Myanmar)",us6000t08d
+2026-05-26 16:30:57.714,23.1849,94.5425,102.712,4.3,"52 km SSE of Mawlaik, Burma (Myanmar)",us7000sntk
+2026-05-29 12:22:54.128,23.4621,93.722,57.374,4.3,"60 km N of Falam, Burma (Myanmar)",us7000sp9a
+2026-06-04 15:39:26.163,22.4251,94.7024,118.092,4.3,"56 km NW of Monywa, Burma (Myanmar)",us7000sqkf
+2026-06-07 05:12:27.858,23.9034,94.7544,115.752,4.3,"45 km NE of Mawlaik, Burma (Myanmar)",us7000sr6r
+2026-06-07 21:07:12.533,29.8838,101.9526,10.0,4.6,"13 km S of Kangding, China",us7000sraf
+2026-06-09 02:52:49.308,24.6092,95.3782,138.823,4.2,"133 km E of Wāngjing, India",us7000srnl
+2026-06-11 15:40:34.924,25.0151,93.0576,36.41,4.4,"17 km SSE of Hāflong, India",us7000ssem
+2026-06-14 20:07:57.209,20.0534,97.8867,10.543,4.4,"82 km ENE of Loikaw, Burma (Myanmar)",us7000sswu
