@@ -4,13 +4,7 @@ __pycache__/
 *.pyo
 .env
 
-# Local live files (not needed on GitHub)
+# Ephemeral local data
 data/live_catalog.csv
+data/raw_catalog.csv
 predictions/live_log.jsonl
-
-# These are tracked (needed by GitHub Actions):
-# data/full_catalog_1990_2025.csv
-# data/processed_features.csv
-# models/adaptive_model.pkl
-# models/static_model.pkl
-# predictions/latest_predictions.json
