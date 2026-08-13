@@ -7,8 +7,22 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
-    /* ═══ Design Tokens — monochrome (black / white / grey only) ══ */
+    /* ═══ Design Tokens ═══════════════════════════════════════
+       Light values live on :root. Dark values are declared twice —
+       once under the OS media query (guarded so a manual light
+       stamp can still beat it) and once under [data-theme="dark"]
+       (the in-page toggle) — so the toggle always wins over the OS
+       setting, per standard prefers-color-scheme + override practice.
+
+       Severity colours (LOW..SEVERE) are a computed, WCAG-checked
+       5-step green->red risk ramp — not eyeballed. Every step clears
+       4.5:1 text contrast against its own mode's page background
+       (checked light vs #ffffff, dark vs #12161c), and SEVERE's
+       inverted white-on-fill treatment clears 4.5:1 in both modes
+       too (light 10.0:1, dark 4.8:1). Color is never the only
+       channel — every badge/cell also carries a text label. ══ */
     :root {
+      color-scheme: light;
       --bg:         #ffffff;
       --surface:    #f7f7f7;
       --card:       #ffffff;
@@ -22,14 +36,19 @@
       --txt-2:      #444444;
       --txt-3:      #6b6b6b;
 
-      /* ── Severity scale (ML predictions) — 5 even 20-point bands,
-             darker = higher probability. Names follow the familiar
-             LOW/GUARDED/ELEVATED/HIGH/SEVERE public-hazard convention. */
-      --low:        #a3a3a3;   --low-bg:      rgba(0,0,0,.035);
-      --guarded:    #7a7a7a;   --guarded-bg:  rgba(0,0,0,.06);
-      --elevated:   #525252;   --elevated-bg: rgba(0,0,0,.09);
-      --high:       #2b2b2b;   --high-bg:     rgba(0,0,0,.13);
-      --severe:     #000000;   --severe-bg:   #000000;
+      /* ── Severity scale (ML predictions) — 5 even 20-point bands.
+             LOW/GUARDED/ELEVATED/HIGH/SEVERE, green -> red. */
+      --low:        #15803d;   --low-bg:      rgba(21,128,61,.09);
+      --guarded:    #a16207;   --guarded-bg:  rgba(161,98,7,.09);
+      --elevated:   #c2410c;   --elevated-bg: rgba(194,65,12,.09);
+      --high:       #b91c1c;   --high-bg:     rgba(185,28,28,.09);
+      --severe:     #7f1d1d;   --severe-bg:   #7f1d1d;
+      --severe-txt: #ffffff;
+
+      /* ── Map basemap + zone-label treatment (flips with tile theme) */
+      --map-tiles:      light_all;
+      --map-label-txt:  rgba(0,0,0,.7);
+      --map-label-halo: rgba(255,255,255,.95);
 
       /* ── Live-event recency scale (USGS events) */
       --live-fresh: #000000;   /* < 1 hour  */
@@ -40,6 +59,74 @@
       --accent:     #000000;
       --r:          6px;
       --r-lg:       10px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg:         #12161c;
+        --surface:    #181d25;
+        --card:       #1a1f27;
+        --card-hover: #222836;
+        --raised:     #2b3240;
+
+        --border:     rgba(255,255,255,.10);
+        --border-md:  rgba(255,255,255,.20);
+
+        --txt:        #f2f3f5;
+        --txt-2:      #b7bcc6;
+        --txt-3:      #7c8494;
+
+        --low:        #4ade80;   --low-bg:      rgba(74,222,128,.12);
+        --guarded:    #fbbf24;   --guarded-bg:  rgba(251,191,36,.12);
+        --elevated:   #fb923c;   --elevated-bg: rgba(251,146,60,.12);
+        --high:       #f87171;   --high-bg:     rgba(248,113,113,.12);
+        --severe:     #dc2626;   --severe-bg:   #dc2626;
+        --severe-txt: #ffffff;
+
+        --map-tiles:      dark_all;
+        --map-label-txt:  rgba(255,255,255,.85);
+        --map-label-halo: rgba(0,0,0,.9);
+
+        --live-fresh: #f2f3f5;
+        --live-med:   #b7bcc6;
+        --live-old:   #565e6c;
+        --live-bg:    rgba(255,255,255,.07);
+
+        --accent:     #f2f3f5;
+      }
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg:         #12161c;
+      --surface:    #181d25;
+      --card:       #1a1f27;
+      --card-hover: #222836;
+      --raised:     #2b3240;
+
+      --border:     rgba(255,255,255,.10);
+      --border-md:  rgba(255,255,255,.20);
+
+      --txt:        #f2f3f5;
+      --txt-2:      #b7bcc6;
+      --txt-3:      #7c8494;
+
+      --low:        #4ade80;   --low-bg:      rgba(74,222,128,.12);
+      --guarded:    #fbbf24;   --guarded-bg:  rgba(251,191,36,.12);
+      --elevated:   #fb923c;   --elevated-bg: rgba(251,146,60,.12);
+      --high:       #f87171;   --high-bg:     rgba(248,113,113,.12);
+      --severe:     #dc2626;   --severe-bg:   #dc2626;
+      --severe-txt: #ffffff;
+
+      --map-tiles:      dark_all;
+      --map-label-txt:  rgba(255,255,255,.85);
+      --map-label-halo: rgba(0,0,0,.9);
+
+      --live-fresh: #f2f3f5;
+      --live-med:   #b7bcc6;
+      --live-old:   #565e6c;
+      --live-bg:    rgba(255,255,255,.07);
+
+      --accent:     #f2f3f5;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,14 +150,14 @@
     .r-elevated { color: var(--elevated); }
     .r-high     { color: var(--high);     }
     .r-severe   { color: var(--severe);   font-weight:800; }
-    .bg-low      { background: var(--low-bg);      border-color: rgba(0,0,0,.16); }
-    .bg-guarded  { background: var(--guarded-bg);  border-color: rgba(0,0,0,.22); }
-    .bg-elevated { background: var(--elevated-bg); border-color: rgba(0,0,0,.30); }
-    .bg-high     { background: var(--high-bg);     border-color: rgba(0,0,0,.42); }
-    /* SEVERE inverts to solid black — reserved for the top band so the
+    .bg-low      { background: var(--low-bg);      border-color: color-mix(in srgb, var(--low) 38%, transparent);      }
+    .bg-guarded  { background: var(--guarded-bg);  border-color: color-mix(in srgb, var(--guarded) 40%, transparent);  }
+    .bg-elevated { background: var(--elevated-bg); border-color: color-mix(in srgb, var(--elevated) 45%, transparent); }
+    .bg-high     { background: var(--high-bg);     border-color: color-mix(in srgb, var(--high) 55%, transparent);    }
+    /* SEVERE inverts to a solid fill — reserved for the top band so the
        single most urgent reading on the page is visually unmistakable */
-    .bg-severe   { background: var(--severe-bg); border-color:#000; color:#fff; }
-    .bg-severe.r-severe { color:#fff; }
+    .bg-severe   { background: var(--severe-bg); border-color: var(--severe-bg); color: var(--severe-txt); }
+    .bg-severe.r-severe { color: var(--severe-txt); }
 
     /* ═══ Header ═════════════════════════════════════════════ */
     #header {
@@ -94,9 +181,18 @@
       font-weight:600; letter-spacing:.06em; border:1px solid;
       transition: opacity .2s;
     }
-    .b-live { color:var(--live-fresh); background:var(--live-bg);      border-color:rgba(0,0,0,.20); }
-    .b-ml   { color:var(--accent);     background:rgba(0,0,0,.05);     border-color:rgba(0,0,0,.20); }
-    .b-tick { color:var(--guarded);     background:var(--guarded-bg);    border-color:rgba(0,0,0,.15); }
+    .b-live { color:var(--live-fresh); background:var(--live-bg);   border-color:var(--border-md); }
+    .b-ml   { color:var(--accent);     background:var(--raised);    border-color:var(--border-md); }
+    .b-tick { color:var(--guarded);    background:var(--guarded-bg);border-color:var(--border-md); }
+
+    .theme-toggle {
+      display:inline-flex; align-items:center;
+      padding:3px 9px; border-radius:20px; font-size:10px;
+      font-weight:600; letter-spacing:.06em; border:1px solid var(--border-md);
+      background:var(--raised); color:var(--txt-2); cursor:pointer;
+      font-family:inherit; transition:background .15s, color .15s;
+    }
+    .theme-toggle:hover { background:var(--card-hover); color:var(--txt); }
 
     .pdot {
       width:6px; height:6px; border-radius:50%;
@@ -142,14 +238,17 @@
       border-bottom:2px solid transparent;
       transition:color .2s, border-color .2s, background .2s;
     }
-    .tab-btn:hover { color:var(--txt-2); background:rgba(0,0,0,.03); }
+    .tab-btn:hover { color:var(--txt-2); background:var(--card-hover); }
     .tab-btn.active { color:var(--txt); border-bottom-color:var(--accent); border-bottom-width:2px; }
     .tab-badge {
       font-size:9px; font-weight:700; padding:1px 5px;
       border-radius:99px; background:var(--raised); color:var(--txt-3);
       transition:background .2s,color .2s;
     }
-    .tab-btn.active .tab-badge { background:var(--accent); color:#fff; }
+    /* text must contrast --accent, which flips between modes (black in
+       light, near-white in dark) — --bg is always its opposite, so it
+       reads correctly as the badge's inverted text in both themes */
+    .tab-btn.active .tab-badge { background:var(--accent); color:var(--bg); }
 
     /* Pane scroll areas */
     .pane {
@@ -176,16 +275,16 @@
     /* ── Alert ────────────────────────────────────────────── */
     #alert-banner {
       display:none; padding:10px 14px; border-radius:var(--r-lg);
-      border:1px solid rgba(0,0,0,.35);
-      background:rgba(0,0,0,.05);
+      border:1px solid color-mix(in srgb, var(--high) 45%, transparent);
+      background:var(--high-bg);
       font-size:12px; line-height:1.6;
       animation:alert-glow 2.5s ease-in-out infinite;
     }
     #alert-banner .al-title { font-weight:700; color:var(--high); font-size:13px; margin-bottom:2px; }
     #alert-banner .al-sub   { font-size:11px; color:var(--txt-2); }
     @keyframes alert-glow {
-      0%,100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}
-      50%{box-shadow:0 0 14px 0 rgba(0,0,0,.16)}
+      0%,100%{box-shadow:0 0 0 0 transparent}
+      50%{box-shadow:0 0 14px 0 color-mix(in srgb, var(--high) 35%, transparent)}
     }
 
     /* ── Probability Matrix ───────────────────────────────── */
@@ -219,7 +318,8 @@
     .intro-note {
       font-size:10px; color:var(--txt-3); line-height:1.6;
       padding:8px 10px; border-radius:var(--r);
-      background:rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.12);
+      background:color-mix(in srgb, var(--txt) 4%, transparent);
+      border:1px solid color-mix(in srgb, var(--txt) 12%, transparent);
       margin-bottom:2px;
     }
     .intro-note b { color:var(--txt); }
@@ -272,7 +372,8 @@
     .live-intro-note {
       font-size:10px; color:var(--txt-3); line-height:1.6;
       padding:8px 10px; border-radius:var(--r);
-      background:rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.12);
+      background:color-mix(in srgb, var(--txt) 4%, transparent);
+      border:1px solid color-mix(in srgb, var(--txt) 12%, transparent);
       margin-bottom:2px;
     }
     .live-intro-note b { color:var(--live-fresh); }
@@ -323,11 +424,11 @@
       height:100%; border-radius:99px;
       transition:width .6s cubic-bezier(.4,0,.2,1);
     }
-    .bar-fill.r-low      { background:linear-gradient(90deg,#d4d4d4,var(--low)); }
-    .bar-fill.r-guarded  { background:linear-gradient(90deg,#a3a3a3,var(--guarded)); }
-    .bar-fill.r-elevated { background:linear-gradient(90deg,#7a7a7a,var(--elevated)); }
-    .bar-fill.r-high     { background:linear-gradient(90deg,#525252,var(--high)); }
-    .bar-fill.r-severe   { background:linear-gradient(90deg,#2b2b2b,var(--severe)); }
+    .bar-fill.r-low      { background:linear-gradient(90deg,color-mix(in srgb, var(--low) 35%, var(--raised)),var(--low)); }
+    .bar-fill.r-guarded  { background:linear-gradient(90deg,color-mix(in srgb, var(--guarded) 35%, var(--raised)),var(--guarded)); }
+    .bar-fill.r-elevated { background:linear-gradient(90deg,color-mix(in srgb, var(--elevated) 35%, var(--raised)),var(--elevated)); }
+    .bar-fill.r-high     { background:linear-gradient(90deg,color-mix(in srgb, var(--high) 35%, var(--raised)),var(--high)); }
+    .bar-fill.r-severe   { background:linear-gradient(90deg,color-mix(in srgb, var(--severe) 35%, var(--raised)),var(--severe)); }
     .bar-bottom { display:flex; align-items:baseline; gap:8px; }
     .bar-effect { flex:1; font-size:10px; color:var(--txt-3); line-height:1.4; }
     .bar-pct { font-size:13px; font-weight:800; flex-shrink:0;
@@ -337,7 +438,7 @@
     .disclaimer {
       font-size:10px; color:var(--txt-3); line-height:1.65;
       padding:10px 12px; border:1px solid var(--border);
-      border-radius:var(--r-lg); background:rgba(0,0,0,.02);
+      border-radius:var(--r-lg); background:color-mix(in srgb, var(--txt) 2%, transparent);
     }
     .disclaimer strong { color:var(--elevated); }
 
@@ -361,16 +462,16 @@
       user-select:none;
     }
     .map-toggle.ml-t {
-      background:rgba(255,255,255,.92); border-color:rgba(0,0,0,.3);
+      background:color-mix(in srgb, var(--card) 92%, transparent); border-color:var(--border-md);
       color:var(--txt); border-style:dashed;
     }
     .map-toggle.live-t {
-      background:rgba(255,255,255,.92); border-color:rgba(0,0,0,.3);
+      background:color-mix(in srgb, var(--card) 92%, transparent); border-color:var(--border-md);
       color:var(--txt);
     }
     .map-toggle.off { opacity:.4; }
     .mt-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-    .mt-dot.ml-d   { background:#fff; border:2px dashed #000; background-clip:padding-box; }
+    .mt-dot.ml-d   { background:var(--card); border:2px dashed var(--txt); background-clip:padding-box; }
     .mt-dot.live-d { background:var(--live-fresh); }
 
     /* Map zone label tooltips */
@@ -380,11 +481,11 @@
     }
     .zone-lbl-inner {
       text-align:center; font-family:-apple-system,sans-serif;
-      text-shadow:0 1px 3px rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.9);
+      text-shadow:0 1px 3px var(--map-label-halo), 0 0 8px var(--map-label-halo);
       pointer-events:none;
     }
     .zone-lbl-name {
-      display:block; font-size:9px; font-weight:600; color:rgba(0,0,0,.7);
+      display:block; font-size:9px; font-weight:600; color:var(--map-label-txt);
       letter-spacing:.04em; margin-bottom:1px;
     }
     .zone-lbl-prob {
@@ -393,10 +494,10 @@
 
     /* Leaflet theme */
     .leaflet-popup-content-wrapper {
-      background:#ffffff !important;
-      border:1px solid rgba(0,0,0,.18) !important;
+      background:var(--card) !important;
+      border:1px solid var(--border-md) !important;
       border-radius:9px !important;
-      box-shadow:0 8px 28px rgba(0,0,0,.22) !important;
+      box-shadow:0 8px 28px rgba(0,0,0,.3) !important;
       color:var(--txt) !important;
     }
     .leaflet-popup-tip-container { display:none; }
@@ -405,18 +506,18 @@
       font-size:12px !important; line-height:1.7 !important; margin:13px 16px !important;
     }
     .leaflet-popup-close-button { color:var(--txt-3) !important; font-size:17px !important; top:7px !important; right:9px !important; }
-    .leaflet-control-zoom a { background:#ffffff !important; color:var(--txt) !important; border-color:rgba(0,0,0,.18) !important; }
+    .leaflet-control-zoom a { background:var(--card) !important; color:var(--txt) !important; border-color:var(--border-md) !important; }
     .leaflet-control-zoom a:hover { background:var(--raised) !important; }
-    .leaflet-control-attribution { background:rgba(255,255,255,.85) !important; color:var(--txt-3) !important; font-size:9px !important; }
+    .leaflet-control-attribution { background:color-mix(in srgb, var(--card) 85%, transparent) !important; color:var(--txt-3) !important; font-size:9px !important; }
     .leaflet-control-attribution a { color:var(--txt-3) !important; }
-    .pop-divider { border:none; border-top:1px solid rgba(0,0,0,.14); margin:6px 0; }
+    .pop-divider { border:none; border-top:1px solid var(--border-md); margin:6px 0; }
     .pop-label   { color:var(--txt-3); font-size:10px; }
     .pop-type-badge {
       display:inline-block; padding:2px 7px; border-radius:4px; font-size:9px;
       font-weight:700; letter-spacing:.06em; margin-bottom:6px;
     }
-    .pop-pred { background:rgba(0,0,0,.06); color:#000; border:1px solid rgba(0,0,0,.25); }
-    .pop-live { background:rgba(0,0,0,.05); color:var(--live-fresh); border:1px solid rgba(0,0,0,.22); }
+    .pop-pred { background:var(--raised); color:var(--txt); border:1px solid var(--border-md); }
+    .pop-live { background:var(--live-bg); color:var(--live-fresh); border:1px solid var(--border-md); }
 
     /* Pulse marker */
     .pulse-mk {
@@ -424,9 +525,9 @@
       animation:pulse-mk 2s ease-out infinite;
     }
     @keyframes pulse-mk {
-      0%  {box-shadow:0 0 0 0 rgba(0,0,0,.55)}
-      70% {box-shadow:0 0 0 11px rgba(0,0,0,0)}
-      100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}
+      0%  {box-shadow:0 0 0 0 color-mix(in srgb, currentColor 55%, transparent)}
+      70% {box-shadow:0 0 0 11px transparent}
+      100%{box-shadow:0 0 0 0 transparent}
     }
 
     /* ═══ Footer / event ticker ═══════════════════════════════ */
@@ -448,7 +549,7 @@
     }
     .ev-chip {
       background:var(--live-bg); color:var(--live-fresh);
-      border:1px solid rgba(0,0,0,.18); border-radius:99px;
+      border:1px solid var(--border-md); border-radius:99px;
       padding:1px 7px; font-size:10px; font-weight:700;
     }
     .fhdr-right { font-size:10px; color:var(--txt-3); }
@@ -494,6 +595,9 @@
     <span class="badge b-live"><span class="pdot g"></span>USGS LIVE</span>
     <span class="badge b-ml">ML MODEL</span>
     <span class="badge b-tick"><span class="pdot a"></span>REFRESH <span id="countdown">60</span>s</span>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Switch theme">
+      <span id="theme-toggle-label">DARK MODE</span>
+    </button>
   </div>
   <div id="hdr-meta">
     Live checked: <b id="live-ts">—</b><br>
@@ -634,12 +738,53 @@ const WINDOWS    = [7, 10, 15, 30];
 const TH_LBL     = { 4.5:'M ≥ 4.5', 5.0:'M ≥ 5.0', 5.5:'M ≥ 5.5' };
 
 /* ═══════════════════════════════════════════════════════════
+   Theme — light / dark, manual toggle overrides OS preference,
+   persisted in localStorage. CSS owns every colour value (see
+   the :root / [data-theme] blocks in <style>); JS only ever
+   reads them back via getComputedStyle so the two can never
+   drift out of sync with each other.
+═══════════════════════════════════════════════════════════ */
+const THEME_KEY = 'eq-theme';
+
+function systemPrefersDark() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function getTheme() {
+  const stamped = document.documentElement.dataset.theme;
+  if (stamped) return stamped;
+  return systemPrefersDark() ? 'dark' : 'light';
+}
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+function applyTheme(theme, persist) {
+  document.documentElement.dataset.theme = theme;
+  if (persist) localStorage.setItem(THEME_KEY, theme);
+  document.getElementById('theme-toggle-label').textContent =
+    theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
+  swapMapTiles();
+  refreshView();
+}
+function toggleTheme() {
+  applyTheme(getTheme() === 'dark' ? 'light' : 'dark', true);
+}
+(function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  const theme = saved || (systemPrefersDark() ? 'dark' : 'light');
+  document.documentElement.dataset.theme = theme;
+  document.getElementById('theme-toggle-label').textContent =
+    theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
+})();
+
+/* ═══════════════════════════════════════════════════════════
    Risk helpers — ML prediction probability bands
    5 even 20-point bands (LOW / GUARDED / ELEVATED / HIGH / SEVERE)
    instead of the old 4 uneven bands, whose "LOW" bucket alone
    spanned 0-45% and hid real differences (e.g. 1% vs 34% both
    read as "LOW"). Mirrors the confidence label backend now
    computes in prediction_engine.py, so the two stay in sync.
+   Colours are read live from CSS custom properties (not hardcoded
+   here) so light/dark mode and this scale can never disagree.
 ═══════════════════════════════════════════════════════════ */
 function rBand(p) {
   if (p >= .80) return 4; // SEVERE
@@ -650,25 +795,24 @@ function rBand(p) {
 }
 const BAND_CLS = ['low','guarded','elevated','high','severe'];
 const BAND_LBL = ['LOW','GUARDED','ELEVATED','HIGH','SEVERE'];
-const BAND_COL = ['#a3a3a3','#7a7a7a','#525252','#2b2b2b','#000000'];
 
 function rCls(p) { return 'r-'  + BAND_CLS[rBand(p)]; }
 function bCls(p) { return 'bg-' + BAND_CLS[rBand(p)]; }
 function rLbl(p) { return BAND_LBL[rBand(p)]; }
-function rCol(p) { return BAND_COL[rBand(p)]; }
+function rCol(p) { return cssVar('--' + BAND_CLS[rBand(p)]); }
 
-/* Live event colours (separate vocabulary from ML — grey scale by recency) */
+/* Live event colours (separate vocabulary from ML — by recency) */
 function liveCol(ms) {
   const age = Date.now() - ms;
-  if (age < 3600000)  return '#000000'; // darkest < 1h
-  if (age < 21600000) return '#555555'; // mid grey 1-6h
-  return '#a3a3a3';                     // light grey older
+  if (age < 3600000)  return cssVar('--live-fresh'); // < 1h
+  if (age < 21600000) return cssVar('--live-med');   // 1-6h
+  return cssVar('--live-old');                       // older
 }
 function magCol(m) {
-  if (m >= 5.5) return '#000000';
-  if (m >= 5.0) return '#404040';
-  if (m >= 4.5) return '#707070';
-  return '#9a9a9a';
+  if (m >= 5.5) return cssVar('--severe');
+  if (m >= 5.0) return cssVar('--high');
+  if (m >= 4.5) return cssVar('--elevated');
+  return cssVar('--low');
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -707,25 +851,34 @@ function identifyZone(lat,lon) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Map setup
+   Map setup — tile layer swaps light_all/dark_all with the theme
 ═══════════════════════════════════════════════════════════ */
 const map = L.map('map',{center:[20.5,96.5],zoom:5});
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-  attribution:'&copy; OSM &copy; CARTO', maxZoom:14,
-}).addTo(map);
+let currentTileLayer = null;
+function swapMapTiles() {
+  const theme = cssVar('--map-tiles') || 'light_all';
+  if (currentTileLayer) map.removeLayer(currentTileLayer);
+  currentTileLayer = L.tileLayer(
+    `https://{s}.basemaps.cartocdn.com/${theme}/{z}/{x}/{y}{r}.png`,
+    { attribution:'&copy; OSM &copy; CARTO', maxZoom:14 }
+  ).addTo(map);
+  currentTileLayer.bringToBack();
+}
+swapMapTiles();
 
-/* Map legend */
+/* Map legend — rebuilt on theme toggle so swatches stay in sync */
 const legend = L.control({position:'bottomright'});
-legend.onAdd = () => {
-  const d = L.DomUtil.create('div');
-  d.style.cssText = `background:rgba(255,255,255,.94);border:1px solid rgba(0,0,0,.2);
+let legendEl = null;
+function renderLegendContent(d) {
+  d.style.cssText = `background:color-mix(in srgb, var(--card) 94%, transparent);
+    border:1px solid var(--border-md);
     border-radius:9px;padding:11px 14px;font-family:-apple-system,sans-serif;
-    font-size:11px;color:#111111;line-height:2;box-shadow:0 4px 18px rgba(0,0,0,.18)`;
+    font-size:11px;color:var(--txt);line-height:2;box-shadow:0 4px 18px rgba(0,0,0,.22)`;
 
   const row = (ico,lbl,note) =>
     `<div style="display:flex;align-items:center;gap:7px">
       ${ico}<span style="min-width:58px;font-weight:600;font-size:10px">${lbl}</span>
-      <span style="color:#6b6b6b;font-size:10px">${note}</span>
+      <span style="color:var(--txt-3);font-size:10px">${note}</span>
     </div>`;
 
   const ring = c => `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;
@@ -734,19 +887,23 @@ legend.onAdd = () => {
     border-radius:50%;background:${c};flex-shrink:0"></span>`;
 
   d.innerHTML =
-    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#6b6b6b;margin-bottom:2px">
+    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:var(--txt-3);margin-bottom:2px">
       ML PREDICTION ZONES (dashed rings)</div>` +
-    row(ring('#000000'),'SEVERE','≥ 80% probability') +
-    row(ring('#2b2b2b'),'HIGH','60–79%') +
-    row(ring('#525252'),'ELEVATED','40–59%') +
-    row(ring('#7a7a7a'),'GUARDED','20–39%') +
-    row(ring('#a3a3a3'),'LOW','< 20%') +
-    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#6b6b6b;margin:7px 0 2px">
+    row(ring(cssVar('--severe')),'SEVERE','≥ 80% probability') +
+    row(ring(cssVar('--high')),'HIGH','60–79%') +
+    row(ring(cssVar('--elevated')),'ELEVATED','40–59%') +
+    row(ring(cssVar('--guarded')),'GUARDED','20–39%') +
+    row(ring(cssVar('--low')),'LOW','< 20%') +
+    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:var(--txt-3);margin:7px 0 2px">
       LIVE USGS EVENTS (solid dots)</div>` +
-    row(dot('#000000',10),'< 1 hour','pulsing') +
-    row(dot('#555555',8), '1–6 hours','') +
-    row(dot('#a3a3a3',7), 'Older','');
-  return d;
+    row(dot(cssVar('--live-fresh'),10),'< 1 hour','pulsing') +
+    row(dot(cssVar('--live-med'),8), '1–6 hours','') +
+    row(dot(cssVar('--live-old'),7), 'Older','');
+}
+legend.onAdd = () => {
+  legendEl = L.DomUtil.create('div');
+  renderLegendContent(legendEl);
+  return legendEl;
 };
 legend.addTo(map);
 
@@ -926,7 +1083,7 @@ function renderMLMap(preds) {
       <span class="pop-label">Uncertainty radius</span> ~${z.radius_km} km<br>
       <span class="pop-label">Recent events (90d)</span> ${z.count}<br>
       <span class="pop-label">Max recorded</span> M${z.maxMag??'N/A'}<br>
-      <span style="color:#6b6b6b;font-size:10px">This ring shows the spatial uncertainty of the prediction,
+      <span style="color:var(--txt-3);font-size:10px">This ring shows the spatial uncertainty of the prediction,
       not a precise epicentre location.</span>`;
 
     /* Dashed ring — distinctive from live event dots */
@@ -986,13 +1143,13 @@ function renderLiveMap(events) {
       <span style="color:${c};font-weight:600">${timeAgo(ev.time)}</span><br>
       <span class="pop-label">Location</span> ${ev.lat.toFixed(3)}°N, ${ev.lon.toFixed(3)}°E<br>
       <span class="pop-label">Depth</span> ${ev.depth.toFixed(1)} km<br>
-      <span style="color:#444444;font-size:10px">${ev.place}</span>`;
+      <span style="color:var(--txt-2);font-size:10px">${ev.place}</span>`;
 
     if (isFresh) {
       addLive(L.marker([ev.lat, ev.lon], {
         icon: L.divIcon({
           className: '',
-          html: `<div class="pulse-mk" style="width:${r+4}px;height:${r+4}px;background:${c}"></div>`,
+          html: `<div class="pulse-mk" style="width:${r+4}px;height:${r+4}px;background:${c};color:${c}"></div>`,
           iconSize: [r+4, r+4], iconAnchor: [(r+4)/2, (r+4)/2],
         }),
       }).bindPopup(popup));
@@ -1088,6 +1245,27 @@ function showAlert(events) {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   Repaint everything from cached state — shared by the fetch
+   callbacks below and by the theme toggle (no data changed on
+   a theme switch, only the colours it's painted with).
+═══════════════════════════════════════════════════════════ */
+function refreshView() {
+  renderLiveMap(lastEvents);
+  document.getElementById('active-zones-wrap').innerHTML = renderActiveZones(lastEvents);
+  document.getElementById('live-events-inner').innerHTML = renderLiveInner(lastEvents);
+  document.getElementById('footer-list').innerHTML = renderFooter(lastEvents);
+  showAlert(lastEvents);
+
+  if (lastPreds.length) {
+    document.getElementById('matrix-wrap').innerHTML     = renderMatrix(lastPreds);
+    document.getElementById('bars-wrap').innerHTML       = renderBars(lastPreds);
+    document.getElementById('pred-zones-wrap').innerHTML = renderPredZones(lastPreds);
+    renderMLMap(lastPreds);
+  }
+  if (legendEl) renderLegendContent(legendEl);
+}
+
+/* ═══════════════════════════════════════════════════════════
    Fetch USGS
 ═══════════════════════════════════════════════════════════ */
 async function fetchUSGS() {
@@ -1115,11 +1293,7 @@ async function fetchUSGS() {
     document.getElementById('footer-updated').textContent = `Updated ${ts}`;
     document.getElementById('tbadge-live').textContent = lastEvents.length;
 
-    renderLiveMap(lastEvents);
-    document.getElementById('active-zones-wrap').innerHTML = renderActiveZones(lastEvents);
-    document.getElementById('live-events-inner').innerHTML = renderLiveInner(lastEvents);
-    document.getElementById('footer-list').innerHTML = renderFooter(lastEvents);
-    showAlert(lastEvents);
+    refreshView();
 
   } catch(err) {
     document.getElementById('footer-list').innerHTML =
@@ -1140,10 +1314,7 @@ async function fetchML() {
     document.getElementById('ml-ts').textContent =
       (lastPreds[0].generated_at||'').slice(0,16);
 
-    document.getElementById('matrix-wrap').innerHTML     = renderMatrix(lastPreds);
-    document.getElementById('bars-wrap').innerHTML       = renderBars(lastPreds);
-    document.getElementById('pred-zones-wrap').innerHTML = renderPredZones(lastPreds);
-    renderMLMap(lastPreds);
+    refreshView();
 
   } catch(err) {
     document.getElementById('matrix-wrap').innerHTML =
