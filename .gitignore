@@ -8,3 +8,6 @@ __pycache__/
 data/live_catalog.csv
 data/raw_catalog.csv
 predictions/live_log.jsonl
+data/japan_live_catalog.csv
+data/japan_raw_catalog.csv
+predictions/japan_live_log.jsonl

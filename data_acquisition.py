@@ -18,7 +18,7 @@ from config import (
     GEO_BOUNDS, MIN_MAGNITUDE,
     HISTORICAL_START, HISTORICAL_END,
     USGS_API_URL, USGS_ATOM_FEED,
-    RAW_DATA_PATH
+    RAW_DATA_PATH, HISTORICAL_CHUNK_DAYS
 )
 
 
@@ -58,7 +58,7 @@ def fetch_historical_data(start: str = HISTORICAL_START,
     current  = start_dt
 
     while current < end_dt:
-        chunk_end = min(current + timedelta(days=365), end_dt)
+        chunk_end = min(current + timedelta(days=HISTORICAL_CHUNK_DAYS), end_dt)
 
         params = {
             "format":        "geojson",
@@ -72,7 +72,8 @@ def fetch_historical_data(start: str = HISTORICAL_START,
             "orderby":       "time-asc",
         }
 
-        print(f"[DATA] Fetching {current.year} ... ", end="", flush=True)
+        print(f"[DATA] Fetching {current.strftime('%Y-%m-%d')} to "
+              f"{chunk_end.strftime('%Y-%m-%d')} ... ", end="", flush=True)
 
         try:
             response = requests.get(USGS_API_URL, params=params, timeout=60)
@@ -81,6 +82,10 @@ def fetch_historical_data(start: str = HISTORICAL_START,
 
             features = data.get("features", [])
             print(f"{len(features)} events")
+            if len(features) >= 20000:
+                print(f"[DATA] WARNING: chunk hit the 20,000-event API cap - "
+                      f"some events in this window were likely dropped. "
+                      f"Lower HISTORICAL_CHUNK_DAYS for this region.")
 
             for feat in features:
                 props = feat["properties"]

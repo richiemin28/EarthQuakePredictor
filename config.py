@@ -25,6 +25,7 @@ HISTORICAL_START    = "1990-01-01"
 HISTORICAL_END      = "2019-12-31"
 TEST_START          = "2020-01-01"
 TEST_END            = "2025-12-31"
+HISTORICAL_CHUNK_DAYS = 365     # yearly chunks; denser catalogs (e.g. Japan) use smaller chunks
 
 # USGS API endpoint (FDSN-compliant)
 USGS_API_URL        = "https://earthquake.usgs.gov/fdsnws/event/1/query"

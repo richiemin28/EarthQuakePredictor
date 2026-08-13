@@ -187,6 +187,20 @@ class StaticModel:
                           f"({y_train.sum()} pos / "
                           f"{len(y_train) - y_train.sum()} neg)")
 
+                # A classifier needs both classes present. This is a real
+                # edge case, not just Myanmar's near-zero-negative M4.0/30d:
+                # some regions (e.g. Japan at M4.0/15d) have background
+                # seismicity so continuous that a window is *always*
+                # positive, leaving zero negative examples to train against.
+                if y_train.nunique() < 2:
+                    if verbose:
+                        print(f"  {col}: only one class present "
+                              f"({int(y_train.sum())} pos / "
+                              f"{len(y_train) - int(y_train.sum())} neg) "
+                              f"- skipping, this threshold/window has no "
+                              f"discriminative signal for this region")
+                    continue
+
                 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
                 estimator = self._build_estimator()
 
@@ -333,6 +347,21 @@ class AdaptiveModel:
                     print(f"  Training {col} "
                           f"({y_train.sum()} pos / "
                           f"{len(y_train) - y_train.sum()} neg)")
+
+                # See the matching guard in StaticModel.train(): some
+                # regions have background seismicity so continuous that a
+                # threshold/window is always positive, leaving no negative
+                # class to train against. Skip it - update() already skips
+                # any column missing from self.models, so no replay buffer
+                # is needed for it either.
+                if y_train.nunique() < 2:
+                    if verbose:
+                        print(f"  {col}: only one class present "
+                              f"({int(y_train.sum())} pos / "
+                              f"{len(y_train) - int(y_train.sum())} neg) "
+                              f"- skipping, this threshold/window has no "
+                              f"discriminative signal for this region")
+                    continue
 
                 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
                 estimator = self._build_estimator()
