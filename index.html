@@ -140,10 +140,12 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Mobile-first: the page scrolls normally by default (a phone user
-       just scrolls down through the story). At >=900px it becomes the
-       fixed-height app shell with internally-scrolling panes, which
-       suits a desktop dashboard better than a long scrolling page. */
+    /* Fixed-height app shell at every width — mobile included. Below
+       900px the map fills the screen and the panel becomes a draggable
+       bottom sheet on top of it (see the max-width:899px block near the
+       end of this stylesheet); at >=900px it's the two-pane desktop
+       layout with the panel as a fixed-width sidebar. Either way the
+       map is always visible without scrolling past it first. */
     body {
       background: var(--bg);
       color: var(--txt);
@@ -537,10 +539,12 @@
       .map-legend { display:none; }
     }
 
-    /* Map layer toggle overlay */
+    /* Map layer toggle overlay — top-right, clear of Leaflet's own
+       top-left zoom control (they used to both claim top-left and
+       overlap, clipping the first letter of each toggle label). */
     #map-controls {
-      position:absolute; top:10px; left:10px; z-index:500;
-      display:flex; flex-direction:column; gap:6px;
+      position:absolute; top:10px; right:10px; z-index:500;
+      display:flex; flex-direction:column; gap:6px; align-items:flex-end;
     }
     .map-toggle {
       display:flex; align-items:center; gap:6px;
@@ -673,6 +677,60 @@
     @media (max-width:900px) {
       .fev-place,.fev-coord { display:none; }
     }
+
+    /* ═══ Mobile app shell (< 900px) ═══════════════════════════
+       The map fills the screen behind everything, like a native
+       map app — no more scrolling past a tower of cards to reach
+       it. The panel sits on top as a draggable bottom sheet with
+       three snap heights (peek/half/full), dragged from the handle
+       bar; tapping the handle cycles through the same three steps
+       for anyone who'd rather tap than drag. */
+    @media (max-width: 899px) {
+      body { height:100vh; height:100dvh; overflow:hidden; }
+      #header { padding:10px 14px; }
+
+      #main { position:relative; flex:1; min-height:0; overflow:hidden; }
+      /* z-index:1 (not just position) matters here: without an explicit
+         z-index, #map never opens its own stacking context, so Leaflet's
+         internal panes/controls (z-index 200-1000 relative to #map) would
+         escape it and compare directly against #panel's z-index below,
+         rendering on top of the sheet instead of staying under it. */
+      #map  { position:absolute; inset:0; width:100%; height:100%; z-index:1; }
+
+      #panel {
+        position:absolute; left:0; right:0; bottom:0; z-index:20;
+        display:flex; flex-direction:column;
+        background:var(--surface);
+        border-radius:16px 16px 0 0;
+        box-shadow:0 -6px 24px rgba(0,0,0,.25);
+        height:var(--sheet-h, 36vh);
+        max-height:92vh;
+        transition:height .32s cubic-bezier(.4,0,.2,1);
+      }
+      #panel.dragging { transition:none; }
+
+      .sheet-handle {
+        flex-shrink:0; display:flex; align-items:center; justify-content:center;
+        height:26px; cursor:grab; touch-action:none;
+      }
+      .sheet-handle::before {
+        content:''; width:36px; height:4px; border-radius:99px;
+        background:var(--border-md);
+      }
+
+      .pane {
+        flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch;
+        padding:12px;
+      }
+
+      /* Comfortable tap targets (Apple HIG / Material both call for
+         >=44px) — several controls measured under that on a real
+         viewport audit. */
+      .country-btn, .theme-toggle { min-height:44px; }
+      .risk-chip { padding:9px 2px; }
+      .map-toggle { padding:9px 12px; min-height:44px; }
+      .leaflet-control-zoom a { width:40px !important; height:40px !important; line-height:40px !important; }
+    }
   </style>
 </head>
 <body>
@@ -699,6 +757,11 @@
 
   <!-- ── Panel ─────────────────────────────────────────── -->
   <div id="panel">
+
+    <!-- Bottom-sheet drag handle — mobile only (<900px); drag or
+         tap to cycle peek/half/full so the map stays reachable
+         underneath without leaving the panel -->
+    <div class="sheet-handle" id="sheet-handle" role="button" aria-label="Resize panel"></div>
 
     <!-- Tab bar -->
     <div id="tabs">
@@ -1074,7 +1137,88 @@ function clearLive(){ liveLayers.forEach(l=>map.removeLayer(l)); liveLayers = []
 /* Fly to zone */
 function flyToZone(lat,lon,name) {
   map.flyTo([lat,lon],7,{duration:1.2});
+  // let the map be seen, like tapping a search result on Google Maps
+  if (isMobileLayout()) setSheetState('peek');
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Mobile bottom sheet — below 900px the panel becomes a
+   draggable sheet over the full-screen map, snapping to one of
+   three heights. Desktop ignores all of this (#panel is a fixed
+   sidebar there, see the >=900px CSS).
+═══════════════════════════════════════════════════════════ */
+const SHEET_STATES = { peek: 0.36, half: 0.62, full: 0.90 };
+let sheetState = 'peek';
+function isMobileLayout() { return window.matchMedia('(max-width: 899px)').matches; }
+
+// Fractions are of the space actually available below the header
+// (#main's own height), not the raw viewport -- using window.innerHeight
+// let the "full" state (90%) overshoot #main and clip against the
+// header, eating the map sliver that state is supposed to leave visible.
+// Shared by every path that sets sheet height (tap/tab-switch/flyToZone
+// via setSheetState, and the drag handlers below) so they can't drift
+// out of sync with each other again.
+function pxFor(frac) { return document.getElementById('main').clientHeight * frac; }
+
+function applySheetHeight(cssValue) {
+  document.getElementById('panel').style.setProperty('--sheet-h', cssValue);
+}
+function setSheetState(state) {
+  sheetState = state;
+  applySheetHeight(`${pxFor(SHEET_STATES[state])}px`);
+}
+
+(function initSheetDrag() {
+  const panel  = document.getElementById('panel');
+  const handle = document.getElementById('sheet-handle');
+  let dragging = false, moved = false, startY = 0, startPx = 0;
+
+  const clampPx     = px  => Math.min(pxFor(SHEET_STATES.full), Math.max(pxFor(SHEET_STATES.peek), px));
+  const nearestState = px => Object.entries(SHEET_STATES)
+    .reduce((best, [name, frac]) =>
+      Math.abs(pxFor(frac) - px) < Math.abs(pxFor(SHEET_STATES[best]) - px) ? name : best, 'peek');
+
+  handle.addEventListener('pointerdown', e => {
+    if (!isMobileLayout()) return;
+    dragging = true; moved = false;
+    startY = e.clientY;
+    startPx = pxFor(SHEET_STATES[sheetState]);
+    panel.classList.add('dragging');
+    try { handle.setPointerCapture(e.pointerId); } catch { /* no active pointer to capture */ }
+  });
+  handle.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const dy = e.clientY - startY;
+    if (Math.abs(dy) > 4) moved = true;
+    applySheetHeight(`${clampPx(startPx - dy)}px`);
+  });
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    panel.classList.remove('dragging');
+    if (!moved) {
+      // a tap, not a drag — cycle to the next snap step
+      const order = ['peek', 'half', 'full'];
+      setSheetState(order[(order.indexOf(sheetState) + 1) % order.length]);
+    } else {
+      const curPx = parseFloat(getComputedStyle(panel).height);
+      setSheetState(nearestState(curPx));
+    }
+  }
+  handle.addEventListener('pointerup', endDrag);
+  handle.addEventListener('pointercancel', endDrag);
+  if (isMobileLayout()) setSheetState('peek');
+})();
+
+/* Leaflet caches tile layout to its container's pixel size at the
+   last render — orientation changes and the mobile/desktop layout
+   swap at 900px both resize #map without Leaflet knowing, unless
+   told explicitly. */
+let resizeT = null;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeT);
+  resizeT = setTimeout(() => map.invalidateSize(), 150);
+});
 
 /* ═══════════════════════════════════════════════════════════
    Tab switching
@@ -1085,6 +1229,8 @@ function switchTab(t) {
     const pane = document.getElementById(`pane-${id}`);
     pane.hidden = id!==t;
   });
+  // give the newly-selected tab room to actually be readable
+  if (isMobileLayout() && sheetState === 'peek') setSheetState('half');
 }
 
 /* ═══════════════════════════════════════════════════════════
