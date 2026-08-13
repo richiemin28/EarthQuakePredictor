@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -53,7 +53,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -106,7 +106,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -159,7 +159,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -212,7 +212,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -265,7 +265,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -318,7 +318,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -371,7 +371,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -424,7 +424,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -477,7 +477,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -530,7 +530,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -583,7 +583,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -636,7 +636,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -689,7 +689,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -742,7 +742,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -795,7 +795,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -848,7 +848,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -901,7 +901,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -954,7 +954,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1007,7 +1007,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1060,7 +1060,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 12:47 UTC",
+    "generated_at": "2026-08-13 12:49 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
