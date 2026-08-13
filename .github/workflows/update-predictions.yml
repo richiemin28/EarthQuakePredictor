@@ -7,6 +7,13 @@ on:
     branches: [main]
   workflow_dispatch:          # Manual trigger from GitHub
 
+# Shares a concurrency group with adaptive-update.yml so the two
+# workflows can never run at the same time and race to push - GitHub
+# queues them instead of running them in parallel.
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
 jobs:
   predict:
     runs-on: ubuntu-latest
@@ -24,8 +31,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements_server.txt
 
-      - name: Generate predictions
+      - name: Generate Myanmar predictions
         run: python generate.py
+
+      - name: Generate Japan predictions
+        run: python run_pipeline.py japan generate
 
       - name: Upload predictions JSON to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -38,12 +48,13 @@ jobs:
           exclude: |
             **/.git*
             live_log.jsonl
+            japan_live_log.jsonl
         continue-on-error: true
 
       - name: Commit updated predictions back to repo
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add predictions/latest_predictions.json
+          git add predictions/latest_predictions.json predictions/japan_latest_predictions.json
           git diff --staged --quiet || git commit -m "chore: update predictions $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
           git push

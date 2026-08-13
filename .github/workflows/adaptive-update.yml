@@ -1,0 +1,72 @@
+name: Adaptive Model Update
+
+# Runs the *real* continual-learning update (fetch new confirmed
+# earthquakes, recompute features/labels, retrain the adaptive model
+# on them) for both countries. This is separate from
+# update-predictions.yml, which just refreshes predictions from
+# whatever model already exists - that one runs every 6 hours because
+# it's cheap; this one runs daily because it's the step that actually
+# makes the model learn, and continual-learning updates are more
+# stable with a meaningful batch of new events than with many
+# very small ones.
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # Once daily at 03:00 UTC
+  workflow_dispatch:         # Manual trigger from GitHub
+
+# Shares a concurrency group with update-predictions.yml so the two
+# workflows can never run at the same time and race to push - GitHub
+# queues them instead of running them in parallel.
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
+jobs:
+  adaptive-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements_server.txt
+
+      - name: Update Myanmar model with confirmed new earthquakes
+        run: python main.py --mode update
+
+      - name: Update Japan model with confirmed new earthquakes
+        run: python run_pipeline.py japan --mode update
+
+      - name: Upload predictions JSON to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:     ${{ secrets.FTP_SERVER }}
+          username:   ${{ secrets.FTP_USERNAME }}
+          password:   ${{ secrets.FTP_PASSWORD }}
+          local-dir:  ./predictions/
+          server-dir: /public_html/predictions/
+          exclude: |
+            **/.git*
+            live_log.jsonl
+            japan_live_log.jsonl
+        continue-on-error: true
+
+      - name: Commit updated models + data back to repo
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/full_catalog_1990_2025.csv data/processed_features.csv
+          git add models/adaptive_model.pkl predictions/latest_predictions.json
+          git add data/japan_full_catalog_1990_2025.csv data/japan_processed_features.csv
+          git add models/japan_adaptive_model.pkl predictions/japan_latest_predictions.json
+          git diff --staged --quiet || git commit -m "chore: adaptive model update $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
+          git push

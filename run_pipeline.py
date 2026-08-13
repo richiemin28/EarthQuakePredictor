@@ -13,23 +13,38 @@
 # to resolve against the swapped module) and hands off to its CLI.
 #
 # Usage:
-#   python run_pipeline.py japan --mode full
+#   python run_pipeline.py japan --mode full        (targets main.py, default)
 #   python run_pipeline.py myanmar --mode train --refresh
+#   python run_pipeline.py japan generate           (targets generate.py instead)
 # =============================================================================
 
 import sys
 import importlib
 
 VALID_COUNTRIES = {"myanmar", "japan"}
+VALID_TARGETS   = {"main", "generate"}
 
 
 def main():
     if len(sys.argv) < 2 or sys.argv[1] not in VALID_COUNTRIES:
-        print(f"Usage: python run_pipeline.py <{'|'.join(sorted(VALID_COUNTRIES))}> [main.py args...]")
+        print(f"Usage: python run_pipeline.py <{'|'.join(sorted(VALID_COUNTRIES))}> "
+              f"[generate | --mode ...]")
         sys.exit(1)
 
     country = sys.argv[1]
     remaining_args = sys.argv[2:]
+
+    # Second arg selects which script to drive. Anything starting with "-"
+    # is a main.py flag, not a target name, so main stays the default -
+    # this keeps the existing `run_pipeline.py <country> --mode ...` calls
+    # working unchanged.
+    target = "main"
+    if remaining_args and not remaining_args[0].startswith("-"):
+        target = remaining_args[0]
+        remaining_args = remaining_args[1:]
+        if target not in VALID_TARGETS:
+            print(f"Unknown target '{target}', expected one of {sorted(VALID_TARGETS)}")
+            sys.exit(1)
 
     if country != "myanmar":
         cfg_module = importlib.import_module(f"config_{country}")
@@ -39,13 +54,17 @@ def main():
     else:
         print("[PIPELINE] Using default config.py (Myanmar).")
 
-    # main.py's own `from config import (...)` resolves against whatever
-    # sys.modules["config"] currently points to, so this import must happen
-    # after the swap above, and main must not already be imported elsewhere
-    # in this process.
+    # The target module's own `from config import (...)` resolves against
+    # whatever sys.modules["config"] currently points to, so this import
+    # must happen after the swap above, and it must not already be
+    # imported elsewhere in this process.
     sys.argv = [sys.argv[0]] + remaining_args
-    import main
-    main.main()
+    if target == "generate":
+        import generate
+        generate.main()
+    else:
+        import main
+        main.main()
 
 
 if __name__ == "__main__":
