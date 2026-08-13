@@ -7,38 +7,34 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
-    /* ═══ Design Tokens ══════════════════════════════════════ */
+    /* ═══ Design Tokens — monochrome (black / white / grey only) ══ */
     :root {
-      --bg:         #070d1a;
-      --surface:    #0c1524;
-      --card:       #111f33;
-      --card-hover: #162540;
-      --raised:     #1a2f47;
+      --bg:         #ffffff;
+      --surface:    #f7f7f7;
+      --card:       #ffffff;
+      --card-hover: #f0f0f0;
+      --raised:     #e4e4e4;
 
-      --border:     rgba(56,100,160,.16);
-      --border-md:  rgba(56,100,160,.30);
+      --border:     rgba(0,0,0,.09);
+      --border-md:  rgba(0,0,0,.20);
 
-      --txt:        #dde8f5;
-      --txt-2:      #7a9ab8;
-      --txt-3:      #3d5872;
+      --txt:        #111111;
+      --txt-2:      #444444;
+      --txt-3:      #6b6b6b;
 
-      /* ── Risk colours (ML predictions) */
-      --low:        #0ecb8a;   --low-bg:    rgba(14,203,138,.09);
-      --lowmod:     #f5a623;   --lowmod-bg: rgba(245,166,35,.09);
-      --mod:        #f97316;   --mod-bg:    rgba(249,115,22,.09);
-      --high:       #f04040;   --high-bg:   rgba(240,64,64,.09);
+      /* ── Severity scale (ML predictions) — darker = higher risk */
+      --low:        #9a9a9a;   --low-bg:    rgba(0,0,0,.035);
+      --lowmod:     #707070;   --lowmod-bg: rgba(0,0,0,.055);
+      --mod:        #404040;   --mod-bg:    rgba(0,0,0,.08);
+      --high:       #000000;   --high-bg:   rgba(0,0,0,.11);
 
-      /* ── Live colours (USGS events) */
-      --live-fresh: #00e5b0;   /* < 1 hour  */
-      --live-med:   #fb923c;   /* 1-6 hours */
-      --live-old:   #4a6480;   /* older     */
-      --live-bg:    rgba(0,229,176,.08);
+      /* ── Live-event recency scale (USGS events) */
+      --live-fresh: #000000;   /* < 1 hour  */
+      --live-med:   #555555;   /* 1-6 hours */
+      --live-old:   #a3a3a3;   /* older     */
+      --live-bg:    rgba(0,0,0,.045);
 
-      /* ── Prediction zone ring colour */
-      --pred-ring:  rgba(99,130,230,.9);
-      --pred-fill:  rgba(99,130,230,.05);
-
-      --accent:     #4a90d9;
+      --accent:     #000000;
       --r:          6px;
       --r-lg:       10px;
     }
@@ -63,10 +59,10 @@
     .r-lowmod { color: var(--lowmod); }
     .r-mod    { color: var(--mod);    }
     .r-high   { color: var(--high);   }
-    .bg-low    { background: var(--low-bg);    border-color: rgba(14,203,138,.22);  }
-    .bg-lowmod { background: var(--lowmod-bg); border-color: rgba(245,166,35,.22);  }
-    .bg-mod    { background: var(--mod-bg);    border-color: rgba(249,115,22,.22);  }
-    .bg-high   { background: var(--high-bg);   border-color: rgba(240,64,64,.22);   }
+    .bg-low    { background: var(--low-bg);    border-color: rgba(0,0,0,.14); }
+    .bg-lowmod { background: var(--lowmod-bg); border-color: rgba(0,0,0,.18); }
+    .bg-mod    { background: var(--mod-bg);    border-color: rgba(0,0,0,.24); }
+    .bg-high   { background: var(--high-bg);   border-color: rgba(0,0,0,.32); }
 
     /* ═══ Header ═════════════════════════════════════════════ */
     #header {
@@ -90,9 +86,9 @@
       font-weight:600; letter-spacing:.06em; border:1px solid;
       transition: opacity .2s;
     }
-    .b-live { color:var(--live-fresh); background:var(--live-bg); border-color:rgba(0,229,176,.22); }
-    .b-ml   { color:var(--accent);     background:rgba(74,144,217,.08); border-color:rgba(74,144,217,.22); }
-    .b-tick { color:var(--lowmod);     background:var(--lowmod-bg);    border-color:rgba(245,166,35,.18); }
+    .b-live { color:var(--live-fresh); background:var(--live-bg);      border-color:rgba(0,0,0,.20); }
+    .b-ml   { color:var(--accent);     background:rgba(0,0,0,.05);     border-color:rgba(0,0,0,.20); }
+    .b-tick { color:var(--lowmod);     background:var(--lowmod-bg);    border-color:rgba(0,0,0,.15); }
 
     .pdot {
       width:6px; height:6px; border-radius:50%;
@@ -138,17 +134,14 @@
       border-bottom:2px solid transparent;
       transition:color .2s, border-color .2s, background .2s;
     }
-    .tab-btn:hover { color:var(--txt-2); background:rgba(255,255,255,.03); }
-    .tab-btn.active { color:var(--txt); border-bottom-color:var(--accent); }
-    .tab-btn.active.tl { border-bottom-color:var(--live-fresh); color:var(--live-fresh); }
-    .tab-icon { font-size:14px; }
+    .tab-btn:hover { color:var(--txt-2); background:rgba(0,0,0,.03); }
+    .tab-btn.active { color:var(--txt); border-bottom-color:var(--accent); border-bottom-width:2px; }
     .tab-badge {
       font-size:9px; font-weight:700; padding:1px 5px;
       border-radius:99px; background:var(--raised); color:var(--txt-3);
       transition:background .2s,color .2s;
     }
     .tab-btn.active .tab-badge { background:var(--accent); color:#fff; }
-    .tab-btn.active.tl .tab-badge { background:var(--live-fresh); color:#070d1a; }
 
     /* Pane scroll areas */
     .pane {
@@ -175,16 +168,16 @@
     /* ── Alert ────────────────────────────────────────────── */
     #alert-banner {
       display:none; padding:10px 14px; border-radius:var(--r-lg);
-      border:1px solid rgba(240,64,64,.35);
-      background:rgba(240,64,64,.06);
+      border:1px solid rgba(0,0,0,.35);
+      background:rgba(0,0,0,.05);
       font-size:12px; line-height:1.6;
       animation:alert-glow 2.5s ease-in-out infinite;
     }
     #alert-banner .al-title { font-weight:700; color:var(--high); font-size:13px; margin-bottom:2px; }
     #alert-banner .al-sub   { font-size:11px; color:var(--txt-2); }
     @keyframes alert-glow {
-      0%,100%{box-shadow:0 0 0 0 rgba(240,64,64,0)}
-      50%{box-shadow:0 0 16px 0 rgba(240,64,64,.15)}
+      0%,100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}
+      50%{box-shadow:0 0 14px 0 rgba(0,0,0,.16)}
     }
 
     /* ── Probability Matrix ───────────────────────────────── */
@@ -209,10 +202,10 @@
     .intro-note {
       font-size:10px; color:var(--txt-3); line-height:1.6;
       padding:8px 10px; border-radius:var(--r);
-      background:rgba(99,130,230,.06); border:1px solid rgba(99,130,230,.15);
+      background:rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.12);
       margin-bottom:2px;
     }
-    .intro-note b { color:rgba(140,165,255,.9); }
+    .intro-note b { color:var(--txt); }
 
     .pred-zone-card {
       display:flex; flex-direction:column; gap:5px;
@@ -225,7 +218,7 @@
     .pred-zone-card::before {
       content:''; position:absolute; left:0; top:0; bottom:0;
       width:3px; border-radius:3px 0 0 3px;
-      background:var(--stripe-c, #4a6480);
+      background:var(--stripe-c, #a3a3a3);
     }
     .pred-zone-card:hover {
       background:var(--card-hover); border-color:var(--border-md);
@@ -247,6 +240,10 @@
       height:5px; background:var(--raised); border-radius:99px; overflow:hidden;
     }
     .pz-fill { height:100%; border-radius:99px; transition:width .6s cubic-bezier(.4,0,.2,1); }
+    .pz-fill.r-low    { background: var(--low);    }
+    .pz-fill.r-lowmod { background: var(--lowmod); }
+    .pz-fill.r-mod    { background: var(--mod);    }
+    .pz-fill.r-high   { background: var(--high);   }
     .pz-meta { font-size:10px; color:var(--txt-3); display:flex; justify-content:space-between; }
     .pz-fly-hint {
       font-size:9px; color:var(--txt-3); letter-spacing:.04em;
@@ -257,7 +254,7 @@
     .live-intro-note {
       font-size:10px; color:var(--txt-3); line-height:1.6;
       padding:8px 10px; border-radius:var(--r);
-      background:rgba(0,229,176,.05); border:1px solid rgba(0,229,176,.14);
+      background:rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.12);
       margin-bottom:2px;
     }
     .live-intro-note b { color:var(--live-fresh); }
@@ -303,10 +300,10 @@
       height:100%; border-radius:99px;
       transition:width .6s cubic-bezier(.4,0,.2,1);
     }
-    .bar-fill.r-low    { background:linear-gradient(90deg,#0a9e6c,var(--low)); }
-    .bar-fill.r-lowmod { background:linear-gradient(90deg,#c47d05,var(--lowmod)); }
-    .bar-fill.r-mod    { background:linear-gradient(90deg,#c45510,var(--mod)); }
-    .bar-fill.r-high   { background:linear-gradient(90deg,#b02020,var(--high)); }
+    .bar-fill.r-low    { background:linear-gradient(90deg,#cfcfcf,var(--low)); }
+    .bar-fill.r-lowmod { background:linear-gradient(90deg,#9a9a9a,var(--lowmod)); }
+    .bar-fill.r-mod    { background:linear-gradient(90deg,#707070,var(--mod)); }
+    .bar-fill.r-high   { background:linear-gradient(90deg,#404040,var(--high)); }
     .bar-pct { font-size:12px; font-weight:700; width:40px; text-align:right;
                flex-shrink:0; font-family:'Cascadia Code',monospace; }
 
@@ -314,7 +311,7 @@
     .disclaimer {
       font-size:10px; color:var(--txt-3); line-height:1.65;
       padding:10px 12px; border:1px solid var(--border);
-      border-radius:var(--r-lg); background:rgba(255,255,255,.02);
+      border-radius:var(--r-lg); background:rgba(0,0,0,.02);
     }
     .disclaimer strong { color:var(--mod); }
 
@@ -338,16 +335,16 @@
       user-select:none;
     }
     .map-toggle.ml-t {
-      background:rgba(7,13,26,.85); border-color:rgba(99,130,230,.35);
-      color:rgba(140,165,255,.9);
+      background:rgba(255,255,255,.92); border-color:rgba(0,0,0,.3);
+      color:var(--txt); border-style:dashed;
     }
     .map-toggle.live-t {
-      background:rgba(7,13,26,.85); border-color:rgba(0,229,176,.3);
-      color:var(--live-fresh);
+      background:rgba(255,255,255,.92); border-color:rgba(0,0,0,.3);
+      color:var(--txt);
     }
-    .map-toggle.off { opacity:.4; filter:grayscale(.6); }
+    .map-toggle.off { opacity:.4; }
     .mt-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-    .mt-dot.ml-d   { background:rgba(120,150,255,.9); border:2px dashed rgba(120,150,255,.7); background-clip:padding-box; }
+    .mt-dot.ml-d   { background:#fff; border:2px dashed #000; background-clip:padding-box; }
     .mt-dot.live-d { background:var(--live-fresh); }
 
     /* Map zone label tooltips */
@@ -357,11 +354,11 @@
     }
     .zone-lbl-inner {
       text-align:center; font-family:-apple-system,sans-serif;
-      text-shadow:0 1px 5px rgba(0,0,0,.95), 0 0 12px rgba(0,0,0,.8);
+      text-shadow:0 1px 3px rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.9);
       pointer-events:none;
     }
     .zone-lbl-name {
-      display:block; font-size:9px; font-weight:600; color:rgba(255,255,255,.75);
+      display:block; font-size:9px; font-weight:600; color:rgba(0,0,0,.7);
       letter-spacing:.04em; margin-bottom:1px;
     }
     .zone-lbl-prob {
@@ -370,10 +367,10 @@
 
     /* Leaflet theme */
     .leaflet-popup-content-wrapper {
-      background:#0d1b2e !important;
-      border:1px solid rgba(56,100,160,.35) !important;
+      background:#ffffff !important;
+      border:1px solid rgba(0,0,0,.18) !important;
       border-radius:9px !important;
-      box-shadow:0 8px 32px rgba(0,0,0,.65) !important;
+      box-shadow:0 8px 28px rgba(0,0,0,.22) !important;
       color:var(--txt) !important;
     }
     .leaflet-popup-tip-container { display:none; }
@@ -382,18 +379,18 @@
       font-size:12px !important; line-height:1.7 !important; margin:13px 16px !important;
     }
     .leaflet-popup-close-button { color:var(--txt-3) !important; font-size:17px !important; top:7px !important; right:9px !important; }
-    .leaflet-control-zoom a { background:#0d1b2e !important; color:var(--txt) !important; border-color:rgba(56,100,160,.35) !important; }
+    .leaflet-control-zoom a { background:#ffffff !important; color:var(--txt) !important; border-color:rgba(0,0,0,.18) !important; }
     .leaflet-control-zoom a:hover { background:var(--raised) !important; }
-    .leaflet-control-attribution { background:rgba(7,13,26,.82) !important; color:var(--txt-3) !important; font-size:9px !important; }
+    .leaflet-control-attribution { background:rgba(255,255,255,.85) !important; color:var(--txt-3) !important; font-size:9px !important; }
     .leaflet-control-attribution a { color:var(--txt-3) !important; }
-    .pop-divider { border:none; border-top:1px solid rgba(56,100,160,.22); margin:6px 0; }
+    .pop-divider { border:none; border-top:1px solid rgba(0,0,0,.14); margin:6px 0; }
     .pop-label   { color:var(--txt-3); font-size:10px; }
     .pop-type-badge {
       display:inline-block; padding:2px 7px; border-radius:4px; font-size:9px;
       font-weight:700; letter-spacing:.06em; margin-bottom:6px;
     }
-    .pop-pred { background:rgba(99,130,230,.15); color:rgba(150,170,255,.9); border:1px solid rgba(99,130,230,.3); }
-    .pop-live { background:rgba(0,229,176,.12); color:var(--live-fresh); border:1px solid rgba(0,229,176,.25); }
+    .pop-pred { background:rgba(0,0,0,.06); color:#000; border:1px solid rgba(0,0,0,.25); }
+    .pop-live { background:rgba(0,0,0,.05); color:var(--live-fresh); border:1px solid rgba(0,0,0,.22); }
 
     /* Pulse marker */
     .pulse-mk {
@@ -401,9 +398,9 @@
       animation:pulse-mk 2s ease-out infinite;
     }
     @keyframes pulse-mk {
-      0%  {box-shadow:0 0 0 0 rgba(0,229,176,.7)}
-      70% {box-shadow:0 0 0 11px rgba(0,229,176,0)}
-      100%{box-shadow:0 0 0 0 rgba(0,229,176,0)}
+      0%  {box-shadow:0 0 0 0 rgba(0,0,0,.55)}
+      70% {box-shadow:0 0 0 11px rgba(0,0,0,0)}
+      100%{box-shadow:0 0 0 0 rgba(0,0,0,0)}
     }
 
     /* ═══ Footer / event ticker ═══════════════════════════════ */
@@ -425,7 +422,7 @@
     }
     .ev-chip {
       background:var(--live-bg); color:var(--live-fresh);
-      border:1px solid rgba(0,229,176,.2); border-radius:99px;
+      border:1px solid rgba(0,0,0,.18); border-radius:99px;
       padding:1px 7px; font-size:10px; font-weight:700;
     }
     .fhdr-right { font-size:10px; color:var(--txt-3); }
@@ -487,12 +484,10 @@
     <!-- Tab bar -->
     <div id="tabs">
       <button class="tab-btn active" id="tab-pred" onclick="switchTab('pred')">
-        <span class="tab-icon">🔮</span>
         <span>PREDICTIONS</span>
         <span class="tab-badge" id="tbadge-pred">ML</span>
       </button>
-      <button class="tab-btn tl" id="tab-live" onclick="switchTab('live')">
-        <span class="tab-icon">⚡</span>
+      <button class="tab-btn" id="tab-live" onclick="switchTab('live')">
         <span>LIVE ACTIVITY</span>
         <span class="tab-badge" id="tbadge-live">0</span>
       </button>
@@ -506,7 +501,7 @@
       <!-- What are these? -->
       <div class="intro-note">
         <b>ML Prediction Zones</b> show where the adaptive model forecasts elevated seismic activity.
-        <b>Dashed blue rings</b> on the map mark each zone's spatial uncertainty.
+        <b>Dashed rings</b> on the map mark each zone's spatial uncertainty.
       </div>
 
       <!-- Probability matrix -->
@@ -528,7 +523,7 @@
       </div>
 
       <div class="disclaimer">
-        <strong>⚠ Research output only.</strong> These are experimental MSc dissertation model outputs.
+        <strong>Research output only.</strong> These are experimental MSc dissertation model outputs.
         Probabilities reflect historical seismic patterns, not real-time ground truth.
         Not for safety decisions.
       </div>
@@ -541,7 +536,7 @@
       <!-- What is this? -->
       <div class="live-intro-note">
         <b>Live seismic activity</b> sourced directly from USGS every 60 seconds.
-        <b>Teal/orange dots</b> on the map show recent earthquake locations.
+        <b>Solid dots</b> on the map show recent earthquake locations — darker means more recent.
       </div>
 
       <!-- Active zones from USGS -->
@@ -579,7 +574,7 @@
 <div id="footer">
   <div id="footer-hdr">
     <div class="fhdr-left">
-      ⚡ USGS Live Events — Myanmar Region (M 2.5+, 24 h)
+      USGS Live Events — Myanmar Region (M 2.5+, 24 h)
       <span class="ev-chip" id="ev-total">—</span>
     </div>
     <div class="fhdr-right" id="footer-updated">—</div>
@@ -611,20 +606,20 @@ const BC = { high:'bg-high', mod:'bg-mod', lowmod:'bg-lowmod', low:'bg-low' };
 function rCls(p) { return p>=.85?'r-high':p>=.65?'r-mod':p>=.45?'r-lowmod':'r-low'; }
 function bCls(p) { return p>=.85?'bg-high':p>=.65?'bg-mod':p>=.45?'bg-lowmod':'bg-low'; }
 function rLbl(p) { return p>=.85?'HIGH':p>=.65?'MOD':p>=.45?'LOW-M':'LOW'; }
-function rCol(p) { return p>=.85?'#f04040':p>=.65?'#f97316':p>=.45?'#f5a623':'#0ecb8a'; }
+function rCol(p) { return p>=.85?'#000000':p>=.65?'#404040':p>=.45?'#707070':'#9a9a9a'; }
 
-/* Live event colours (separate vocabulary from ML) */
+/* Live event colours (separate vocabulary from ML — grey scale by recency) */
 function liveCol(ms) {
   const age = Date.now() - ms;
-  if (age < 3600000)  return '#00e5b0'; // teal  < 1h
-  if (age < 21600000) return '#fb923c'; // orange 1-6h
-  return '#4a6480';                     // slate  older
+  if (age < 3600000)  return '#000000'; // darkest < 1h
+  if (age < 21600000) return '#555555'; // mid grey 1-6h
+  return '#a3a3a3';                     // light grey older
 }
 function magCol(m) {
-  if (m >= 5.5) return '#f04040';
-  if (m >= 5.0) return '#f97316';
-  if (m >= 4.5) return '#f5a623';
-  return '#0ecb8a';
+  if (m >= 5.5) return '#000000';
+  if (m >= 5.0) return '#404040';
+  if (m >= 4.5) return '#707070';
+  return '#9a9a9a';
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -666,7 +661,7 @@ function identifyZone(lat,lon) {
    Map setup
 ═══════════════════════════════════════════════════════════ */
 const map = L.map('map',{center:[20.5,96.5],zoom:5});
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
   attribution:'&copy; OSM &copy; CARTO', maxZoom:14,
 }).addTo(map);
 
@@ -674,14 +669,14 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
 const legend = L.control({position:'bottomright'});
 legend.onAdd = () => {
   const d = L.DomUtil.create('div');
-  d.style.cssText = `background:rgba(12,21,36,.93);border:1px solid rgba(56,100,160,.3);
+  d.style.cssText = `background:rgba(255,255,255,.94);border:1px solid rgba(0,0,0,.2);
     border-radius:9px;padding:11px 14px;font-family:-apple-system,sans-serif;
-    font-size:11px;color:#dde8f5;line-height:2;box-shadow:0 4px 20px rgba(0,0,0,.55)`;
+    font-size:11px;color:#111111;line-height:2;box-shadow:0 4px 18px rgba(0,0,0,.18)`;
 
   const row = (ico,lbl,note) =>
     `<div style="display:flex;align-items:center;gap:7px">
       ${ico}<span style="min-width:58px;font-weight:600;font-size:10px">${lbl}</span>
-      <span style="color:#3d5872;font-size:10px">${note}</span>
+      <span style="color:#6b6b6b;font-size:10px">${note}</span>
     </div>`;
 
   const ring = c => `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;
@@ -690,17 +685,17 @@ legend.onAdd = () => {
     border-radius:50%;background:${c};flex-shrink:0"></span>`;
 
   d.innerHTML =
-    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#3d5872;margin-bottom:2px">
-      🔮 ML PREDICTION ZONES (dashed rings)</div>` +
-    row(ring('#f04040'),'HIGH','≥ 85% probability') +
-    row(ring('#f97316'),'MODERATE','≥ 65%') +
-    row(ring('#f5a623'),'LOW-MOD','≥ 45%') +
-    row(ring('#0ecb8a'),'LOW','< 45%') +
-    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#3d5872;margin:7px 0 2px">
-      ⚡ LIVE USGS EVENTS (solid dots)</div>` +
-    row(dot('#00e5b0',10),'< 1 hour','pulsing') +
-    row(dot('#fb923c',8), '1–6 hours','') +
-    row(dot('#4a6480',7), 'Older','');
+    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#6b6b6b;margin-bottom:2px">
+      ML PREDICTION ZONES (dashed rings)</div>` +
+    row(ring('#000000'),'HIGH','≥ 85% probability') +
+    row(ring('#404040'),'MODERATE','≥ 65%') +
+    row(ring('#707070'),'LOW-MOD','≥ 45%') +
+    row(ring('#9a9a9a'),'LOW','< 45%') +
+    `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#6b6b6b;margin:7px 0 2px">
+      LIVE USGS EVENTS (solid dots)</div>` +
+    row(dot('#000000',10),'< 1 hour','pulsing') +
+    row(dot('#555555',8), '1–6 hours','') +
+    row(dot('#a3a3a3',7), 'Older','');
   return d;
 };
 legend.addTo(map);
@@ -741,8 +736,6 @@ function switchTab(t) {
     const pane = document.getElementById(`pane-${id}`);
     pane.hidden = id!==t;
   });
-  // teal active state only on live tab
-  document.getElementById('tab-live').classList.toggle('tl', t==='live');
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -848,7 +841,7 @@ function renderPredZones(preds) {
 
 /* ═══════════════════════════════════════════════════════════
    ML Predictions — map (dashed rings + labels)
-   Visual vocabulary: dashed coloured rings = ML predictions
+   Visual vocabulary: dashed greyscale rings = ML predictions
 ═══════════════════════════════════════════════════════════ */
 function renderMLMap(preds) {
   clearML();
@@ -860,7 +853,7 @@ function renderMLMap(preds) {
     const pct = (z.maxProb*100).toFixed(0);
 
     const popup = `
-      <span class="pop-type-badge pop-pred">🔮 ML PREDICTION ZONE</span><br>
+      <span class="pop-type-badge pop-pred">ML PREDICTION ZONE</span><br>
       <b style="font-size:14px">${z.name}</b>
       <hr class="pop-divider">
       <span class="pop-label">ML Probability</span><br>
@@ -872,7 +865,7 @@ function renderMLMap(preds) {
       <span class="pop-label">Uncertainty radius</span> ~${z.radius_km} km<br>
       <span class="pop-label">Recent events (90d)</span> ${z.count}<br>
       <span class="pop-label">Max recorded</span> M${z.maxMag??'N/A'}<br>
-      <span style="color:#3d5872;font-size:10px">This ring shows the spatial uncertainty of the prediction,
+      <span style="color:#6b6b6b;font-size:10px">This ring shows the spatial uncertainty of the prediction,
       not a precise epicentre location.</span>`;
 
     /* Dashed ring — distinctive from live event dots */
@@ -914,7 +907,7 @@ function renderMLMap(preds) {
 
 /* ═══════════════════════════════════════════════════════════
    Live USGS events — rendering
-   Visual vocabulary: solid teal/orange/slate dots = live events
+   Visual vocabulary: solid dots, greyscale by recency = live events
 ═══════════════════════════════════════════════════════════ */
 function renderLiveMap(events) {
   clearLive();
@@ -925,14 +918,14 @@ function renderLiveMap(events) {
     const isFresh = age < 3600000;
 
     const popup = `
-      <span class="pop-type-badge pop-live">⚡ USGS LIVE EVENT</span><br>
+      <span class="pop-type-badge pop-live">USGS LIVE EVENT</span><br>
       <b style="color:${c};font-size:14px">M${ev.mag.toFixed(1)} — ${ev.zone}</b>
       <hr class="pop-divider">
       <span class="pop-label">Time</span> ${utcStr(ev.time)}<br>
       <span style="color:${c};font-weight:600">${timeAgo(ev.time)}</span><br>
       <span class="pop-label">Location</span> ${ev.lat.toFixed(3)}°N, ${ev.lon.toFixed(3)}°E<br>
       <span class="pop-label">Depth</span> ${ev.depth.toFixed(1)} km<br>
-      <span style="color:#7a9ab8;font-size:10px">${ev.place}</span>`;
+      <span style="color:#444444;font-size:10px">${ev.place}</span>`;
 
     if (isFresh) {
       addLive(L.marker([ev.lat, ev.lon], {
@@ -1026,7 +1019,7 @@ function showAlert(events) {
     const c = rCol(top.mag>=5.5?.9:.7);
     banner.style.display = 'block';
     banner.innerHTML = `
-      <div class="al-title" style="color:${c}">⚠ M${top.mag.toFixed(1)} detected ${timeAgo(top.time)}</div>
+      <div class="al-title" style="color:${c}">ALERT — M${top.mag.toFixed(1)} detected ${timeAgo(top.time)}</div>
       <div class="al-sub">${top.zone} — ${top.place}</div>`;
   } else {
     banner.style.display = 'none';
