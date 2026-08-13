@@ -165,6 +165,10 @@ def generate_predictions(model,
                 "generated_at":           reference_date.strftime(
                                               "%Y-%m-%d %H:%M UTC"
                                           ),
+                # How many times the adaptive model has retrained itself on
+                # confirmed new earthquake data since it was first built.
+                # 0 is a legitimate value (freshly trained, no updates yet).
+                "model_update_count":     getattr(model, "update_count", 0),
                 "magnitude_threshold":    threshold,
                 "magnitude_label":        mag_info.get(
                                               "label", f"M{threshold}+"

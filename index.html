@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Myanmar Earthquake Prediction System</title>
+  <title id="page-title">Myanmar Earthquake Forecast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
@@ -57,8 +60,10 @@
       --live-bg:    rgba(0,0,0,.045);
 
       --accent:     #000000;
-      --r:          6px;
-      --r-lg:       10px;
+      --r:          8px;
+      --r-lg:       14px;
+      --f-body:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --f-head:     'Lexend', 'Inter', -apple-system, sans-serif;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
@@ -131,18 +136,25 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Mobile-first: the page scrolls normally by default (a phone user
+       just scrolls down through the story). At >=900px it becomes the
+       fixed-height app shell with internally-scrolling panes, which
+       suits a desktop dashboard better than a long scrolling page. */
     body {
       background: var(--bg);
       color: var(--txt);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 13px;
-      line-height: 1.5;
+      font-family: var(--f-body);
+      font-size: 15px;
+      line-height: 1.55;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
     }
-    .mono { font-family: 'Cascadia Code','Consolas','Courier New',monospace; }
+    @media (min-width: 900px) {
+      body { height: 100vh; overflow: hidden; font-size: 13px; }
+    }
+    h1, h2, h3, .num { font-family: var(--f-head); }
+    .mono { font-family: var(--f-head); font-variant-numeric: tabular-nums; }
 
     /* ── Risk classes — 5 bands, LOW <20% ... SEVERE >=80% ─── */
     .r-low      { color: var(--low);      }
@@ -164,61 +176,78 @@
       flex-shrink: 0;
       background: var(--surface);
       border-bottom: 1px solid var(--border-md);
-      padding: 9px 18px;
+      padding: 14px 18px;
       display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
     }
     #hdr-title { flex: 1; min-width: 200px; }
     #hdr-title h1 {
-      font-size: 13px; font-weight: 700; letter-spacing: .07em;
+      font-size: 19px; font-weight: 700; letter-spacing: -.01em;
     }
-    #hdr-title h1 span { color: var(--accent); }
-    #hdr-title p { font-size: 10px; color: var(--txt-3); margin-top: 1px; }
-
-    .badges { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
-    .badge {
-      display:inline-flex; align-items:center; gap:5px;
-      padding:3px 9px; border-radius:20px; font-size:10px;
-      font-weight:600; letter-spacing:.06em; border:1px solid;
-      transition: opacity .2s;
-    }
-    .b-live { color:var(--live-fresh); background:var(--live-bg);   border-color:var(--border-md); }
-    .b-ml   { color:var(--accent);     background:var(--raised);    border-color:var(--border-md); }
-    .b-tick { color:var(--guarded);    background:var(--guarded-bg);border-color:var(--border-md); }
+    #hdr-title p { font-size: 13px; color: var(--txt-3); margin-top: 2px; }
 
     .theme-toggle {
       display:inline-flex; align-items:center;
-      padding:3px 9px; border-radius:20px; font-size:10px;
-      font-weight:600; letter-spacing:.06em; border:1px solid var(--border-md);
+      padding:8px 14px; border-radius:20px; font-size:12px;
+      font-weight:600; letter-spacing:.03em; border:1px solid var(--border-md);
       background:var(--raised); color:var(--txt-2); cursor:pointer;
       font-family:inherit; transition:background .15s, color .15s;
+      min-height:36px;
     }
     .theme-toggle:hover { background:var(--card-hover); color:var(--txt); }
 
-    .pdot {
-      width:6px; height:6px; border-radius:50%;
-      animation: pdot 1.6s ease-in-out infinite;
+    /* Country switcher — segmented control, same idea as the theme toggle */
+    .country-toggle {
+      display:inline-flex; border:1px solid var(--border-md);
+      border-radius:20px; overflow:hidden; background:var(--raised);
     }
-    .pdot.g { background:var(--live-fresh); }
-    .pdot.a { background:var(--guarded); }
+    .country-btn {
+      padding:8px 14px; font-size:12px; font-weight:600;
+      font-family:inherit; border:none; background:none; color:var(--txt-3);
+      cursor:pointer; transition:background .15s, color .15s; min-height:36px;
+    }
+    .country-btn:hover { color:var(--txt); }
+    .country-btn.active { background:var(--accent); color:var(--bg); }
+    .hdr-controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    #hdr-meta {
+      display:flex; align-items:center; gap:6px;
+      font-size:12px; color:var(--txt-3);
+    }
+
+    .pdot {
+      width:7px; height:7px; border-radius:50%;
+      background:var(--live-fresh);
+      animation: pdot 1.6s ease-in-out infinite;
+      flex-shrink:0;
+    }
     @keyframes pdot {
       0%,100%{opacity:1;transform:scale(1)}
       50%{opacity:.4;transform:scale(.75)}
     }
 
-    #hdr-meta { font-size:10px; color:var(--txt-3); text-align:right; line-height:1.9; }
-    #hdr-meta b { color:var(--txt-2); font-weight:500; }
-
-    /* ═══ Layout ══════════════════════════════════════════════ */
+    /* ═══ Layout ══════════════════════════════════════════════
+       Mobile-first: one column, normal page scroll — panel content
+       flows first (the answer), the map is a normal-height section
+       after it (supporting detail), matching reading order. At
+       >=900px this becomes the fixed two-pane app shell instead. */
     #main {
-      flex:1; min-height:0;
-      display:grid; grid-template-columns:370px 1fr;
+      display:flex; flex-direction:column;
+    }
+    @media (min-width: 900px) {
+      #main {
+        flex:1; min-height:0;
+        display:grid; grid-template-columns:380px 1fr;
+      }
     }
 
     /* ═══ Panel ═══════════════════════════════════════════════ */
     #panel {
       display:flex; flex-direction:column;
-      border-right:1px solid var(--border-md);
-      overflow:hidden;
+    }
+    @media (min-width: 900px) {
+      #panel {
+        border-right:1px solid var(--border-md);
+        overflow:hidden;
+      }
     }
 
     /* Tab bar */
@@ -227,16 +256,18 @@
       flex-shrink:0;
       border-bottom:1px solid var(--border-md);
       background:var(--surface);
+      position:sticky; top:0; z-index:10;
     }
     .tab-btn {
       display:flex; align-items:center; justify-content:center; gap:7px;
-      padding:10px 12px;
-      font-size:11px; font-weight:600; letter-spacing:.07em;
+      padding:14px 12px;
+      font-size:13px; font-weight:600; letter-spacing:.03em;
       color:var(--txt-3);
       cursor:pointer;
       border:none; background:none;
       border-bottom:2px solid transparent;
       transition:color .2s, border-color .2s, background .2s;
+      min-height:44px;
     }
     .tab-btn:hover { color:var(--txt-2); background:var(--card-hover); }
     .tab-btn.active { color:var(--txt); border-bottom-color:var(--accent); border-bottom-width:2px; }
@@ -250,27 +281,70 @@
        reads correctly as the badge's inverted text in both themes */
     .tab-btn.active .tab-badge { background:var(--accent); color:var(--bg); }
 
-    /* Pane scroll areas */
+    /* Pane scroll areas — plain block flow on mobile (the page itself
+       scrolls); becomes an internally-scrolling flex pane on desktop */
     .pane {
-      flex:1; overflow-y:auto; padding:12px;
-      display:flex; flex-direction:column; gap:10px;
-      scrollbar-width:thin; scrollbar-color:var(--raised) transparent;
+      padding:14px;
+      display:flex; flex-direction:column; gap:12px;
     }
-    .pane::-webkit-scrollbar { width:4px; }
-    .pane::-webkit-scrollbar-thumb { background:var(--raised); border-radius:4px; }
+    @media (min-width: 900px) {
+      .pane {
+        flex:1; overflow-y:auto;
+        scrollbar-width:thin; scrollbar-color:var(--raised) transparent;
+      }
+      .pane::-webkit-scrollbar { width:4px; }
+      .pane::-webkit-scrollbar-thumb { background:var(--raised); border-radius:4px; }
+    }
     .pane[hidden] { display:none; }
 
     /* ── Card ─────────────────────────────────────────────── */
     .card {
       background:var(--card); border:1px solid var(--border);
-      border-radius:var(--r-lg); padding:12px 14px;
+      border-radius:var(--r-lg); padding:14px 16px;
     }
     .card-title {
-      font-size:9px; font-weight:700; letter-spacing:.14em;
+      font-size:11px; font-weight:700; letter-spacing:.1em;
       text-transform:uppercase; color:var(--txt-3);
       margin-bottom:10px; padding-bottom:7px;
       border-bottom:1px solid var(--border);
     }
+
+    /* ── Hero — the one-sentence answer, reuses the bg-{band} classes
+       so its colour always matches the same 5-band scale as everything
+       else on the page ─────────────────────────────────────────── */
+    .hero-card {
+      border-radius:var(--r-lg); padding:20px 18px; border:1px solid;
+    }
+    .hero-eyebrow {
+      font-size:12px; font-weight:600; text-transform:uppercase;
+      letter-spacing:.08em; opacity:.8; margin-bottom:8px;
+    }
+    .hero-pct { font-family:var(--f-head); font-size:42px; font-weight:800; line-height:1; }
+    .hero-desc { font-size:16px; line-height:1.5; margin-top:10px; }
+    .hero-zone { font-weight:700; }
+    .hero-meta { font-size:13px; opacity:.85; margin-top:10px; }
+
+    /* ── Model confidence note ───────────────────────────────── */
+    .confidence-note {
+      font-size:13px; color:var(--txt-2); line-height:1.5;
+      padding:12px 14px; border-radius:var(--r);
+      background:color-mix(in srgb, var(--txt) 3%, transparent);
+      border:1px solid var(--border);
+    }
+    .confidence-note b { color:var(--txt); }
+
+    /* ── Detailed forecast table, collapsed by default ───────── */
+    .details-card { padding:0; overflow:hidden; }
+    .details-card summary {
+      padding:14px 16px; cursor:pointer; font-weight:600; font-size:14px;
+      list-style:none; display:flex; align-items:center; justify-content:space-between;
+      color:var(--txt); min-height:44px;
+    }
+    .details-card summary::-webkit-details-marker { display:none; }
+    .details-card summary::after { content:'▸'; color:var(--txt-3); transition:transform .2s; font-size:12px; }
+    .details-card[open] summary::after { transform:rotate(90deg); }
+    .details-card .details-sub { padding:0 16px 10px; font-size:12px; color:var(--txt-3); }
+    .details-card #matrix-wrap { padding:0 16px 16px; overflow-x:auto; }
 
     /* ── Alert ────────────────────────────────────────────── */
     #alert-banner {
@@ -301,7 +375,7 @@
       text-align:center; padding:6px 4px; font-size:11px; font-weight:700;
       border-radius:5px; border:1px solid transparent; cursor:default;
       transition:filter .15s;
-      font-family:'Cascadia Code','Consolas',monospace;
+      font-family:var(--f-head);
     }
     .cell:hover { filter:brightness(1.3); }
 
@@ -350,7 +424,7 @@
     .pz-prob-row { display:flex; align-items:center; gap:8px; }
     .pz-pct {
       font-size:18px; font-weight:800; line-height:1;
-      font-family:'Cascadia Code','Consolas',monospace;
+      font-family:var(--f-head);
     }
     .pz-window { font-size:10px; color:var(--txt-3); }
     .pz-track {
@@ -387,7 +461,7 @@
     .az-top { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
     .az-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
     .az-name { flex:1; font-size:12px; font-weight:600; }
-    .az-count { font-size:11px; font-weight:700; font-family:'Cascadia Code',monospace; }
+    .az-count { font-size:11px; font-weight:700; font-family:var(--f-head); }
     .az-track {
       height:4px; background:var(--raised); border-radius:99px; overflow:hidden; margin-bottom:5px;
     }
@@ -404,9 +478,9 @@
     .ev-inner-row:hover { background:var(--card-hover); }
     .evi-mag {
       font-size:12px; font-weight:800; width:38px; flex-shrink:0;
-      font-family:'Cascadia Code',monospace;
+      font-family:var(--f-head);
     }
-    .evi-ago { font-size:10px; color:var(--txt-2); width:58px; flex-shrink:0; font-family:'Cascadia Code',monospace; }
+    .evi-ago { font-size:10px; color:var(--txt-2); width:58px; flex-shrink:0; font-family:var(--f-head); }
     .evi-zone { flex:1; font-size:11px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .evi-depth { font-size:10px; color:var(--txt-3); width:42px; text-align:right; flex-shrink:0; }
 
@@ -432,7 +506,7 @@
     .bar-bottom { display:flex; align-items:baseline; gap:8px; }
     .bar-effect { flex:1; font-size:10px; color:var(--txt-3); line-height:1.4; }
     .bar-pct { font-size:13px; font-weight:800; flex-shrink:0;
-               font-family:'Cascadia Code',monospace; }
+               font-family:var(--f-head); }
 
     /* ── Disclaimer ───────────────────────────────────────── */
     .disclaimer {
@@ -445,8 +519,19 @@
     .info { color:var(--txt-3); font-size:12px; padding:6px 0; }
     .err  { color:var(--high);  font-size:12px; padding:6px 0; }
 
-    /* ═══ Map ════════════════════════════════════════════════ */
-    #map { width:100%; height:100%; position:relative; }
+    /* ═══ Map ════════════════════════════════════════════════
+       Mobile: normal-height section in the scrolling page (the
+       answer already came first in the panel above). Desktop:
+       fills the remaining app-shell width. */
+    #map { width:100%; height:340px; position:relative; }
+    @media (min-width: 900px) {
+      #map { height:100%; }
+    }
+    /* The legend repeats the risk-scale key already shown above the
+       fold — on a small map it costs more room than it's worth */
+    @media (max-width: 899px) {
+      .map-legend { display:none; }
+    }
 
     /* Map layer toggle overlay */
     #map-controls {
@@ -530,12 +615,17 @@
       100%{box-shadow:0 0 0 0 transparent}
     }
 
-    /* ═══ Footer / event ticker ═══════════════════════════════ */
-    #footer {
-      flex-shrink:0; height:140px;
-      border-top:1px solid var(--border-md);
-      background:var(--surface);
-      display:flex; flex-direction:column;
+    /* ═══ Footer / event ticker — desktop only ═══════════════════
+       Mobile already has this same list in the Live Activity tab,
+       full-width and easier to read than a squeezed ticker row. */
+    #footer { display:none; }
+    @media (min-width: 900px) {
+      #footer {
+        display:flex; flex-direction:column;
+        flex-shrink:0; height:140px;
+        border-top:1px solid var(--border-md);
+        background:var(--surface);
+      }
     }
     #footer-hdr {
       flex-shrink:0; padding:5px 18px 4px;
@@ -566,19 +656,17 @@
       transition:background .12s; cursor:default;
     }
     .fev-row:hover { background:var(--card); }
-    .fev-mag { font-size:12px; font-weight:800; width:40px; flex-shrink:0; font-family:'Cascadia Code',monospace; }
+    .fev-mag { font-size:12px; font-weight:800; width:40px; flex-shrink:0; font-family:var(--f-head); }
     .fev-type {
       font-size:9px; font-weight:700; padding:1px 5px; border-radius:3px;
       width:36px; text-align:center; flex-shrink:0;
     }
-    .fev-ago  { font-size:10px; color:var(--txt-2); width:60px; flex-shrink:0; font-family:'Cascadia Code',monospace; }
+    .fev-ago  { font-size:10px; color:var(--txt-2); width:60px; flex-shrink:0; font-family:var(--f-head); }
     .fev-zone { flex:1; font-size:11px; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .fev-place{ font-size:10px; color:var(--txt-2); width:190px; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .fev-coord{ font-size:10px; color:var(--txt-3); width:110px; text-align:right; flex-shrink:0; font-family:'Cascadia Code',monospace; }
+    .fev-coord{ font-size:10px; color:var(--txt-3); width:110px; text-align:right; flex-shrink:0; font-family:var(--f-head); }
 
-    @media (max-width:820px) {
-      #main { grid-template-columns:1fr; }
-      #map  { min-height:280px; }
+    @media (max-width:900px) {
       .fev-place,.fev-coord { display:none; }
     }
   </style>
@@ -588,20 +676,17 @@
 <!-- ═══ Header ════════════════════════════════════════════ -->
 <div id="header">
   <div id="hdr-title">
-    <h1><span>Myanmar</span> Earthquake Prediction System</h1>
-    <p>Adaptive ML &nbsp;·&nbsp; USGS Real-Time Feed &nbsp;·&nbsp; MSc Data Science, University of Chester</p>
+    <h1 id="site-title">Myanmar Earthquake Forecast</h1>
+    <p id="hdr-meta"><span class="pdot"></span><span id="hdr-updated">Loading live data…</span></p>
   </div>
-  <div class="badges">
-    <span class="badge b-live"><span class="pdot g"></span>USGS LIVE</span>
-    <span class="badge b-ml">ML MODEL</span>
-    <span class="badge b-tick"><span class="pdot a"></span>REFRESH <span id="countdown">60</span>s</span>
+  <div class="hdr-controls">
+    <div class="country-toggle" id="country-toggle">
+      <button class="country-btn active" id="country-btn-myanmar" onclick="setCountry('myanmar')">Myanmar</button>
+      <button class="country-btn" id="country-btn-japan" onclick="setCountry('japan')">Japan</button>
+    </div>
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Switch theme">
       <span id="theme-toggle-label">DARK MODE</span>
     </button>
-  </div>
-  <div id="hdr-meta">
-    Live checked: <b id="live-ts">—</b><br>
-    Model generated: <b id="ml-ts">—</b>
   </div>
 </div>
 
@@ -614,11 +699,10 @@
     <!-- Tab bar -->
     <div id="tabs">
       <button class="tab-btn active" id="tab-pred" onclick="switchTab('pred')">
-        <span>PREDICTIONS</span>
-        <span class="tab-badge" id="tbadge-pred">ML</span>
+        <span>Forecast</span>
       </button>
       <button class="tab-btn" id="tab-live" onclick="switchTab('live')">
-        <span>LIVE ACTIVITY</span>
+        <span>Live Activity</span>
         <span class="tab-badge" id="tbadge-live">0</span>
       </button>
     </div>
@@ -628,44 +712,46 @@
 
       <div id="alert-banner"></div>
 
-      <!-- What are these? -->
-      <div class="intro-note">
-        <b>ML Prediction Zones</b> show where the adaptive model forecasts elevated seismic activity.
-        <b>Dashed rings</b> on the map mark each zone's spatial uncertainty.
-      </div>
+      <!-- The one-sentence answer most people actually came for -->
+      <div id="hero-wrap"><div class="info">Loading forecast…</div></div>
+
+      <!-- Plain-language note on how this forecast stays current -->
+      <div id="confidence-note" class="confidence-note"></div>
 
       <!-- Always-visible probability scale key — every percentage shown
            below is colour-coded to one of these 5 bands. -->
       <div class="risk-scale">
-        <div class="risk-chip bg-low r-low">LOW<span class="rs-range">&lt;20%</span></div>
-        <div class="risk-chip bg-guarded r-guarded">GUARDED<span class="rs-range">20&#8211;39%</span></div>
-        <div class="risk-chip bg-elevated r-elevated">ELEVATED<span class="rs-range">40&#8211;59%</span></div>
-        <div class="risk-chip bg-high r-high">HIGH<span class="rs-range">60&#8211;79%</span></div>
-        <div class="risk-chip bg-severe r-severe">SEVERE<span class="rs-range">&#8805;80%</span></div>
+        <div class="risk-chip bg-low r-low">Low<span class="rs-range">&lt;20%</span></div>
+        <div class="risk-chip bg-guarded r-guarded">Guarded<span class="rs-range">20&#8211;39%</span></div>
+        <div class="risk-chip bg-elevated r-elevated">Elevated<span class="rs-range">40&#8211;59%</span></div>
+        <div class="risk-chip bg-high r-high">High<span class="rs-range">60&#8211;79%</span></div>
+        <div class="risk-chip bg-severe r-severe">Severe<span class="rs-range">&#8805;80%</span></div>
       </div>
 
-      <!-- Probability matrix -->
+      <!-- 30-day bars — the simple breakdown -->
       <div class="card">
-        <div class="card-title">Probability of Exceedance — All Thresholds &amp; Windows</div>
-        <div id="matrix-wrap"><div class="info">Loading…</div></div>
-      </div>
-
-      <!-- 30-day bars -->
-      <div class="card">
-        <div class="card-title">30-Day Probability by Magnitude</div>
+        <div class="card-title">Chance of an earthquake in the next 30 days</div>
         <div id="bars-wrap"><div class="info">—</div></div>
       </div>
 
       <!-- Prediction zone cards -->
       <div class="card">
-        <div class="card-title">Predicted Risk Zones — click to fly to map</div>
+        <div class="card-title">Where — tap a place to see it on the map</div>
         <div id="pred-zones-wrap"><div class="info">—</div></div>
       </div>
 
+      <!-- Detailed table — collapsed by default, for anyone who wants
+           the full breakdown across every time window, not just 30 days -->
+      <details class="card details-card">
+        <summary>See the full forecast table (all time windows)</summary>
+        <p class="details-sub">Dashed rings on the map mark each zone's spatial uncertainty.</p>
+        <div id="matrix-wrap"><div class="info">Loading…</div></div>
+      </details>
+
       <div class="disclaimer">
-        <strong>Research output only.</strong> These are experimental MSc dissertation model outputs.
-        Probabilities reflect historical seismic patterns, not real-time ground truth.
-        Not for safety decisions.
+        <strong>Research forecast, not an official warning.</strong>
+        Built from patterns in past earthquakes — it estimates likelihood, not certainty.
+        Please follow official guidance for safety decisions.
       </div>
 
     </div>
@@ -675,19 +761,19 @@
 
       <!-- What is this? -->
       <div class="live-intro-note">
-        <b>Live seismic activity</b> sourced directly from USGS every 60 seconds.
-        <b>Solid dots</b> on the map show recent earthquake locations — darker means more recent.
+        Real earthquakes reported by USGS, checked every 60 seconds.
+        Darker dots on the map are more recent.
       </div>
 
       <!-- Active zones from USGS -->
       <div class="card">
-        <div class="card-title">Active Seismic Zones — Last 24 Hours (USGS)</div>
-        <div id="active-zones-wrap"><div class="info">Fetching USGS data…</div></div>
+        <div class="card-title">Where it's active right now (last 24h)</div>
+        <div id="active-zones-wrap"><div class="info">Checking for recent earthquakes…</div></div>
       </div>
 
       <!-- Recent events list inside panel -->
       <div class="card">
-        <div class="card-title">Recent Events — M 2.5+ Myanmar Region</div>
+        <div class="card-title" id="recent-events-title">Recent earthquakes</div>
         <div id="live-events-inner"><div class="info">—</div></div>
       </div>
 
@@ -700,26 +786,27 @@
     <!-- Layer toggles overlaid on map -->
     <div id="map-controls">
       <div class="map-toggle ml-t" id="toggle-ml" onclick="toggleLayer('ml')">
-        <span class="mt-dot ml-d"></span>ML Prediction Zones
+        <span class="mt-dot ml-d"></span>Forecast zones
       </div>
       <div class="map-toggle live-t" id="toggle-live" onclick="toggleLayer('live')">
-        <span class="mt-dot live-d"></span>Live USGS Events
+        <span class="mt-dot live-d"></span>Live earthquakes
       </div>
     </div>
   </div>
 
 </div>
 
-<!-- ═══ Footer — live event ticker ════════════════════════ -->
+<!-- ═══ Footer — live event ticker (desktop only; mobile has the
+     Live Activity tab for this, no need to show it twice) ═══════ -->
 <div id="footer">
   <div id="footer-hdr">
-    <div class="fhdr-left">
-      USGS Live Events — Myanmar Region (M 2.5+, 24 h)
+    <div class="fhdr-left" id="footer-title">
+      Recent earthquakes
       <span class="ev-chip" id="ev-total">—</span>
     </div>
     <div class="fhdr-right" id="footer-updated">—</div>
   </div>
-  <div id="footer-list"><div class="info" style="padding:7px 18px">Fetching…</div></div>
+  <div id="footer-list"><div class="info" style="padding:7px 18px">Checking for recent earthquakes…</div></div>
 </div>
 
 
@@ -727,15 +814,65 @@
 /* ═══════════════════════════════════════════════════════════
    Config & constants
 ═══════════════════════════════════════════════════════════ */
-const BOUNDS    = { minLat:10, maxLat:30, minLon:90, maxLon:105 };
 const USGS_FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson';
-const ML_URL    = 'predictions/latest_predictions.json';
 const USGS_INT  = 60000;
 const ML_INT    = 30 * 60000;
 
 const THRESHOLDS = [4.5, 5.0, 5.5];
 const WINDOWS    = [7, 10, 15, 30];
 const TH_LBL     = { 4.5:'M ≥ 4.5', 5.0:'M ≥ 5.0', 5.5:'M ≥ 5.5' };
+
+/* ═══════════════════════════════════════════════════════════
+   Countries — each carries its own bounding box (used to filter
+   the global USGS live feed client-side, so no separate feed URL
+   is needed per country), predictions file, map view, and zone
+   map (for labelling raw live events by fault zone). Zone
+   boundaries mirror config.py / config_japan.py on the backend.
+═══════════════════════════════════════════════════════════ */
+const COUNTRIES = {
+  myanmar: {
+    label: 'Myanmar',
+    title: 'Myanmar Earthquake Forecast',
+    bounds: { minLat:10, maxLat:30, minLon:90, maxLon:105 },
+    mapCenter: [20.5, 96.5], mapZoom: 5,
+    predictionsUrl: 'predictions/latest_predictions.json',
+    defaultZoneName: 'Myanmar Region',
+    zoneMap: {
+      'Sagaing Fault Zone':   {lat:[18,25],   lon:[94.5,96.5]},
+      'Central Myanmar':      {lat:[18.5,23], lon:[94,100]},
+      'Northern Myanmar':     {lat:[23,28.5], lon:[95,101]},
+      'Indo-Burman Range':    {lat:[20,27],   lon:[92,95]},
+      'Southern Myanmar':     {lat:[14,18.5], lon:[97,102]},
+      'Andaman Sea Region':   {lat:[10,16],   lon:[92,99]},
+      'Yunnan Border Region': {lat:[23,27],   lon:[99,105]},
+      'Northern Thailand':    {lat:[15,20],   lon:[98,105]},
+      'Chin Hills / Assam':   {lat:[22,28.5], lon:[90,93.5]},
+      'Bay of Bengal North':  {lat:[18,23],   lon:[90,92.5]},
+    },
+  },
+  japan: {
+    label: 'Japan',
+    title: 'Japan Earthquake Forecast',
+    bounds: { minLat:24, maxLat:46, minLon:122, maxLon:146 },
+    mapCenter: [36.5, 138], mapZoom: 5,
+    predictionsUrl: 'predictions/japan_latest_predictions.json',
+    defaultZoneName: 'Japan Region',
+    zoneMap: {
+      'Nankai Trough':                        {lat:[31,34.5], lon:[131,139]},
+      'Japan Trench (Tohoku)':                {lat:[35,41],   lon:[141,145]},
+      'Sagami Trough (Kanto)':                {lat:[34.5,36], lon:[138.5,140.5]},
+      'Izu-Bonin Arc':                        {lat:[24,34],   lon:[139,142]},
+      'Median Tectonic Line (SW Japan)':      {lat:[32,35],   lon:[130,135]},
+      'Hokkaido / Kuril Trench':              {lat:[41,46],   lon:[139,146]},
+      'Ryukyu Trench (Okinawa)':              {lat:[24,30],   lon:[122,131]},
+      'Niigata-Kobe Tectonic Zone':           {lat:[35,38],   lon:[136,139.5]},
+      'Itoigawa-Shizuoka Line (Fossa Magna)': {lat:[35,37],   lon:[137.5,139]},
+      'Kanto Triple Junction':                {lat:[35,36.5], lon:[139,140.5]},
+    },
+  },
+};
+let currentCountry = 'myanmar';
+function cc() { return COUNTRIES[currentCountry]; }
 
 /* ═══════════════════════════════════════════════════════════
    Theme — light / dark, manual toggle overrides OS preference,
@@ -829,31 +966,19 @@ function utcStr(ms) {
   return new Date(ms).toISOString().replace('T',' ').slice(0,16)+' UTC';
 }
 function inBounds(lat,lon) {
-  return lat>=BOUNDS.minLat&&lat<=BOUNDS.maxLat&&lon>=BOUNDS.minLon&&lon<=BOUNDS.maxLon;
+  const b = cc().bounds;
+  return lat>=b.minLat&&lat<=b.maxLat&&lon>=b.minLon&&lon<=b.maxLon;
 }
-
-const ZONE_MAP = {
-  'Sagaing Fault Zone':   {lat:[18,25],   lon:[94.5,96.5]},
-  'Central Myanmar':      {lat:[18.5,23], lon:[94,100]},
-  'Northern Myanmar':     {lat:[23,28.5], lon:[95,101]},
-  'Indo-Burman Range':    {lat:[20,27],   lon:[92,95]},
-  'Southern Myanmar':     {lat:[14,18.5], lon:[97,102]},
-  'Andaman Sea Region':   {lat:[10,16],   lon:[92,99]},
-  'Yunnan Border Region': {lat:[23,27],   lon:[99,105]},
-  'Northern Thailand':    {lat:[15,20],   lon:[98,105]},
-  'Chin Hills / Assam':   {lat:[22,28.5], lon:[90,93.5]},
-  'Bay of Bengal North':  {lat:[18,23],   lon:[90,92.5]},
-};
 function identifyZone(lat,lon) {
-  for (const [name,b] of Object.entries(ZONE_MAP))
+  for (const [name,b] of Object.entries(cc().zoneMap))
     if (lat>=b.lat[0]&&lat<=b.lat[1]&&lon>=b.lon[0]&&lon<=b.lon[1]) return name;
-  return 'Myanmar Region';
+  return cc().defaultZoneName;
 }
 
 /* ═══════════════════════════════════════════════════════════
    Map setup — tile layer swaps light_all/dark_all with the theme
 ═══════════════════════════════════════════════════════════ */
-const map = L.map('map',{center:[20.5,96.5],zoom:5});
+const map = L.map('map',{center:COUNTRIES.myanmar.mapCenter, zoom:COUNTRIES.myanmar.mapZoom});
 let currentTileLayer = null;
 function swapMapTiles() {
   const theme = cssVar('--map-tiles') || 'light_all';
@@ -901,7 +1026,7 @@ function renderLegendContent(d) {
     row(dot(cssVar('--live-old'),7), 'Older','');
 }
 legend.onAdd = () => {
-  legendEl = L.DomUtil.create('div');
+  legendEl = L.DomUtil.create('div', 'map-legend');
   renderLegendContent(legendEl);
   return legendEl;
 };
@@ -943,6 +1068,33 @@ function switchTab(t) {
     const pane = document.getElementById(`pane-${id}`);
     pane.hidden = id!==t;
   });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Country switching
+═══════════════════════════════════════════════════════════ */
+function setCountry(name) {
+  if (!COUNTRIES[name] || name === currentCountry) return;
+  currentCountry = name;
+
+  document.querySelectorAll('.country-btn').forEach(b =>
+    b.classList.toggle('active', b.id === `country-btn-${name}`));
+  document.getElementById('site-title').textContent = cc().title;
+  document.getElementById('page-title').textContent = cc().title;
+  map.setView(cc().mapCenter, cc().mapZoom);
+
+  clearML();
+  clearLive();
+  lastPreds  = [];
+  lastEvents = [];
+  document.getElementById('hero-wrap').innerHTML = '<div class="info">Loading forecast…</div>';
+  document.getElementById('confidence-note').innerHTML = '';
+  document.getElementById('matrix-wrap').innerHTML = '<div class="info">Loading…</div>';
+  document.getElementById('bars-wrap').innerHTML = '<div class="info">—</div>';
+  document.getElementById('pred-zones-wrap').innerHTML = '<div class="info">—</div>';
+
+  fetchUSGS();
+  fetchML();
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1197,7 +1349,7 @@ function renderActiveZones(events) {
 }
 
 function renderLiveInner(events) {
-  if (!events.length) return '<div class="info">No M 2.5+ events in region (24h).</div>';
+  if (!events.length) return '<div class="info">No M 2.5+ earthquakes in this region in the last 24 hours.</div>';
   return `<div class="ev-inner-list">`+events.slice(0,20).map(ev => {
     const c = liveCol(ev.time);
     return `<div class="ev-inner-row">
@@ -1211,7 +1363,7 @@ function renderLiveInner(events) {
 
 function renderFooter(events) {
   if (!events.length)
-    return `<div class="info" style="padding:7px 18px">No M 2.5+ events in Myanmar region (last 24h).</div>`;
+    return `<div class="info" style="padding:7px 18px">No M 2.5+ earthquakes in the ${cc().label} region in the last 24 hours.</div>`;
   return events.slice(0,50).map(ev => {
     const c   = liveCol(ev.time);
     const mc  = magCol(ev.mag);
@@ -1237,7 +1389,7 @@ function showAlert(events) {
     const c = rCol(top.mag>=5.5?.9:.7);
     banner.style.display = 'block';
     banner.innerHTML = `
-      <div class="al-title" style="color:${c}">ALERT — M${top.mag.toFixed(1)} detected ${timeAgo(top.time)}</div>
+      <div class="al-title" style="color:${c}">A magnitude ${top.mag.toFixed(1)} earthquake was just detected, ${timeAgo(top.time)}</div>
       <div class="al-sub">${top.zone} — ${top.place}</div>`;
   } else {
     banner.style.display = 'none';
@@ -1245,9 +1397,58 @@ function showAlert(events) {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   Hero — the single plain-language headline most visitors are
+   actually here for. Picks the highest 30-day probability across
+   all magnitude thresholds (30 days is the window people intuit
+   best), and describes it entirely in words already in the data
+   (magnitude_label / magnitude_effect) rather than jargon.
+═══════════════════════════════════════════════════════════ */
+function renderHero(preds) {
+  const wrap = document.getElementById('hero-wrap');
+  if (!preds.length) {
+    wrap.innerHTML = '<div class="info">Forecast unavailable right now.</div>';
+    return;
+  }
+  const pool = preds.filter(p => p.prediction_window_days === 30);
+  const top = (pool.length ? pool : preds).slice()
+    .sort((a,b) => b.probability - a.probability)[0];
+
+  const pct  = (top.probability*100).toFixed(0);
+  const bc   = bCls(top.probability);
+  const zone = top.primary_zone || cc().label;
+  const magWord = (top.magnitude_label || '').replace(/\s*\(.+\)$/,'').toLowerCase() || 'notable';
+
+  wrap.innerHTML = `
+    <div class="hero-card ${bc}">
+      <div class="hero-eyebrow">${rLbl(top.probability)} · next 30 days</div>
+      <div class="hero-pct">${pct}%</div>
+      <div class="hero-desc">chance of a <b>${magWord}</b> earthquake near
+        <span class="hero-zone">${zone}</span></div>
+      ${top.magnitude_effect ? `<div class="hero-meta">${top.magnitude_effect}</div>` : ''}
+    </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Confidence note — honest, plain-language framing of what
+   "adaptive" actually means here: the model has processed some
+   number of real update rounds since it was built (0 is a normal,
+   legitimate value for a freshly trained model, not an error).
+═══════════════════════════════════════════════════════════ */
+function renderConfidence(preds) {
+  const el = document.getElementById('confidence-note');
+  if (!preds.length) { el.innerHTML = ''; return; }
+  const n = preds[0].model_update_count ?? 0;
+  const learned = n === 0
+    ? `This forecast was just built and hasn't had a chance to learn from new earthquakes yet.`
+    : `This forecast has already learned from <b>${n} round${n===1?'':'s'}</b> of real earthquake data since it was first built.`;
+  el.innerHTML = `${learned} It keeps checking itself against what actually happens and adjusts over time, instead of staying frozen at its original training.`;
+}
+
+/* ═══════════════════════════════════════════════════════════
    Repaint everything from cached state — shared by the fetch
-   callbacks below and by the theme toggle (no data changed on
-   a theme switch, only the colours it's painted with).
+   callbacks below, the theme toggle, and the country switch
+   (no data changed on a theme switch, only the colours it's
+   painted with; country switching clears state before refetching).
 ═══════════════════════════════════════════════════════════ */
 function refreshView() {
   renderLiveMap(lastEvents);
@@ -1261,18 +1462,36 @@ function refreshView() {
     document.getElementById('bars-wrap').innerHTML       = renderBars(lastPreds);
     document.getElementById('pred-zones-wrap').innerHTML = renderPredZones(lastPreds);
     renderMLMap(lastPreds);
+    renderHero(lastPreds);
+    renderConfidence(lastPreds);
   }
   if (legendEl) renderLegendContent(legendEl);
 }
 
 /* ═══════════════════════════════════════════════════════════
+   Header "last updated" status — one relative-time line instead
+   of raw UTC timestamps and a visible countdown, ticking on its
+   own so it stays current between fetches.
+═══════════════════════════════════════════════════════════ */
+let lastLiveCheckMs = null;
+function updateHeaderStatus() {
+  const el = document.getElementById('hdr-updated');
+  el.textContent = lastLiveCheckMs == null
+    ? 'Loading live data…'
+    : `Live data checked ${timeAgo(lastLiveCheckMs)}`;
+}
+setInterval(updateHeaderStatus, 15000);
+
+/* ═══════════════════════════════════════════════════════════
    Fetch USGS
 ═══════════════════════════════════════════════════════════ */
 async function fetchUSGS() {
+  const requestedCountry = currentCountry;
   try {
     const res  = await fetch(USGS_FEED+'?t='+Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
+    if (requestedCountry !== currentCountry) return; // country changed mid-flight
 
     lastEvents = data.features
       .map(f=>({
@@ -1287,17 +1506,18 @@ async function fetchUSGS() {
       .map(e=>({...e, zone:identifyZone(e.lat,e.lon)}))
       .sort((a,b)=>b.time-a.time);
 
-    const ts = new Date().toISOString().replace('T',' ').slice(0,16)+' UTC';
-    document.getElementById('live-ts').textContent = ts;
+    lastLiveCheckMs = Date.now();
+    updateHeaderStatus();
     document.getElementById('ev-total').textContent = lastEvents.length;
-    document.getElementById('footer-updated').textContent = `Updated ${ts}`;
+    document.getElementById('footer-updated').textContent = timeAgo(lastLiveCheckMs);
     document.getElementById('tbadge-live').textContent = lastEvents.length;
 
     refreshView();
 
   } catch(err) {
+    if (requestedCountry !== currentCountry) return;
     document.getElementById('footer-list').innerHTML =
-      `<div class="err" style="padding:7px 18px">USGS error: ${err.message}</div>`;
+      `<div class="err" style="padding:7px 18px">Couldn't reach USGS: ${err.message}</div>`;
   }
 }
 
@@ -1305,33 +1525,43 @@ async function fetchUSGS() {
    Fetch ML predictions
 ═══════════════════════════════════════════════════════════ */
 async function fetchML() {
+  const requestedCountry = currentCountry;
   try {
-    const res   = await fetch(ML_URL+'?t='+Date.now());
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    lastPreds = await res.json();
-    if (!lastPreds.length) return;
+    const res = await fetch(cc().predictionsUrl+'?t='+Date.now());
+    if (requestedCountry !== currentCountry) return; // country changed mid-flight
 
-    document.getElementById('ml-ts').textContent =
-      (lastPreds[0].generated_at||'').slice(0,16);
+    if (!res.ok) {
+      if (res.status === 404) {
+        document.getElementById('hero-wrap').innerHTML =
+          `<div class="info">${cc().label}'s forecast model is still being trained — check back soon.</div>`;
+      } else {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return;
+    }
+    lastPreds = await res.json();
+    if (requestedCountry !== currentCountry) return;
+    if (!lastPreds.length) return;
 
     refreshView();
 
   } catch(err) {
-    document.getElementById('matrix-wrap').innerHTML =
-      `<div class="err">Predictions unavailable: ${err.message}</div>`;
+    if (requestedCountry !== currentCountry) return;
+    document.getElementById('hero-wrap').innerHTML =
+      `<div class="err">Forecast unavailable: ${err.message}</div>`;
   }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Countdown & start
+   Refresh cadence & start
 ═══════════════════════════════════════════════════════════ */
 let cd = 60;
 setInterval(()=>{
   cd--;
-  document.getElementById('countdown').textContent = Math.max(0,cd);
   if (cd<=0) { fetchUSGS(); cd=60; }
 },1000);
 
+updateHeaderStatus();
 fetchUSGS();
 fetchML();
 setInterval(fetchML, ML_INT);
