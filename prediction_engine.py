@@ -33,6 +33,7 @@ from spatial_predictor import (
     identify_zone,
     format_coords,
     format_radius,
+    format_depth,
 )
 
 
@@ -226,12 +227,16 @@ def generate_predictions(model,
                 "primary_lat":            primary_loc["centroid_lat"],
                 "primary_lon":            primary_loc["centroid_lon"],
                 "primary_radius_km":      primary_loc["radius_km"],
+                "primary_depth_km":       primary_loc.get("centroid_depth_km"),
+                "primary_depth_range_km": primary_loc.get("depth_range_km"),
                 # All top locations
                 "location_predictions":   location_predictions,
                 "disclaimer": (
                     "Probabilistic estimate only. Coordinates indicate the "
                     "centroid of recent seismic clustering, not a precise "
-                    "epicenter. Radius reflects spatial uncertainty. "
+                    "epicenter. Radius and depth reflect spatial "
+                    "uncertainty, both tighter where recent activity is "
+                    "well-clustered and wider where it is not. "
                     "Not for operational early-warning use."
                 ),
             })
@@ -373,6 +378,8 @@ def print_predictions(predictions: list,
             p_lat   = pred["primary_lat"]
             p_lon   = pred["primary_lon"]
             p_rad   = pred["primary_radius_km"]
+            p_depth = pred.get("primary_depth_km")
+            p_drange = pred.get("primary_depth_range_km")
 
             print(f"\n  {window}-DAY WINDOW  ({d_start} to {d_end})")
             print(f"  Probability : {_prob_bar(prob)}  [{conf}]")
@@ -385,6 +392,7 @@ def print_predictions(predictions: list,
             print(f"    Est. Lat    : {p_lat:.3f} N")
             print(f"    Est. Lon    : {p_lon:.3f} E")
             print(f"    Radius      : {format_radius(p_rad)}")
+            print(f"    Depth       : {format_depth(p_depth, p_drange)}")
 
             # Secondary locations
             other_locs = pred.get("location_predictions", [])[1:]

@@ -731,6 +731,19 @@
       .map-toggle { padding:9px 12px; min-height:44px; }
       .leaflet-control-zoom a { width:40px !important; height:40px !important; line-height:40px !important; }
     }
+
+    /* Short viewports (phone landscape is the main case: ~360-430px tall)
+       — the portrait header eats a disproportionate share of a short
+       screen, which combined with the sheet's percentage-of-height snap
+       points left "peek" showing nothing but the tab bar, not even the
+       headline answer. Compact header here; the sheet-state pixel floors
+       in JS (see initSheetDrag) handle the rest. */
+    @media (max-width: 899px) and (max-height: 500px) {
+      #header { padding:6px 14px; gap:8px; }
+      #hdr-title h1 { font-size:15px; }
+      #hdr-title p { font-size:11px; }
+      .country-btn, .theme-toggle { min-height:32px; padding:5px 10px; font-size:11px; }
+    }
   </style>
 </head>
 <body>
@@ -1154,24 +1167,36 @@ function flyToZone(lat,lon,name) {
    sidebar there, see the >=900px CSS).
 ═══════════════════════════════════════════════════════════ */
 const SHEET_STATES = { peek: 0.36, half: 0.62, full: 0.90 };
+// Minimum pixel heights per state, for short viewports (phone landscape is
+// the real case: ~360-430px tall). Percentages alone let "peek" collapse to
+// ~114px there -- not even enough to show the headline percentage, just the
+// tab bar. These floors are only reachable when the viewport allows: the
+// final `mainHeight() - 40` cap in pxForState still guarantees at least a
+// sliver of map stays visible even on a very short screen.
+const SHEET_MIN_PX = { peek: 200, half: 300, full: 380 };
 let sheetState = 'peek';
 function isMobileLayout() { return window.matchMedia('(max-width: 899px)').matches; }
 
-// Fractions are of the space actually available below the header
-// (#main's own height), not the raw viewport -- using window.innerHeight
-// let the "full" state (90%) overshoot #main and clip against the
-// header, eating the map sliver that state is supposed to leave visible.
-// Shared by every path that sets sheet height (tap/tab-switch/flyToZone
-// via setSheetState, and the drag handlers below) so they can't drift
-// out of sync with each other again.
-function pxFor(frac) { return document.getElementById('main').clientHeight * frac; }
+function mainHeight() { return document.getElementById('main').clientHeight; }
+
+// The space actually available below the header (#main's own height), not
+// the raw viewport -- using window.innerHeight let "full" (90%) overshoot
+// #main and clip against the header, eating the map sliver it's supposed to
+// leave visible. Shared by every path that sets sheet height (tap/tab-switch
+// /flyToZone via setSheetState, and the drag handlers below) so they can't
+// drift out of sync with each other again.
+function pxForState(state) {
+  const h = mainHeight();
+  const withFloor = Math.max(h * SHEET_STATES[state], SHEET_MIN_PX[state]);
+  return Math.min(withFloor, h - 40); // always leave a sliver of map visible
+}
 
 function applySheetHeight(cssValue) {
   document.getElementById('panel').style.setProperty('--sheet-h', cssValue);
 }
 function setSheetState(state) {
   sheetState = state;
-  applySheetHeight(`${pxFor(SHEET_STATES[state])}px`);
+  applySheetHeight(`${pxForState(state)}px`);
 }
 
 (function initSheetDrag() {
@@ -1179,16 +1204,16 @@ function setSheetState(state) {
   const handle = document.getElementById('sheet-handle');
   let dragging = false, moved = false, startY = 0, startPx = 0;
 
-  const clampPx     = px  => Math.min(pxFor(SHEET_STATES.full), Math.max(pxFor(SHEET_STATES.peek), px));
-  const nearestState = px => Object.entries(SHEET_STATES)
-    .reduce((best, [name, frac]) =>
-      Math.abs(pxFor(frac) - px) < Math.abs(pxFor(SHEET_STATES[best]) - px) ? name : best, 'peek');
+  const clampPx     = px  => Math.min(pxForState('full'), Math.max(pxForState('peek'), px));
+  const nearestState = px => Object.keys(SHEET_STATES)
+    .reduce((best, name) =>
+      Math.abs(pxForState(name) - px) < Math.abs(pxForState(best) - px) ? name : best, 'peek');
 
   handle.addEventListener('pointerdown', e => {
     if (!isMobileLayout()) return;
     dragging = true; moved = false;
     startY = e.clientY;
-    startPx = pxFor(SHEET_STATES[sheetState]);
+    startPx = pxForState(sheetState);
     panel.classList.add('dragging');
     try { handle.setPointerCapture(e.pointerId); } catch { /* no active pointer to capture */ }
   });
@@ -1281,7 +1306,8 @@ function zoneScores(preds) {
     p.location_predictions.forEach(loc => {
       if (!z[loc.zone] || p.probability > z[loc.zone].maxProb)
         z[loc.zone] = { name:loc.zone, lat:loc.centroid_lat, lon:loc.centroid_lon,
-          radius_km:loc.radius_km, maxProb:p.probability,
+          radius_km:loc.radius_km, depth_km:loc.centroid_depth_km,
+          depth_range_km:loc.depth_range_km, maxProb:p.probability,
           count:loc.event_count||0, maxMag:loc.max_magnitude,
           lastSeen:loc.last_event_time };
     })
@@ -1391,10 +1417,12 @@ function renderMLMap(preds) {
       <hr class="pop-divider">
       <span class="pop-label">Centre</span> ${z.lat.toFixed(3)}°N, ${z.lon.toFixed(3)}°E<br>
       <span class="pop-label">Uncertainty radius</span> ~${z.radius_km} km<br>
-      <span class="pop-label">Recent events (90d)</span> ${z.count}<br>
+      <span class="pop-label">Est. depth</span> ${z.depth_km!=null ? `~${z.depth_km.toFixed(0)} km (&plusmn;${z.depth_range_km.toFixed(0)} km)` : 'unknown - no recent events'}<br>
+      <span class="pop-label">Recent nearby events</span> ${z.count}<br>
       <span class="pop-label">Max recorded</span> M${z.maxMag??'N/A'}<br>
       <span style="color:var(--txt-3);font-size:10px">This ring shows the spatial uncertainty of the prediction,
-      not a precise epicentre location.</span>`;
+      not a precise epicentre location. Depth is estimated the same way, from
+      recent nearby events.</span>`;
 
     /* Dashed ring — distinctive from live event dots */
     addML(L.circle([z.lat, z.lon], {

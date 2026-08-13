@@ -49,6 +49,39 @@ def identify_zone(lat: float, lon: float) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Confidence-tiered precision floors.
+#
+# A tight radius (or depth spread) computed from only 2-3 events could just
+# be coincidence, not genuine confidence - it isn't allowed to claim the
+# same precision as the same tight number backed by dozens of clustered
+# events. Floors loosen as event_count drops, so "how precise" is honestly
+# tied to "how much real data actually supports it", not one fixed number
+# applied regardless of sample size. 5km / 3km (the tightest tiers) are
+# reachable only when a zone has genuinely dense recent clustering; most
+# zones today land in the middle tiers - see the README's location
+# precision section for where the wider floor actually comes from.
+# ---------------------------------------------------------------------------
+def _radius_floor_km(n_events: int) -> float:
+    if n_events >= 40:
+        return 5.0
+    if n_events >= 25:
+        return 10.0
+    if n_events >= 15:
+        return 20.0
+    return 30.0
+
+
+def _depth_floor_km(n_events: int) -> float:
+    if n_events >= 40:
+        return 3.0
+    if n_events >= 25:
+        return 5.0
+    if n_events >= 15:
+        return 8.0
+    return 10.0
+
+
+# ---------------------------------------------------------------------------
 # Compute zone-level spatial statistics from recent catalog
 # ---------------------------------------------------------------------------
 def compute_zone_spatial_stats(recent_events: pd.DataFrame,
@@ -56,12 +89,14 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
                                 min_magnitude:  float = 3.0) -> dict:
     """
     For each geographic zone, compute:
-      - event_count    : number of recent events
-      - centroid_lat   : magnitude-weighted mean latitude
-      - centroid_lon   : magnitude-weighted mean longitude
-      - radius_km      : 1-sigma spread of events around centroid (km)
-      - max_magnitude  : largest recent event in zone
-      - last_event_time: most recent event time
+      - event_count      : number of recent events
+      - centroid_lat      : magnitude-weighted mean latitude
+      - centroid_lon      : magnitude-weighted mean longitude
+      - radius_km         : 1-sigma spread of events around centroid (km)
+      - centroid_depth_km : magnitude-weighted mean depth
+      - depth_range_km    : 1-sigma spread of event depths (km)
+      - max_magnitude     : largest recent event in zone
+      - last_event_time   : most recent event time
 
     Parameters
     ----------
@@ -136,9 +171,12 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
         weights = group["weight"].values
         total_w = weights.sum()
 
+        n_events = len(group)
+
         # Weighted centroid
         centroid_lat = float(np.average(group["latitude"],  weights=weights))
         centroid_lon = float(np.average(group["longitude"], weights=weights))
+        centroid_depth = float(np.average(group["depth"], weights=weights))
 
         # Compute radius as weighted RMS distance from centroid
         distances = group.apply(
@@ -153,8 +191,15 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
             radius_km = float(
                 np.sqrt(np.average(distances ** 2, weights=weights))
             )
+            # Depth spread: same weighted-RMS-from-mean logic as the
+            # horizontal radius, just on the depth axis instead of the
+            # haversine distance.
+            depth_deviations = (group["depth"].values - centroid_depth) ** 2
+            depth_range_km = float(np.sqrt(np.average(depth_deviations, weights=weights)))
         else:
-            # Single event - use zone half-diagonal as radius
+            # Single event - use zone half-diagonal as radius, and the
+            # loosest depth-confidence tier (one point says nothing about
+            # spread).
             bounds = LOCATION_ZONES.get(zone_name, {})
             if bounds:
                 lat_span = bounds["lat"][1] - bounds["lat"][0]
@@ -165,28 +210,26 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
                 ) / 2.0
             else:
                 radius_km = 150.0
+            depth_range_km = _depth_floor_km(1)
 
-        # Apply minimum and maximum radius bounds.
-        # Min 30 km: the precision ceiling this system is working toward as
-        # its adaptive models accumulate more confirmed real earthquakes to
-        # cluster on (roughly typical instrumental epicentre uncertainty for
-        # a moderately-dense regional seismic network - not reachable yet
-        # with the current data volume for most zones, but the calculation
-        # itself is never artificially prevented from getting there; it was
-        # previously floored at 50km, a number chosen before this floor
-        # was treated as a target rather than just "close enough").
-        # Max 400 km (zone is too diffuse to narrow further).
-        radius_km = max(30.0, min(radius_km, 400.0))
+        # Apply minimum and maximum bounds, confidence-tiered by how many
+        # events actually back the estimate (see _radius_floor_km /
+        # _depth_floor_km above) rather than one fixed floor regardless of
+        # sample size. Max 400km / 60km: too diffuse to narrow further.
+        radius_km      = max(_radius_floor_km(n_events), min(radius_km, 400.0))
+        depth_range_km = max(_depth_floor_km(n_events), min(depth_range_km, 60.0))
 
         zone_stats[zone_name] = {
-            "event_count":     int(len(group)),
-            "centroid_lat":    round(centroid_lat, 3),
-            "centroid_lon":    round(centroid_lon, 3),
-            "radius_km":       round(radius_km, 1),
-            "max_magnitude":   round(float(group["magnitude"].max()), 1),
-            "mean_magnitude":  round(float(group["magnitude"].mean()), 2),
-            "last_event_time": str(group["time"].max()),
-            "total_weight":    round(float(total_w), 2),
+            "event_count":       n_events,
+            "centroid_lat":      round(centroid_lat, 3),
+            "centroid_lon":      round(centroid_lon, 3),
+            "radius_km":         round(radius_km, 1),
+            "centroid_depth_km": round(centroid_depth, 1),
+            "depth_range_km":    round(depth_range_km, 1),
+            "max_magnitude":     round(float(group["magnitude"].max()), 1),
+            "mean_magnitude":    round(float(group["magnitude"].mean()), 2),
+            "last_event_time":   str(group["time"].max()),
+            "total_weight":      round(float(total_w), 2),
         }
 
     return zone_stats
@@ -276,25 +319,32 @@ def build_location_prediction(zone_name: str,
             centroid_lat, centroid_lon = 20.0, 96.0
             radius_km = 300.0
         return {
-            "zone":            zone_name,
-            "centroid_lat":    round(centroid_lat, 3),
-            "centroid_lon":    round(centroid_lon, 3),
-            "radius_km":       radius_km,
-            "event_count":     0,
-            "max_magnitude":   None,
-            "confidence_note": "Using zone centroid - no events in computed window",
+            "zone":              zone_name,
+            "centroid_lat":      round(centroid_lat, 3),
+            "centroid_lon":      round(centroid_lon, 3),
+            "radius_km":         radius_km,
+            # No recent events to estimate depth from - reported as
+            # unknown rather than guessed, unlike the horizontal position
+            # which at least has a real fault-zone centroid to fall back on.
+            "centroid_depth_km": None,
+            "depth_range_km":    None,
+            "event_count":       0,
+            "max_magnitude":     None,
+            "confidence_note":   "Using zone centroid - no events in computed window",
         }
 
     return {
-        "zone":            zone_name,
-        "centroid_lat":    stats["centroid_lat"],
-        "centroid_lon":    stats["centroid_lon"],
-        "radius_km":       stats["radius_km"],
-        "event_count":     stats["event_count"],
-        "max_magnitude":   stats["max_magnitude"],
-        "mean_magnitude":  stats["mean_magnitude"],
-        "last_event_time": stats["last_event_time"],
-        "confidence_note": confidence_note,
+        "zone":              zone_name,
+        "centroid_lat":      stats["centroid_lat"],
+        "centroid_lon":      stats["centroid_lon"],
+        "radius_km":         stats["radius_km"],
+        "centroid_depth_km": stats["centroid_depth_km"],
+        "depth_range_km":    stats["depth_range_km"],
+        "event_count":       stats["event_count"],
+        "max_magnitude":     stats["max_magnitude"],
+        "mean_magnitude":    stats["mean_magnitude"],
+        "last_event_time":   stats["last_event_time"],
+        "confidence_note":   confidence_note,
     }
 
 
@@ -316,3 +366,9 @@ def format_radius(radius_km: float) -> str:
         return f"~{radius_km:.0f} km radius  [LOW-MODERATE location precision]"
     else:
         return f"~{radius_km:.0f} km radius  [LOW location precision - broad area]"
+
+
+def format_depth(depth_km, depth_range_km) -> str:
+    if depth_km is None:
+        return "unknown - no recent events to estimate from"
+    return f"~{depth_km:.0f} km (+/- {depth_range_km:.0f} km)"

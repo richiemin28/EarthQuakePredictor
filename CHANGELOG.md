@@ -1,5 +1,45 @@
 # Changelog
 
+## v1.2.0 — Depth prediction, confidence-scaled precision, mobile landscape fix
+
+### Added
+
+- **Depth prediction.** Every location prediction now includes an estimated
+  depth and depth uncertainty (`primary_depth_km` / `primary_depth_range_km`
+  in the JSON, shown in the map popup), computed the same way the
+  horizontal location already was: magnitude/recency-weighted mean and
+  spread of recent nearby events' recorded depths. Same descriptive-
+  statistic honesty as the horizontal radius - not a physically modelled
+  rupture depth.
+
+### Changed
+
+- **The uncertainty radius floor is now confidence-scaled, not one fixed
+  number.** v1.1.0 lowered the floor from 50km to a flat 30km. It's now
+  tiered by how many recent events actually back the estimate - as low as
+  **5km** when a zone has 40+ well-clustered recent events, loosening to
+  30km when there are fewer than 15. A tight radius from 2-3 events could
+  just be coincidence, not genuine confidence; it shouldn't claim the same
+  precision as the same tight number backed by dozens of events. Depth
+  uncertainty uses the same tiering (3km down to 10km). See the README's
+  location precision section for the full table.
+
+### Fixed
+
+- **Mobile landscape orientation was showing almost nothing.** The bottom
+  sheet's "peek" state was a fixed percentage of available height with no
+  minimum - on a landscape phone (~390px tall), that collapsed to ~114px,
+  not even enough to show the headline percentage, just the tab bar. Sheet
+  states now have pixel floors alongside their percentages, and the header
+  compacts itself on short viewports (`max-height: 500px`) to free up more
+  room for the sheet in the first place.
+- A stale map-popup label read "Recent events (90d)" - left over from
+  before spatial stats moved to a per-forecast-window lookback (14-45 days,
+  not a fixed 90). Now just "Recent nearby events", accurate regardless of
+  which window is driving the display.
+
+---
+
 ## v1.1.0 — Precise, evolving location predictions
 
 Follow-up to v1.0.0's multi-country stable release, focused entirely on the

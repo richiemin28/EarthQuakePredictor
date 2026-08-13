@@ -2,7 +2,10 @@
 generate.py
 Lightweight prediction refresh script — runs in GitHub Actions every 6 hours.
 Does NOT retrain the model. Loads the saved adaptive model, fetches the last
-90 days of USGS data for fresh spatial stats, then saves new predictions.
+90 days of USGS data and merges it with the historical catalog's most recent
+500 events (spanning several years, not just 90 days) so the spatial stats
+in prediction_engine.py have enough runway to expand their lookback window
+on a quiet region without running out of data, then saves new predictions.
 Runs in under 60 seconds.
 """
 

@@ -107,24 +107,43 @@ Each zone's boundary is itself data-driven, not a rough administrative outline: 
 magnitude-weighted middle 70% (15th–85th percentile) of real M≥3.0 events from the
 1990–2025 catalog that fell within that zone's original, much larger boundary — the box
 tightened down to where the real seismicity actually concentrates. The uncertainty
-radius shown for any given prediction is computed fresh from recent clustering (not a
-fixed per-zone number), and — since a "7 days from now" answer and a "30 days from now"
-answer shouldn't necessarily point at the same circle — it's computed separately per
-forecast window, with shorter windows drawing on a shorter, more immediate lookback so a
-near-term forecast reflects near-term activity specifically. In production right now
-this typically lands in the 70–110km range for the top zone in either country.
+radius (and depth — see below) shown for any given prediction is computed fresh from
+recent clustering (not a fixed per-zone number), and — since a "7 days from now" answer
+and a "30 days from now" answer shouldn't necessarily point at the same circle — it's
+computed separately per forecast window, with shorter windows drawing on a shorter, more
+immediate lookback so a near-term forecast reflects near-term activity specifically. In
+production right now this typically lands in the 70–200km range for the top zone in
+either country.
 
-**The precision floor is 30km, not a fixed target already met.** That number represents
-where this system is aiming as its adaptive models accumulate more confirmed real
-earthquakes to cluster on — roughly the instrumental epicentre uncertainty of a
-moderately-dense regional seismic network — and the radius calculation is never
-artificially prevented from reaching it. Getting there for any given zone depends on
-that zone actually accumulating enough tightly-clustered recent activity to support it;
-this isn't claimed as already achieved everywhere today. It's a direct extension of the
-same continual-learning story as the magnitude models: more confirmed real data,
-recomputed against on a recurring schedule (see
-[Keeping the model current](#keeping-the-model-current-in-production)), should mean the
-location answer keeps getting tighter, not that it was hardcoded tight from day one.
+**The precision floor scales with how much recent data actually backs the estimate,
+down to 5km at the tightest — it is not one fixed number applied regardless of sample
+size.** A tight radius computed from 2-3 events could just be coincidence, not genuine
+confidence, so it isn't allowed to claim the same precision as the same tight number
+backed by dozens of clustered events:
+
+| Recent events behind the estimate | Radius floor | Depth floor |
+|---|---|---|
+| < 15 | 30 km | 10 km |
+| 15–24 | 20 km | 8 km |
+| 25–39 | 10 km | 5 km |
+| ≥ 40 | 5 km | 3 km |
+
+None of today's zones have enough near-term clustering (per the per-window lookback
+above) to reach the tightest tier yet — that's expected, not a shortfall to hide. The
+calculation is simply never artificially prevented from getting there as the adaptive
+models accumulate more confirmed real earthquakes to cluster on, recomputed against a
+recurring schedule (see
+[Keeping the model current](#keeping-the-model-current-in-production)). It's a direct
+extension of the same continual-learning story as the magnitude models: more confirmed
+real data should mean the location answer keeps getting tighter, not that it was
+hardcoded tight from day one.
+
+**Depth is estimated the same way location is.** Alongside the horizontal centroid and
+radius, each prediction now also reports an estimated depth and depth uncertainty —
+computed identically (magnitude/recency-weighted mean and spread of recent nearby
+events' recorded depths), floored by the same confidence tiers, shown in the map popup
+for the top zone. Like the horizontal position, this is a descriptive statistic over
+recent real events, not a physically modelled rupture depth.
 
 ## Result: does adaptive updating actually help?
 
@@ -170,9 +189,9 @@ feature_engineering.py    15 seismic indicator features + binary label construct
 data_augmentation.py      CTGAN synthetic minority-class generation
 models.py                 StaticModel and AdaptiveModel (XGBoost + replay buffer)
 spatial_predictor.py      Magnitude/recency-weighted spatial clustering → zone,
-                          centroid, and uncertainty radius. Computed per forecast
-                          window (not one fixed snapshot); named zones only, no
-                          generic catch-all in the output
+                          centroid, depth, and uncertainty radius (confidence-scaled
+                          by event count). Computed per forecast window (not one
+                          fixed snapshot); named zones only, no generic catch-all
 prediction_engine.py      Turns model output + spatial stats into structured
                           predictions, including per-magnitude effect/action text
 live_updater.py           LiveUpdater class used by `main.py --mode live`
