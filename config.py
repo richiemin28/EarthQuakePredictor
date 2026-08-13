@@ -53,8 +53,17 @@ ROLLING_WINDOW_N    = 50        # Number of past events for rolling features
 # Prediction experiment settings
 # Mirrors Mukherjee et al. (2025) for direct performance comparison
 # ---------------------------------------------------------------------------
-MAGNITUDE_THRESHOLDS = [4.0, 4.5, 5.0, 5.5]
+MAGNITUDE_THRESHOLDS = [4.0, 4.5, 5.0, 5.5, 6.0]
 PREDICTION_WINDOWS   = [7, 10, 15, 30]     # Days ahead to predict
+
+# M6.0 was added after checking real row-level label counts, not just raw
+# catalog counts (rolling-window labels can look "full" even from a single
+# historical event) - 59 independent M>=6.0 events over 1990-2025 clears
+# the same bar (~34+ real events) that justified Japan's own thresholds.
+# M6.5+ has only 18 real events, M7.0+ just 3 (including the 2025 M7.7
+# Mandalay earthquake) - too thin to train a classifier that means
+# anything beyond "it happened a couple of times", so thresholds stop
+# here rather than faking coverage up to M10 the catalog doesn't support.
 
 # ---------------------------------------------------------------------------
 # Adaptive learning settings

@@ -109,7 +109,10 @@ def main():
         current_features=recent_features,
         recent_events=recent_events if len(recent_events) > 0 else None,
         reference_date=now,
-        min_threshold=4.5,
+        # 4.0 to include Myanmar's lowest trained threshold (already in
+        # MAGNITUDE_THRESHOLDS, previously filtered out here) - harmless
+        # for Japan, whose own MAGNITUDE_THRESHOLDS starts at 4.5 anyway.
+        min_threshold=4.0,
         verbose=True,
     )
 

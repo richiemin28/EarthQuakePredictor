@@ -107,7 +107,7 @@ def generate_predictions(model,
                          current_features: pd.DataFrame,
                          recent_events:    pd.DataFrame = None,
                          reference_date:   datetime = None,
-                         min_threshold:    float = 4.5,
+                         min_threshold:    float = 4.0,
                          verbose:          bool = True) -> list:
     """
     Generate full structured predictions including location estimates.

@@ -1,5 +1,39 @@
 # Changelog
 
+## v1.4.0 — Full M4-M10 range, no more collapsing predictions down to one
+
+### Added
+
+- **Myanmar's magnitude range extended to M6.0**, and M4.0 (already trained,
+  previously hidden from display) is shown again. M6.0 was added after
+  checking real row-level label counts - 59 independent M≥6.0 events over
+  1990-2025, clearing the same bar Japan's own thresholds were held to.
+- **The dashboard now shows the full M4-M10 range for both countries** -
+  every threshold with enough real historical events gets a genuine
+  forecast; every threshold without one is shown too, explicitly marked
+  "insufficient historical data" instead of hidden or faked. Checked real
+  event counts before drawing the line: Myanmar stops at M6.0 (M6.5+ has
+  only 18 real events, M7.0+ just 3), Japan stays at M7.0 (M7.5+ has only
+  10, M8.0+ is essentially the 2011 Tohoku earthquake alone). Going all
+  the way to M10 with real classifiers isn't possible for either catalog -
+  training on 1-2 historical events isn't learning a pattern, it's fitting
+  one earthquake, regardless of how healthy the rolling-window label counts
+  might look (a single massive quake makes every preceding day's row count
+  as "positive", which can disguise n=1 as n=100+ if you only check label
+  counts and not real independent event counts).
+
+### Changed
+
+- **Predictions are no longer collapsed down to a single number per zone.**
+  Every zone card now shows its full probability ladder across every
+  magnitude threshold (e.g. "M4 100% · M4.5 100% · M5 86% · M5.5 48% ·
+  M6 1%"), not just whichever single prediction happened to be highest.
+  The map popup got the same treatment. The full forecast table (every
+  magnitude x every time window) is now open by default instead of
+  tucked behind a click.
+
+---
+
 ## v1.3.0 — Cluster-based location, not zone-wide averaging
 
 ### Changed

@@ -79,21 +79,33 @@ how, since this is the kind of claim that's easy to leave true only on paper.
 
 ### Magnitude range differs by country, deliberately
 
-Myanmar's catalog above M5.5 is thin — 182 events total over 1990–2019 — and the
-dissertation's own evaluation already found M5.5 the hardest threshold to get reliable
-signal at, so Myanmar's thresholds stop there (M4.5 / M5.0 / M5.5) rather than stretching
-into thinner-still territory.
+The dashboard shows the full M4-M10 range the catalogs were checked against for both
+countries — every threshold that has enough independent historical events to train a
+real classifier shows a real forecast; every threshold that doesn't is shown too, marked
+plainly as "insufficient historical data" rather than hidden or, worse, filled in with a
+number that has no statistical basis. The cutoff isn't a round number chosen for looks —
+it's wherever the real event count actually runs out for that country:
 
-Japan's catalog carries real, trainable signal much further up the scale — 1,159 events
-at M5.5+, 378 at M6.0+, 106 at M6.5+, 34 at M7.0+ over the same 30-year window, checked
-against the USGS catalog directly before deciding this, not assumed. Below M5.5 many
-Japan prediction windows were already saturating near 100% (which is a real result —
-background seismicity there really is that dense at moderate magnitudes), which left the
-higher-consequence range — where a major or great earthquake is more or less likely from
-one window to the next — completely untracked. Japan's thresholds now run **M4.5 / M5.0
-/ M5.5 / M6.0 / M6.5 / M7.0**, each confirmed to have enough real positive examples
-(hundreds to low thousands, not just a handful) to be worth training on, not just
-technically possible to fit a classifier to.
+- **Myanmar: M4.0 / M4.5 / M5.0 / M5.5 / M6.0.** M6.0 was added after checking real
+  row-level label counts, not just raw catalog counts (rolling-window labels can look
+  "full" even from a single historical event) — 59 independent M≥6.0 events over
+  1990–2025 clears the same bar Japan's own thresholds were held to. M6.5+ has only 18
+  real events, M7.0+ just 3 (including the March 2025 Mw 7.7 Mandalay earthquake) — too
+  thin to train a classifier that means anything beyond "it happened a couple of times".
+- **Japan: M4.5 / M5.0 / M5.5 / M6.0 / M6.5 / M7.0.** Can't start at M4.0 the way
+  Myanmar does — Japan's catalog is fetched starting at M4.5 specifically to keep
+  feature computation and training tractable (see config_japan.py), so there's no
+  dormant M4.0-4.4 data sitting unused to expose the way there was for Myanmar. At the
+  top end, M7.5+ has only 10 real events over 1990–2025 (below the ~34-event bar that
+  justified M7.0 itself), and M8.0+ is essentially the 2011 Tohoku Mw 9.1 alone (1-2 real
+  events) — training on that would be fitting one historical earthquake, not learning a
+  pattern, however healthy the rolling-window label counts might look (they reach into
+  the hundreds purely because one massive earthquake makes every preceding day's row
+  count as "positive").
+
+Below either country's floor, prediction windows were already saturating near 100%
+(background seismicity really is that dense at moderate magnitudes) — real, but
+uninformative. Above either ceiling, there just isn't enough independent signal yet.
 
 ### Location precision: named zones only, tied to the forecast window, tightening over time
 

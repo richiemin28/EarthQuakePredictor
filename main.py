@@ -235,7 +235,7 @@ def generate_current_predictions(adaptive_model, features_df: pd.DataFrame):
         model=adaptive_model,
         current_features=recent_features,
         recent_events=recent_events,
-        min_threshold=4.5,
+        min_threshold=4.0,
         verbose=True,
     )
     save_predictions(predictions)

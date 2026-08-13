@@ -407,7 +407,7 @@ class LiveDashboard:
                 current_features=context,
                 recent_events=recent if len(recent) > 0 else None,
                 reference_date=datetime.now(timezone.utc).replace(tzinfo=None),
-                min_threshold=4.5,
+                min_threshold=4.0,
                 verbose=True,
             )
             save_predictions(preds)

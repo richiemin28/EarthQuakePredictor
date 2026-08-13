@@ -163,7 +163,7 @@ class LiveUpdater:
                 current_features=recent_features,
                 recent_events=recent_events,
                 reference_date=datetime.now(timezone.utc).replace(tzinfo=None),
-                min_threshold=4.5,
+                min_threshold=4.0,
                 verbose=True,
             )
             save_predictions(predictions)
