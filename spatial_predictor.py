@@ -166,10 +166,17 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
             else:
                 radius_km = 150.0
 
-        # Apply minimum and maximum radius bounds
-        # Min 50 km (instrumental location uncertainty)
-        # Max 400 km (zone is too diffuse to narrow further)
-        radius_km = max(50.0, min(radius_km, 400.0))
+        # Apply minimum and maximum radius bounds.
+        # Min 30 km: the precision ceiling this system is working toward as
+        # its adaptive models accumulate more confirmed real earthquakes to
+        # cluster on (roughly typical instrumental epicentre uncertainty for
+        # a moderately-dense regional seismic network - not reachable yet
+        # with the current data volume for most zones, but the calculation
+        # itself is never artificially prevented from getting there; it was
+        # previously floored at 50km, a number chosen before this floor
+        # was treated as a target rather than just "close enough").
+        # Max 400 km (zone is too diffuse to narrow further).
+        radius_km = max(30.0, min(radius_km, 400.0))
 
         zone_stats[zone_name] = {
             "event_count":     int(len(group)),
@@ -198,44 +205,40 @@ def rank_zones(zone_stats: dict,
     if not zone_stats:
         return []
 
+    # The generic "Region (General)" catch-all (anything that didn't fall
+    # inside a named fault zone's box) is excluded from ranking entirely -
+    # it's never returned as a location prediction, primary or secondary.
+    # It used to be included with a heavy penalty instead of excluded, which
+    # meant it could still occasionally surface as a vague "near <Country>
+    # Region (General), radius 400km" answer; that's not a useful location
+    # prediction for anyone, precise named zones only. compute_zone_spatial_
+    # stats still computes it internally (identify_zone still needs
+    # somewhere to put events outside every named box), it just never
+    # reaches rank_zones' output.
+    named_zone_stats = {
+        name: stats for name, stats in zone_stats.items() if "General" not in name
+    }
+    if not named_zone_stats:
+        return []
+
     # Known high-priority seismic zones get a bonus multiplier (per-country,
-    # from config's ZONE_PRIORITY). This ensures well-defined fault zones
-    # rank above the catch-all "General" zone even when General has more
-    # raw events.
+    # from config's ZONE_PRIORITY).
     PRIORITY_ZONES = ZONE_PRIORITY
-    # The catch-all zone is penalised heavily because its large radius
-    # and diffuse events make it a poor location prediction target.
-    # 0.3 was tuned back when the named zones were much larger (some
-    # 400-500km across); tightening them (see config.py's LOCATION_ZONES
-    # note) means named zones now catch fewer of any given 90-day window's
-    # events by design, so General's raw event count started winning outright
-    # for Japan specifically (its background seismicity is dense enough that
-    # General regularly out-counts every single named zone combined) even
-    # with a real, well-known zone otherwise dominating by weight. 0.2
-    # verified against real recent data for both countries: still ranks
-    # Sagaing Fault Zone / Japan Trench (Tohoku) #1 as expected, General
-    # drops to a secondary "also watch" entry instead of the headline.
-    GENERAL_PENALTY = 0.2
 
     scored = []
-    for zone_name, stats in zone_stats.items():
+    for zone_name, stats in named_zone_stats.items():
 
         # Base score: total seismic weight times log of event count
         base = stats["total_weight"] * np.log1p(stats["event_count"])
 
         # Precision bonus: tighter clusters get higher scores.
-        # Radius of 50km = bonus 1.0, 400km = bonus 0.0
+        # Radius of 30km = bonus 1.0, 400km = bonus 0.0
         max_radius = 400.0
         precision_bonus = max(
             0.0, 1.0 - (stats["radius_km"] / max_radius)
         )
         base *= (1.0 + precision_bonus)
-
-        # Apply zone priority multiplier or general penalty
-        if "General" in zone_name:
-            base *= GENERAL_PENALTY
-        else:
-            base *= PRIORITY_ZONES.get(zone_name, 1.0)
+        base *= PRIORITY_ZONES.get(zone_name, 1.0)
 
         scored.append((base, zone_name, stats))
 

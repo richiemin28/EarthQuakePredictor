@@ -23,6 +23,7 @@ from config import (
     MAGNITUDE_THRESHOLDS,
     PREDICTION_WINDOWS,
     PREDICTIONS_PATH,
+    ZONE_PRIORITY,
 )
 from feature_engineering import FEATURE_COLUMNS
 from spatial_predictor import (
@@ -179,20 +180,22 @@ def generate_predictions(model,
 
             # Build location predictions for top 3 zones.
             # If ranked_zones has results (computed from real events),
-            # use those. Otherwise fall back to the top 3 config zones
-            # ordered by known seismic importance (Sagaing Fault first).
+            # use those. Otherwise fall back to the top 3 zones from this
+            # country's own ZONE_PRIORITY table (highest-priority first) -
+            # e.g. Sagaing Fault Zone leads for Myanmar, Nankai Trough for
+            # Japan. This path used to hardcode Myanmar's zone names
+            # regardless of which country's pipeline was actually running,
+            # which broke silently for Japan since none of those names
+            # exist in config_japan.py's LOCATION_ZONES.
             location_predictions = []
             if ranked_zones:
                 for zone_name, stats in ranked_zones:
                     loc = build_location_prediction(zone_name, zone_stats)
                     location_predictions.append(loc)
             else:
-                # No ranked zones - use top 3 zones from config as fallbacks
-                priority_zones = [
-                    "Sagaing Fault Zone",
-                    "Central Myanmar",
-                    "Northern Myanmar",
-                ]
+                priority_zones = sorted(
+                    ZONE_PRIORITY, key=ZONE_PRIORITY.get, reverse=True
+                )[:3]
                 for zone_name in priority_zones:
                     loc = build_location_prediction(zone_name, zone_stats)
                     location_predictions.append(loc)

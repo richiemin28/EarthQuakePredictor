@@ -20,6 +20,8 @@ just a one-off historical-data exercise.
 > not validated for operational use and must not be relied on for emergency response,
 > public safety, or infrastructure decisions. See [Disclaimer](#disclaimer) below.
 
+See [CHANGELOG.md](CHANGELOG.md) for release history.
+
 ---
 
 ## Why this exists
@@ -93,6 +95,37 @@ one window to the next — completely untracked. Japan's thresholds now run **M4
 (hundreds to low thousands, not just a handful) to be worth training on, not just
 technically possible to fit a classifier to.
 
+### Location precision: named zones only, tied to the forecast window, tightening over time
+
+Every location prediction is a real named tectonic zone — Sagaing Fault Zone, Japan
+Trench (Tohoku), and so on. There is no generic "Country Region (General)" catch-all in
+the output; if recent activity isn't concentrated inside a known zone's boundary closely
+enough to say something specific, the system reports the nearest well-established zone
+by known seismic hazard significance rather than a vague region-sized answer.
+
+Each zone's boundary is itself data-driven, not a rough administrative outline: it's the
+magnitude-weighted middle 70% (15th–85th percentile) of real M≥3.0 events from the
+1990–2025 catalog that fell within that zone's original, much larger boundary — the box
+tightened down to where the real seismicity actually concentrates. The uncertainty
+radius shown for any given prediction is computed fresh from recent clustering (not a
+fixed per-zone number), and — since a "7 days from now" answer and a "30 days from now"
+answer shouldn't necessarily point at the same circle — it's computed separately per
+forecast window, with shorter windows drawing on a shorter, more immediate lookback so a
+near-term forecast reflects near-term activity specifically. In production right now
+this typically lands in the 70–110km range for the top zone in either country.
+
+**The precision floor is 30km, not a fixed target already met.** That number represents
+where this system is aiming as its adaptive models accumulate more confirmed real
+earthquakes to cluster on — roughly the instrumental epicentre uncertainty of a
+moderately-dense regional seismic network — and the radius calculation is never
+artificially prevented from reaching it. Getting there for any given zone depends on
+that zone actually accumulating enough tightly-clustered recent activity to support it;
+this isn't claimed as already achieved everywhere today. It's a direct extension of the
+same continual-learning story as the magnitude models: more confirmed real data,
+recomputed against on a recurring schedule (see
+[Keeping the model current](#keeping-the-model-current-in-production)), should mean the
+location answer keeps getting tighter, not that it was hardcoded tight from day one.
+
 ## Result: does adaptive updating actually help?
 
 Evaluated pseudo-prospectively across the 2020–2025 test period (1,279 held-out Myanmar
@@ -137,7 +170,9 @@ feature_engineering.py    15 seismic indicator features + binary label construct
 data_augmentation.py      CTGAN synthetic minority-class generation
 models.py                 StaticModel and AdaptiveModel (XGBoost + replay buffer)
 spatial_predictor.py      Magnitude/recency-weighted spatial clustering → zone,
-                          centroid, and uncertainty radius
+                          centroid, and uncertainty radius. Computed per forecast
+                          window (not one fixed snapshot); named zones only, no
+                          generic catch-all in the output
 prediction_engine.py      Turns model output + spatial stats into structured
                           predictions, including per-magnitude effect/action text
 live_updater.py           LiveUpdater class used by `main.py --mode live`

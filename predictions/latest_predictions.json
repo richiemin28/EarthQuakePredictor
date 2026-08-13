@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -28,17 +28,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.053,
-        "centroid_lon": 100.112,
-        "radius_km": 400.0,
-        "event_count": 30,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.53,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.373,
         "centroid_lon": 93.419,
@@ -48,12 +37,23 @@
         "mean_magnitude": 4.45,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -92,21 +92,21 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.158,
-        "centroid_lon": 100.833,
-        "radius_km": 400.0,
-        "event_count": 24,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.58,
-        "last_event_time": "2026-08-10 21:31:44.273000",
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -134,17 +134,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.114,
-        "centroid_lon": 100.715,
-        "radius_km": 400.0,
-        "event_count": 23,
-        "max_magnitude": 5.1,
-        "mean_magnitude": 4.56,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.267,
         "centroid_lon": 93.4,
@@ -154,12 +143,23 @@
         "mean_magnitude": 4.53,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -198,21 +198,21 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.158,
-        "centroid_lon": 100.833,
-        "radius_km": 400.0,
-        "event_count": 24,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.58,
-        "last_event_time": "2026-08-10 21:31:44.273000",
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -240,17 +240,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.053,
-        "centroid_lon": 100.112,
-        "radius_km": 400.0,
-        "event_count": 30,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.53,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.373,
         "centroid_lon": 93.419,
@@ -260,12 +249,23 @@
         "mean_magnitude": 4.45,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -293,17 +293,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.114,
-        "centroid_lon": 100.715,
-        "radius_km": 400.0,
-        "event_count": 23,
-        "max_magnitude": 5.1,
-        "mean_magnitude": 4.56,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.267,
         "centroid_lon": 93.4,
@@ -313,12 +302,23 @@
         "mean_magnitude": 4.53,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -346,17 +346,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.053,
-        "centroid_lon": 100.112,
-        "radius_km": 400.0,
-        "event_count": 30,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.53,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.373,
         "centroid_lon": 93.419,
@@ -366,12 +355,23 @@
         "mean_magnitude": 4.45,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -399,17 +399,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.053,
-        "centroid_lon": 100.112,
-        "radius_km": 400.0,
-        "event_count": 30,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.53,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.373,
         "centroid_lon": 93.419,
@@ -419,12 +408,23 @@
         "mean_magnitude": 4.45,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -452,17 +452,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.053,
-        "centroid_lon": 100.112,
-        "radius_km": 400.0,
-        "event_count": 30,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.53,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.373,
         "centroid_lon": 93.419,
@@ -472,12 +461,23 @@
         "mean_magnitude": 4.45,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -505,17 +505,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.053,
-        "centroid_lon": 100.112,
-        "radius_km": 400.0,
-        "event_count": 30,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.53,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.373,
         "centroid_lon": 93.419,
@@ -525,12 +514,23 @@
         "mean_magnitude": 4.45,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -569,21 +569,21 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.158,
-        "centroid_lon": 100.833,
-        "radius_km": 400.0,
-        "event_count": 24,
-        "max_magnitude": 5.2,
-        "mean_magnitude": 4.58,
-        "last_event_time": "2026-08-10 21:31:44.273000",
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 13:01 UTC",
+    "generated_at": "2026-08-13 13:12 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -611,17 +611,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Myanmar Region (General)",
-        "centroid_lat": 27.114,
-        "centroid_lon": 100.715,
-        "radius_km": 400.0,
-        "event_count": 23,
-        "max_magnitude": 5.1,
-        "mean_magnitude": 4.56,
-        "last_event_time": "2026-08-10 21:31:44.273000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Andaman Sea Region",
         "centroid_lat": 11.267,
         "centroid_lon": 93.4,
@@ -630,6 +619,17 @@
         "max_magnitude": 4.9,
         "mean_magnitude": 4.53,
         "last_event_time": "2026-08-11 19:55:41.269000",
+        "confidence_note": ""
+      },
+      {
+        "zone": "Yunnan Border Region",
+        "centroid_lat": 26.011,
+        "centroid_lon": 100.718,
+        "radius_km": 30.0,
+        "event_count": 3,
+        "max_magnitude": 4.7,
+        "mean_magnitude": 4.6,
+        "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
       }
     ],
