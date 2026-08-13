@@ -1,5 +1,38 @@
 # Changelog
 
+## v1.5.1 — Fix the full forecast table silently overlapping the disclaimer
+
+### Fixed
+
+- **The full forecast table (every magnitude x every time window) was
+  visually overlapping the disclaimer below it on every single mobile
+  and desktop visit, for both countries.** Same root cause as the
+  v1.5.0 window-toggle fix: `.details-card` was a direct auto-sized
+  flex child of `.pane` (a column-direction flex container) with
+  `overflow:hidden` set, which collapsed its own box to ~2px tall while
+  its content (the whole matrix table, 471px+ of it) kept rendering at
+  its real position - so everything below it in the document, starting
+  with the disclaimer, laid out as if the table took up almost no space
+  and ended up drawn on top of it instead of below it. It also meant
+  the panel's true scrollable height came up ~470px short, so scrolling
+  to "the bottom" on mobile never actually reached the real bottom.
+  Found by deliberately scrolling a mobile viewport to the pane's
+  reported `scrollHeight` and noticing the matrix simply wasn't there -
+  it had been rendering "correctly" in every prior screenshot only
+  because those screenshots happened not to scroll past the collapse
+  point. Fixed the same way as the toggle: dropped the `overflow:hidden`
+  (none of this card's children have their own background near the
+  rounded corners, so nothing else needed to change).
+- Audited every other `overflow:hidden` rule in the stylesheet against
+  the same failure pattern (direct, auto-sized flex child of a
+  column-direction flex container - `#main` and `.pred-zone-card` looked
+  similar at a glance but aren't actually at risk: `#main` has explicit
+  `flex:1`, not auto-sizing, and `.pred-zone-card` isn't a *direct* flex
+  child of a flex container, it's nested inside a plain div). No other
+  instances found.
+
+---
+
 ## v1.5.0 — Switchable forecast window
 
 ### Added

@@ -363,8 +363,20 @@
     }
     .confidence-note b { color:var(--txt); }
 
-    /* ── Detailed forecast table, collapsed by default ───────── */
-    .details-card { padding:0; overflow:hidden; }
+    /* ── Detailed forecast table ──────────────────────────────
+       No overflow:hidden here - as a direct auto-sized flex child of
+       .pane (a column-direction flex container), that combination
+       collapsed this element's own box to ~2px tall while its content
+       kept rendering at its real (larger) position, same underlying
+       issue as .window-toggle above but far more consequential here:
+       everything after it (the disclaimer) ended up laid out as if the
+       whole matrix table took up almost no space, so it visually
+       overlapped the matrix instead of sitting below it, and the panel's
+       scrollable height came up ~470px short of the real content.
+       None of this card's children have their own background near the
+       rounded corners, so dropping the clip doesn't need a replacement
+       the way .window-toggle's did. */
+    .details-card { padding:0; }
     .details-card summary {
       padding:14px 16px; cursor:pointer; font-weight:600; font-size:14px;
       list-style:none; display:flex; align-items:center; justify-content:space-between;
