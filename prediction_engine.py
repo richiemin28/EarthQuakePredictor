@@ -39,12 +39,14 @@ from spatial_predictor import (
 # Confidence labels
 # ---------------------------------------------------------------------------
 def _confidence_label(prob: float) -> str:
-    if prob >= 0.85:
+    if prob >= 0.80:
+        return "SEVERE"
+    elif prob >= 0.60:
         return "HIGH"
-    elif prob >= 0.65:
-        return "MODERATE"
-    elif prob >= 0.45:
-        return "LOW-MODERATE"
+    elif prob >= 0.40:
+        return "ELEVATED"
+    elif prob >= 0.20:
+        return "GUARDED"
     else:
         return "LOW"
 

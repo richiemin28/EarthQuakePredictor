@@ -22,11 +22,14 @@
       --txt-2:      #444444;
       --txt-3:      #6b6b6b;
 
-      /* ── Severity scale (ML predictions) — darker = higher risk */
-      --low:        #9a9a9a;   --low-bg:    rgba(0,0,0,.035);
-      --lowmod:     #707070;   --lowmod-bg: rgba(0,0,0,.055);
-      --mod:        #404040;   --mod-bg:    rgba(0,0,0,.08);
-      --high:       #000000;   --high-bg:   rgba(0,0,0,.11);
+      /* ── Severity scale (ML predictions) — 5 even 20-point bands,
+             darker = higher probability. Names follow the familiar
+             LOW/GUARDED/ELEVATED/HIGH/SEVERE public-hazard convention. */
+      --low:        #a3a3a3;   --low-bg:      rgba(0,0,0,.035);
+      --guarded:    #7a7a7a;   --guarded-bg:  rgba(0,0,0,.06);
+      --elevated:   #525252;   --elevated-bg: rgba(0,0,0,.09);
+      --high:       #2b2b2b;   --high-bg:     rgba(0,0,0,.13);
+      --severe:     #000000;   --severe-bg:   #000000;
 
       /* ── Live-event recency scale (USGS events) */
       --live-fresh: #000000;   /* < 1 hour  */
@@ -54,15 +57,20 @@
     }
     .mono { font-family: 'Cascadia Code','Consolas','Courier New',monospace; }
 
-    /* ── Risk classes ────────────────────────────────────── */
-    .r-low    { color: var(--low);    }
-    .r-lowmod { color: var(--lowmod); }
-    .r-mod    { color: var(--mod);    }
-    .r-high   { color: var(--high);   }
-    .bg-low    { background: var(--low-bg);    border-color: rgba(0,0,0,.14); }
-    .bg-lowmod { background: var(--lowmod-bg); border-color: rgba(0,0,0,.18); }
-    .bg-mod    { background: var(--mod-bg);    border-color: rgba(0,0,0,.24); }
-    .bg-high   { background: var(--high-bg);   border-color: rgba(0,0,0,.32); }
+    /* ── Risk classes — 5 bands, LOW <20% ... SEVERE >=80% ─── */
+    .r-low      { color: var(--low);      }
+    .r-guarded  { color: var(--guarded);  }
+    .r-elevated { color: var(--elevated); }
+    .r-high     { color: var(--high);     }
+    .r-severe   { color: var(--severe);   font-weight:800; }
+    .bg-low      { background: var(--low-bg);      border-color: rgba(0,0,0,.16); }
+    .bg-guarded  { background: var(--guarded-bg);  border-color: rgba(0,0,0,.22); }
+    .bg-elevated { background: var(--elevated-bg); border-color: rgba(0,0,0,.30); }
+    .bg-high     { background: var(--high-bg);     border-color: rgba(0,0,0,.42); }
+    /* SEVERE inverts to solid black — reserved for the top band so the
+       single most urgent reading on the page is visually unmistakable */
+    .bg-severe   { background: var(--severe-bg); border-color:#000; color:#fff; }
+    .bg-severe.r-severe { color:#fff; }
 
     /* ═══ Header ═════════════════════════════════════════════ */
     #header {
@@ -88,14 +96,14 @@
     }
     .b-live { color:var(--live-fresh); background:var(--live-bg);      border-color:rgba(0,0,0,.20); }
     .b-ml   { color:var(--accent);     background:rgba(0,0,0,.05);     border-color:rgba(0,0,0,.20); }
-    .b-tick { color:var(--lowmod);     background:var(--lowmod-bg);    border-color:rgba(0,0,0,.15); }
+    .b-tick { color:var(--guarded);     background:var(--guarded-bg);    border-color:rgba(0,0,0,.15); }
 
     .pdot {
       width:6px; height:6px; border-radius:50%;
       animation: pdot 1.6s ease-in-out infinite;
     }
     .pdot.g { background:var(--live-fresh); }
-    .pdot.a { background:var(--lowmod); }
+    .pdot.a { background:var(--guarded); }
     @keyframes pdot {
       0%,100%{opacity:1;transform:scale(1)}
       50%{opacity:.4;transform:scale(.75)}
@@ -198,6 +206,15 @@
     }
     .cell:hover { filter:brightness(1.3); }
 
+    /* ── Probability scale key ────────────────────────────── */
+    .risk-scale { display:flex; gap:4px; }
+    .risk-chip {
+      flex:1; display:flex; flex-direction:column; align-items:center; gap:2px;
+      padding:6px 2px; border-radius:var(--r); border:1px solid;
+      font-size:9px; font-weight:700; letter-spacing:.02em; text-align:center;
+    }
+    .rs-range { font-size:8px; font-weight:600; opacity:.65; }
+
     /* ── Predicted Risk Zone cards ────────────────────────── */
     .intro-note {
       font-size:10px; color:var(--txt-3); line-height:1.6;
@@ -240,10 +257,11 @@
       height:5px; background:var(--raised); border-radius:99px; overflow:hidden;
     }
     .pz-fill { height:100%; border-radius:99px; transition:width .6s cubic-bezier(.4,0,.2,1); }
-    .pz-fill.r-low    { background: var(--low);    }
-    .pz-fill.r-lowmod { background: var(--lowmod); }
-    .pz-fill.r-mod    { background: var(--mod);    }
-    .pz-fill.r-high   { background: var(--high);   }
+    .pz-fill.r-low      { background: var(--low);      }
+    .pz-fill.r-guarded  { background: var(--guarded);  }
+    .pz-fill.r-elevated { background: var(--elevated); }
+    .pz-fill.r-high     { background: var(--high);     }
+    .pz-fill.r-severe   { background: var(--severe);   }
     .pz-meta { font-size:10px; color:var(--txt-3); display:flex; justify-content:space-between; }
     .pz-fly-hint {
       font-size:9px; color:var(--txt-3); letter-spacing:.04em;
@@ -292,20 +310,28 @@
     .evi-depth { font-size:10px; color:var(--txt-3); width:42px; text-align:right; flex-shrink:0; }
 
     /* ── Bars ─────────────────────────────────────────────── */
-    .bar-row { display:flex; align-items:center; gap:10px; padding:5px 0; }
+    .bar-row { display:flex; flex-direction:column; gap:4px; padding:7px 0; }
     .bar-row+.bar-row { border-top:1px solid var(--border); }
-    .bar-lbl { font-size:11px; font-weight:600; width:54px; flex-shrink:0; }
-    .bar-track { flex:1; height:8px; background:var(--raised); border-radius:99px; overflow:hidden; }
+    .bar-top { display:flex; align-items:center; gap:8px; }
+    .bar-lbl { font-size:11px; font-weight:700; flex:1; }
+    .bar-badge {
+      font-size:9px; font-weight:700; padding:1px 7px; border-radius:99px;
+      border:1px solid; flex-shrink:0; letter-spacing:.03em;
+    }
+    .bar-track { height:8px; background:var(--raised); border-radius:99px; overflow:hidden; }
     .bar-fill {
       height:100%; border-radius:99px;
       transition:width .6s cubic-bezier(.4,0,.2,1);
     }
-    .bar-fill.r-low    { background:linear-gradient(90deg,#cfcfcf,var(--low)); }
-    .bar-fill.r-lowmod { background:linear-gradient(90deg,#9a9a9a,var(--lowmod)); }
-    .bar-fill.r-mod    { background:linear-gradient(90deg,#707070,var(--mod)); }
-    .bar-fill.r-high   { background:linear-gradient(90deg,#404040,var(--high)); }
-    .bar-pct { font-size:12px; font-weight:700; width:40px; text-align:right;
-               flex-shrink:0; font-family:'Cascadia Code',monospace; }
+    .bar-fill.r-low      { background:linear-gradient(90deg,#d4d4d4,var(--low)); }
+    .bar-fill.r-guarded  { background:linear-gradient(90deg,#a3a3a3,var(--guarded)); }
+    .bar-fill.r-elevated { background:linear-gradient(90deg,#7a7a7a,var(--elevated)); }
+    .bar-fill.r-high     { background:linear-gradient(90deg,#525252,var(--high)); }
+    .bar-fill.r-severe   { background:linear-gradient(90deg,#2b2b2b,var(--severe)); }
+    .bar-bottom { display:flex; align-items:baseline; gap:8px; }
+    .bar-effect { flex:1; font-size:10px; color:var(--txt-3); line-height:1.4; }
+    .bar-pct { font-size:13px; font-weight:800; flex-shrink:0;
+               font-family:'Cascadia Code',monospace; }
 
     /* ── Disclaimer ───────────────────────────────────────── */
     .disclaimer {
@@ -313,7 +339,7 @@
       padding:10px 12px; border:1px solid var(--border);
       border-radius:var(--r-lg); background:rgba(0,0,0,.02);
     }
-    .disclaimer strong { color:var(--mod); }
+    .disclaimer strong { color:var(--elevated); }
 
     .info { color:var(--txt-3); font-size:12px; padding:6px 0; }
     .err  { color:var(--high);  font-size:12px; padding:6px 0; }
@@ -504,6 +530,16 @@
         <b>Dashed rings</b> on the map mark each zone's spatial uncertainty.
       </div>
 
+      <!-- Always-visible probability scale key — every percentage shown
+           below is colour-coded to one of these 5 bands. -->
+      <div class="risk-scale">
+        <div class="risk-chip bg-low r-low">LOW<span class="rs-range">&lt;20%</span></div>
+        <div class="risk-chip bg-guarded r-guarded">GUARDED<span class="rs-range">20&#8211;39%</span></div>
+        <div class="risk-chip bg-elevated r-elevated">ELEVATED<span class="rs-range">40&#8211;59%</span></div>
+        <div class="risk-chip bg-high r-high">HIGH<span class="rs-range">60&#8211;79%</span></div>
+        <div class="risk-chip bg-severe r-severe">SEVERE<span class="rs-range">&#8805;80%</span></div>
+      </div>
+
       <!-- Probability matrix -->
       <div class="card">
         <div class="card-title">Probability of Exceedance — All Thresholds &amp; Windows</div>
@@ -598,15 +634,28 @@ const WINDOWS    = [7, 10, 15, 30];
 const TH_LBL     = { 4.5:'M ≥ 4.5', 5.0:'M ≥ 5.0', 5.5:'M ≥ 5.5' };
 
 /* ═══════════════════════════════════════════════════════════
-   Risk helpers — ML prediction colours
+   Risk helpers — ML prediction probability bands
+   5 even 20-point bands (LOW / GUARDED / ELEVATED / HIGH / SEVERE)
+   instead of the old 4 uneven bands, whose "LOW" bucket alone
+   spanned 0-45% and hid real differences (e.g. 1% vs 34% both
+   read as "LOW"). Mirrors the confidence label backend now
+   computes in prediction_engine.py, so the two stay in sync.
 ═══════════════════════════════════════════════════════════ */
-const RC = { high:'r-high', mod:'r-mod', lowmod:'r-lowmod', low:'r-low' };
-const BC = { high:'bg-high', mod:'bg-mod', lowmod:'bg-lowmod', low:'bg-low' };
+function rBand(p) {
+  if (p >= .80) return 4; // SEVERE
+  if (p >= .60) return 3; // HIGH
+  if (p >= .40) return 2; // ELEVATED
+  if (p >= .20) return 1; // GUARDED
+  return 0;               // LOW
+}
+const BAND_CLS = ['low','guarded','elevated','high','severe'];
+const BAND_LBL = ['LOW','GUARDED','ELEVATED','HIGH','SEVERE'];
+const BAND_COL = ['#a3a3a3','#7a7a7a','#525252','#2b2b2b','#000000'];
 
-function rCls(p) { return p>=.85?'r-high':p>=.65?'r-mod':p>=.45?'r-lowmod':'r-low'; }
-function bCls(p) { return p>=.85?'bg-high':p>=.65?'bg-mod':p>=.45?'bg-lowmod':'bg-low'; }
-function rLbl(p) { return p>=.85?'HIGH':p>=.65?'MOD':p>=.45?'LOW-M':'LOW'; }
-function rCol(p) { return p>=.85?'#000000':p>=.65?'#404040':p>=.45?'#707070':'#9a9a9a'; }
+function rCls(p) { return 'r-'  + BAND_CLS[rBand(p)]; }
+function bCls(p) { return 'bg-' + BAND_CLS[rBand(p)]; }
+function rLbl(p) { return BAND_LBL[rBand(p)]; }
+function rCol(p) { return BAND_COL[rBand(p)]; }
 
 /* Live event colours (separate vocabulary from ML — grey scale by recency) */
 function liveCol(ms) {
@@ -687,10 +736,11 @@ legend.onAdd = () => {
   d.innerHTML =
     `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#6b6b6b;margin-bottom:2px">
       ML PREDICTION ZONES (dashed rings)</div>` +
-    row(ring('#000000'),'HIGH','≥ 85% probability') +
-    row(ring('#404040'),'MODERATE','≥ 65%') +
-    row(ring('#707070'),'LOW-MOD','≥ 45%') +
-    row(ring('#9a9a9a'),'LOW','< 45%') +
+    row(ring('#000000'),'SEVERE','≥ 80% probability') +
+    row(ring('#2b2b2b'),'HIGH','60–79%') +
+    row(ring('#525252'),'ELEVATED','40–59%') +
+    row(ring('#7a7a7a'),'GUARDED','20–39%') +
+    row(ring('#a3a3a3'),'LOW','< 20%') +
     `<div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:#6b6b6b;margin:7px 0 2px">
       LIVE USGS EVENTS (solid dots)</div>` +
     row(dot('#000000',10),'< 1 hour','pulsing') +
@@ -800,12 +850,23 @@ function renderBars(preds) {
     .sort((a,b)=>b.probability-a.probability);
   if (!bars.length) return '<div class="info">—</div>';
   return bars.map(p => {
-    const pct=(p.probability*100).toFixed(1), rc=rCls(p.probability);
-    const lbl=p.magnitude_label.replace(/ \(.+\)$/,'');
+    const pct=(p.probability*100).toFixed(1);
+    const rc=rCls(p.probability), bc=bCls(p.probability);
+    // magnitude_label ("what could happen", e.g. "MODERATE (M >= 4.5)") is a
+    // separate scale from the probability band ("how likely") — kept visually
+    // distinct so the two are never confused for one another.
+    const lbl = p.magnitude_label || `M ${p.magnitude_threshold}+`;
+    const effect = p.magnitude_effect || '';
     return `<div class="bar-row">
-      <span class="bar-lbl ${rc}">${lbl}</span>
+      <div class="bar-top">
+        <span class="bar-lbl">${lbl}</span>
+        <span class="bar-badge ${rc} ${bc}">${rLbl(p.probability)}</span>
+      </div>
       <div class="bar-track"><div class="bar-fill ${rc}" style="width:${pct}%"></div></div>
-      <span class="bar-pct ${rc}">${pct}%</span>
+      <div class="bar-bottom">
+        <span class="bar-effect">${effect}</span>
+        <span class="bar-pct ${rc}">${pct}%</span>
+      </div>
     </div>`;
   }).join('');
 }
@@ -998,8 +1059,8 @@ function renderFooter(events) {
     const c   = liveCol(ev.time);
     const mc  = magCol(ev.mag);
     const lbl = ev.mag>=5.5?'M5.5+':ev.mag>=5.0?'M5.0+':ev.mag>=4.5?'M4.5+':'M2.5+';
-    const lcl = ev.mag>=5.5?'r-high':ev.mag>=5.0?'r-mod':ev.mag>=4.5?'r-lowmod':'r-low';
-    const lbc = ev.mag>=5.5?'bg-high':ev.mag>=5.0?'bg-mod':ev.mag>=4.5?'bg-lowmod':'bg-low';
+    const lcl = ev.mag>=5.5?'r-severe':ev.mag>=5.0?'r-high':ev.mag>=4.5?'r-elevated':'r-low';
+    const lbc = ev.mag>=5.5?'bg-severe':ev.mag>=5.0?'bg-high':ev.mag>=4.5?'bg-elevated':'bg-low';
     return `<div class="fev-row">
       <span class="fev-mag" style="color:${mc}">M${ev.mag.toFixed(1)}</span>
       <span class="fev-type ${lcl} ${lbc}">${lbl}</span>
