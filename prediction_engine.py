@@ -133,11 +133,27 @@ def generate_predictions(model,
     if reference_date is None:
         reference_date = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    # Compute spatial statistics from recent events
-    zone_stats  = compute_zone_spatial_stats(
-        recent_events, lookback_days=90, min_magnitude=3.0
-    )
-    ranked_zones = rank_zones(zone_stats, top_n=3)
+    # Spatial stats are computed per prediction window, not once for the
+    # whole run. A 7-day forecast should point at a "specific spot" tied to
+    # roughly the last one to two weeks of actual clustering; reusing the
+    # same fixed 90-day snapshot for every window (the old behaviour) meant
+    # the 7-day and 30-day forecasts always showed the identical circle,
+    # which isn't what "upcoming, close" should mean. Longer windows get a
+    # proportionally longer lookback (still well under the old fixed 90
+    # days) so the near-term answer is the tightest one, not a coincidence.
+    def _lookback_for_window(window_days: int) -> int:
+        return max(14, min(45, round(window_days * 1.5)))
+
+    zone_stats_by_window = {
+        w: compute_zone_spatial_stats(
+            recent_events, lookback_days=_lookback_for_window(w), min_magnitude=3.0
+        )
+        for w in PREDICTION_WINDOWS
+    }
+    ranked_zones_by_window = {
+        w: rank_zones(zone_stats_by_window[w], top_n=3)
+        for w in PREDICTION_WINDOWS
+    }
 
     predictions = []
     report_thresholds = [t for t in MAGNITUDE_THRESHOLDS if t >= min_threshold]
@@ -157,6 +173,9 @@ def generate_predictions(model,
 
             date_end = reference_date + timedelta(days=window)
             mag_info = MAGNITUDE_INFO.get(threshold, {})
+
+            zone_stats   = zone_stats_by_window[window]
+            ranked_zones = ranked_zones_by_window[window]
 
             # Build location predictions for top 3 zones.
             # If ranked_zones has results (computed from real events),
@@ -217,7 +236,11 @@ def generate_predictions(model,
     predictions.sort(key=lambda x: x["probability"], reverse=True)
 
     if verbose:
-        print_predictions(predictions, recent_events, zone_stats=zone_stats)
+        # Console "recent activity" overview uses its own fixed-lookback
+        # snapshot (see print_predictions' default) - it's a human-readable
+        # summary, independent of the per-window stats used for the JSON
+        # output above.
+        print_predictions(predictions, recent_events)
 
     return predictions
 

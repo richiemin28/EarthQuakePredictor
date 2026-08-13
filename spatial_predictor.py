@@ -85,21 +85,24 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
     # ends before the current date (e.g. historical data ending Dec 2025
     # being queried in May 2026) - using utcnow() would return zero events.
     reference_date = df["time"].max()
-    cutoff = reference_date - timedelta(days=lookback_days)
 
-    # Filter by time and magnitude
-    df = df[
-        (df["time"] >= cutoff) &
-        (df["magnitude"] >= min_magnitude)
-    ].copy()
-
-    # If still too few events after time filter, use last 200 by count
-    if len(df) < 30:
-        df = recent_events.copy()
-        df["time"] = pd.to_datetime(df["time"])
-        df = df[df["magnitude"] >= min_magnitude].sort_values(
-            "time"
-        ).tail(200).copy()
+    # If the requested lookback is too quiet for a stable estimate,
+    # progressively widen the *time* window rather than falling back to an
+    # arbitrary fixed event count. The old fallback (last 200 events by
+    # count, no matter how far back that reached) meant a short lookback
+    # -  e.g. the ~14-day window behind a 7-day forecast - could silently
+    # balloon into over a year of old activity whenever the region had a
+    # quiet stretch, which defeats tying "how recent" to "how near-term the
+    # forecast is" at all. Capped at 180 days, double the old fixed default,
+    # so even a very quiet stretch never reaches back further than that.
+    MIN_EVENTS = 30
+    mag_df = df[df["magnitude"] >= min_magnitude]
+    df = mag_df[mag_df["time"] >= reference_date - timedelta(days=lookback_days)]
+    for expanded_days in (lookback_days * 2, lookback_days * 4, 90, 180):
+        if len(df) >= MIN_EVENTS:
+            break
+        df = mag_df[mag_df["time"] >= reference_date - timedelta(days=expanded_days)]
+    df = df.copy()
 
     if len(df) == 0:
         return {}
