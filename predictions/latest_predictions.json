@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -29,12 +29,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -53,7 +53,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -82,12 +82,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -106,7 +106,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -135,12 +135,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -159,7 +159,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -188,12 +188,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -212,7 +212,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -241,12 +241,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -265,7 +265,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -294,12 +294,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -318,7 +318,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -347,12 +347,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -371,7 +371,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -400,12 +400,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -424,7 +424,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -453,12 +453,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -477,7 +477,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -506,12 +506,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -530,7 +530,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -559,12 +559,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },
@@ -583,7 +583,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius reflects spatial uncertainty. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-13 02:28 UTC",
+    "generated_at": "2026-08-13 02:47 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -612,12 +612,12 @@
       },
       {
         "zone": "Andaman Sea Region",
-        "centroid_lat": 11.752,
-        "centroid_lon": 93.564,
-        "radius_km": 139.4,
-        "event_count": 7,
+        "centroid_lat": 11.528,
+        "centroid_lon": 93.641,
+        "radius_km": 119.6,
+        "event_count": 6,
         "max_magnitude": 4.9,
-        "mean_magnitude": 4.51,
+        "mean_magnitude": 4.52,
         "last_event_time": "2026-08-11 19:55:41.269000",
         "confidence_note": ""
       },

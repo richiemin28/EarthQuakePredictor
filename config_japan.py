@@ -59,8 +59,18 @@ ROLLING_WINDOW_N    = 50        # same window as Myanmar for a fair comparison
 
 # ---------------------------------------------------------------------------
 # Prediction experiment settings
+#
+# Extended beyond Myanmar's [4.0, 4.5, 5.0, 5.5]: Japan's catalog carries
+# real signal much higher up the scale (confirmed via the USGS count API,
+# 1990-2019: 378 events M6.0+, 106 events M6.5+, 34 events M7.0+ - vs.
+# Myanmar's entire M5.5+ count of 182 over the same period). Below M5.5
+# most Japan predictions were already saturating near 100%, which is a
+# real result (Japan's background seismicity really is that dense at
+# moderate magnitudes) but it left the higher-consequence, genuinely
+# differentiating range - where a "major" or "great" earthquake is more
+# or less likely from one window to the next - completely untracked.
 # ---------------------------------------------------------------------------
-MAGNITUDE_THRESHOLDS = [4.0, 4.5, 5.0, 5.5]
+MAGNITUDE_THRESHOLDS = [4.5, 5.0, 5.5, 6.0, 6.5, 7.0]
 PREDICTION_WINDOWS   = [7, 10, 15, 30]
 
 # ---------------------------------------------------------------------------

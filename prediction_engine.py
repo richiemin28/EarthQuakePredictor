@@ -76,6 +76,25 @@ MAGNITUDE_INFO = {
         "effect": "Destructive shaking, serious infrastructure risk",
         "action": "HIGH ALERT - significant damage potential",
     },
+    # 6.0-7.0 are only ever reported for regions whose config lists these
+    # thresholds (currently Japan - see config_japan.py's own comment for
+    # why: real signal at this range, unlike Myanmar's much sparser
+    # high-magnitude catalog).
+    6.0: {
+        "label":  "MAJOR (M >= 6.0)",
+        "effect": "Serious damage to vulnerable buildings, injuries likely",
+        "action": "SEVERE ALERT - activate emergency preparedness",
+    },
+    6.5: {
+        "label":  "MAJOR+ (M >= 6.5)",
+        "effect": "Widespread structural damage, significant casualty risk",
+        "action": "SEVERE ALERT - review evacuation and shelter plans",
+    },
+    7.0: {
+        "label":  "GREAT (M >= 7.0)",
+        "effect": "Catastrophic damage over a wide area, major casualty and infrastructure risk",
+        "action": "CRITICAL ALERT - full emergency response readiness",
+    },
 }
 
 

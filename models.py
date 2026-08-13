@@ -42,6 +42,13 @@ from feature_engineering import FEATURE_COLUMNS
 
 
 # ---------------------------------------------------------------------------
+# StratifiedKFold needs at least this many examples of *each* class - used
+# both by the actual CV split below and by the pre-flight guard that skips
+# a label rather than letting GridSearchCV crash on it.
+# ---------------------------------------------------------------------------
+CV_FOLDS = 5
+
+# ---------------------------------------------------------------------------
 # Hyperparameter grids for grid search cross-validation
 # (smaller than full grid for MSc-level runtime feasibility)
 # ---------------------------------------------------------------------------
@@ -187,21 +194,29 @@ class StaticModel:
                           f"({y_train.sum()} pos / "
                           f"{len(y_train) - y_train.sum()} neg)")
 
-                # A classifier needs both classes present. This is a real
-                # edge case, not just Myanmar's near-zero-negative M4.0/30d:
-                # some regions (e.g. Japan at M4.0/15d) have background
-                # seismicity so continuous that a window is *always*
-                # positive, leaving zero negative examples to train against.
-                if y_train.nunique() < 2:
+                # StratifiedKFold needs at least CV_FOLDS examples of *each*
+                # class, not just both classes present. Myanmar's M4.0/30d
+                # (2 negative) and Japan's M4.0/15d (0 negative) are both
+                # instances of the same underlying issue: some regions have
+                # background seismicity so continuous that a window is
+                # almost always positive, leaving too few (or zero)
+                # negative examples. Undersampling and CTGAN augmentation
+                # both only ever act on the positive class, so neither
+                # helps when the *negative* class is the tiny one - this
+                # guard is the actual fix, for both directions of imbalance.
+                minority_n = min(int(y_train.sum()), len(y_train) - int(y_train.sum()))
+                if minority_n < CV_FOLDS:
                     if verbose:
-                        print(f"  {col}: only one class present "
-                              f"({int(y_train.sum())} pos / "
-                              f"{len(y_train) - int(y_train.sum())} neg) "
-                              f"- skipping, this threshold/window has no "
+                        print(f"  {col}: minority class has only {minority_n} "
+                              f"example(s) ({int(y_train.sum())} pos / "
+                              f"{len(y_train) - int(y_train.sum())} neg), "
+                              f"fewer than the {CV_FOLDS} needed for "
+                              f"cross-validation - skipping, this "
+                              f"threshold/window has no reliable "
                               f"discriminative signal for this region")
                     continue
 
-                cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+                cv = StratifiedKFold(n_splits=CV_FOLDS, shuffle=True, random_state=42)
                 estimator = self._build_estimator()
 
                 grid = GridSearchCV(
@@ -348,22 +363,25 @@ class AdaptiveModel:
                           f"({y_train.sum()} pos / "
                           f"{len(y_train) - y_train.sum()} neg)")
 
-                # See the matching guard in StaticModel.train(): some
-                # regions have background seismicity so continuous that a
-                # threshold/window is always positive, leaving no negative
-                # class to train against. Skip it - update() already skips
-                # any column missing from self.models, so no replay buffer
-                # is needed for it either.
-                if y_train.nunique() < 2:
+                # See the matching guard in StaticModel.train(): StratifiedKFold
+                # needs CV_FOLDS examples of *each* class, not just both
+                # classes present - undersampling/CTGAN only ever act on the
+                # positive class, so neither helps when negative is the tiny
+                # one. Skip it - update() already skips any column missing
+                # from self.models, so no replay buffer is needed for it either.
+                minority_n = min(int(y_train.sum()), len(y_train) - int(y_train.sum()))
+                if minority_n < CV_FOLDS:
                     if verbose:
-                        print(f"  {col}: only one class present "
-                              f"({int(y_train.sum())} pos / "
-                              f"{len(y_train) - int(y_train.sum())} neg) "
-                              f"- skipping, this threshold/window has no "
+                        print(f"  {col}: minority class has only {minority_n} "
+                              f"example(s) ({int(y_train.sum())} pos / "
+                              f"{len(y_train) - int(y_train.sum())} neg), "
+                              f"fewer than the {CV_FOLDS} needed for "
+                              f"cross-validation - skipping, this "
+                              f"threshold/window has no reliable "
                               f"discriminative signal for this region")
                     continue
 
-                cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+                cv = StratifiedKFold(n_splits=CV_FOLDS, shuffle=True, random_state=42)
                 estimator = self._build_estimator()
                 grid = GridSearchCV(
                     estimator, self._param_grid(),
