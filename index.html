@@ -907,17 +907,20 @@ const COUNTRIES = {
     // M5.5 the hardest threshold to get reliable signal at, so thresholds
     // stop there rather than stretching into thinner-still territory.
     thresholds: [4.5, 5.0, 5.5],
+    // Tightened to the middle 70% (magnitude-weighted 15th-85th percentile)
+    // of each zone's real historical seismicity - mirrors config.py's
+    // LOCATION_ZONES exactly, see that file for the methodology note.
     zoneMap: {
-      'Sagaing Fault Zone':   {lat:[18,25],   lon:[94.5,96.5]},
-      'Central Myanmar':      {lat:[18.5,23], lon:[94,100]},
-      'Northern Myanmar':     {lat:[23,28.5], lon:[95,101]},
-      'Indo-Burman Range':    {lat:[20,27],   lon:[92,95]},
-      'Southern Myanmar':     {lat:[14,18.5], lon:[97,102]},
-      'Andaman Sea Region':   {lat:[10,16],   lon:[92,99]},
-      'Yunnan Border Region': {lat:[23,27],   lon:[99,105]},
-      'Northern Thailand':    {lat:[15,20],   lon:[98,105]},
-      'Chin Hills / Assam':   {lat:[22,28.5], lon:[90,93.5]},
-      'Bay of Bengal North':  {lat:[18,23],   lon:[90,92.5]},
+      'Sagaing Fault Zone':   {lat:[19.72,24.63], lon:[94.62,96.0]},
+      'Central Myanmar':      {lat:[19.64,22.75], lon:[94.42,98.91]},
+      'Northern Myanmar':     {lat:[24.56,27.08], lon:[95.33,100.19]},
+      'Indo-Burman Range':    {lat:[22.04,24.94], lon:[92.96,94.72]},
+      'Southern Myanmar':     {lat:[14.84,18.36], lon:[97.8,100.7]},
+      'Andaman Sea Region':   {lat:[10.52,13.94], lon:[92.54,94.82]},
+      'Yunnan Border Region': {lat:[23.62,26.32], lon:[99.82,102.77]},
+      'Northern Thailand':    {lat:[18.91,19.68], lon:[99.17,101.37]},
+      'Chin Hills / Assam':   {lat:[23.18,27.31], lon:[91.11,93.12]},
+      'Bay of Bengal North':  {lat:[19.86,22.83], lon:[91.75,92.39]},
     },
   },
   japan: {
@@ -937,17 +940,20 @@ const COUNTRIES = {
     // earthquake is more or less likely from one window to the next -
     // completely untracked.
     thresholds: [4.5, 5.0, 5.5, 6.0, 6.5, 7.0],
+    // Tightened to the middle 70% (magnitude-weighted 15th-85th percentile)
+    // of each zone's real historical seismicity - mirrors config_japan.py's
+    // LOCATION_ZONES exactly, see that file for the methodology note.
     zoneMap: {
-      'Nankai Trough':                        {lat:[31,34.5], lon:[131,139]},
-      'Japan Trench (Tohoku)':                {lat:[35,41],   lon:[141,145]},
-      'Sagami Trough (Kanto)':                {lat:[34.5,36], lon:[138.5,140.5]},
-      'Izu-Bonin Arc':                        {lat:[24,34],   lon:[139,142]},
-      'Median Tectonic Line (SW Japan)':      {lat:[32,35],   lon:[130,135]},
-      'Hokkaido / Kuril Trench':              {lat:[41,46],   lon:[139,146]},
-      'Ryukyu Trench (Okinawa)':              {lat:[24,30],   lon:[122,131]},
-      'Niigata-Kobe Tectonic Zone':           {lat:[35,38],   lon:[136,139.5]},
-      'Itoigawa-Shizuoka Line (Fossa Magna)': {lat:[35,37],   lon:[137.5,139]},
-      'Kanto Triple Junction':                {lat:[35,36.5], lon:[139,140.5]},
+      'Nankai Trough':                        {lat:[31.6,33.93],  lon:[131.54,137.98]},
+      'Japan Trench (Tohoku)':                {lat:[36.41,39.72], lon:[141.53,143.7]},
+      'Sagami Trough (Kanto)':                {lat:[34.93,35.84], lon:[139.36,140.35]},
+      'Izu-Bonin Arc':                        {lat:[27.34,33.11], lon:[139.81,141.77]},
+      'Median Tectonic Line (SW Japan)':      {lat:[32.4,33.72],  lon:[130.61,132.53]},
+      'Hokkaido / Kuril Trench':              {lat:[41.49,43.13], lon:[141.83,144.87]},
+      'Ryukyu Trench (Okinawa)':              {lat:[24.45,28.82], lon:[122.65,129.93]},
+      'Niigata-Kobe Tectonic Zone':           {lat:[35.75,37.52], lon:[136.88,139.04]},
+      'Itoigawa-Shizuoka Line (Fossa Magna)': {lat:[35.5,36.81],  lon:[137.67,138.87]},
+      'Kanto Triple Junction':                {lat:[35.41,36.13], lon:[139.68,140.34]},
     },
   },
 };

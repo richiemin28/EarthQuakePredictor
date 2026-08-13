@@ -14,6 +14,8 @@
 # 20,000-events-per-request limit.
 # =============================================================================
 
+COUNTRY_NAME = "Japan"
+
 # ---------------------------------------------------------------------------
 # Geographic bounding box for the Japanese archipelago and its subduction
 # zones: Ryukyu Trench (SW) through Hokkaido/Kuril Trench (NE), including
@@ -91,76 +93,112 @@ MIN_SAMPLES_FOR_AUG  = 100
 # zones, matched in granularity (10 zones) to the Myanmar configuration.
 # Boundaries and fault names reflect established Japanese seismotectonics
 # (Nankai Trough, Japan Trench/Tohoku, Sagami Trough, etc.), not invented.
+#
+# Boundaries are data-driven: for each zone, computed the magnitude^2-weighted
+# 15th-85th percentile box of real M>=3.0 events (1990-2025) that fell inside
+# the zone's original (much larger) box - i.e. tightened down to the middle
+# 70% of that zone's actual seismicity in each of the lat/lon dimensions.
+# Halves the displayed uncertainty radius on average (down to under 100km for
+# tightly-clustered zones like Kanto Triple Junction and Sagami Trough),
+# at the cost of more events falling outside any named zone into the
+# generic "Japan Region (General)" catch-all (39% overall coverage vs. 77%
+# before). Deliberate tradeoff, same reasoning as config.py's Myanmar zones.
 # ---------------------------------------------------------------------------
 LOCATION_ZONES = {
     "Nankai Trough": {
-        "lat": (31.0, 34.5), "lon": (131.0, 139.0),
-        "centre_lat": 32.75, "centre_lon": 135.0,
-        "radius_km": 420,
+        "lat": (31.6, 33.93), "lon": (131.54, 137.98),
+        "centre_lat": 32.878, "centre_lon": 134.668,
+        "radius_km": 327,
         "fault": "Nankai Trough Megathrust",
         "description": "Subduction zone south of Shikoku and the Kii Peninsula; source of historical M8+ megathrust earthquakes (1944 Tonankai, 1946 Nankai) and Japan's highest-priority near-term hazard",
     },
     "Japan Trench (Tohoku)": {
-        "lat": (35.0, 41.0), "lon": (141.0, 145.0),
-        "centre_lat": 38.0, "centre_lon": 143.0,
-        "radius_km": 480,
+        "lat": (36.41, 39.72), "lon": (141.53, 143.7),
+        "centre_lat": 38.128, "centre_lon": 142.535,
+        "radius_km": 207,
         "fault": "Japan Trench",
         "description": "Subduction zone off the Pacific coast of Tohoku; source of the 2011 Mw 9.0 Tohoku earthquake and tsunami",
     },
     "Sagami Trough (Kanto)": {
-        "lat": (34.5, 36.0), "lon": (138.5, 140.5),
-        "centre_lat": 35.25, "centre_lon": 139.5,
-        "radius_km": 300,
+        "lat": (34.93, 35.84), "lon": (139.36, 140.35),
+        "centre_lat": 35.511, "centre_lon": 140.056,
+        "radius_km": 67,
         "fault": "Sagami Trough",
         "description": "South of Tokyo and the Kanto Plain; source of the 1923 Great Kanto earthquake",
     },
     "Izu-Bonin Arc": {
-        "lat": (24.0, 34.0), "lon": (139.0, 142.0),
-        "centre_lat": 29.0, "centre_lon": 140.5,
-        "radius_km": 500,
+        "lat": (27.34, 33.11), "lon": (139.81, 141.77),
+        "centre_lat": 30.617, "centre_lon": 140.869,
+        "radius_km": 334,
         "fault": "Izu-Bonin Trench",
         "description": "Volcanic island arc and subduction zone south of Tokyo, extending to the Ogasawara Islands",
     },
     "Median Tectonic Line (SW Japan)": {
-        "lat": (32.0, 35.0), "lon": (130.0, 135.0),
-        "centre_lat": 33.5, "centre_lon": 132.5,
-        "radius_km": 350,
+        "lat": (32.4, 33.72), "lon": (130.61, 132.53),
+        "centre_lat": 32.96, "centre_lon": 131.385,
+        "radius_km": 116,
         "fault": "Median Tectonic Line",
         "description": "Major inland strike-slip fault system running through Shikoku and Kyushu",
     },
     "Hokkaido / Kuril Trench": {
-        "lat": (41.0, 46.0), "lon": (139.0, 146.0),
-        "centre_lat": 43.5, "centre_lon": 142.5,
-        "radius_km": 460,
+        "lat": (41.49, 43.13), "lon": (141.83, 144.87),
+        "centre_lat": 42.165, "centre_lon": 143.25,
+        "radius_km": 155,
         "fault": "Kuril Trench",
         "description": "Northern Japan subduction zone off Hokkaido, extending toward the Kuril Islands",
     },
     "Ryukyu Trench (Okinawa)": {
-        "lat": (24.0, 30.0), "lon": (122.0, 131.0),
-        "centre_lat": 27.0, "centre_lon": 126.5,
-        "radius_km": 470,
+        "lat": (24.45, 28.82), "lon": (122.65, 129.93),
+        "centre_lat": 26.222, "centre_lon": 126.765,
+        "radius_km": 436,
         "fault": "Ryukyu Trench",
         "description": "Southwestern subduction zone along the Ryukyu (Okinawa) island chain",
     },
     "Niigata-Kobe Tectonic Zone": {
-        "lat": (35.0, 38.0), "lon": (136.0, 139.5),
-        "centre_lat": 36.5, "centre_lon": 137.75,
-        "radius_km": 340,
+        "lat": (35.75, 37.52), "lon": (136.88, 139.04),
+        "centre_lat": 36.978, "centre_lon": 137.993,
+        "radius_km": 138,
         "fault": "Niigata-Kobe Tectonic Zone",
         "description": "Central Honshu seismic belt of concentrated crustal strain, from the Sea of Japan coast to the Kobe area",
     },
     "Itoigawa-Shizuoka Line (Fossa Magna)": {
-        "lat": (35.0, 37.0), "lon": (137.5, 139.0),
-        "centre_lat": 36.0, "centre_lon": 138.25,
-        "radius_km": 260,
+        "lat": (35.5, 36.81), "lon": (137.67, 138.87),
+        "centre_lat": 36.382, "centre_lon": 137.992,
+        "radius_km": 90,
         "fault": "Itoigawa-Shizuoka Tectonic Line",
         "description": "Major fault boundary marking the western edge of the Fossa Magna rift in central Honshu",
     },
     "Kanto Triple Junction": {
-        "lat": (35.0, 36.5), "lon": (139.0, 140.5),
-        "centre_lat": 35.75, "centre_lon": 139.75,
-        "radius_km": 240,
+        "lat": (35.41, 36.13), "lon": (139.68, 140.34),
+        "centre_lat": 35.782, "centre_lon": 140.032,
+        "radius_km": 50,
         "fault": "Kanto Triple Junction",
         "description": "Complex zone beneath the Tokyo metropolitan area where the Pacific, Philippine Sea, and Okhotsk plates meet",
     },
+}
+
+# ---------------------------------------------------------------------------
+# Per-zone priority multiplier used when ranking zones for the headline
+# "most likely location" prediction (spatial_predictor.rank_zones). Ensures
+# well-established, well-studied fault zones outrank the generic
+# "Region (General)" catch-all even when General has more raw recent events.
+# Ordered by documented seismic hazard significance: Nankai Trough and the
+# Japan Trench (Tohoku) carry Japan's highest-consequence megathrust hazard
+# (1944/1946 Nankai-Tonankai, 2011 Tohoku); Kanto-area zones get a bonus for
+# population exposure beneath Tokyo; the rest follow established hazard
+# literature. Previously this table only had Myanmar's zone names (a bug -
+# it silently fell back to a 1.0x multiplier for every Japan zone, meaning
+# a well-known fault zone had no ranking advantage over the catch-all).
+# ---------------------------------------------------------------------------
+ZONE_PRIORITY = {
+    "Nankai Trough":                        2.5,
+    "Japan Trench (Tohoku)":                2.3,
+    "Kanto Triple Junction":                1.9,
+    "Sagami Trough (Kanto)":                1.8,
+    "Hokkaido / Kuril Trench":              1.7,
+    "Median Tectonic Line (SW Japan)":      1.6,
+    "Niigata-Kobe Tectonic Zone":           1.5,
+    "Ryukyu Trench (Okinawa)":              1.4,
+    "Izu-Bonin Arc":                        1.3,
+    "Itoigawa-Shizuoka Line (Fossa Magna)": 1.2,
 }

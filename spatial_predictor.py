@@ -20,7 +20,7 @@
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
-from config import LOCATION_ZONES
+from config import LOCATION_ZONES, COUNTRY_NAME, ZONE_PRIORITY
 
 
 # ---------------------------------------------------------------------------
@@ -45,7 +45,7 @@ def identify_zone(lat: float, lon: float) -> str:
         if (bounds["lat"][0] <= lat <= bounds["lat"][1] and
                 bounds["lon"][0] <= lon <= bounds["lon"][1]):
             return zone_name
-    return "Myanmar Region (General)"
+    return f"{COUNTRY_NAME} Region (General)"
 
 
 # ---------------------------------------------------------------------------
@@ -195,24 +195,24 @@ def rank_zones(zone_stats: dict,
     if not zone_stats:
         return []
 
-    # Known high-priority seismic zones get a bonus multiplier.
-    # This ensures well-defined fault zones rank above the catch-all
-    # "General" zone even when the general zone has more raw events.
-    PRIORITY_ZONES = {
-        "Sagaing Fault Zone":   2.5,
-        "Central Myanmar":      2.0,
-        "Northern Myanmar":     1.8,
-        "Indo-Burman Range":    1.8,
-        "Southern Myanmar":     1.6,
-        "Andaman Sea Region":   1.5,
-        "Yunnan Border Region": 1.4,
-        "Northern Thailand":    1.3,
-        "Chin Hills / Assam Region": 1.2,
-        "Bay of Bengal North":  1.1,
-    }
+    # Known high-priority seismic zones get a bonus multiplier (per-country,
+    # from config's ZONE_PRIORITY). This ensures well-defined fault zones
+    # rank above the catch-all "General" zone even when General has more
+    # raw events.
+    PRIORITY_ZONES = ZONE_PRIORITY
     # The catch-all zone is penalised heavily because its large radius
     # and diffuse events make it a poor location prediction target.
-    GENERAL_PENALTY = 0.3
+    # 0.3 was tuned back when the named zones were much larger (some
+    # 400-500km across); tightening them (see config.py's LOCATION_ZONES
+    # note) means named zones now catch fewer of any given 90-day window's
+    # events by design, so General's raw event count started winning outright
+    # for Japan specifically (its background seismicity is dense enough that
+    # General regularly out-counts every single named zone combined) even
+    # with a real, well-known zone otherwise dominating by weight. 0.2
+    # verified against real recent data for both countries: still ranks
+    # Sagaing Fault Zone / Japan Trench (Tohoku) #1 as expected, General
+    # drops to a secondary "also watch" entry instead of the headline.
+    GENERAL_PENALTY = 0.2
 
     scored = []
     for zone_name, stats in zone_stats.items():
