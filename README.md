@@ -1,15 +1,19 @@
-# Myanmar Earthquake Prediction System
+# Adaptive Earthquake Forecast System
 
 An adaptive, continually-learning machine learning system for short-term earthquake
-forecasting in Myanmar and its surrounding tectonic region (Sagaing Fault, Indo-Burman
-Range, Andaman Sea subduction zone, Yunnan border, northern Thailand).
+forecasting — currently covering **Myanmar** and **Japan**, two of the world's most
+seismically active and consequential countries, with more regions plannable using the
+same architecture.
 
-This repository is the software artefact for the MSc dissertation *"AI Based Real Time
-Earthquake Prediction for Myanmar and Surrounding Seismic Regions Using Continual
-Learning"* (Min Pyae, MSc Advanced Computer Science, University of Chester, CO7047
-Research Project, supervised by Dr Joe Collenette, May 2026). Everything below — the
-motivation, the architecture, and the reported results — reflects what is documented in
-that report, so the two stay in sync.
+The project began as the software artefact for an MSc dissertation on Myanmar
+specifically (below), and has since been extended to a second country: Japan suffers
+some of the most severe and frequent earthquakes on Earth (the 2011 Mw 9.0 Tohoku
+earthquake among them) and has a far denser, better-instrumented public catalog than
+Myanmar's — a genuinely useful, different test of whether the same continual-learning
+approach holds up in a very different seismic and data regime. The goal is the same one
+the dissertation started with: put a real, working, continuously-updating forecasting
+tool in front of people living somewhere earthquakes are a real and recurring risk, not
+just a one-off historical-data exercise.
 
 > **Research artefact — not an early-warning system.** Predictions are probabilistic
 > outputs of a statistical pattern-matching model, not seismological forecasts. They are
@@ -38,12 +42,15 @@ region, before this project.
 
 **Hypothesis tested by this system:** a model that is continuously updated with incoming
 real-time seismic data will outperform a static, frozen model at short-term earthquake
-prediction for Myanmar, measured by precision, recall, F1, and AUC across multiple
-magnitude thresholds and prediction windows.
+prediction, measured by precision, recall, F1, and AUC across multiple magnitude
+thresholds and prediction windows. Myanmar was the original test case (data-sparse,
+under-monitored); Japan is the second, deliberately different one (data-dense,
+extremely well-monitored) — the same architecture, retrained independently on each
+country's own catalog.
 
 ## What the system does
 
-The system runs a controlled experiment between two models trained identically on 1990–2019
+The system runs a controlled experiment between two models trained identically on
 historical data, then diverging:
 
 - **Static model** — frozen after initial training, never updated. Represents the
@@ -56,14 +63,40 @@ historical data, then diverging:
 Both are XGBoost classifiers trained on 15 seismic indicator features computed with a
 rolling 50-event window, following the feature taxonomy of Mukherjee et al. (2025).
 **CTGAN** synthetic data augmentation (Joshi et al., 2025) balances the training set for
-rare high-magnitude classes. A dedicated spatial module turns raw probability outputs
-into estimated epicenter coordinates, zone names, and uncertainty radii using
-magnitude-weighted, recency-weighted spatial clustering across ten named tectonic zones.
+rare high-magnitude classes where needed. A dedicated spatial module turns raw
+probability outputs into estimated epicenter coordinates, zone names, and uncertainty
+radii using magnitude-weighted, recency-weighted spatial clustering across named
+tectonic zones — ten for Myanmar (Sagaing Fault, Indo-Burman Range, Andaman Sea, etc.)
+and ten for Japan (Nankai Trough, Japan Trench, Sagami Trough, etc.).
+
+**The adaptive model keeps learning in production, not just in the evaluation.** A
+daily scheduled job fetches confirmed new earthquakes for both countries, recomputes
+features and labels, and genuinely retrains the adaptive model on them — see
+[Keeping the model current](#keeping-the-model-current-in-production) below for exactly
+how, since this is the kind of claim that's easy to leave true only on paper.
+
+### Magnitude range differs by country, deliberately
+
+Myanmar's catalog above M5.5 is thin — 182 events total over 1990–2019 — and the
+dissertation's own evaluation already found M5.5 the hardest threshold to get reliable
+signal at, so Myanmar's thresholds stop there (M4.5 / M5.0 / M5.5) rather than stretching
+into thinner-still territory.
+
+Japan's catalog carries real, trainable signal much further up the scale — 1,159 events
+at M5.5+, 378 at M6.0+, 106 at M6.5+, 34 at M7.0+ over the same 30-year window, checked
+against the USGS catalog directly before deciding this, not assumed. Below M5.5 many
+Japan prediction windows were already saturating near 100% (which is a real result —
+background seismicity there really is that dense at moderate magnitudes), which left the
+higher-consequence range — where a major or great earthquake is more or less likely from
+one window to the next — completely untracked. Japan's thresholds now run **M4.5 / M5.0
+/ M5.5 / M6.0 / M6.5 / M7.0**, each confirmed to have enough real positive examples
+(hundreds to low thousands, not just a handful) to be worth training on, not just
+technically possible to fit a classifier to.
 
 ## Result: does adaptive updating actually help?
 
-Evaluated pseudo-prospectively across the 2020–2025 test period (1,279 held-out events,
-never seen during training):
+Evaluated pseudo-prospectively across the 2020–2025 test period (1,279 held-out Myanmar
+events, never seen during training):
 
 | Magnitude threshold | What happened |
 |---|---|
@@ -78,34 +111,54 @@ AUC** comparisons. The improvement is not perfectly monotonic year-over-year (20
 a temporary dip, consistent with known replay-buffer stability/plasticity trade-offs),
 but the combined multi-year comparison is unambiguous, and the effect is largest exactly
 where it matters most: detecting the region's most dangerous earthquakes. Full
-methodology, per-year tables, and discussion are in Chapters 5–6 of the dissertation.
+methodology, per-year tables, and discussion are in Chapters 5–6 of the original
+dissertation (Myanmar-only at time of writing).
+
+Japan's own pseudo-prospective evaluation runs the identical methodology independently
+on Japan's catalog — see `predictions/japan_latest_predictions.json` and the terminal
+output of `python run_pipeline.py japan --mode evaluate` for current numbers; a
+dedicated write-up comparing the two countries' results is a natural next step but isn't
+folded into the original dissertation text, which predates Japan's addition.
 
 ## Architecture
 
 ```
-config.py               Central configuration — geographic bounds, API endpoints,
-                         zones, and all tunable parameters in one place
-data_acquisition.py      USGS historical catalog fetch + real-time ATOM feed polling
-feature_engineering.py   15 seismic indicator features + binary label construction
-data_augmentation.py     CTGAN synthetic minority-class generation
-models.py                StaticModel and AdaptiveModel (XGBoost + replay buffer)
-spatial_predictor.py     Magnitude/recency-weighted spatial clustering → zone,
-                         centroid, and uncertainty radius
-prediction_engine.py     Turns model output + spatial stats into structured predictions
-live_updater.py          LiveUpdater class used by `main.py --mode live`
-live_demo.py             Standalone real-time terminal dashboard (continuous polling
-                         + adaptive updates + prediction refresh)
-generate.py              Lightweight refresh: loads the saved model and regenerates
-                         predictions without retraining (~60s) — used by CI
-main.py                  Master pipeline entry point (train/update/evaluate/live/predict)
-index.html               Static front-end dashboard (map + predictions + live USGS feed)
-.github/workflows/       GitHub Actions: refreshes predictions every 6 hours and
-                         deploys them to the live site
+config.py                Myanmar configuration — geographic bounds, API endpoints,
+                          zones, magnitude thresholds, and file paths
+config_japan.py           Japan's equivalent configuration, same structure, different
+                          bounds/zones/thresholds/file paths (all japan_-prefixed so
+                          nothing collides with Myanmar's data)
+run_pipeline.py           Runs main.py or generate.py against a specific country's
+                          config by swapping sys.modules["config"] before import -
+                          every pipeline module does `from config import X`, so this
+                          works without editing any of them. See its own docstring.
+data_acquisition.py       USGS historical catalog fetch + real-time ATOM feed polling
+feature_engineering.py    15 seismic indicator features + binary label construction
+data_augmentation.py      CTGAN synthetic minority-class generation
+models.py                 StaticModel and AdaptiveModel (XGBoost + replay buffer)
+spatial_predictor.py      Magnitude/recency-weighted spatial clustering → zone,
+                          centroid, and uncertainty radius
+prediction_engine.py      Turns model output + spatial stats into structured
+                          predictions, including per-magnitude effect/action text
+live_updater.py           LiveUpdater class used by `main.py --mode live`
+live_demo.py              Standalone real-time terminal dashboard (continuous polling
+                          + adaptive updates + prediction refresh)
+generate.py                Lightweight refresh: loads the saved model and regenerates
+                          predictions without retraining (~60s) — used by CI
+main.py                   Master pipeline entry point (train/update/evaluate/live/predict)
+index.html                 Static front-end dashboard — mobile-first, light/dark theme,
+                          country switcher, plain-language forecast summary
+.github/workflows/
+  update-predictions.yml   Every 6 hours: refreshes predictions for both countries from
+                          the current model and deploys them, no retraining
+  adaptive-update.yml      Once daily: the real continual-learning step — fetches
+                          confirmed new earthquakes and actually retrains both
+                          countries' adaptive models on them
 ```
 
 Data flows: `data_acquisition.py` → `feature_engineering.py` → (`data_augmentation.py` →)
-`models.py` → `spatial_predictor.py` / `prediction_engine.py` → `predictions/latest_predictions.json`
-→ `index.html`.
+`models.py` → `spatial_predictor.py` / `prediction_engine.py` →
+`predictions/{country}_latest_predictions.json` → `index.html`.
 
 ## Getting started
 
@@ -118,40 +171,49 @@ pip install -r requirements.txt
 ```
 
 `requirements.txt` covers the full pipeline (including CTGAN/`sdv`, used only for
-training). `requirements_server.txt` is the trimmed dependency set used by the
-lightweight CI refresh job (`generate.py`).
+training). `requirements_server.txt` is the trimmed dependency set used by CI (both the
+lightweight refresh and the real adaptive-update job — neither needs CTGAN).
 
 ### Run the full pipeline
 
 ```bash
-# Fetch USGS data (1990-2025), engineer features, train both models,
-# run the evaluation, and generate predictions:
+# Myanmar (default config):
 python main.py --mode full
+
+# Japan (or any future country with its own config_<name>.py):
+python run_pipeline.py japan --mode full
 ```
 
 This takes a while on first run — the historical fetch and rolling-window feature
-computation are the slow steps (tens of minutes). Results are cached to `data/` and
-`models/` so subsequent runs are fast.
+computation are the slow steps. Results are cached to `data/` and `models/` (with
+`japan_`-prefixed filenames for Japan) so subsequent runs are fast.
 
 ### Other modes
 
+Works identically for either country — just choose whether to call `main.py` directly
+(Myanmar) or route it through `run_pipeline.py <country>` (any other country):
+
 ```bash
-python main.py --mode train            # (Re)train static + adaptive models from scratch
-python main.py --mode train --refresh  # Force a fresh USGS download instead of using the cache
-python main.py --mode evaluate         # Pseudo-prospective evaluation, static vs adaptive
-python main.py --mode predict          # Generate structured predictions from the saved model
-python main.py --mode update           # Fetch new events since the last run, adapt the model
-python main.py --mode live             # Start the continuous live-updating loop
+python main.py --mode train              # (Re)train static + adaptive models from scratch
+python main.py --mode train --refresh    # Force a fresh USGS download instead of using the cache
+python main.py --mode evaluate           # Pseudo-prospective evaluation, static vs adaptive
+python main.py --mode predict            # Generate structured predictions from the saved model
+python main.py --mode update             # Fetch new confirmed events, actually retrain the model
+python main.py --mode live               # Start the continuous live-updating loop
+
+python run_pipeline.py japan --mode train
+python run_pipeline.py japan --mode update
+python run_pipeline.py japan generate    # equivalent to generate.py, but for Japan
 ```
 
 ### Live terminal dashboard
 
 ```bash
-python live_demo.py                 # Poll USGS every 5 minutes (default)
+python live_demo.py                 # Myanmar, poll USGS every 5 minutes (default)
 python live_demo.py --interval 60   # Poll every 60 seconds
 ```
 
-Polls the USGS ATOM feed, ingests any new events in the Myanmar bounding box, triggers an
+Polls the USGS ATOM feed, ingests any new events in the bounding box, triggers an
 adaptive model update, and redraws a full prediction dashboard (recent activity, zone
 rankings, forward predictions with coordinates/radius/probability) in the terminal. Press
 `Ctrl+C` to stop — the model checkpoints automatically on exit.
@@ -159,21 +221,45 @@ rankings, forward predictions with coordinates/radius/probability) in the termin
 ### Web dashboard
 
 `index.html` is a self-contained static page — open it directly in a browser, or serve it
-with any static file server. It reads `predictions/latest_predictions.json` (produced by
-`generate.py` or `main.py --mode predict`) for the ML forecasts, and polls the USGS ATOM
-feed directly in the browser for live activity.
+with any static file server. It reads `predictions/{country}_latest_predictions.json`
+for the ML forecasts and polls the USGS ATOM feed directly in the browser for live
+activity. A country switcher in the header lets a visitor pick Myanmar or Japan without
+reloading the page; a light/dark theme toggle persists the visitor's choice.
 
-The included GitHub Actions workflow (`.github/workflows/update-predictions.yml`) refreshes
-predictions every 6 hours using the already-trained model (no retraining), commits the
-updated JSON back to the repo, and optionally deploys it to a host over FTP if
-`FTP_SERVER` / `FTP_USERNAME` / `FTP_PASSWORD` secrets are configured. If you fork this
-repo without those secrets, the FTP step simply no-ops (`continue-on-error: true`) and the
-predictions JSON still updates in-repo.
+Mobile-first: base styles are a normal scrolling single-column page with 44px+ touch
+targets, and the fixed two-pane app-shell layout only kicks in above 900px wide. A
+plain-language "hero" summary (the single highest 30-day probability, described in
+words — "78% chance of a strong earthquake near the Sagaing Fault Zone" — not just a
+raw percentage) leads every visit; the full multi-window forecast table is available
+behind a "see full forecast" disclosure for anyone who wants the detail.
+
+## Keeping the model current in production
+
+Two separate scheduled jobs, deliberately different cadences:
+
+- **`update-predictions.yml`, every 6 hours** — cheap. Loads whatever model already
+  exists and regenerates predictions using the latest 90 days of USGS data for spatial
+  context. Doesn't touch the model's learned weights.
+- **`adaptive-update.yml`, once daily at 03:00 UTC** — the real thing. Fetches every
+  confirmed new earthquake since the last run, recomputes the full feature/label set,
+  and actually calls the adaptive model's `.update()` method — genuine incremental
+  retraining on real outcomes, with the replay buffer doing its job of not overwriting
+  what the model already knew. Runs daily rather than every 6 hours deliberately:
+  continual learning is more stable with a meaningful batch of new events per update
+  than with many very small ones. Both countries' catalogs, models, and predictions are
+  committed back to the repo and redeployed after each run.
+
+Both workflows share a `concurrency` group so they can never run at the same time and
+race to push to `main` — GitHub queues one behind the other instead. If you fork this
+repo, `workflow_dispatch` lets you trigger either one manually from the Actions tab to
+see it work without waiting for the schedule.
 
 ## Data sources
 
 - **[USGS Earthquake Catalog API](https://earthquake.usgs.gov/fdsnws/event/1/)** —
-  FDSN-compliant historical catalog, M2.0+, bounding box 10–30°N / 90–105°E, 1990–2025.
+  FDSN-compliant historical catalog. Myanmar: M2.0+, 10–30°N / 90–105°E. Japan: M4.5+
+  (Japan's catalog is dense enough that M2.0 would make feature computation
+  intractable), 24–46°N / 122–146°E.
 - **[USGS ATOM feed](https://earthquake.usgs.gov/earthquakes/feed/)** — real-time event
   stream, polled for live updates.
 
@@ -181,32 +267,40 @@ Both are free, public, and require no API key.
 
 ## Limitations
 
-Carried over directly from the dissertation's own assessment (Chapter 6.2) — worth
-reading before trusting any output:
+Carried over from the dissertation's own assessment (Chapter 6.2), plus what's changed
+since Japan was added — worth reading before trusting any output:
 
-- **Catalog sparsity.** Myanmar's public USGS catalog under-represents actual seismicity
-  compared to well-monitored regions; a dedicated seismic array study (Yang et al., 2024)
-  found roughly double the events of routine processing.
+- **Catalog sparsity (Myanmar specifically).** Myanmar's public USGS catalog
+  under-represents actual seismicity compared to well-monitored regions; a dedicated
+  seismic array study (Yang et al., 2024) found roughly double the events of routine
+  processing. Japan's catalog doesn't share this limitation — it's one of the
+  best-instrumented seismic regions on Earth.
 - **Reduced feature set.** 15 of the 61 features used by the reference study (Mukherjee
   et al., 2025) are implemented here, chosen by their reported SHAP importance.
 - **Simple continual-learning strategy.** Fixed-ratio replay buffering is the simplest
   viable catastrophic-forgetting mitigation; it produces a non-monotonic
-  year-by-year trajectory (a temporary dip in 2023) rather than uniformly increasing
-  performance.
+  year-by-year trajectory (a temporary dip in 2023 for Myanmar) rather than uniformly
+  increasing performance.
 - **Location estimates are descriptive, not physical.** Coordinates and radii come from
   clustering of recent seismicity, not from fault-geometry or stress modelling — they show
   *where recent activity has concentrated*, not a physically derived rupture probability.
+- **Japan's higher-magnitude thresholds (M6.5, M7.0) rest on real but comparatively
+  fewer positive examples** than the lower thresholds, even though each was checked to
+  clear the minimum needed for reliable cross-validation before being included (see
+  [Magnitude range differs by country](#magnitude-range-differs-by-country-deliberately)).
+  Treat the higher end of Japan's range as directionally meaningful, not as precise as
+  the well-populated M4.5–5.5 range.
 - **No operational deployment.** This has been validated in pseudo-prospective evaluation
   and confirmed to run correctly in live polling mode, but has not been reviewed by
-  seismologists or integrated with any civil protection framework.
+  seismologists or integrated with any civil protection framework, for either country.
 
 ## Disclaimer
 
-The Myanmar Earthquake Prediction System is an experimental research artefact developed
-for academic purposes only. Its probabilistic predictions are based on statistical
-pattern analysis of historical and real-time seismic catalog data and are **not
-validated for operational use**. They do not constitute official earthquake warnings,
-hazard assessments, or civil protection advisories of any kind. No reliance should be
+This is an experimental research artefact developed for academic purposes only. Its
+probabilistic predictions are based on statistical pattern analysis of historical and
+real-time seismic catalog data and are **not validated for operational use**. They do
+not constitute official earthquake warnings, hazard assessments, or civil protection
+advisories of any kind, for Myanmar, Japan, or any other region. No reliance should be
 placed on the system's outputs for emergency response, public safety, or infrastructure
 planning without independent validation by qualified seismologists and integration with
 established civil protection frameworks. Deterministic earthquake prediction (precise
@@ -216,7 +310,8 @@ nothing more.
 
 ## Citation
 
-If you build on this work, please cite the dissertation:
+If you build on this work, please cite the original dissertation, which this project
+extends:
 
 ```
 Min Pyae (2026). AI Based Real Time Earthquake Prediction for Myanmar and Surrounding
@@ -247,10 +342,11 @@ reference list for the complete set:
 
 ## Acknowledgements
 
-Thanks to Dr Joe Collenette for supervision, and to the **United States Geological
-Survey** for maintaining free, open access to the earthquake catalog API and real-time
-ATOM feed that this entire project is built on. All research design, experimental
-decisions, and analysis are the author's own.
+Thanks to Dr Joe Collenette for supervising the original Myanmar dissertation this
+project is built on, and to the **United States Geological Survey** for maintaining
+free, open access to the earthquake catalog API and real-time ATOM feed that the entire
+project — Myanmar, Japan, and any country added after — runs on. All research design,
+experimental decisions, and analysis are the author's own.
 
 ## License
 

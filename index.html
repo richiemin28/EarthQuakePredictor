@@ -818,9 +818,7 @@ const USGS_FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5
 const USGS_INT  = 60000;
 const ML_INT    = 30 * 60000;
 
-const THRESHOLDS = [4.5, 5.0, 5.5];
-const WINDOWS    = [7, 10, 15, 30];
-const TH_LBL     = { 4.5:'M ≥ 4.5', 5.0:'M ≥ 5.0', 5.5:'M ≥ 5.5' };
+const WINDOWS = [7, 10, 15, 30];
 
 /* ═══════════════════════════════════════════════════════════
    Countries — each carries its own bounding box (used to filter
@@ -837,6 +835,11 @@ const COUNTRIES = {
     mapCenter: [20.5, 96.5], mapZoom: 5,
     predictionsUrl: 'predictions/latest_predictions.json',
     defaultZoneName: 'Myanmar Region',
+    // Myanmar's catalog above M5.5 is thin (182 events total 1990-2019,
+    // vs. Japan's 1159) - the dissertation's own evaluation already found
+    // M5.5 the hardest threshold to get reliable signal at, so thresholds
+    // stop there rather than stretching into thinner-still territory.
+    thresholds: [4.5, 5.0, 5.5],
     zoneMap: {
       'Sagaing Fault Zone':   {lat:[18,25],   lon:[94.5,96.5]},
       'Central Myanmar':      {lat:[18.5,23], lon:[94,100]},
@@ -857,6 +860,16 @@ const COUNTRIES = {
     mapCenter: [36.5, 138], mapZoom: 5,
     predictionsUrl: 'predictions/japan_latest_predictions.json',
     defaultZoneName: 'Japan Region',
+    // Extended beyond Myanmar's ceiling: Japan's catalog carries real,
+    // trainable signal all the way to M7.0 (confirmed against actual
+    // label counts, not just raw event counts, before adding these -
+    // e.g. M7.0/7d alone had 566 positive examples over the training
+    // period). Below M5.5 many Japan windows were already saturating
+    // near 100%, which is real (background seismicity is that dense),
+    // but it left the higher-consequence range - where a major or great
+    // earthquake is more or less likely from one window to the next -
+    // completely untracked.
+    thresholds: [4.5, 5.0, 5.5, 6.0, 6.5, 7.0],
     zoneMap: {
       'Nankai Trough':                        {lat:[31,34.5], lon:[131,139]},
       'Japan Trench (Tohoku)':                {lat:[35,41],   lon:[141,145]},
@@ -1120,17 +1133,6 @@ function zoneScores(preds) {
   return Object.values(z).sort((a,b)=>b.maxProb-a.maxProb);
 }
 
-function bestProbForZone(preds, zoneName, threshold, window) {
-  const key = `${threshold}_${window}`;
-  for (const p of preds) {
-    if (p.magnitude_threshold===threshold && p.prediction_window_days===window) {
-      const loc = p.location_predictions.find(l=>l.zone===zoneName);
-      if (loc) return p.probability;
-    }
-  }
-  return null;
-}
-
 /* ═══════════════════════════════════════════════════════════
    ML Predictions — rendering
 ═══════════════════════════════════════════════════════════ */
@@ -1140,8 +1142,8 @@ function renderMatrix(preds) {
   let h = `<table class="matrix"><thead><tr><th></th>`;
   WINDOWS.forEach(w => h+=`<th>${w}d</th>`);
   h += `</tr></thead><tbody>`;
-  THRESHOLDS.forEach(t => {
-    h += `<tr><td class="row-lbl">${TH_LBL[t]}</td>`;
+  cc().thresholds.forEach(t => {
+    h += `<tr><td class="row-lbl">M &ge; ${t}</td>`;
     WINDOWS.forEach(w => {
       const p = idx[`${t}_${w}`];
       if (!p) { h+=`<td class="cell" style="color:var(--txt-3)">—</td>`; return; }
