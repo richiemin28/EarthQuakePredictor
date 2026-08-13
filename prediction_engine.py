@@ -63,6 +63,13 @@ def _prob_bar(prob: float, width: int = 20) -> str:
 # Magnitude descriptions
 # ---------------------------------------------------------------------------
 MAGNITUDE_INFO = {
+    # Only ever reported for Myanmar (config.py's own comment covers why
+    # M4.0 is trained but was originally kept out of the display).
+    4.0: {
+        "label":  "LIGHT (M >= 4.0)",
+        "effect": "Often felt nearby, rarely causes damage",
+        "action": "AWARENESS - background seismicity, most quakes this size pass without structural impact",
+    },
     4.5: {
         "label":  "MODERATE (M >= 4.5)",
         "effect": "Felt strongly nearby, possible minor structural damage",

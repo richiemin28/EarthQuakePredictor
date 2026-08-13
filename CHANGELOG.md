@@ -1,5 +1,32 @@
 # Changelog
 
+## v1.5.0 — Switchable forecast window
+
+### Added
+
+- **The hero card and the bars below it are no longer locked to 30 days.**
+  A 7d/15d/30d switcher above the hero card updates both together -
+  headline percentage, "next N days" wording, and the bars' own title and
+  breakdown all follow whichever window is selected. Persists across
+  reloads and country switches the same way the theme and country choice
+  already did.
+- Added a `MAGNITUDE_INFO` entry for M4.0 (Myanmar-only), fixing a gap
+  where its hero text fell back to the raw `M4.0+` label instead of a
+  proper word - only became visible once the window switcher could
+  surface M4.0 as the top prediction for short windows.
+
+### Fixed
+
+- A layout bug where the new window-toggle control collapsed to ~2px
+  tall and was effectively invisible: `overflow:hidden` combined with
+  `display:inline-flex` collapsed its auto-height in this specific
+  nested-flex context (a flex item that's itself a flex container, inside
+  a column-direction flex parent) - reproducible in Chrome 151, didn't
+  reduce to any single property in isolation. Sidestepped by rounding the
+  end buttons directly instead of clipping the container's overflow.
+
+---
+
 ## v1.4.0 — Full M4-M10 range, no more collapsing predictions down to one
 
 ### Added

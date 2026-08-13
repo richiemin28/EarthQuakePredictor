@@ -213,6 +213,30 @@
     }
     .country-btn:hover { color:var(--txt); }
     .country-btn.active { background:var(--accent); color:var(--bg); }
+
+    /* Forecast-window switcher — same segmented-pill idea, sized for
+       inline placement above the hero card rather than the header.
+       No overflow:hidden here (unlike .country-toggle) - as a flex item
+       inside .pane's column flex context, that combination collapsed
+       this element's auto height to ~2px in testing (Chrome 151), for
+       reasons that didn't reduce to align-self, display:flex vs
+       inline-flex, or any single property in isolation. Rounding the end
+       buttons directly sidesteps it rather than fighting a layout quirk
+       that only reproduces in this specific nested-flex context. */
+    .window-toggle {
+      display:inline-flex; border:1px solid var(--border-md);
+      border-radius:20px; background:var(--raised);
+      align-self:flex-start;
+    }
+    .window-btn {
+      padding:7px 13px; font-size:12px; font-weight:600;
+      font-family:inherit; border:none; background:none; color:var(--txt-3);
+      cursor:pointer; transition:background .15s, color .15s; min-height:36px;
+    }
+    .window-btn:first-child { border-radius:20px 0 0 20px; }
+    .window-btn:last-child  { border-radius:0 20px 20px 0; }
+    .window-btn:hover { color:var(--txt); }
+    .window-btn.active { background:var(--accent); color:var(--bg); }
     .hdr-controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
     #hdr-meta {
       display:flex; align-items:center; gap:6px;
@@ -742,7 +766,7 @@
       /* Comfortable tap targets (Apple HIG / Material both call for
          >=44px) — several controls measured under that on a real
          viewport audit. */
-      .country-btn, .theme-toggle { min-height:44px; }
+      .country-btn, .theme-toggle, .window-btn { min-height:44px; }
       .risk-chip { padding:9px 2px; }
       .map-toggle { padding:9px 12px; min-height:44px; }
       .leaflet-control-zoom a { width:40px !important; height:40px !important; line-height:40px !important; }
@@ -808,6 +832,14 @@
 
       <div id="alert-banner"></div>
 
+      <!-- Forecast-window switcher — the headline and the bars below it
+           both follow whichever window is selected here -->
+      <div class="window-toggle" id="window-toggle" role="group" aria-label="Forecast window">
+        <button class="window-btn" id="window-btn-7" onclick="setWindow(7)">7d</button>
+        <button class="window-btn" id="window-btn-15" onclick="setWindow(15)">15d</button>
+        <button class="window-btn active" id="window-btn-30" onclick="setWindow(30)">30d</button>
+      </div>
+
       <!-- The one-sentence answer most people actually came for -->
       <div id="hero-wrap"><div class="info">Loading forecast…</div></div>
 
@@ -824,9 +856,9 @@
         <div class="risk-chip bg-severe r-severe">Severe<span class="rs-range">&#8805;80%</span></div>
       </div>
 
-      <!-- 30-day bars — the simple breakdown -->
+      <!-- Bars — the simple breakdown, follows the same window as the hero -->
       <div class="card">
-        <div class="card-title">Chance of an earthquake in the next 30 days</div>
+        <div class="card-title" id="bars-title">Chance of an earthquake in the next 30 days</div>
         <div id="bars-wrap"><div class="info">—</div></div>
       </div>
 
@@ -1326,6 +1358,24 @@ function setCountry(name) {
 let lastPreds  = [];
 let lastEvents = [];
 
+// Which forecast window the hero card and bars are currently showing —
+// independent of country/theme, persisted the same way they are.
+let selectedWindow = parseInt(localStorage.getItem('window'), 10) || 30;
+function setWindow(days) {
+  selectedWindow = days;
+  localStorage.setItem('window', days);
+  document.querySelectorAll('.window-btn').forEach(b =>
+    b.classList.toggle('active', b.id === `window-btn-${days}`));
+  if (lastPreds.length) {
+    document.getElementById('bars-wrap').innerHTML = renderBars(lastPreds);
+    renderHero(lastPreds);
+  }
+}
+// Sync the toggle's active button to whatever was persisted, without
+// triggering a render this early (lastPreds isn't populated yet).
+document.querySelectorAll('.window-btn').forEach(b =>
+  b.classList.toggle('active', b.id === `window-btn-${selectedWindow}`));
+
 /* ═══════════════════════════════════════════════════════════
    ML Predictions — data processing
 
@@ -1400,7 +1450,10 @@ function renderMatrix(preds) {
 }
 
 function renderBars(preds) {
-  const bars = preds.filter(p=>p.prediction_window_days===30)
+  const titleEl = document.getElementById('bars-title');
+  if (titleEl) titleEl.textContent = `Chance of an earthquake in the next ${selectedWindow} days`;
+
+  const bars = preds.filter(p=>p.prediction_window_days===selectedWindow)
     .sort((a,b)=>b.probability-a.probability);
   if (!bars.length) return '<div class="info">—</div>';
   return bars.map(p => {
@@ -1683,7 +1736,7 @@ function renderHero(preds) {
     wrap.innerHTML = '<div class="info">Forecast unavailable right now.</div>';
     return;
   }
-  const pool = preds.filter(p => p.prediction_window_days === 30);
+  const pool = preds.filter(p => p.prediction_window_days === selectedWindow);
   const top = (pool.length ? pool : preds).slice()
     .sort((a,b) => b.probability - a.probability)[0];
 
@@ -1691,10 +1744,14 @@ function renderHero(preds) {
   const bc   = bCls(top.probability);
   const zone = top.primary_zone || cc().label;
   const magWord = (top.magnitude_label || '').replace(/\s*\(.+\)$/,'').toLowerCase() || 'notable';
+  // top may fall back to a different window than selectedWindow if the
+  // selected one has no data for this country/threshold combo - always
+  // describe the window actually being shown, not the one that was asked for.
+  const shownWindow = top.prediction_window_days;
 
   wrap.innerHTML = `
     <div class="hero-card ${bc}">
-      <div class="hero-eyebrow">${rLbl(top.probability)} · next 30 days</div>
+      <div class="hero-eyebrow">${rLbl(top.probability)} · next ${shownWindow} days</div>
       <div class="hero-pct">${pct}%</div>
       <div class="hero-desc">chance of a <b>${magWord}</b> earthquake near
         <span class="hero-zone">${zone}</span></div>

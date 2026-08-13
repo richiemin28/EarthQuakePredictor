@@ -305,12 +305,15 @@ for the ML forecasts and polls the USGS ATOM feed directly in the browser for li
 activity. A country switcher in the header lets a visitor pick Myanmar or Japan without
 reloading the page; a light/dark theme toggle persists the visitor's choice.
 
-Mobile-first: base styles are a normal scrolling single-column page with 44px+ touch
-targets, and the fixed two-pane app-shell layout only kicks in above 900px wide. A
-plain-language "hero" summary (the single highest 30-day probability, described in
-words — "78% chance of a strong earthquake near the Sagaing Fault Zone" — not just a
-raw percentage) leads every visit; the full multi-window forecast table is available
-behind a "see full forecast" disclosure for anyone who wants the detail.
+Fixed-height app shell at every width, 44px+ touch targets throughout. Below 900px the
+map fills the screen like a native map app and the forecast panel becomes a draggable
+bottom sheet on top of it (peek/half/full snap states) instead of a long page the map
+sits at the bottom of; at 900px and up it's the two-pane desktop layout with the panel
+as a fixed sidebar. A plain-language "hero" summary leads every visit — described in
+words ("78% chance of a strong earthquake near the Sagaing Fault Zone"), not just a raw
+percentage — with a 7d/15d/30d switcher so it's never locked to one horizon; the bars
+directly below it follow the same selection. The full multi-window, multi-magnitude
+forecast table is open by default further down the panel, not hidden behind a click.
 
 ## Keeping the model current in production
 
