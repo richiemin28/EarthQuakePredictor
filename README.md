@@ -106,14 +106,27 @@ by known seismic hazard significance rather than a vague region-sized answer.
 Each zone's boundary is itself data-driven, not a rough administrative outline: it's the
 magnitude-weighted middle 70% (15th–85th percentile) of real M≥3.0 events from the
 1990–2025 catalog that fell within that zone's original, much larger boundary — the box
-tightened down to where the real seismicity actually concentrates. The uncertainty
-radius (and depth — see below) shown for any given prediction is computed fresh from
-recent clustering (not a fixed per-zone number), and — since a "7 days from now" answer
-and a "30 days from now" answer shouldn't necessarily point at the same circle — it's
-computed separately per forecast window, with shorter windows drawing on a shorter, more
-immediate lookback so a near-term forecast reflects near-term activity specifically. In
-production right now this typically lands in the 70–200km range for the top zone in
-either country.
+tightened down to where the real seismicity actually concentrates.
+
+**Within a zone, the centroid comes from the actual hotspot, not an average across the
+whole zone.** A zone can be 100-300km across, and recent events inside it don't
+necessarily form one blob — averaging every event in the zone can land the "predicted"
+point in a location with zero historical activity, geometrically the mean but
+statistically meaningless (literally between two real clusters rather than at either
+one). Recent events are density-clustered first (DBSCAN, haversine distance so it
+respects the Earth's curvature — see `spatial_predictor._find_hotspot_mask`), and the
+cluster with the most combined magnitude/recency weight — not just the most points —
+becomes the basis for the centroid, radius, and depth. Every prediction reports which
+one happened (`is_hotspot` in the JSON, "Based on: a real cluster of nearby events" vs.
+"a wider average" in the map popup), so the confidence behind the number is never hidden.
+Falls back to the whole-zone average only when there aren't enough points, or events are
+too scattered, for any real cluster to emerge.
+
+The uncertainty radius (and depth — see below) is computed fresh from recent clustering
+(not a fixed per-zone number), and — since a "7 days from now" answer and a "30 days
+from now" answer shouldn't necessarily point at the same circle — it's computed
+separately per forecast window, with shorter windows drawing on a shorter, more
+immediate lookback so a near-term forecast reflects near-term activity specifically.
 
 **The precision floor scales with how much recent data actually backs the estimate,
 down to 5km at the tightest — it is not one fixed number applied regardless of sample

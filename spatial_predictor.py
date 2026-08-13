@@ -20,6 +20,7 @@
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
+from sklearn.cluster import DBSCAN
 from config import LOCATION_ZONES, COUNTRY_NAME, ZONE_PRIORITY
 
 
@@ -35,6 +36,58 @@ def haversine_km(lat1: float, lon1: float,
     a = (np.sin(dphi / 2) ** 2 +
          np.cos(phi1) * np.cos(phi2) * np.sin(dlam / 2) ** 2)
     return R * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+
+
+# ---------------------------------------------------------------------------
+# Find the most likely hotspot within a zone's recent events, instead of
+# averaging over all of them.
+#
+# A zone can be 100-300km across, and recent events inside it don't
+# necessarily form one blob - they can be two or three separate clusters
+# along different segments of the same fault system. Averaging across all
+# of them (the old behaviour) can land the "predicted" point in a location
+# with zero historical activity, geometrically the mean but statistically
+# meaningless - literally between two real hotspots rather than at either
+# one. DBSCAN groups events by genuine spatial proximity (haversine
+# distance, so it respects the Earth's curvature rather than treating
+# degrees of latitude and longitude as equivalent), and the cluster with
+# the most combined magnitude/recency weight - not just the most points -
+# becomes the basis for the centroid, radius, and depth estimate.
+# ---------------------------------------------------------------------------
+EARTH_RADIUS_KM      = 6371.0
+CLUSTER_EPS_KM       = 50.0   # max gap between two events to count as the same hotspot
+CLUSTER_MIN_SAMPLES  = 2      # smallest group DBSCAN will call a cluster (not noise)
+
+
+def _find_hotspot_mask(group: pd.DataFrame, weights: np.ndarray):
+    """
+    Returns (mask, was_clustered). mask selects the rows of `group`
+    belonging to the highest-weighted spatial cluster; was_clustered is
+    False when there weren't enough points, or no real cluster formed
+    (every event isolated), in which case mask selects every row - the
+    same whole-group behaviour this replaces.
+    """
+    n = len(group)
+    if n < CLUSTER_MIN_SAMPLES:
+        return np.ones(n, dtype=bool), False
+
+    coords_rad = np.radians(group[["latitude", "longitude"]].to_numpy())
+    eps_rad = CLUSTER_EPS_KM / EARTH_RADIUS_KM
+    labels = DBSCAN(
+        eps=eps_rad, min_samples=CLUSTER_MIN_SAMPLES, metric="haversine"
+    ).fit_predict(coords_rad)
+
+    real_labels = set(labels) - {-1}
+    if not real_labels:
+        return np.ones(n, dtype=bool), False
+
+    best_label, best_weight = None, -1.0
+    for label in real_labels:
+        w = weights[labels == label].sum()
+        if w > best_weight:
+            best_label, best_weight = label, w
+
+    return labels == best_label, True
 
 
 # ---------------------------------------------------------------------------
@@ -168,7 +221,16 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
         if len(group) == 0:
             continue
 
-        weights = group["weight"].values
+        # Narrow down to the zone's most likely hotspot (see
+        # _find_hotspot_mask) before computing anything - centroid, radius,
+        # depth, and the event_count that drives the confidence-tier floor
+        # below should all describe the same cluster, not "some of them
+        # from a real cluster, averaged in with unrelated ones elsewhere
+        # in a 100-300km zone".
+        weights_all = group["weight"].values
+        hotspot_mask, was_clustered = _find_hotspot_mask(group, weights_all)
+        group   = group[hotspot_mask]
+        weights = weights_all[hotspot_mask]
         total_w = weights.sum()
 
         n_events = len(group)
@@ -230,6 +292,12 @@ def compute_zone_spatial_stats(recent_events: pd.DataFrame,
             "mean_magnitude":    round(float(group["magnitude"].mean()), 2),
             "last_event_time":   str(group["time"].max()),
             "total_weight":      round(float(total_w), 2),
+            # True when this centroid/radius describe a genuine spatial
+            # cluster of nearby events (DBSCAN found one); False means
+            # there weren't enough points, or events were too scattered
+            # for any real hotspot to emerge, so this falls back to
+            # averaging every event in the zone - the older, cruder method.
+            "is_hotspot":        bool(was_clustered),
         }
 
     return zone_stats
@@ -281,6 +349,11 @@ def rank_zones(zone_stats: dict,
             0.0, 1.0 - (stats["radius_km"] / max_radius)
         )
         base *= (1.0 + precision_bonus)
+        # A genuine DBSCAN-found hotspot is a more trustworthy basis for a
+        # location prediction than the whole-zone-average fallback (see
+        # _find_hotspot_mask) - small bonus to prefer it when zones are
+        # otherwise close in score.
+        base *= 1.15 if stats.get("is_hotspot") else 1.0
         base *= PRIORITY_ZONES.get(zone_name, 1.0)
 
         scored.append((base, zone_name, stats))
@@ -330,6 +403,7 @@ def build_location_prediction(zone_name: str,
             "depth_range_km":    None,
             "event_count":       0,
             "max_magnitude":     None,
+            "is_hotspot":        False,
             "confidence_note":   "Using zone centroid - no events in computed window",
         }
 
@@ -341,6 +415,7 @@ def build_location_prediction(zone_name: str,
         "centroid_depth_km": stats["centroid_depth_km"],
         "depth_range_km":    stats["depth_range_km"],
         "event_count":       stats["event_count"],
+        "is_hotspot":        stats["is_hotspot"],
         "max_magnitude":     stats["max_magnitude"],
         "mean_magnitude":    stats["mean_magnitude"],
         "last_event_time":   stats["last_event_time"],

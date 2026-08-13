@@ -1307,7 +1307,8 @@ function zoneScores(preds) {
       if (!z[loc.zone] || p.probability > z[loc.zone].maxProb)
         z[loc.zone] = { name:loc.zone, lat:loc.centroid_lat, lon:loc.centroid_lon,
           radius_km:loc.radius_km, depth_km:loc.centroid_depth_km,
-          depth_range_km:loc.depth_range_km, maxProb:p.probability,
+          depth_range_km:loc.depth_range_km, isHotspot:!!loc.is_hotspot,
+          maxProb:p.probability,
           count:loc.event_count||0, maxMag:loc.max_magnitude,
           lastSeen:loc.last_event_time };
     })
@@ -1420,6 +1421,7 @@ function renderMLMap(preds) {
       <span class="pop-label">Est. depth</span> ${z.depth_km!=null ? `~${z.depth_km.toFixed(0)} km (&plusmn;${z.depth_range_km.toFixed(0)} km)` : 'unknown - no recent events'}<br>
       <span class="pop-label">Recent nearby events</span> ${z.count}<br>
       <span class="pop-label">Max recorded</span> M${z.maxMag??'N/A'}<br>
+      <span class="pop-label">Based on</span> ${z.isHotspot ? 'a real cluster of nearby events' : 'a wider average (no single cluster stood out)'}<br>
       <span style="color:var(--txt-3);font-size:10px">This ring shows the spatial uncertainty of the prediction,
       not a precise epicentre location. Depth is estimated the same way, from
       recent nearby events.</span>`;

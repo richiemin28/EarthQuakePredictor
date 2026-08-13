@@ -229,6 +229,11 @@ def generate_predictions(model,
                 "primary_radius_km":      primary_loc["radius_km"],
                 "primary_depth_km":       primary_loc.get("centroid_depth_km"),
                 "primary_depth_range_km": primary_loc.get("depth_range_km"),
+                # True when primary_lat/lon/radius describe a real DBSCAN-
+                # found cluster of nearby recent events, not an average
+                # over every event anywhere in the zone (see
+                # spatial_predictor._find_hotspot_mask).
+                "primary_is_hotspot":     primary_loc.get("is_hotspot", False),
                 # All top locations
                 "location_predictions":   location_predictions,
                 "disclaimer": (
@@ -393,6 +398,7 @@ def print_predictions(predictions: list,
             print(f"    Est. Lon    : {p_lon:.3f} E")
             print(f"    Radius      : {format_radius(p_rad)}")
             print(f"    Depth       : {format_depth(p_depth, p_drange)}")
+            print(f"    Basis       : {'real event cluster (DBSCAN)' if pred.get('primary_is_hotspot') else 'whole-zone average (no distinct cluster found)'}")
 
             # Secondary locations
             other_locs = pred.get("location_predictions", [])[1:]

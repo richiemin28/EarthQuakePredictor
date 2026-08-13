@@ -1,5 +1,39 @@
 # Changelog
 
+## v1.3.0 — Cluster-based location, not zone-wide averaging
+
+### Changed
+
+- **The predicted centroid now comes from the zone's actual hotspot, not an
+  average across the whole zone.** A named zone can be 100-300km across,
+  and recent events inside it don't necessarily form one blob - averaging
+  every event in the zone could land the "predicted" point in a location
+  with zero historical activity: geometrically the mean, statistically
+  meaningless, literally between two real clusters rather than at either
+  one. Recent events are now density-clustered first (`sklearn.cluster.
+  DBSCAN`, haversine distance so it respects the Earth's curvature rather
+  than treating degrees of latitude/longitude as equivalent), and the
+  cluster with the most combined magnitude/recency weight - not just the
+  most points - becomes the basis for the centroid, radius, and depth.
+  Falls back to the old whole-zone average only when there aren't enough
+  points, or events are too scattered, for a real cluster to emerge.
+- Every location prediction now reports which basis it used
+  (`primary_is_hotspot` in the JSON; "Based on: a real cluster of nearby
+  events" vs. "a wider average" in the map popup) - the confidence behind
+  the number is never hidden.
+- Zone ranking gives a modest bonus to hotspot-backed predictions over
+  whole-zone-average ones when zones are otherwise close in score, since a
+  real cluster is a more trustworthy basis for "where" than an average is.
+- Effect on live numbers: Myanmar's top zone (Sagaing Fault Zone) dropped
+  from ~83km to 30km (the confidence-tier floor for its now-3-event
+  cluster, down from averaging all 6 zone-wide events); Japan's ranking
+  shifted to Median Tectonic Line (SW Japan) at 30km, whose 4 recent events
+  were already a single tight cluster, ahead of Japan Trench (Tohoku)
+  whose 6 events split into a smaller 3-event cluster once genuinely
+  distinct activity was separated out.
+
+---
+
 ## v1.2.0 — Depth prediction, confidence-scaled precision, mobile landscape fix
 
 ### Added
