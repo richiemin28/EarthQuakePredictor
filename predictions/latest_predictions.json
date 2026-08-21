@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -65,7 +65,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -74,7 +74,7 @@
     "prediction_window_days": 30,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-09-20",
-    "probability": 0.9971,
+    "probability": 0.9972,
     "confidence": "SEVERE",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -130,7 +130,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -139,7 +139,7 @@
     "prediction_window_days": 15,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-09-05",
-    "probability": 0.996,
+    "probability": 0.9961,
     "confidence": "SEVERE",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -195,7 +195,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -204,7 +204,7 @@
     "prediction_window_days": 10,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-31",
-    "probability": 0.989,
+    "probability": 0.9891,
     "confidence": "SEVERE",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -260,7 +260,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -269,7 +269,7 @@
     "prediction_window_days": 7,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-28",
-    "probability": 0.956,
+    "probability": 0.9566,
     "confidence": "SEVERE",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -325,7 +325,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -334,7 +334,7 @@
     "prediction_window_days": 10,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-31",
-    "probability": 0.9523,
+    "probability": 0.9537,
     "confidence": "SEVERE",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -390,7 +390,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -399,7 +399,7 @@
     "prediction_window_days": 30,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-09-20",
-    "probability": 0.8618,
+    "probability": 0.8619,
     "confidence": "SEVERE",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -455,7 +455,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -464,7 +464,7 @@
     "prediction_window_days": 7,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-28",
-    "probability": 0.8524,
+    "probability": 0.8539,
     "confidence": "SEVERE",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -520,7 +520,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -529,7 +529,7 @@
     "prediction_window_days": 15,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-09-05",
-    "probability": 0.6723,
+    "probability": 0.668,
     "confidence": "HIGH",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -585,7 +585,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -594,7 +594,7 @@
     "prediction_window_days": 30,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-09-20",
-    "probability": 0.479,
+    "probability": 0.4967,
     "confidence": "ELEVATED",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -650,7 +650,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -659,7 +659,7 @@
     "prediction_window_days": 10,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-31",
-    "probability": 0.4595,
+    "probability": 0.452,
     "confidence": "ELEVATED",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -715,7 +715,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -724,7 +724,7 @@
     "prediction_window_days": 7,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-28",
-    "probability": 0.267,
+    "probability": 0.2732,
     "confidence": "GUARDED",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -780,7 +780,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -789,7 +789,7 @@
     "prediction_window_days": 15,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-09-05",
-    "probability": 0.2031,
+    "probability": 0.21,
     "confidence": "GUARDED",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -845,7 +845,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -854,7 +854,7 @@
     "prediction_window_days": 7,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-28",
-    "probability": 0.0526,
+    "probability": 0.052,
     "confidence": "LOW",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -910,7 +910,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -919,7 +919,7 @@
     "prediction_window_days": 10,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-31",
-    "probability": 0.0449,
+    "probability": 0.0452,
     "confidence": "LOW",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -975,16 +975,16 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
     "magnitude_effect": "Serious damage to vulnerable buildings, injuries likely",
     "magnitude_action": "SEVERE ALERT - activate emergency preparedness",
-    "prediction_window_days": 15,
+    "prediction_window_days": 10,
     "date_range_start": "2026-08-21",
-    "date_range_end": "2026-09-05",
-    "probability": 0.0111,
+    "date_range_end": "2026-08-31",
+    "probability": 0.0119,
     "confidence": "LOW",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -1009,20 +1009,6 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.267,
-        "centroid_lon": 93.4,
-        "radius_km": 97.1,
-        "centroid_depth_km": 92.2,
-        "depth_range_km": 24.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.53,
-        "last_event_time": "2026-08-11 19:55:41.269000",
-        "confidence_note": ""
-      },
-      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -1035,12 +1021,26 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
+      },
+      {
+        "zone": "Andaman Sea Region",
+        "centroid_lat": 11.964,
+        "centroid_lon": 93.333,
+        "radius_km": 30.0,
+        "centroid_depth_km": 74.0,
+        "depth_range_km": 18.0,
+        "event_count": 2,
+        "is_hotspot": true,
+        "max_magnitude": 4.5,
+        "mean_magnitude": 4.35,
+        "last_event_time": "2026-07-20 19:37:40.866000",
+        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1049,7 +1049,7 @@
     "prediction_window_days": 30,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-09-20",
-    "probability": 0.0108,
+    "probability": 0.0105,
     "confidence": "LOW",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -1105,16 +1105,16 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
     "magnitude_effect": "Serious damage to vulnerable buildings, injuries likely",
     "magnitude_action": "SEVERE ALERT - activate emergency preparedness",
-    "prediction_window_days": 10,
+    "prediction_window_days": 15,
     "date_range_start": "2026-08-21",
-    "date_range_end": "2026-08-31",
-    "probability": 0.0103,
+    "date_range_end": "2026-09-05",
+    "probability": 0.01,
     "confidence": "LOW",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
@@ -1139,6 +1139,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Andaman Sea Region",
+        "centroid_lat": 11.267,
+        "centroid_lon": 93.4,
+        "radius_km": 97.1,
+        "centroid_depth_km": 92.2,
+        "depth_range_km": 24.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.9,
+        "mean_magnitude": 4.53,
+        "last_event_time": "2026-08-11 19:55:41.269000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -1151,26 +1165,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.964,
-        "centroid_lon": 93.333,
-        "radius_km": 30.0,
-        "centroid_depth_km": 74.0,
-        "depth_range_km": 18.0,
-        "event_count": 2,
-        "is_hotspot": true,
-        "max_magnitude": 4.5,
-        "mean_magnitude": 4.35,
-        "last_event_time": "2026-07-20 19:37:40.866000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-21 00:58 UTC",
+    "generated_at": "2026-08-21 03:52 UTC",
     "model_update_count": 0,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1179,7 +1179,7 @@
     "prediction_window_days": 7,
     "date_range_start": "2026-08-21",
     "date_range_end": "2026-08-28",
-    "probability": 0.0044,
+    "probability": 0.0043,
     "confidence": "LOW",
     "primary_zone": "Sagaing Fault Zone",
     "primary_lat": 22.755,
