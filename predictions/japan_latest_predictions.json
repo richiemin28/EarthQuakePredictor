@@ -1,14 +1,14 @@
 [
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
     "magnitude_action": "PREPAREDNESS - check emergency readiness",
     "prediction_window_days": 15,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-08",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-09",
     "probability": 0.8224,
     "confidence": "SEVERE",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -34,6 +34,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -46,34 +60,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
     "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
     "magnitude_action": "AWARENESS - monitor updates",
     "prediction_window_days": 7,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-08-31",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-01",
     "probability": 0.8171,
     "confidence": "SEVERE",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -99,6 +99,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -111,34 +125,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
     "magnitude_effect": "Felt strongly nearby, possible minor structural damage",
     "magnitude_action": "AWARENESS - monitor updates",
     "prediction_window_days": 10,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-03",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-04",
     "probability": 0.7939,
     "confidence": "HIGH",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -164,6 +164,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -176,34 +190,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
     "magnitude_action": "PREPAREDNESS - check emergency readiness",
     "prediction_window_days": 10,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-03",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-04",
     "probability": 0.756,
     "confidence": "HIGH",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -229,6 +229,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -241,34 +255,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
     "magnitude_action": "HIGH ALERT - significant damage potential",
     "prediction_window_days": 15,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-08",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-09",
     "probability": 0.6865,
     "confidence": "HIGH",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -294,6 +294,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -306,34 +320,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
     "magnitude_action": "HIGH ALERT - significant damage potential",
     "prediction_window_days": 30,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-23",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-24",
     "probability": 0.5021,
     "confidence": "ELEVATED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -359,6 +359,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -371,34 +385,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
     "magnitude_effect": "Significant shaking, damage likely to weak structures",
     "magnitude_action": "PREPAREDNESS - check emergency readiness",
     "prediction_window_days": 7,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-08-31",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-01",
     "probability": 0.4053,
     "confidence": "ELEVATED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -424,6 +424,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -436,34 +450,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
     "magnitude_effect": "Serious damage to vulnerable buildings, injuries likely",
     "magnitude_action": "SEVERE ALERT - activate emergency preparedness",
     "prediction_window_days": 10,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-03",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-04",
     "probability": 0.3958,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -489,6 +489,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -501,34 +515,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
     "magnitude_effect": "Widespread structural damage, significant casualty risk",
     "magnitude_action": "SEVERE ALERT - review evacuation and shelter plans",
     "prediction_window_days": 10,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-03",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-04",
     "probability": 0.3937,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -554,6 +554,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -566,34 +580,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
     "magnitude_action": "HIGH ALERT - significant damage potential",
     "prediction_window_days": 10,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-03",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-04",
     "probability": 0.3782,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -619,6 +619,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -631,34 +645,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
     "magnitude_effect": "Destructive shaking, serious infrastructure risk",
     "magnitude_action": "HIGH ALERT - significant damage potential",
     "prediction_window_days": 7,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-08-31",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-01",
     "probability": 0.3474,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -684,6 +684,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -696,34 +710,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
     "magnitude_effect": "Catastrophic damage over a wide area, major casualty and infrastructure risk",
     "magnitude_action": "CRITICAL ALERT - full emergency response readiness",
     "prediction_window_days": 10,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-03",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-04",
     "probability": 0.2982,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -749,6 +749,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -761,34 +775,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
     "magnitude_effect": "Catastrophic damage over a wide area, major casualty and infrastructure risk",
     "magnitude_action": "CRITICAL ALERT - full emergency response readiness",
     "prediction_window_days": 7,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-08-31",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-01",
     "probability": 0.2567,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -814,6 +814,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -826,34 +840,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
     "magnitude_effect": "Serious damage to vulnerable buildings, injuries likely",
     "magnitude_action": "SEVERE ALERT - activate emergency preparedness",
     "prediction_window_days": 15,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-08",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-09",
     "probability": 0.24,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -879,6 +879,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -891,34 +905,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
     "magnitude_effect": "Serious damage to vulnerable buildings, injuries likely",
     "magnitude_action": "SEVERE ALERT - activate emergency preparedness",
     "prediction_window_days": 30,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-23",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-24",
     "probability": 0.2026,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -944,6 +944,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -956,34 +970,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
     "magnitude_effect": "Widespread structural damage, significant casualty risk",
     "magnitude_action": "SEVERE ALERT - review evacuation and shelter plans",
     "prediction_window_days": 15,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-08",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-09",
     "probability": 0.1847,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -1009,6 +1009,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -1021,34 +1035,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
     "magnitude_effect": "Catastrophic damage over a wide area, major casualty and infrastructure risk",
     "magnitude_action": "CRITICAL ALERT - full emergency response readiness",
     "prediction_window_days": 15,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-08",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-09",
     "probability": 0.1757,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -1074,6 +1074,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -1086,34 +1100,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
     "magnitude_effect": "Serious damage to vulnerable buildings, injuries likely",
     "magnitude_action": "SEVERE ALERT - activate emergency preparedness",
     "prediction_window_days": 7,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-08-31",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-01",
     "probability": 0.1673,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -1139,6 +1139,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -1151,34 +1165,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
     "magnitude_effect": "Widespread structural damage, significant casualty risk",
     "magnitude_action": "SEVERE ALERT - review evacuation and shelter plans",
     "prediction_window_days": 7,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-08-31",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-01",
     "probability": 0.1242,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -1204,6 +1204,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -1216,34 +1230,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
     "magnitude_effect": "Catastrophic damage over a wide area, major casualty and infrastructure risk",
     "magnitude_action": "CRITICAL ALERT - full emergency response readiness",
     "prediction_window_days": 30,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-23",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-24",
     "probability": 0.1204,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -1269,6 +1269,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -1281,34 +1295,20 @@
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-24 18:31 UTC",
+    "generated_at": "2026-08-25 00:57 UTC",
     "model_update_count": 6,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
     "magnitude_effect": "Widespread structural damage, significant casualty risk",
     "magnitude_action": "SEVERE ALERT - review evacuation and shelter plans",
     "prediction_window_days": 30,
-    "date_range_start": "2026-08-24",
-    "date_range_end": "2026-09-23",
+    "date_range_start": "2026-08-25",
+    "date_range_end": "2026-09-24",
     "probability": 0.0397,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
@@ -1334,6 +1334,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Hokkaido / Kuril Trench",
+        "centroid_lat": 42.046,
+        "centroid_lon": 142.862,
+        "radius_km": 30.0,
+        "centroid_depth_km": 52.8,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": true,
+        "max_magnitude": 6.0,
+        "mean_magnitude": 5.1,
+        "last_event_time": "2026-08-23 16:36:15.398000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Japan Trench (Tohoku)",
         "centroid_lat": 39.633,
         "centroid_lon": 143.573,
@@ -1345,20 +1359,6 @@
         "max_magnitude": 5.4,
         "mean_magnitude": 4.83,
         "last_event_time": "2026-08-06 17:50:40.068000",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Hokkaido / Kuril Trench",
-        "centroid_lat": 41.88,
-        "centroid_lon": 142.684,
-        "radius_km": 38.0,
-        "centroid_depth_km": 51.2,
-        "depth_range_km": 10.0,
-        "event_count": 3,
-        "is_hotspot": false,
-        "max_magnitude": 6.0,
-        "mean_magnitude": 5.2,
-        "last_event_time": "2026-08-23 13:44:53.514000",
         "confidence_note": ""
       }
     ],
