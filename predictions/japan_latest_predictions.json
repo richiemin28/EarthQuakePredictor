@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -12,8 +12,8 @@
     "probability": 0.7399,
     "confidence": "HIGH",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -21,15 +21,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -65,7 +65,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -130,7 +130,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -142,8 +142,8 @@
     "probability": 0.5147,
     "confidence": "ELEVATED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -151,15 +151,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -195,7 +195,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -207,8 +207,8 @@
     "probability": 0.5119,
     "confidence": "ELEVATED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -216,15 +216,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -260,7 +260,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -272,8 +272,8 @@
     "probability": 0.4772,
     "confidence": "ELEVATED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -281,15 +281,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -325,7 +325,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -337,8 +337,8 @@
     "probability": 0.4751,
     "confidence": "ELEVATED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -346,15 +346,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -390,7 +390,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -402,8 +402,8 @@
     "probability": 0.4083,
     "confidence": "ELEVATED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -411,15 +411,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -455,7 +455,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -467,8 +467,8 @@
     "probability": 0.3716,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -476,15 +476,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -520,7 +520,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -532,8 +532,8 @@
     "probability": 0.3479,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -541,15 +541,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -585,7 +585,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -650,7 +650,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -662,8 +662,8 @@
     "probability": 0.3404,
     "confidence": "GUARDED",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -671,15 +671,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -715,7 +715,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -780,7 +780,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -845,7 +845,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -857,8 +857,8 @@
     "probability": 0.1936,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -866,15 +866,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -910,7 +910,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -922,8 +922,8 @@
     "probability": 0.1905,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -931,15 +931,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -975,7 +975,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -987,8 +987,8 @@
     "probability": 0.183,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -996,15 +996,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -1040,7 +1040,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1052,8 +1052,8 @@
     "probability": 0.1807,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -1061,15 +1061,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -1105,7 +1105,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1170,7 +1170,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1235,7 +1235,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1247,8 +1247,8 @@
     "probability": 0.1192,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -1256,15 +1256,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
@@ -1300,7 +1300,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-26 03:56 UTC",
+    "generated_at": "2026-08-26 06:38 UTC",
     "model_update_count": 8,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1312,8 +1312,8 @@
     "probability": 0.039,
     "confidence": "LOW",
     "primary_zone": "Median Tectonic Line (SW Japan)",
-    "primary_lat": 32.672,
-    "primary_lon": 130.716,
+    "primary_lat": 32.638,
+    "primary_lon": 130.734,
     "primary_radius_km": 30.0,
     "primary_depth_km": 10.0,
     "primary_depth_range_km": 10.0,
@@ -1321,15 +1321,15 @@
     "location_predictions": [
       {
         "zone": "Median Tectonic Line (SW Japan)",
-        "centroid_lat": 32.672,
-        "centroid_lon": 130.716,
+        "centroid_lat": 32.638,
+        "centroid_lon": 130.734,
         "radius_km": 30.0,
         "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 4,
+        "event_count": 5,
         "is_hotspot": true,
         "max_magnitude": 6.8,
-        "mean_magnitude": 5.28,
+        "mean_magnitude": 5.12,
         "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       },
