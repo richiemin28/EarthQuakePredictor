@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -65,7 +65,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -130,7 +130,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -195,7 +195,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -243,24 +243,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -325,7 +325,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -390,7 +390,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -455,7 +455,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -520,7 +520,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -585,7 +585,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -633,24 +633,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -698,24 +698,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -780,7 +780,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -845,7 +845,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -893,24 +893,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -975,7 +975,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1023,24 +1023,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1088,24 +1088,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1153,24 +1153,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1235,7 +1235,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1283,24 +1283,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-08-30 09:01 UTC",
+    "generated_at": "2026-08-30 11:04 UTC",
     "model_update_count": 12,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1348,17 +1348,17 @@
         "confidence_note": ""
       },
       {
-        "zone": "Ryukyu Trench (Okinawa)",
-        "centroid_lat": 26.515,
-        "centroid_lon": 127.418,
-        "radius_km": 166.7,
-        "centroid_depth_km": 50.6,
-        "depth_range_km": 51.9,
-        "event_count": 4,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.68,
-        "last_event_time": "2026-08-28 10:11:33.232000",
+        "zone": "Median Tectonic Line (SW Japan)",
+        "centroid_lat": 32.641,
+        "centroid_lon": 130.732,
+        "radius_km": 30.0,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 5,
+        "is_hotspot": true,
+        "max_magnitude": 6.8,
+        "mean_magnitude": 5.12,
+        "last_event_time": "2026-08-06 10:49:24.271000",
         "confidence_note": ""
       }
     ],
