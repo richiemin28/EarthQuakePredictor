@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -34,6 +34,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -46,26 +60,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -113,24 +113,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -178,24 +178,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -243,24 +243,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -294,6 +294,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -306,26 +320,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -359,6 +359,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -371,26 +385,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -438,24 +438,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -489,6 +489,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -501,26 +515,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -554,6 +554,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -566,26 +580,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -633,24 +633,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -698,24 +698,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -749,6 +749,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -761,26 +775,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -828,24 +828,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -893,24 +893,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -944,6 +944,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -956,26 +970,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -1009,6 +1009,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -1021,26 +1035,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1074,6 +1074,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -1086,26 +1100,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -1139,6 +1139,20 @@
         "confidence_note": ""
       },
       {
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.369,
+        "centroid_lon": 97.556,
+        "radius_km": 157.6,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.27,
+        "last_event_time": "2026-08-10 11:18:09.092000",
+        "confidence_note": ""
+      },
+      {
         "zone": "Yunnan Border Region",
         "centroid_lat": 26.011,
         "centroid_lon": 100.718,
@@ -1151,26 +1165,12 @@
         "mean_magnitude": 4.6,
         "last_event_time": "2026-07-04 10:28:54.216000",
         "confidence_note": ""
-      },
-      {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.25,
-        "centroid_lon": 94.476,
-        "radius_km": 38.7,
-        "centroid_depth_km": 74.8,
-        "depth_range_km": 44.7,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.15,
-        "last_event_time": "2026-07-30 02:21:41.169000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-01 10:57 UTC",
+    "generated_at": "2026-09-01 15:57 UTC",
     "model_update_count": 1,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1218,17 +1218,17 @@
         "confidence_note": ""
       },
       {
-        "zone": "Indo-Burman Range",
-        "centroid_lat": 23.032,
-        "centroid_lon": 94.588,
-        "radius_km": 184.5,
-        "centroid_depth_km": 105.6,
+        "zone": "Northern Myanmar",
+        "centroid_lat": 26.739,
+        "centroid_lon": 97.911,
+        "radius_km": 150.9,
+        "centroid_depth_km": 10.0,
         "depth_range_km": 10.0,
-        "event_count": 1,
+        "event_count": 2,
         "is_hotspot": false,
         "max_magnitude": 4.2,
         "mean_magnitude": 4.2,
-        "last_event_time": "2026-07-30 02:21:41.169000",
+        "last_event_time": "2026-08-10 11:18:09.092000",
         "confidence_note": ""
       }
     ],
