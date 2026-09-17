@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -65,7 +65,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -130,7 +130,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -178,24 +178,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -243,24 +243,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -325,7 +325,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -390,7 +390,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -438,24 +438,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -503,24 +503,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -568,24 +568,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -650,7 +650,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -715,7 +715,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -780,7 +780,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -845,7 +845,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -893,24 +893,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -958,24 +958,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -1040,7 +1040,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -1088,24 +1088,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -1153,24 +1153,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-09-17 16:04 UTC",
+    "generated_at": "2026-09-17 20:51 UTC",
     "model_update_count": 3,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1218,17 +1218,17 @@
         "confidence_note": ""
       },
       {
-        "zone": "Andaman Sea Region",
-        "centroid_lat": 11.15,
-        "centroid_lon": 93.372,
-        "radius_km": 75.8,
-        "centroid_depth_km": 90.0,
-        "depth_range_km": 25.6,
+        "zone": "Indo-Burman Range",
+        "centroid_lat": 23.034,
+        "centroid_lon": 94.431,
+        "radius_km": 30.0,
+        "centroid_depth_km": 97.3,
+        "depth_range_km": 10.0,
         "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.9,
-        "mean_magnitude": 4.7,
-        "last_event_time": "2026-08-11 19:55:41.269000",
+        "is_hotspot": true,
+        "max_magnitude": 4.4,
+        "mean_magnitude": 4.3,
+        "last_event_time": "2026-08-21 10:12:45.591000",
         "confidence_note": ""
       }
     ],
