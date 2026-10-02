@@ -53,7 +53,7 @@
       --severe-txt: #ffffff;
 
       /* ── Map basemap + zone-label treatment (flips with tile theme) */
-      --map-tiles:      light_all;
+      --map-tiles:      World_Light_Gray_Base;
       --map-label-txt:  rgba(0,0,0,.7);
       --map-label-halo: rgba(255,255,255,.95);
 
@@ -92,7 +92,7 @@
         --severe:     #b92947;   --severe-bg:   #b92947;
         --severe-txt: #ffffff;
 
-        --map-tiles:      dark_all;
+        --map-tiles:      World_Dark_Gray_Base;
         --map-label-txt:  rgba(255,255,255,.85);
         --map-label-halo: rgba(0,0,0,.9);
 
@@ -126,7 +126,7 @@
       --severe:     #b92947;   --severe-bg:   #b92947;
       --severe-txt: #ffffff;
 
-      --map-tiles:      dark_all;
+      --map-tiles:      World_Dark_Gray_Base;
       --map-label-txt:  rgba(255,255,255,.85);
       --map-label-halo: rgba(0,0,0,.9);
 
@@ -1148,16 +1148,17 @@ function identifyZone(lat,lon) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Map setup — tile layer swaps light_all/dark_all with the theme
+   Map setup — tile layer swaps Esri light/dark gray canvas with the theme
+   (CARTO basemaps started requiring an API key; Esri Canvas is keyless)
 ═══════════════════════════════════════════════════════════ */
 const map = L.map('map',{center:COUNTRIES.myanmar.mapCenter, zoom:COUNTRIES.myanmar.mapZoom});
 let currentTileLayer = null;
 function swapMapTiles() {
-  const theme = cssVar('--map-tiles') || 'light_all';
+  const theme = cssVar('--map-tiles') || 'World_Light_Gray_Base';
   if (currentTileLayer) map.removeLayer(currentTileLayer);
   currentTileLayer = L.tileLayer(
-    `https://{s}.basemaps.cartocdn.com/${theme}/{z}/{x}/{y}{r}.png`,
-    { attribution:'&copy; OSM &copy; CARTO', maxZoom:14 }
+    `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/${theme}/MapServer/tile/{z}/{y}/{x}`,
+    { attribution:'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors', maxZoom:14 }
   ).addTo(map);
   currentTileLayer.bringToBack();
 }
