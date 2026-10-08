@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -49,15 +49,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -65,7 +65,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -114,15 +114,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -130,7 +130,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -179,15 +179,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -195,7 +195,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -244,15 +244,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -260,7 +260,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -309,15 +309,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -325,7 +325,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -374,15 +374,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -390,7 +390,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -439,15 +439,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -455,7 +455,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -504,15 +504,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -520,7 +520,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -569,15 +569,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -585,7 +585,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -634,15 +634,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -650,7 +650,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -699,15 +699,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -715,7 +715,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -764,15 +764,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -780,7 +780,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -829,15 +829,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -845,7 +845,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -894,15 +894,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -910,7 +910,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -959,15 +959,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -975,7 +975,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1024,15 +1024,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -1040,7 +1040,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1089,15 +1089,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -1105,7 +1105,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1154,15 +1154,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -1170,7 +1170,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1219,15 +1219,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -1235,7 +1235,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1284,15 +1284,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
@@ -1300,7 +1300,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-08 10:12 UTC",
+    "generated_at": "2026-10-08 12:39 UTC",
     "model_update_count": 34,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1349,15 +1349,15 @@
       },
       {
         "zone": "Izu-Bonin Arc",
-        "centroid_lat": 32.304,
-        "centroid_lon": 141.448,
+        "centroid_lat": 32.32,
+        "centroid_lon": 141.411,
         "radius_km": 30.0,
-        "centroid_depth_km": 35.5,
+        "centroid_depth_km": 37.5,
         "depth_range_km": 10.0,
-        "event_count": 3,
+        "event_count": 4,
         "is_hotspot": true,
         "max_magnitude": 5.0,
-        "mean_magnitude": 4.67,
+        "mean_magnitude": 4.62,
         "last_event_time": "2026-09-18 08:39:05.285000",
         "confidence_note": ""
       }
