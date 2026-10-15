@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -48,24 +48,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -113,24 +113,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -178,24 +178,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -243,24 +243,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -308,24 +308,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 4.0,
     "magnitude_label": "LIGHT (M >= 4.0)",
@@ -373,24 +373,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -438,24 +438,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -503,24 +503,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -568,24 +568,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -633,24 +633,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -698,24 +698,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -763,24 +763,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -828,24 +828,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -893,24 +893,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -958,24 +958,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1023,24 +1023,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -1088,24 +1088,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -1153,24 +1153,24 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-15 16:09 UTC",
+    "generated_at": "2026-10-15 20:50 UTC",
     "model_update_count": 11,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1218,17 +1218,17 @@
         "confidence_note": ""
       },
       {
-        "zone": "Northern Myanmar",
-        "centroid_lat": 26.704,
-        "centroid_lon": 96.764,
-        "radius_km": 37.8,
-        "centroid_depth_km": 66.6,
-        "depth_range_km": 56.6,
+        "zone": "Chin Hills / Assam Region",
+        "centroid_lat": 26.679,
+        "centroid_lon": 92.22,
+        "radius_km": 88.9,
+        "centroid_depth_km": 10.0,
+        "depth_range_km": 10.0,
         "event_count": 2,
         "is_hotspot": false,
-        "max_magnitude": 4.2,
-        "mean_magnitude": 4.2,
-        "last_event_time": "2026-09-11 17:56:20.821000",
+        "max_magnitude": 4.6,
+        "mean_magnitude": 4.55,
+        "last_event_time": "2026-10-05 22:53:42.181000",
         "confidence_note": ""
       }
     ],
