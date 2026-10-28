@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -11,14 +11,28 @@
     "date_range_end": "2026-11-07",
     "probability": 0.6327,
     "confidence": "HIGH",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -31,20 +45,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -65,7 +65,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -76,14 +76,28 @@
     "date_range_end": "2026-11-04",
     "probability": 0.6269,
     "confidence": "HIGH",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -96,20 +110,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -130,7 +130,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -195,7 +195,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -206,14 +206,28 @@
     "date_range_end": "2026-11-07",
     "probability": 0.549,
     "confidence": "ELEVATED",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -226,20 +240,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -260,7 +260,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -271,14 +271,28 @@
     "date_range_end": "2026-11-04",
     "probability": 0.5481,
     "confidence": "ELEVATED",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -291,20 +305,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -325,7 +325,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -390,7 +390,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -455,7 +455,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -466,14 +466,28 @@
     "date_range_end": "2026-11-04",
     "probability": 0.4947,
     "confidence": "ELEVATED",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -486,20 +500,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -520,7 +520,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -531,14 +531,28 @@
     "date_range_end": "2026-11-07",
     "probability": 0.4848,
     "confidence": "ELEVATED",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -551,20 +565,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -585,7 +585,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -650,7 +650,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -715,7 +715,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -780,7 +780,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -791,14 +791,28 @@
     "date_range_end": "2026-11-04",
     "probability": 0.2667,
     "confidence": "GUARDED",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -811,20 +825,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -845,7 +845,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -856,14 +856,28 @@
     "date_range_end": "2026-11-07",
     "probability": 0.2576,
     "confidence": "GUARDED",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -876,20 +890,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -910,7 +910,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -975,7 +975,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1040,7 +1040,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1051,14 +1051,28 @@
     "date_range_end": "2026-11-07",
     "probability": 0.2044,
     "confidence": "GUARDED",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -1071,20 +1085,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -1105,7 +1105,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1116,14 +1116,28 @@
     "date_range_end": "2026-11-04",
     "probability": 0.1879,
     "confidence": "LOW",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -1136,20 +1150,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -1170,7 +1170,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -1235,7 +1235,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1246,14 +1246,28 @@
     "date_range_end": "2026-11-04",
     "probability": 0.1165,
     "confidence": "LOW",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -1266,20 +1280,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
@@ -1300,7 +1300,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-10-28 09:25 UTC",
+    "generated_at": "2026-10-28 11:58 UTC",
     "model_update_count": 42,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1311,14 +1311,28 @@
     "date_range_end": "2026-11-07",
     "probability": 0.1047,
     "confidence": "LOW",
-    "primary_zone": "Izu-Bonin Arc",
-    "primary_lat": 28.0,
-    "primary_lon": 139.9,
-    "primary_radius_km": 30.0,
-    "primary_depth_km": 473.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.375,
+    "primary_lon": 141.856,
+    "primary_radius_km": 54.3,
+    "primary_depth_km": 47.9,
     "primary_depth_range_km": 10.0,
-    "primary_is_hotspot": true,
+    "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.375,
+        "centroid_lon": 141.856,
+        "radius_km": 54.3,
+        "centroid_depth_km": 47.9,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Izu-Bonin Arc",
         "centroid_lat": 28.0,
@@ -1331,20 +1345,6 @@
         "max_magnitude": 7.0,
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
-        "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.603,
-        "centroid_lon": 141.726,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.7,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
         "confidence_note": ""
       },
       {
