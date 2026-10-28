@@ -19190,11 +19190,13 @@ time,latitude,longitude,depth,magnitude,place,id
 2026-10-21 01:04:29.196,35.7245,139.9836,90.274,4.5,"2 km N of Honchō, Japan",us6000u3rn
 2026-10-21 14:40:50.748,42.573,142.6247,94.112,4.7,"33 km NE of Shizunai-furukawachō, Japan",us6000u3uc
 2026-10-23 16:07:51.754,40.4159,142.572,38.138,5.1,"72 km ENE of Noda, Japan",us6000u4e2
-2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26298050
 2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26297050
+2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26298050
 2026-10-24 23:59:36.599,31.8226,131.873,10.0,5.3,"44 km ESE of Miyazaki, Japan",us6000u4qq
 2026-10-25 02:09:23.818,27.7953,139.6184,492.376,6.5,"Bonin Islands, Japan region",us6000u4r9
 2026-10-25 02:36:32.787,27.6872,139.7389,498.883,4.8,"Bonin Islands, Japan region",us6000u4rr
 2026-10-25 06:04:22.644,37.849,141.8415,52.782,4.5,"74 km SSE of Onagawa Chō, Japan",us6000u4sv
 2026-10-25 22:14:16.010,27.8572,139.6916,485.13,5.3,"Bonin Islands, Japan region",us6000u4we
 2026-10-25 22:16:27.821,27.8494,139.7272,482.177,4.8,"Bonin Islands, Japan region",us6000u4wi
+2026-10-27 00:25:08.167,37.3869,141.625,48.93,4.8,"54 km E of Tomioka, Japan",us7000ttdt
+2026-10-27 01:17:53.898,33.2845,140.7128,66.715,4.6,"203 km SSE of Tateyama, Japan",us7000tte0
