@@ -19190,8 +19190,8 @@ time,latitude,longitude,depth,magnitude,place,id
 2026-10-21 01:04:29.196,35.7245,139.9836,90.274,4.5,"2 km N of Honchō, Japan",us6000u3rn
 2026-10-21 14:40:50.748,42.573,142.6247,94.112,4.7,"33 km NE of Shizunai-furukawachō, Japan",us6000u3uc
 2026-10-23 16:07:51.754,40.4159,142.572,38.138,5.1,"72 km ENE of Noda, Japan",us6000u4e2
-2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26297050
 2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26298050
+2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26297050
 2026-10-24 23:59:36.599,31.8226,131.873,10.0,5.3,"44 km ESE of Miyazaki, Japan",us6000u4qq
 2026-10-25 02:09:23.818,27.7953,139.6184,492.376,6.5,"Bonin Islands, Japan region",us6000u4r9
 2026-10-25 02:36:32.787,27.6872,139.7389,498.883,4.8,"Bonin Islands, Japan region",us6000u4rr
@@ -19206,3 +19206,6 @@ time,latitude,longitude,depth,magnitude,place,id
 2026-10-29 17:37:01.805,39.8625,143.5623,35.0,4.5,"141 km E of Miyako, Japan",us7000tu2j
 2026-10-30 04:58:31.595,40.3108,142.3621,56.598,4.6,"51 km ENE of Noda, Japan",us7000tu6f
 2026-10-30 13:18:19.151,40.4803,142.4748,42.816,4.5,"68 km ENE of Kuji, Japan",us7000tu83
+2026-10-31 00:32:46.687,33.5548,141.8118,10.0,4.5,"223 km SE of Katsuura, Japan",us7000tugf
+2026-10-31 03:14:13.580,30.9098,142.5186,10.0,4.6,"Izu Islands, Japan region",us7000tugv
+2026-10-31 22:15:02.901,33.822,136.9854,352.449,6.0,"58 km SSE of Shima, Japan",us7000tuku
