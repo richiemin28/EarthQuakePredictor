@@ -1,6 +1,6 @@
 [
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -11,14 +11,28 @@
     "date_range_end": "2026-11-10",
     "probability": 0.6247,
     "confidence": "HIGH",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -46,26 +60,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -76,14 +76,28 @@
     "date_range_end": "2026-11-13",
     "probability": 0.5783,
     "confidence": "ELEVATED",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -111,26 +125,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -195,7 +195,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -206,14 +206,28 @@
     "date_range_end": "2026-11-13",
     "probability": 0.5305,
     "confidence": "ELEVATED",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -241,26 +255,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -325,7 +325,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -336,14 +336,28 @@
     "date_range_end": "2026-11-10",
     "probability": 0.4612,
     "confidence": "ELEVATED",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -371,26 +385,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -455,7 +455,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -466,14 +466,28 @@
     "date_range_end": "2026-11-13",
     "probability": 0.4131,
     "confidence": "ELEVATED",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -501,26 +515,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 4.5,
     "magnitude_label": "MODERATE (M >= 4.5)",
@@ -531,14 +531,28 @@
     "date_range_end": "2026-11-10",
     "probability": 0.4086,
     "confidence": "ELEVATED",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -566,26 +580,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -596,14 +596,28 @@
     "date_range_end": "2026-11-13",
     "probability": 0.4072,
     "confidence": "ELEVATED",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -631,26 +645,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -661,14 +661,28 @@
     "date_range_end": "2026-11-10",
     "probability": 0.385,
     "confidence": "GUARDED",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -696,26 +710,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 5.0,
     "magnitude_label": "STRONG (M >= 5.0)",
@@ -780,7 +780,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 5.5,
     "magnitude_label": "STRONG+ (M >= 5.5)",
@@ -845,7 +845,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -910,7 +910,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -921,14 +921,28 @@
     "date_range_end": "2026-11-10",
     "probability": 0.1948,
     "confidence": "LOW",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -956,26 +970,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
@@ -986,14 +986,28 @@
     "date_range_end": "2026-11-13",
     "probability": 0.1888,
     "confidence": "LOW",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -1021,26 +1035,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1105,7 +1105,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1116,14 +1116,28 @@
     "date_range_end": "2026-11-13",
     "probability": 0.1764,
     "confidence": "LOW",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -1151,26 +1165,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.5,
     "magnitude_label": "MAJOR+ (M >= 6.5)",
@@ -1235,7 +1235,7 @@
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 6.0,
     "magnitude_label": "MAJOR (M >= 6.0)",
@@ -1246,14 +1246,28 @@
     "date_range_end": "2026-11-10",
     "probability": 0.1549,
     "confidence": "LOW",
-    "primary_zone": "Nankai Trough",
-    "primary_lat": 33.138,
-    "primary_lon": 135.236,
-    "primary_radius_km": 250.0,
-    "primary_depth_km": 235.3,
-    "primary_depth_range_km": 60.0,
+    "primary_zone": "Japan Trench (Tohoku)",
+    "primary_lat": 37.312,
+    "primary_lon": 141.858,
+    "primary_radius_km": 54.0,
+    "primary_depth_km": 47.2,
+    "primary_depth_range_km": 10.0,
     "primary_is_hotspot": false,
     "location_predictions": [
+      {
+        "zone": "Japan Trench (Tohoku)",
+        "centroid_lat": 37.312,
+        "centroid_lon": 141.858,
+        "radius_km": 54.0,
+        "centroid_depth_km": 47.2,
+        "depth_range_km": 10.0,
+        "event_count": 3,
+        "is_hotspot": false,
+        "max_magnitude": 4.8,
+        "mean_magnitude": 4.63,
+        "last_event_time": "2026-10-27 00:25:08.167000",
+        "confidence_note": ""
+      },
       {
         "zone": "Nankai Trough",
         "centroid_lat": 33.138,
@@ -1281,26 +1295,12 @@
         "mean_magnitude": 7.0,
         "last_event_time": "2026-10-24 02:09:00",
         "confidence_note": ""
-      },
-      {
-        "zone": "Japan Trench (Tohoku)",
-        "centroid_lat": 37.558,
-        "centroid_lon": 141.705,
-        "radius_km": 30.0,
-        "centroid_depth_km": 50.4,
-        "depth_range_km": 10.0,
-        "event_count": 2,
-        "is_hotspot": false,
-        "max_magnitude": 4.8,
-        "mean_magnitude": 4.65,
-        "last_event_time": "2026-10-27 00:25:08.167000",
-        "confidence_note": ""
       }
     ],
     "disclaimer": "Probabilistic estimate only. Coordinates indicate the centroid of recent seismic clustering, not a precise epicenter. Radius and depth reflect spatial uncertainty, both tighter where recent activity is well-clustered and wider where it is not. Not for operational early-warning use."
   },
   {
-    "generated_at": "2026-11-03 10:34 UTC",
+    "generated_at": "2026-11-03 13:28 UTC",
     "model_update_count": 48,
     "magnitude_threshold": 7.0,
     "magnitude_label": "GREAT (M >= 7.0)",
