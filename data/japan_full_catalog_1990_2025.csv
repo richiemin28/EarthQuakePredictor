@@ -19190,8 +19190,8 @@ time,latitude,longitude,depth,magnitude,place,id
 2026-10-21 01:04:29.196,35.7245,139.9836,90.274,4.5,"2 km N of Honchō, Japan",us6000u3rn
 2026-10-21 14:40:50.748,42.573,142.6247,94.112,4.7,"33 km NE of Shizunai-furukawachō, Japan",us6000u3uc
 2026-10-23 16:07:51.754,40.4159,142.572,38.138,5.1,"72 km ENE of Noda, Japan",us6000u4e2
-2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26297050
 2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26298050
+2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26297050
 2026-10-24 23:59:36.599,31.8226,131.873,10.0,5.3,"44 km ESE of Miyazaki, Japan",us6000u4qq
 2026-10-25 02:09:23.818,27.7953,139.6184,492.376,6.5,"Bonin Islands, Japan region",us6000u4r9
 2026-10-25 02:36:32.787,27.6872,139.7389,498.883,4.8,"Bonin Islands, Japan region",us6000u4rr
@@ -19226,3 +19226,5 @@ time,latitude,longitude,depth,magnitude,place,id
 2026-11-10 05:20:08.677,36.3338,141.4659,35.0,4.9,"78 km ESE of Hitachi, Japan",us7000tx96
 2026-11-10 06:36:48.749,34.1962,140.1377,10.0,4.7,"90 km SSE of Tateyama, Japan",us7000tx9i
 2026-11-11 03:56:52.372,36.1492,142.185,10.0,4.6,"130 km ENE of Hasaki, Japan",us7000txgg
+2026-11-12 04:07:32.379,40.3593,143.6115,33.039,4.8,"155 km E of Noda, Japan",us7000txqx
+2026-11-12 13:27:22.321,35.7319,140.5102,73.353,4.5,"3 km E of Tako, Japan",us7000txsr
