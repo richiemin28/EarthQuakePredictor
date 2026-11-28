@@ -19190,8 +19190,8 @@ time,latitude,longitude,depth,magnitude,place,id
 2026-10-21 01:04:29.196,35.7245,139.9836,90.274,4.5,"2 km N of Honchō, Japan",us6000u3rn
 2026-10-21 14:40:50.748,42.573,142.6247,94.112,4.7,"33 km NE of Shizunai-furukawachō, Japan",us6000u3uc
 2026-10-23 16:07:51.754,40.4159,142.572,38.138,5.1,"72 km ENE of Noda, Japan",us6000u4e2
-2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26297050
 2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26298050
+2026-10-24 02:09:00.000,28.0,139.9,473.0,7.0,"Bonin Islands, Japan region",pt26297050
 2026-10-24 23:59:36.599,31.8226,131.873,10.0,5.3,"44 km ESE of Miyazaki, Japan",us6000u4qq
 2026-10-25 02:09:23.818,27.7953,139.6184,492.376,6.5,"Bonin Islands, Japan region",us6000u4r9
 2026-10-25 02:36:32.787,27.6872,139.7389,498.883,4.8,"Bonin Islands, Japan region",us6000u4rr
@@ -19237,3 +19237,4 @@ time,latitude,longitude,depth,magnitude,place,id
 2026-11-21 10:09:05.474,34.0109,140.2109,10.0,5.2,"112 km SSE of Tateyama, Japan",us6000ucky
 2026-11-21 17:30:44.504,34.4089,140.131,65.465,4.6,"68 km SSE of Tateyama, Japan",us6000ucn8
 2026-11-26 19:33:08.628,28.3661,141.2639,84.59,5.1,"Bonin Islands, Japan region",us6000udry
+2026-11-27 21:47:28.211,31.1518,140.3307,10.0,4.5,"Izu Islands, Japan region",us6000ue0a
